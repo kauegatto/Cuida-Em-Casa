@@ -1,8 +1,4 @@
-﻿$(document).ready(function () {
-
-   
-
-    $(".btnConfirmar").click(function () {
+﻿export default function scriptAlterarEndereco () {
 
         var CEP = $('#cep').val();
         var UF = $('#uf').val();
@@ -14,5 +10,4 @@
 
         localStorage.setItem("enderecoServico", rua + ", " + num + " " + comp + ", " + cidade + ", " + UF);
 
-    });
-});
+};

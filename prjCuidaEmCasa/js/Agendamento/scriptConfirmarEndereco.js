@@ -1,13 +1,6 @@
-﻿$(document).ready(function () {
+﻿export default function scriptConfirmarEndereco () {
 
-    $(".btnAlterar").click(function () {
-
-        window.location.href = "alterarEndereco.aspx";
-
-    });
-
-
-        cd = localStorage.getItem("cdPaciente");
+        var cd = localStorage.getItem("cdPaciente");
         var lati = ""; var long = ""; var geocode = "var";
 
 
@@ -29,13 +22,17 @@
             $("#enderecoCompleto").html(retorno);
             //geocode = 'https://nominatim.openstreetmap.org/search?q=' + retorno + '&format=json&polygon=1&addressdetails=1';
             $.getJSON(geocode, function (data) {
+                try{
+                    lati = data[0].lat;
 
-                lati = data[0].lat;
-
-                long = data[0].lon;
-                map = L.map('areaMapa').setView([lati, long], 15);
-                marcador = L.marker(map.getCenter()).addTo(map);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                    long = data[0].lon;
+                    map = L.map('areaMapa').setView([lati, long], 15);
+                    marcador = L.marker(map.getCenter()).addTo(map);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                }   
+                catch{
+                    $('#areaMapa').html("erro na busca do mapa");
+                }         
             });
 
         });
@@ -43,5 +40,5 @@
 
 
 
-});
+}   ;
 

@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿(document).ready(function () {
 
     var data = localStorage.getItem("data");
     var data_formatada;

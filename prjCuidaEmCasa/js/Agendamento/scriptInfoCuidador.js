@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿export default function scriptInfoCuidador () {
     $(".areaInfoDetalhes").click(function () {
         $(this).toggleClass("fechado");
         if ($(this).hasClass("fechado")) {
@@ -29,7 +29,7 @@
             $(this).children(".btnExpandir").html("-");
         }
     }); //VA I SE F8UDE AJAVASCIRPT!!!
-    $.post("../../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
+    $.post("../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
         if (!retorno) {
             response.redirect('google.com');
         }
@@ -44,4 +44,4 @@
         localStorage.setItem("valorHora", retorno[0]);
         localStorage.setItem("nomeCuidador", retorno[1]);
     });
-});
+};

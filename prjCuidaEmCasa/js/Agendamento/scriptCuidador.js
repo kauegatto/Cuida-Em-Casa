@@ -1,12 +1,12 @@
-﻿$(document).ready(function () {
+﻿export default function scriptCuidador () {
 
     $.post("../../lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
         if (!retorno) {
-            $('#wrapper-cuidador').html("ERRO NO RETORNO");
+            $('#wrapper-cuidador').append("ERRO NO RETORNO");
         }
         retorno = retorno.split("|");
         console.log(retorno);
-        $('#wrapper-cuidador').html(retorno[0]);
+        $('#wrapper-cuidador').append(retorno[0]);
 
         $(".areaCuidador").each(function (i, obj) {
             var url = "data:image/svg+xml;base64," + $(this).children().eq(2).html();
@@ -18,11 +18,6 @@
             $(".areaCuidador").removeClass("selecionado");
             $(this).addClass("selecionado");
         });
-
-        $(".btnProximo").click(function () {
-            var classes = $(".selecionado").attr("class").split(/\s+/);
-            localStorage.setItem("emailCuidador", classes[1]);
-        });
     });
 
-});  
+}

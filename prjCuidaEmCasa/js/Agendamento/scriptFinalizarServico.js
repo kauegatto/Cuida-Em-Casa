@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿export default function carregarFinalizarServico () {
 
     var data = localStorage.getItem("data");
     var data_formatada;
@@ -26,10 +26,10 @@
         $('#horaFinal').html(localStorage.getItem("horaInicio") + " - " + localStorage.getItem("horaFim"));
 
         //Saber vavlor / hora
-        horaSom = horaSomada.split(':');
+        var horaSom = horaSomada.split(':');
         horaSom[0] *= 60;
-        horaMinuto = parseInt(horaSom[0]) + parseInt(horaSom[1]);
-        valorFinal = horaMinuto * (parseInt(localStorage.getItem("valorHora")) / 60);
+        var horaMinuto = parseInt(horaSom[0]) + parseInt(horaSom[1]);
+        var valorFinal = horaMinuto * (parseInt(localStorage.getItem("valorHora")) / 60);
         $('#valorFinal').html(valorFinal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }));
         return;
     }
@@ -39,4 +39,9 @@
     $('#nomeCuidador').html(localStorage.getItem("nomeCuidador"));
     $('#endereco').html(localStorage.getItem("enderecoServico"));
 
-});
+};
+
+export function EnviarFinalizarServico(){
+
+
+}

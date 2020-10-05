@@ -1,4 +1,8 @@
-﻿export default function scriptPaciente() {
+﻿export default function scriptPaciente(val) {
+	
+	if (val == "leave"){
+			return;
+		}
 
     $.post("../../lib/libBuscarPaciente.aspx", function (retorno) {
         if (!retorno) {
@@ -9,24 +13,18 @@
 			return;
 		}
 		else{
-			console.log(retorno);
-	        retorno = retorno + "<button class='btnProximo navBtn' type='button'>Próximo</button>";
-			$('#wrapper-paciente').html(retorno);
+	        //retorno = retorno + "<button class='btnProximo navBtn' id='btnPaciente' type='button'>Próximo</button>";
+			$('#wrapper-paciente').append(retorno);
 	        $(".areaPaciente").each(function (i, obj) {
 	        var url = "data:image/png;base64," + $(this).children().eq(3).html();
 	            $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
 	        });
+	        console.log("Pacientes encontrados!");
     	}
     	
     	$(".areaPaciente").click(function (e) {
 	            $(".areaPaciente").removeClass("selecionado");
 	            $(this).addClass("selecionado");
 	        });
-
-		$(".btnProximo").click(function () {
-	            var classes = $(".selecionado").attr("class").split(/\s+/);
-	            localStorage.setItem("cdPaciente", classes[1]);
-	        });
-
-	    });
-	};
+	});
+};
