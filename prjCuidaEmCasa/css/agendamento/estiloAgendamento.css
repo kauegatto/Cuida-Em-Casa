@@ -1,0 +1,10 @@
+.tituloServico { width: 225px; height: 43px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; margin-top: 14px; margin-left: 92px; }
+
+.areaInfo { width: 300px; height: 48px; margin-top: 10px; margin-left: 30px; }
+
+.dataServico { text-align: center; width: 180px; height: 41px; border-radius: 6px; background-color: #F0F0F7; margin-left: 20px; position: absolute; }
+
+/* invisiveis por inicio */
+
+#wrapper-confirmarEndereco,#wrapper-alterarEndereco,#wrapper-escolherDataServico,#wrapper-cuidador,#wrapper-infoCuidador,
+#wrapper-finalizarServico{display:none;}

@@ -1,0 +1,38 @@
+* { margin: 0; padding: 0; }
+
+a { text-decoration: none; color: White;}
+
+.estruturaGeral { display: grid; grid-template-columns: repeat(4, 25%); grid-template-areas: "header header header header" "conteudo conteudo conteudo conteudo" "footer footer footer footer"; }
+
+.header { grid-area: header; height: 104px; background: #2980B9; backdrop-filter: blur(4px);}
+
+.areaLogo { width: 101px; float: left; } 
+
+.iconeVoltar { margin-left: 28px; margin-top: 43px; }
+
+.areaTituloGeral { width: 259px; float: left; }
+
+.logo { margin-left: 35px; margin-top: 11px; }
+
+.tituloGeral {color: white; font-size: 20px; font-family: 'Rubik', sans-serif; line-height: 24px; margin-top: 40px; margin-left: 55px; width: 158px;
+height: 47px;}
+
+.conteudoGeral { grid-area: conteudo; margin-bottom: 130px;}
+
+.tituloConteudo { margin-top: 5px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; width: 260px; margin-left: 49px;}
+
+.btnProximo {width: 166px; height: 34px; background: #27AE60; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; border-style: none; color: white; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 20px; line-height: 25px; position: fixed; left: 27%; bottom: 15.5%;}
+
+.footer { grid-area: footer; height: 70px; background: #2980B9; color: white; width: 100%; position: fixed; bottom: 0%; } 
+
+.menuGeral { width: 25%; float: left; }
+
+.areaIcone { height: 80%; margin-top: 14px; margin-left: 30px;}
+
+.menuGeral span { height: 20%; position: relative; font-family: 'Archivo', sans-serif;font-style: normal; font-weight: bold; font-size: 12px; line-height: 13px;}
+
+.iconeCasa { margin-top: 10px; margin-left: 159px; }
+
+.selecionado {background-color: #1086DF;color:#FFF; transition:0.3s;}
+
+.invi { display: none;}
