@@ -1,4 +1,4 @@
-﻿$(document).ready(function () {
+﻿export default function scriptPaciente() {
 
     $.post("../../lib/libBuscarPaciente.aspx", function (retorno) {
         if (!retorno) {
@@ -13,7 +13,7 @@
 	        retorno = retorno + "<button class='btnProximo navBtn' type='button'>Próximo</button>";
 			$('#wrapper-paciente').html(retorno);
 	        $(".areaPaciente").each(function (i, obj) {
-	            url = "data:image/png;base64," + $(this).children().eq(3).html();
+	        var url = "data:image/png;base64," + $(this).children().eq(3).html();
 	            $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
 	        });
     	}
@@ -28,5 +28,5 @@
 	            localStorage.setItem("cdPaciente", classes[1]);
 	        });
 
-    	}); 
-});
+	    });
+	};
