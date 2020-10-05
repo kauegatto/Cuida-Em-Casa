@@ -55,11 +55,6 @@ namespace prjCuidaEmCasa.lib
             string horaFim = Request["hf"].ToString();
             string qtdHoras = Request["qtd"].ToString();
 
-            Session["dataInicio"] = dataInicio ;
-            Session["horaInicio"] = horaInicio;
-            Session["horaFim"] = horaFim ;
-            Session["qtdHoras"] = qtdHoras;
-
             string[] dataSeparada = dataInicio.Split('-');
 
             string[] horaSeparadaInicio = horaInicio.Split(':');

@@ -4,10 +4,10 @@
 <html>
 <head>
 	<title>Cuida em Casa</title>
-	<meta charset="utf-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link href="../../css/estiloGeral.css" rel="stylesheet" type="text/css" >
-	<link rel="stylesheet" type="text/css" href="../../css/agendamento/estiloInfoCuidador.css>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="../../css/estiloGeral.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="../../css/agendamento/estiloInfoCuidador.css">
 	<link rel="stylesheet" type="text/css" href="../../css/agendamento/estiloCuidador.css">
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">

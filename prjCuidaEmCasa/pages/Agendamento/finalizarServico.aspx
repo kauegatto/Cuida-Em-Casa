@@ -27,7 +27,31 @@
 			</div>
 		</header>
 		<main class="conteudoGeral">
-			
+			<h3 class="tituloConteudo" style="width: 72px; margin-left: 150px;">Resumo</h3>
+			<div class="areaResumo">
+				<div class="areaDadosServico">
+					<div class="areaImagemCuidador" style="background-image: url('../../img/imgCuidador1.jfif'); margin-top: 8px;"></div>
+					<h3 class="nomeCuidador" id="nomeCuidador"></h3>
+				</div>
+				<div class="areaDadosServico" style="height: 60px;">
+					<img src="../../img/icones/agendamento/iconeCalendario.png" class="iconeCalendario">
+					<span class="dataServico" id="dataFinal"></span>
+				</div>
+				<div class="areaDadosServico" style="height: 50px;">
+					<img src="../../img/icones/agendamento/iconeRelogio.png" class="iconeRelogio">
+					<span class="horaServico" id="horaFinal"></span>
+				</div>
+				<div class="areaDadosServico" style="height: 40px;">
+					<img src="../../img/icones/cuidador/iconeCrifaoPequeno.png" class="iconeCifrao" >
+					<span class="valorServico" id="valorFinal"></span>
+				</div>
+				<div class="areaDadosServico" style="height: 70px;">
+					<img src="../../img/icones/endereco/iconeCasa.png" class="iconeCasa1" >
+					<h3 class="enderecoServico" id="endereco"></h3>
+				</div>
+				
+			</div>
+			<button class="btnProximo" style="left: 27.5%">Finalizar</button>
 		</main>
 		<footer class="footer">
 			<nav>

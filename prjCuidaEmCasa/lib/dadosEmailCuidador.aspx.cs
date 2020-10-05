@@ -25,31 +25,8 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
             #endregion
-            #region implementar dps
-           // string emailCuidadorSelecionado = Request["e"].ToString();
-           // Session["emailCuidadorSelecionado"] = emailCuidadorSelecionado;
-           // clsCuidador classeCuidador = new clsCuidador();
 
-           // if (!classeCuidador.BuscarCuidador(emailCuidadorSelecionado))
-           // {
-           //     Response.Write("false");
-           //     return;
-           // }
-           // string dadosCuidador = "";
-
-           // dadosCuidador += classeCuidador.vl_cuidador[0] + "/";
-           // dadosCuidador += classeCuidador.nm_cuidador[0] + "/";
-           // dadosCuidador += classeCuidador.nm_especializacao[0] + "/";
-           // dadosCuidador += classeCuidador.nm_genero[0] + "/";
-           // dadosCuidador += classeCuidador.ds_experiencia[0] + "/";
-           // dadosCuidador += classeCuidador.ds_usuario[0] + "/";
-           // dadosCuidador = dadosCuidador.Substring(0, dadosCuidador.Length - 1);
-           //Response.Write("teste/teste/teste/testeeeeekkkkk/");
-            #endregion
-          
             string emailCuidadorSelecionado = Request["e"].ToString();
-
-            Session["emailCuidador"] = emailCuidadorSelecionado;
 
             clsCuidador classeCuidador = new clsCuidador();
 

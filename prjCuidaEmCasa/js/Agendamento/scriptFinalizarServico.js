@@ -12,7 +12,7 @@
             var dataFimFormatada = localStorage.getItem("dataFim").split('/');
             if (parseInt(dataFimFormatada[0]) < 10) { dataFimFormatada[0] = "0" + dataFimFormatada[0] }
             if (parseInt(dataFimFormatada[1]) < 10) { dataFimFormatada[1] = "0" + dataFimFormatada[1] }
-            data_formatada = split[2] + "/" + split[1] + " - " + dataFimFormatada[0] +"/"+dataFimFormatada[1];
+            data_formatada = split[2] + "/" + split[1];
         }
         else {
             data_formatada = split[2] + "/" + split[1];

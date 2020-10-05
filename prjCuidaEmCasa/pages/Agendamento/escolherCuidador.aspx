@@ -25,10 +25,45 @@
 			<div class="areaTituloGeral">
 				<h1 class="tituloGeral" style="margin: 0 auto; margin-top: 45px; width: 100%;">Cuidadores Disponíveis</h1>
 			</div>
-			
+			<div class="areaFiltro">
+				<img src="../../img/icones/agendamento/iconeFunil.png" class="iconeFunil">
+				<span>Filtrar por preço, especilização, gênero e avaliação</span>
+			</div>
+			<div class="infoFiltro">
+				<div class="dadosFiltro">
+					<h3>Especialização</h3>
+					<select class="cbxEspecializacao">
+						<option>Selecione</option>
+						<option>Fisioterapeuta</option>
+					</select>
+				</div>
+				<div class="dadosFiltro" style="width: 180px; height: 62px; float: left;">
+					<h3>Preço</h3>
+					<select class="cbxEspecializacao" style="width: 165px;">
+						<option>Selecione</option>
+						<option>80 / hora</option>
+					</select>
+				</div>
+				<div class="dadosFiltro" style="width: 180px; height: 62px; float: left;">
+					<h3>Avaliação</h3>
+					<select class="cbxEspecializacao" style="width: 130px;">
+						<option>Selecione</option>
+						<option>Muito Bom</option>
+					</select>
+				</div>
+				<div class="dadosFiltro">
+					<h3>Genêro</h3>
+					<select class="cbxEspecializacao">
+						<option>Selecione</option>
+						<option>Masculino</option>
+						<option>Feminino</option>
+						<option>Outro</option>
+					</select>
+				</div>
+			</div>
 		</header>
 		<main class="conteudoGeral">
-            <asp:Literal ID="litCuidadores" runat="server"></asp:Literal>
+            <div id="wrapper-cuidador"></div>
 			<%--<div class="areaCuidador">
 				<div class="areaImagemCuidador" style="background-image: url('../../img/imgCuidador1.jfif');"></div>
 				<div class="areaInfoCuidador">

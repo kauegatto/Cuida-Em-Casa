@@ -87,17 +87,21 @@
     <Content Include="img\imgIdoso4.jpg" />
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
-    <Content Include="js\finalizarServico.js" />
+    <Content Include="js\Agendamento\scriptFinalizarServico.js" />
+    <Content Include="js\Agendamento\scriptNavegacao.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
-    <Content Include="js\scriptAlterarEndereco.js" />
-    <Content Include="js\scriptConfimarEndereco.js" />
-    <Content Include="js\scriptCuidador.js" />
-    <Content Include="js\scriptDataHora.js" />
-    <Content Include="js\scriptInfoCuidador.js" />
-    <Content Include="js\scriptPaciente.js" />
+    <Content Include="js\Agendamento\scriptAlterarEndereco.js" />
+    <Content Include="js\Agendamento\scriptConfirmarEndereco.js" />
+    <Content Include="js\Agendamento\scriptCuidador.js" />
+    <Content Include="js\Agendamento\scriptDataHora.js" />
+    <Content Include="js\Agendamento\scriptInfoCuidador.js" />
+    <Content Include="js\Agendamento\scriptPaciente.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
+    <Content Include="lib\libBuscarCuidador.aspx" />
+    <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
+    <Content Include="pages\agendamento.html" />
     <Content Include="pages\Agendamento\alterarEndereco.aspx" />
     <Content Include="pages\Agendamento\escolherCuidador.aspx" />
     <Content Include="pages\Agendamento\escolherDataServico.aspx" />
@@ -131,6 +135,20 @@
     </Compile>
     <Compile Include="lib\dadosEndereco.aspx.designer.cs">
       <DependentUpon>dadosEndereco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarCuidador.aspx.cs">
+      <DependentUpon>libBuscarCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarCuidador.aspx.designer.cs">
+      <DependentUpon>libBuscarCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarPaciente.aspx.cs">
+      <DependentUpon>libBuscarPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarPaciente.aspx.designer.cs">
+      <DependentUpon>libBuscarPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>

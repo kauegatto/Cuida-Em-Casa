@@ -28,7 +28,7 @@
 		</header>
 		<main class="conteudoGeral">
 			<h3 class="tituloConteudo">Para qual paciente será esse serviço ?</h3>
-            <asp:Literal ID="litConteudoPacientes" runat="server"></asp:Literal>
+            <div id="wrapper-paciente"></div>
 			
 				<a href="confirmarEndereco.aspx"><button class="btnProximo" type="button">Próximo</button></a>
 			

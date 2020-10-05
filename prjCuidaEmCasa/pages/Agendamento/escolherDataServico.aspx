@@ -8,9 +8,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="../../css/estiloGeral.css">
 	<link rel="stylesheet" type="text/css" href="../../css/agendamento/estiloAgendamento.css">
-	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
-	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
 
     <script src="../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="../../js/scriptDataHora.js" type="text/javascript"></script>
@@ -27,7 +27,22 @@
 			</div>
 		</header>
 		<main class="conteudoGeral">
-			
+			<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
+			<div class="areaInfo">
+				<img src="../../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
+				<input type="date" name="DATA" class="dataServico" id="data">
+			</div>
+			<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
+			<div class="areaInfo">
+				<img src="../../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
+				<input type="time" name="DATA" class="dataServico" id="horaInicio">
+			</div>
+			<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
+			<div class="areaInfo">
+				<img src="../../img/icones/agendamento/iconeTempo.png" class="imgIcone">
+				<input type="time" name="DATA" class="dataServico" id="horaFim">
+			</div>
+        <button class="btnProximo" style="left: 27.5%">Próximo</button>			
 		</main>
 		<footer class="footer">
 			<nav>
