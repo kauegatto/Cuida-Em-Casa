@@ -18,7 +18,11 @@
             geocode += "&format=json&polygon=1&addressdetails=0";
             console.log(geocode);
 
-            localStorage.setItem("enderecoServico", retorno);
+            localStorage.setItem("numEndereco", retorno[0]);
+            localStorage.setItem("nomeRua", retorno[1]);
+            localStorage.setItem("nomeComplemento", retorno[2]);
+            localStorage.setItem("nomeCidade", retorno[3]);
+            localStorage.setItem("nomeEstado", retorno[4]);
             $("#enderecoCompleto").html(retorno);
             //geocode = 'https://nominatim.openstreetmap.org/search?q=' + retorno + '&format=json&polygon=1&addressdetails=1';
             $.getJSON(geocode, function (data) {

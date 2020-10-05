@@ -37,8 +37,12 @@
     somaHoraValorFinal();
     formatarData(data);
     $('#nomeCuidador').html(localStorage.getItem("nomeCuidador"));
-    $('#endereco').html(localStorage.getItem("enderecoServico"));
-
+    if (localStorage.getItem("nomeComplemento") != "") {
+        $('#endereco').html(localStorage.getItem("nomeRua") + ", " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeComplemento") + ", " + localStorage.getItem("nomeCidade") + ", " + localStorage.getItem("nomeEstado"));
+    }
+    else {
+        $('#endereco').html(localStorage.getItem("nomeRua") + ", " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeCidade") + ", " + localStorage.getItem("nomeEstado"));
+    }
 };
 
 export function EnviarFinalizarServico(){

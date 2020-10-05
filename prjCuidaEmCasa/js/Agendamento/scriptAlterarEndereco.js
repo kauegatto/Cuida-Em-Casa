@@ -8,6 +8,12 @@
         var bairro = $('#bairro').val();
         var cidade = $('#cidade').val();
 
-        localStorage.setItem("enderecoServico", rua + ", " + num + " " + comp + ", " + cidade + ", " + UF);
-
+        if (CEP != "") {
+            localStorage.setItem("cepEndereco", CEP)
+            localStorage.setItem("numEndereco", num);
+            localStorage.setItem("nomeRua", rua);
+            localStorage.setItem("nomeComplemento", comp);
+            localStorage.setItem("nomeCidade", cidade);
+            localStorage.setItem("nomeEstado", UF);
+        }
 };
