@@ -76,11 +76,11 @@
 
 			<div id="wrapper-confirmarEndereco" class="wrapper">
 				<div class="areaIconeCasa">
-					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
+					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa"/>
 				</div>
 
 				<div class="areaEndereco">
-					<p>O endereço:</p> <p id="enderecoCompleto"></p> é o correto para esse paciente?
+					<p>O endereço:</p> <p id="nomeRua"></p><p id="nomeBairro"></p>,<p id="numEndereco"></p>.<p id="nomeCidade"></p>-<p id="nomeEstado"></p> é o correto para esse paciente?
 				</div>
 			    <div id="areaMapa">
 			    </div>
@@ -96,10 +96,10 @@
 				<div class="areaIconeCasa">
 					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
 				</div>
-				<div class="areaFormulario">
+				<form class="areaFormulario">
 					<div class="areaDados">
 						<span class="tituloDados">CEP:</span>
-						<input type="text" name="CEP" id="cep" class="txtDados" style="width: 42%;">
+						<input type="text" name="CEP" id="cep" class="txtDados" style="width: 42%;" required/>
 						<span class="tituloDados" style="margin-left: 10px;">UF:</span>
 						<select class="txtDados" id="uf" name="UF" style="width: 15%; margin-left: 0px;">
 	                        <option value=""></option>
@@ -110,44 +110,44 @@
 						</select>
 					</div>
 					<div class="areaDados">
-						<span class="tituloDados">Rua:</span>
-						<input type="text" name="Rua" id="rua" class="txtDados" style="margin-left: 23.5px;">
+				    <span class="tituloDados">Rua:</span>
+						<input type="text" name="Rua" id="rua" class="txtDados" style="margin-left: 23.5px;" required>
 					</div>
 					<div class="areaDados" >
 						<span class="tituloDados">Nº</span>
-						<input type="text" name="Numero" id="num" class="txtDados" style="width:60px; margin-left: 42px;">
+						<input type="text" name="Numero" id="num" class="txtDados" style="width:60px; margin-left: 42px;" required>
 						<span class="tituloDados" style="margin-left: 10px;">Comp:</span>
-						<input type="text" name="Complemento" id="comp" class="txtDados" style="width: 89px; margin-left: 5px;">
+						<input type="text" name="Complemento" id="comp" class="txtDados" style="width: 89px; margin-left: 5px;" required>
 					</div>
 					<div class="areaDados">
 						<span class="tituloDados">Bairro:</span>
-						<input type="text" name="Bairro" id="bairro" class="txtDados" style="margin-left: 7px;">
+						<input type="text" name="Bairro" id="bairro" class="txtDados" style="margin-left: 7px;" required>
 					</div>
 					<div class="areaDados">
 						<span class="tituloDados" >Cidade:</span>
-						<input type="text" name="Cidade" id="cidade" class="txtDados" style="margin-left: 0px;">
+						<input type="text" name="Cidade" id="cidade" class="txtDados" style="margin-left: 0px;" required>
 					</div>
 					
-					<button class="btnConfirmar navBtn" id="btnAlterarEndereco">Confirmar</button>
+					<button type="button" class="btnConfirmar navBtn" id="btnAlterarEndereco">Confirmar</button>
 				
-				</div>
+				</form>
 			</div>
 	
 			<div id="wrapper-escolherDataServico" class="wrapper">
 				<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
 				<div class="areaInfo">
 					<img src="../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
-					<input type="date" name="DATA" class="dataServico" id="data">
+					<input type="date" name="DATA" class="dataServico" id="data" required>
 				</div>
 				<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
 				<div class="areaInfo">
 					<img src="../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaInicio">
+					<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
 				</div>
 				<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
 				<div class="areaInfo">
 					<img src="../img/icones/agendamento/iconeTempo.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaFim">
+					<input type="time" name="DATA" class="dataServico" id="horaFim" required>
 				</div>
 	        	<button class="btnProximo navBtn" id="btnDataHora">Próximo</button>			
 			</div> 

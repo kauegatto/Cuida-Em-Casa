@@ -21,8 +21,7 @@ $(document).ready(function () {
     $(".navBtn").click(function () {
     	var DomElement = ($(this)[0]);
     	indexPage = passarPagina(indexPage, $(DomElement));
-    	console.log("era p ter passado de pagina ta");
-    	
+
 });  
 
 // Pg 1  : btnPaciente
@@ -31,12 +30,13 @@ $("#btnPaciente").click(function () {
 						var classes = $(".selecionado").attr("class").split(/\s+/);
 			            localStorage.setItem("cdPaciente", classes[1]);
                         $(".selecionado").removeClass("selecionado");
+                        scriptConfirmarEndereco();
 			}
-			catch{
+			catch {
 			        	alert("Por favor, escolha um paciente!");
 			        	return;
 			}
-    	scriptConfirmarEndereco();
+    	
  });
 //
 // Pg 2 : btnConfirmarEndereco 
