@@ -16,4 +16,11 @@
             localStorage.setItem("nomeCidade", cidade);
             localStorage.setItem("nomeEstado", UF);
         }
+        else{
+            localStorage.setItem("numEndereco", num);
+            localStorage.setItem("nomeRua", rua);
+            localStorage.setItem("nomeComplemento", comp);
+            localStorage.setItem("nomeCidade", cidade);
+            localStorage.setItem("nomeEstado", UF);
+        }
 };

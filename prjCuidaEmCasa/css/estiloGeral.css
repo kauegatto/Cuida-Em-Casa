@@ -4,7 +4,7 @@ a { text-decoration: none; color: White;}
 
 .estruturaGeral { display: grid; grid-template-columns: repeat(4, 25%); grid-template-areas: "header header header header" "conteudo conteudo conteudo conteudo" "footer footer footer footer"; }
 
-.header { grid-area: header; height: 104px; background: #2980B9; backdrop-filter: blur(4px);}
+.header { grid-area: header; min-height: 107px; background: #2980B9; backdrop-filter: blur(4px);}
 
 .areaLogo { width: 101px; float: left; } 
 
@@ -35,4 +35,4 @@ height: 47px;}
 
 .selecionado {background-color: rgba(40, 85, 147, 0.5);color:#FFF; transition:0.3s;}
 
-.invi { display: none;}
+.invi { display: none; }

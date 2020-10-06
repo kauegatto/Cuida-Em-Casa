@@ -1,9 +1,4 @@
-﻿export default function scriptPaciente(val) {
-	
-	if (val == "leave"){
-			return;
-		}
-
+﻿export default function scriptPaciente() {
     $.post("../../lib/libBuscarPaciente.aspx", function (retorno) {
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");

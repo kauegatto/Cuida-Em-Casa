@@ -65,99 +65,11 @@
 			<div class="areaTituloGeral">
 				<h1 class="tituloGeral" style="text-align: center; margin-left: 0px;">Agendamento</h1>
 			</div>
-		</header>
-
-
-		<main class="conteudoGeral">
-			<div id="wrapper-paciente" class="wrapper">	
-				<h3 class="tituloConteudo">Para qual paciente será esse serviço ?</h3>
-				<button class='btnProximo navBtn' id='btnPaciente' type='button'>Próximo</button>	
-			</div>
-
-			<div id="wrapper-confirmarEndereco" class="wrapper">
-				<div class="areaIconeCasa">
-					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa"/>
-				</div>
-
-				<div class="areaEndereco">
-					<p>O endereço:</p> <p id="nomeRua"></p><p id="nomeBairro"></p>,<p id="numEndereco"></p>.<p id="nomeCidade"></p>-<p id="nomeEstado"></p> é o correto para esse paciente?
-				</div>
-			    <div id="areaMapa">
-			    </div>
-				<div class="areaBotao">
-					<button class="btnConfirmar" id="btnConfirmarEndereco">Sim</button>
-					<button class="btnAlterar navBtn" id="btnEnderecoDiferente">Não, Alterar</button>
-				
-				</div>
-			</div>
-
-			<div id="wrapper-alterarEndereco" class="wrapper">
-
-				<div class="areaIconeCasa">
-					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
-				</div>
-				<form class="areaFormulario">
-					<div class="areaDados">
-						<span class="tituloDados">CEP:</span>
-						<input type="text" name="CEP" id="cep" class="txtDados" style="width: 42%;" required/>
-						<span class="tituloDados" style="margin-left: 10px;">UF:</span>
-						<select class="txtDados" id="uf" name="UF" style="width: 15%; margin-left: 0px;">
-	                        <option value=""></option>
-						    <option value="SP">SP</option>
-						    <option value="SC">SC</option>
-						    <option value="RJ">RJ</option>
-						    <option value="MG">MG</option>
-						</select>
-					</div>
-					<div class="areaDados">
-				    <span class="tituloDados">Rua:</span>
-						<input type="text" name="Rua" id="rua" class="txtDados" style="margin-left: 23.5px;" required>
-					</div>
-					<div class="areaDados" >
-						<span class="tituloDados">Nº</span>
-						<input type="text" name="Numero" id="num" class="txtDados" style="width:60px; margin-left: 42px;" required>
-						<span class="tituloDados" style="margin-left: 10px;">Comp:</span>
-						<input type="text" name="Complemento" id="comp" class="txtDados" style="width: 89px; margin-left: 5px;" required>
-					</div>
-					<div class="areaDados">
-						<span class="tituloDados">Bairro:</span>
-						<input type="text" name="Bairro" id="bairro" class="txtDados" style="margin-left: 7px;" required>
-					</div>
-					<div class="areaDados">
-						<span class="tituloDados" >Cidade:</span>
-						<input type="text" name="Cidade" id="cidade" class="txtDados" style="margin-left: 0px;" required>
-					</div>
-					
-					<button type="button" class="btnConfirmar navBtn" id="btnAlterarEndereco">Confirmar</button>
-				
-				</form>
-			</div>
-	
-			<div id="wrapper-escolherDataServico" class="wrapper">
-				<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
-				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
-					<input type="date" name="DATA" class="dataServico" id="data" required>
-				</div>
-				<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
-				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
-				</div>
-				<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
-				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeTempo.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaFim" required>
-				</div>
-	        	<button class="btnProximo navBtn" id="btnDataHora">Próximo</button>			
-			</div> 
-
-			<div id="wrapper-cuidador" class="wrapper">
-				<div class="areaFiltro">
+			<div class="areaFiltro">
 					<img src="../img/icones/agendamento/iconeFunil.png" class="iconeFunil">
 					<span>Filtrar por preço, especilização, gênero e avaliação</span>
-				</div>
-				<div class="infoFiltro">
+			</div>
+			<div class="infoFiltro">
 					<div class="dadosFiltro">
 						<h3>Especialização</h3>
 						<select class="cbxEspecializacao">
@@ -188,7 +100,96 @@
 							<option>Outro</option>
 						</select>
 					</div>
+			</div>
+		</header>
+
+
+		<main class="conteudoGeral">
+			<div id="wrapper-paciente" class="wrapper">	
+				<h3 class="tituloConteudo">Para qual paciente será esse serviço?</h3>
+				<button class='btnProximo navBtn' id='btnPaciente' type='button'>Próximo</button>
+			</div>
+
+			<div id="wrapper-confirmarEndereco" class="wrapper">
+				<div class="areaIconeCasa">
+					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa"/>
 				</div>
+
+				<div class="areaEndereco">
+					<p>O endereço:</p> <p id="nomeRua"></p><p id="nomeBairro"></p>,<p id="numEndereco"></p>.<p id="nomeCidade"></p>-<p id="nomeEstado"></p> é o correto para esse paciente?
+				</div>
+			    <div id="areaMapa">
+			    </div>
+				<div class="areaBotao">
+					<button class="btnConfirmar" id="btnConfirmarEndereco">Sim</button>
+					<button class="btnAlterar navBtn" id="btnEnderecoDiferente">Não, Alterar</button>
+				
+				</div>
+			</div>
+
+			<div id="wrapper-alterarEndereco" class="wrapper">
+
+				<div class="areaIconeCasa">
+					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
+				</div>
+				<form class="areaFormulario">
+					<div class="areaDados">
+						<span class="tituloDados">CEP:</span>
+						<input type="text" name="CEP" id="cep" class="txtDados" style="width: 42%;"/>
+						<span class="tituloDados" style="margin-left: 10px;">UF:</span>
+						<select class="txtDados" id="uf" name="UF" style="width: 15%; margin-left: 0px;">
+	                        <option value=""></option>
+						    <option value="SP">SP</option>
+						    <option value="SC">SC</option>
+						    <option value="RJ">RJ</option>
+						    <option value="MG">MG</option>
+						</select>
+					</div>
+					<div class="areaDados">
+				    <span class="tituloDados">Rua:</span>
+						<input type="text" name="Rua" id="rua" class="txtDados required" style="margin-left: 23.5px;" required>
+					</div>
+					<div class="areaDados" >
+						<span class="tituloDados">Nº</span>
+						<input type="text" name="Numero" id="num" class="txtDados required" style="width:60px; margin-left: 42px;">
+						<span class="tituloDados" style="margin-left: 10px;">Comp:</span>
+						<input type="text" name="Complemento" id="comp" class="txtDados" style="width: 89px; margin-left: 5px;" required>
+					</div>
+					<div class="areaDados">
+						<span class="tituloDados">Bairro:</span>
+						<input type="text" name="Bairro" id="bairro" class="txtDados required" style="margin-left: 7px;" required>
+					</div>
+					<div class="areaDados">
+						<span class="tituloDados" >Cidade:</span>
+						<input type="text" name="Cidade" id="cidade" class="txtDados required" style="margin-left: 0px;" required>
+					</div>
+					
+					<button type="button" class="btnConfirmar navBtn" id="btnAlterarEndereco">Confirmar</button>
+				
+				</form>
+			</div>
+	
+			<div id="wrapper-escolherDataServico" class="wrapper">
+				<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
+				<div class="areaInfo">
+					<img src="../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
+					<input type="date" name="DATA" class="dataServico" id="data" required>
+				</div>
+				<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
+				<div class="areaInfo">
+					<img src="../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
+					<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
+				</div>
+				<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
+				<div class="areaInfo">
+					<img src="../img/icones/agendamento/iconeTempo.png" class="imgIcone">
+					<input type="time" name="DATA" class="dataServico" id="horaFim" required>
+				</div>
+	        	<button class="btnProximo navBtn" id="btnDataHora">Próximo</button>			
+			</div> 
+
+			<div id="wrapper-cuidador" class="wrapper">
+	
 				<button class='btnProximo navBtn' id='btnCuidador' type='button'>Próximo</button>	
 			</div>
 

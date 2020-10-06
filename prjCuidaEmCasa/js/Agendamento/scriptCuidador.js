@@ -18,6 +18,9 @@
             $(".areaCuidador").removeClass("selecionado");
             $(this).addClass("selecionado");
         });
+        $(".areaFiltro").click(function (e){
+            $(".infoFiltro").toggleClass("visivel");
+        });
     });
 
 }
