@@ -23,6 +23,8 @@
             localStorage.setItem("nomeComplemento", retorno[2]);$("#nomeComplemento").html(retorno[2]);
             localStorage.setItem("nomeCidade", retorno[3]);$("#nomeCidade").html(retorno[3]);
             localStorage.setItem("nomeEstado", retorno[4]);$("#nomeEstado").html(retorno[4]);
+            localStorage.setItem("nomeBairro", retorno[5]);$("#nomeBairro").html(retorno[5]);
+            localStorage.setItem("cepEndereco", retorno[6]);
             //geocode = 'https://nominatim.openstreetmap.org/search?q=' + retorno + '&format=json&polygon=1&addressdetails=1';
             $.getJSON(geocode, function (data) {
                 try{

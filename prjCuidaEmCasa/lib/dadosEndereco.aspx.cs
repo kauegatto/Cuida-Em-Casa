@@ -35,7 +35,7 @@ namespace prjCuidaEmCasa.lib
             }
 
             //Response.Write(paciente.nm_rua + ", " + paciente.nm_num + " " + paciente.nm_complemento + ", " + paciente.nm_cidade[0] + ", " + paciente.nm_estado[0]);
-            Response.Write(paciente.nm_num+"/"+paciente.nm_rua + "/" + paciente.nm_complemento + "/" + paciente.nm_cidade[0] + "/" + paciente.nm_estado[0]+"/"+"Brazil");
+            Response.Write(paciente.nm_num + "/" + paciente.nm_rua + "/" + paciente.nm_complemento + "/" + paciente.nm_cidade[0] + "/" + paciente.nm_estado[0] + "/" + paciente.nm_bairro + "/" + paciente.cep + "/" + "Brazil");
         
         }
     }

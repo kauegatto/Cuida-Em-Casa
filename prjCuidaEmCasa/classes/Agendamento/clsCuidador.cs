@@ -118,6 +118,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
 
         #endregion
+
         #region Buscar Cuidador
         public bool BuscarCuidador(string emailCuidador)
         {

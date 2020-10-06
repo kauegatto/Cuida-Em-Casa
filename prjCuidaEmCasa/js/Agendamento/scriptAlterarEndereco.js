@@ -15,5 +15,6 @@
             localStorage.setItem("nomeComplemento", comp);
             localStorage.setItem("nomeCidade", cidade);
             localStorage.setItem("nomeEstado", UF);
+            localStorage.setItem("nomeBairro", bairro);
         }
 };

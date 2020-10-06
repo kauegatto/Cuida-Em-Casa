@@ -38,14 +38,18 @@
     formatarData(data);
     $('#nomeCuidador').html(localStorage.getItem("nomeCuidador"));
     if (localStorage.getItem("nomeComplemento") != "") {
-        $('#endereco').html(localStorage.getItem("nomeRua") + ", " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeComplemento") + ", " + localStorage.getItem("nomeCidade") + ", " + localStorage.getItem("nomeEstado"));
+        $('#endereco').html(localStorage.getItem("nomeRua") + " - " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeComplemento") + ", " + localStorage.getItem("nomeBairro") + ", " + localStorage.getItem("nomeCidade") + " - " + localStorage.getItem("nomeEstado"));
     }
     else {
-        $('#endereco').html(localStorage.getItem("nomeRua") + ", " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeCidade") + ", " + localStorage.getItem("nomeEstado"));
+        $('#endereco').html(localStorage.getItem("nomeRua") + " - " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeBairro") + ", " + localStorage.getItem("nomeCidade") + " - " + localStorage.getItem("nomeEstado"));
     }
 };
 
 export function EnviarFinalizarServico(){
 
+    $.post("../../lib/libFinalizarServico.aspx", { dtInicioServico: localStorage.getItem("data"), horaInicio: localStorage.getItem("horaInicio"), horaFim: localStorage.getItem("horaFim"), cep: localStorage.getItem("cepEndereco"), cidade: localStorage.getItem("nomeCidade"), bairro: localStorage.getItem("nomeBairro"), rua: localStorage.getItem("nomeRua"), num: localStorage.getItem("numEndereco"), estado: localStorage.getItem("nomeEstado"), cliente: "flaviapriscilamarianasilveira@gmail.com", cuidador: localStorage.getItem("emailCuidador"), cdPaciente: localStorage.getItem("cdPaciente")}, function (retorno)
+    {
+        
+    }
 
 }
