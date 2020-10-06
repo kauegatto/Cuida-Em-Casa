@@ -17,6 +17,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string nm_rua { get; set; }
         public string nm_num { get; set; }
         public string nm_complemento { get; set; }
+        public string nm_bairro { get; set; }
+        public string cep { get; set; }
 
         public clsPaciente(): base()
         {
@@ -28,6 +30,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_num = "";
             nm_rua = "";
             nm_complemento = "";
+            nm_bairro = "";
+            cep = "";
         }
 
         #region Listar Dados Pacientes
@@ -93,6 +97,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     nm_num = dados[2].ToString();
                     nm_estado.Add(dados[3].ToString());
                     nm_complemento = dados[4].ToString();
+                    nm_bairro = dados[5].ToString();
+                    cep = dados[6].ToString();
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

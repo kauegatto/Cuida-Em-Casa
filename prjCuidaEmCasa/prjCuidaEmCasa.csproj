@@ -102,14 +102,8 @@
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
+    <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="pages\agendamento.html" />
-    <Content Include="pages\Agendamento\alterarEndereco.aspx" />
-    <Content Include="pages\Agendamento\escolherCuidador.aspx" />
-    <Content Include="pages\Agendamento\escolherDataServico.aspx" />
-    <Content Include="pages\Agendamento\escolherPaciente.aspx" />
-    <Content Include="pages\Agendamento\confirmarEndereco.aspx" />
-    <Content Include="pages\Agendamento\finalizarServico.aspx" />
-    <Content Include="pages\Agendamento\infoCuidador.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -121,6 +115,7 @@
   <ItemGroup>
     <Compile Include="classes\Agendamento\clsCuidador.cs" />
     <Compile Include="classes\Agendamento\clsPaciente.cs" />
+    <Compile Include="classes\Agendamento\clsServico.cs" />
     <Compile Include="classes\clsBanco_32623.cs" />
     <Compile Include="classes\clsConexao.cs" />
     <Compile Include="lib\dadosEmailCuidador.aspx.cs">
@@ -158,54 +153,12 @@
     <Compile Include="lib\libDadosAgendamento.aspx.designer.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\Agendamento\alterarEndereco.aspx.cs">
-      <DependentUpon>alterarEndereco.aspx</DependentUpon>
+    <Compile Include="lib\libFinalizarServico.aspx.cs">
+      <DependentUpon>libFinalizarServico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\Agendamento\alterarEndereco.aspx.designer.cs">
-      <DependentUpon>alterarEndereco.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Agendamento\escolherCuidador.aspx.cs">
-      <DependentUpon>escolherCuidador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Agendamento\escolherCuidador.aspx.designer.cs">
-      <DependentUpon>escolherCuidador.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Agendamento\escolherDataServico.aspx.cs">
-      <DependentUpon>escolherDataServico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Agendamento\escolherDataServico.aspx.designer.cs">
-      <DependentUpon>escolherDataServico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Agendamento\escolherPaciente.aspx.cs">
-      <DependentUpon>escolherPaciente.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Agendamento\escolherPaciente.aspx.designer.cs">
-      <DependentUpon>escolherPaciente.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Agendamento\confirmarEndereco.aspx.cs">
-      <DependentUpon>confirmarEndereco.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Agendamento\confirmarEndereco.aspx.designer.cs">
-      <DependentUpon>confirmarEndereco.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Agendamento\finalizarServico.aspx.cs">
-      <DependentUpon>finalizarServico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Agendamento\finalizarServico.aspx.designer.cs">
-      <DependentUpon>finalizarServico.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="pages\Agendamento\infoCuidador.aspx.cs">
-      <DependentUpon>infoCuidador.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pages\Agendamento\infoCuidador.aspx.designer.cs">
-      <DependentUpon>infoCuidador.aspx</DependentUpon>
+    <Compile Include="lib\libFinalizarServico.aspx.designer.cs">
+      <DependentUpon>libFinalizarServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
