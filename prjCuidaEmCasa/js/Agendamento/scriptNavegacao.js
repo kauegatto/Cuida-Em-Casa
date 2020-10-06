@@ -84,6 +84,8 @@ $("#btnDataHora").click(function () {
 //pg 5: pag cuidador -> vai para info cuidador  
 $("#btnCuidador").click(function () {
     passarPagina($(this),1);
+    $(".infoFiltro").removeClass("visivel");
+    $(".areaFiltro").css("display","none");
     var classes = $(".selecionado").attr("class").split(/\s+/);
     localStorage.setItem("emailCuidador", classes[1]);    
     scriptInfoCuidador();
