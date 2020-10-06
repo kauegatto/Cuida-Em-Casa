@@ -1,6 +1,6 @@
 
 .areaEndereco { font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; width: 261px; margin-left: 70px; margin-top: 5px;}
-
+.areaEndereco p{display:inline;}
 #areaMapa { width: 354px; height: 218px; margin-top: 25px; }
 
 .areaBotao { margin-top: 30px; }
