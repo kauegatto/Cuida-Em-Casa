@@ -64,7 +64,7 @@ CREATE TABLE usuario
 	ic_ativo BOOl,
 	ds_experiencia_usuario TEXT,
 	ds_usuario TEXT,
-	cd_avaliacao DECIMAL(5, 2),
+	cd_avaliacao DECIMAL(10, 2),
 	cd_tipo_usuario INT,
 	cd_tipo_especializacao INT,
 	cd_auth_recover VARCHAR (100),
@@ -197,13 +197,13 @@ CREATE TABLE paciente
 
 insert into paciente values(1,'Nicole Sebastiana Malu Moraes', 'Nicole adora passar o tempo conversando', '11510-310', 'Cubatão', 'Vila Couto', 'Av. Dr. Fernando Costa', '264', 'SP', null, 'jenniferevelyngomes@gmail.com', null);
 insert into paciente values(2,'Márcia Nina Rafaela Duarte', 'A Márcia ama jogar truco para se distrair', '11510-310', 'Cubatão', 'Vila Couto', 'Av. Dr. Fernando Costa', '273', 'SP', null, 'jenniferevelyngomes@gmail.com', null);
-insert into paciente values(3,'Tânia Rita Sophie Ferreira', 'Tânia gosta de assistir televisão', '11330-560', 'São Vicente', 'Parque Bitaru', 'R. Osvaldo Eduardo', '49', 'SP', null, 'flaviapriscilamarianasilveira@gmail.com', null);
-insert into paciente values(4,'Luzia Fabiana Jéssica de Paula', 'Luiza não é muito de conversar', '11050-230', 'Santos', 'Encruzilhada', 'R. Dr. Guedes Coelho', '1028', null, 'SP', 'oosvaldocarlosdarosa@live.ie', null);
+insert into paciente values(3,'Tânia Rita Sophie Ferreira', 'Tânia gosta de assistir televisão', '11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 'flaviapriscilamarianasilveira@gmail.com', null);
+insert into paciente values(4,'Luzia Fabiana Jéssica de Paula', 'Luiza não é muito de conversar', '11050-230', 'Santos', 'Encruzilhada', 'R. Dr. Guedes Coelho', '1028', 'SP', null, 'oosvaldocarlosdarosa@live.ie', null);
 insert into paciente values(5,'Rebeca Giovana Vera Almada', 'Rebeca se recusa a tomar rémedio', '11070-180', 'Santos', 'Vila Belmiro', 'R. Delfino Stockler de Lima', '127', 'SP', 'Fundos', 'emilyantoniadaianearagao@gmail.com', null);
 insert into paciente values(6,'André Nathan Souza', 'André gosta de assistir futebol', '11525-050', 'Cubatão', 'Vila Nova', 'Praça Francisco da Silva Cardoso', '50', 'SP', 'Sobrado', 'hadassabetinaviana-80@scuderiagwr.com.br', null);
 insert into paciente values(7,'Marcia Maria Dolores', 'Marcia não gosta de tomar banho', '11050-260', 'Santos', 'Encruzilhada', 'R. Dr. Leôncio Rezende Filho', '789', 'SP', 'Apartamento 24', 'raquelAurelia@gmail.com', null);
 insert into paciente values(8,'Jenivalda Radelia', 'Jenivalda gosta de conversar', '11370-530', 'São Vicente', 'Jardim Guassu', 'R. Francisco Silva Santos', '164', 'SP', 'Apartamento 12', 'mauriciorodolfo@gamil.com', null);
-insert into paciente values(9,'Astolfo Rodrigues da Silva', 'Astolfo gosta de assistir Silvio Santos', '11533-040', 'Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'flaviapriscilamarianasilveira@gmail.com', null);
+insert into paciente values(9,'Astolfo Rodrigues da Silva', 'Astolfo gosta de assistir Silvio Santos', '11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '548', 'SP', null, 'flaviapriscilamarianasilveira@gmail.com', null);
 
 CREATE TABLE necessidade_paciente
 (
@@ -255,7 +255,13 @@ CREATE TABLE servico
 	hr_inicio_servico TIME,
 	dt_fim_servico DATE,
 	hr_fim_servico TIME,
-	nm_endereco_servico TEXT,
+	cd_CEP_servico VARCHAR(12),
+	nm_cidade_servico VARCHAR(200),
+	nm_bairro_servico VARCHAR(200),
+	nm_rua_servico VARCHAR(200),
+	cd_num_servico INT,
+	nm_uf_servico VARCHAR(200),
+	cd_complemento_servico VARCHAR(100),
 	hr_checkin_servico TIME,
 	dt_checkin_servico DATE,
 	hr_checkout_servico TIME,
@@ -280,21 +286,21 @@ CREATE TABLE servico
 );
 
 /*Serviços Finalizados*/
-insert into servico values(1,'2020-07-12','06:00:00','2020-07-12','18:00:00','Av. Dr. Fernando Costa, 264 - Vila Couto, Cubatão - SP - 11510-310','06:00:00','2020-07-12','18:00:00','2020-07-12','-23.883080;-46.426811','jenniferevelyngomes@gmail.com','brunastellaflaviadepaula@gmail.com',1,3,1);
-insert into servico values(2,'2020-07-13','10:30:00','2020-07-13','16:00:00','R. Dr. Leôncio Rezende Filho, 789 - Vila Margarida, São Vicente - SP - 11050-260','11:00:00','2020-07-13','16:00:00','2020-07-13','-23.969978;-46.404580','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',3,3,7);
-insert into servico values(3,'2020-07-16','07:00:00','2020-07-16','18:00:00','R. Av. Dr. Fernando Costa, 273 - Esplanada dos Barreiros, São Vicente - SP - 11510-310','07:00:00','2020-07-16','18:00:00','2020-07-16','-23.962699;-46.408979','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',2,3,2);
-insert into servico values(4,'2020-07-16','08:00:00','2020-07-16','20:00:00','R. Francisco Silva Santos, 164 - Jardim Guassu, São Vicente - SP - 11370-530','08:00:00','2020-07-16','20:00:00','2020:07:16','-23.951948;-46.374941','mauriciorodolfo@gamil.com','sarahelainealiciaribeiro@gmail.com',2,3,8);
+insert into servico values(1,'2020-07-12','06:00:00','2020-07-12','18:00:00','11510-310','Cubatão','Vila Couto','Av. Dr. Fernando Costa','264','SP',null,'06:00:00','2020-07-12','18:00:00','2020-07-12','-23.883080;-46.426811','jenniferevelyngomes@gmail.com','brunastellaflaviadepaula@gmail.com',1,3,1);
+insert into servico values(2,'2020-07-13','10:30:00','2020-07-13','16:00:00','11050-260','São Vicente','Vila Margarida','R. Dr. Leôncio Rezende Filho','789','SP',null,'11:00:00','2020-07-13','16:00:00','2020-07-13','-23.969978;-46.404580','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',3,3,7);
+insert into servico values(3,'2020-07-16','07:00:00','2020-07-16','18:00:00','11510-310','São Vicente','Esplanada dos Barreiros','R. Av. Dr. Fernando Costa','273','SP',null,'07:00:00','2020-07-16','18:00:00','2020-07-16','-23.962699;-46.408979','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',2,3,2);
+insert into servico values(4,'2020-07-16','08:00:00','2020-07-16','20:00:00','11370-530','São Vicente','Jardim Guassu','R. Francisco Silva Santos','164','SP',null,'08:00:00','2020-07-16','20:00:00','2020:07:16','-23.951948;-46.374941','mauriciorodolfo@gamil.com','sarahelainealiciaribeiro@gmail.com',2,3,8);
 /*Serviços Em Andamento*/
-insert into servico values(5,'2020-08-20','08:00:00','2020-08-20','17:00:00','R. Barão do Bananal, 1328 - Pompeia, São Paulo - SP - 05024-000','08:30:00','2020-08-20',null,null,'-23.535457;-46.690143','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',null,1,2);
-insert into servico values(6,'2020-08-20','07:00:00','2020-08-20','19:00:00','R. Padre Luís Alves de Siqueira, 21 - Barra Funda, São Paulo - SP - 01137-040','07:00:00','2020-08-20',null,null,'-23.521763;-46.656568','flaviapriscilamarianasilveira@gmail.com','verabarbarajoanaaparicio@gmail.com',null,1,3);
-insert into servico values(7,'2020-08-20','05:00:00','2020-08-20','17:00:00','R. Dr. Guedes Coelho, 1028 - Encruzilhada, Santos - SP - 11050-230','06:00:00','2020-08-20',null,null,'-23.954143;-46.330406','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,1,4);
-insert into servico values(8,'2020-08-20','12:00:00','2020-08-20','20:00:00','R. Delfino Stockler de Lima, 127 - Vila Belmiro, Santos - SP - 11070-180','12:00:00','2020-08-20',null,null,'-23.949846;-46.342424','emilyantoniadaianearagao@gmail.com','rayssaelainevanessacosta-84@.com',null,1,5);
-insert into servico values(9,'2020-08-20','09:00:00','2020-08-20','16:00:00','Praça Francisco da Silva Cardoso, 50 - Vila Nova, Cubatão - SP - 11525-050','09:00:00','2020:08:20',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','brunastellaflaviadepaula@gmail.com',null,1,6);
+insert into servico values(5,'2020-08-20','08:00:00','2020-08-20','17:00:00','05024-000','São Paulo','Pompeia','R. Barão do Bananal','1328','SP',null,'08:30:00','2020-08-20',null,null,'-23.535457;-46.690143','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',null,1,2);
+insert into servico values(6,'2020-08-20','07:00:00','2020-08-20','19:00:00','01137-040','São Paulo','Barra Funda','R. Padre Luís Alves de Siqueira','21','SP',null,'07:00:00','2020-08-20',null,null,'-23.521763;-46.656568','flaviapriscilamarianasilveira@gmail.com','verabarbarajoanaaparicio@gmail.com',null,1,3);
+insert into servico values(7,'2020-08-20','05:00:00','2020-08-20','17:00:00','11050-230','Santos','Encruzilhada','R. Dr. Guedes Coelho','1028','SP',null,'06:00:00','2020-08-20',null,null,'-23.954143;-46.330406','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,1,4);
+insert into servico values(8,'2020-08-20','12:00:00','2020-08-20','20:00:00','11070-180','Santos','Vila Belmiro','R. Delfino Stockler de Lima','127','SP',null,'12:00:00','2020-08-20',null,null,'-23.949846;-46.342424','emilyantoniadaianearagao@gmail.com','rayssaelainevanessacosta-84@.com',null,1,5);
+insert into servico values(9,'2020-08-20','09:00:00','2020-08-20','16:00:00','11525-050','Cubatão','Vila Nova','Praça Francisco da Silva Cardoso','50','SP',null,'09:00:00','2020:08:20',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','brunastellaflaviadepaula@gmail.com',null,1,6);
 /*Serviços Pendentes*/
-insert into servico values(10,'2020-08-30','10:00:00','2020-08-30','22:00:00','R. Dr. Leôncio Rezende Filho, 789 - Encruzilhada, Santos - SP - 11050-260',null,null,null,null,'-23.956151;-46.324515','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',null,2,7);
-insert into servico values(11,'2020-08-30','07:00:00','2020-08-30','17:00:00','R. do Colégio, 485 - Centro, São Vicente - SP - 11310-210',null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,2,4);
+insert into servico values(10,'2020-08-30','10:00:00','2020-08-30','22:00:00','11050-260','Santos','Encruzilhada','R. Dr. Leôncio Rezende Filho','789','SP',null,null,null,null,null,'-23.956151;-46.324515','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',null,2,7);
+insert into servico values(11,'2020-08-30','07:00:00','2020-08-30','17:00:00','11310-210','São Vicente','Centro','R. do Colégio','485','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,2,4);
 /*Serviços Cancelados*/
-insert into servico values(12,'2020-07-22','07:00:00','2020-07-22','20:00:00','R. Ribeiro Júnior, 96 - Vila Cascatinha, São Vicente - SP - 11370-110',null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
+insert into servico values(12,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São VicenteSão Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
 
 CREATE TABLE tipo_ocorrencia
 (

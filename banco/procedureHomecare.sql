@@ -24,7 +24,8 @@ CREATE PROCEDURE buscarEnderecoPaciente(vCodigoPaciente INT)
 BEGIN
 	select 
 		nm_cidade_paciente, nm_rua_paciente, cd_num_paciente, 
-		nm_uf_paciente, cd_complemento_paciente
+		nm_uf_paciente, cd_complemento_paciente, nm_bairro_cidade,
+		cd_CEP_paciente
 	from 
 		paciente 
 	where 
@@ -55,7 +56,8 @@ CREATE PROCEDURE buscarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim 
 BEGIN
 	SELECT 
 		u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-		u.vl_hora_trabalho, u.cd_avaliacao, tpe.nm_tipo_especializacao
+		u.vl_hora_trabalho, u.cd_avaliacao, 
+		tpe.nm_tipo_especializacao 
 	FROM 
 		usuario u 
 	JOIN 
@@ -82,7 +84,8 @@ CREATE PROCEDURE buscarCuidadoresVirarDia(vDataServico DATE, vHoraInicio TIME, v
 BEGIN
 	SELECT 
 		u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-		u.vl_hora_trabalho, u.cd_avaliacao, tpe.nm_tipo_especializacao
+		u.vl_hora_trabalho, u.cd_avaliacao, 
+		tpe.nm_tipo_especializacao 
 	FROM 
 		usuario u 
 	JOIN 
@@ -651,26 +654,28 @@ END$$
 
 DROP PROCEDURE IF EXISTS agendarServico$$
 
-CREATE PROCEDURE agendarServico(vCodigoMax INT, vRuaServico TEXT, vDataServico DATE, vHoraInicioServico TIME, vHoraFimServico TIME, vEmailCliente VARCHAR(200), vEmailCuidador VARCHAR(200), vCodigoPaciente INT)
+CREATE PROCEDURE agendarServico(vCodigo INT, vDataServico DATE, vHoraInicioServico TIME, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vEmailCuidador VARCHAR(200), vCodigoPaciente INT)
 BEGIN
-	INSERT INTO
-		servico 
-	(cd_servico, nm_endereco_servico, dt_inicio_servico, dt_fim_servico, hr_inicio_servico, hr_fim_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_paciente) 
+	INSERT INTO servico
+		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
+		nm_rua_servico, cd_num_servico, nm_uf_servico, cd_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_paciente)
 	VALUES
-		(vCodigoMax + 1, vRuaServico, vDataServico, vDataServico, vHoraInicioServico, vHoraFimServico, vEmailCliente, vEmailCuidador, vCodigoPaciente);
+		(vCodigo, vDataServico, vHoraInicioServico, vDataServico, vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
+		vEmailCliente, vEmailCuidador, vCodigoPaciente);
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado que mude o dia de término */
 
 DROP PROCEDURE IF EXISTS agendarServicoVirarDia$$
 
-CREATE PROCEDURE agendarServicoVirarDia(vCodigoMax INT, vRuaServico TEXT, vDataServico DATE, vHoraInicioServico TIME, vHoraFimServico TIME, vEmailCliente VARCHAR(200), vEmailCuidador VARCHAR(200), vCodigoPaciente INT)
+CREATE PROCEDURE agendarServicoVirarDia(vCodigo INT, vDataServico DATE, vHoraInicioServico TIME, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vEmailCuidador VARCHAR(200), vCodigoPaciente INT)
 BEGIN
-	INSERT INTO
-		servico 
-	(cd_servico, nm_endereco_servico, dt_inicio_servico, dt_fim_servico, hr_inicio_servico, hr_fim_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_paciente) 
+	INSERT INTO servico
+		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
+		nm_rua_servico, cd_num_servico, nm_uf_servico, cd_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_paciente)
 	VALUES
-		(vCodigoMax + 1, vRuaServico, vDataServico, DATE_ADD(vDataServico, INTERVAL 1 DAY), vHoraInicioServico, vHoraFimServico, vEmailCliente, vEmailCuidador, vCodigoPaciente);
+		(vCodigo, vDataServico, vHoraInicioServico, DATE_ADD(vDataServico, INTERVAL 1 DAY), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, 
+		vComp, vEmailCliente, vEmailCuidador, vCodigoPaciente);
 END$$
 
 /* Procedure listarServicos será usada para listar todos os servicos agendados pelo cliente e ordenados de forma decrescente, podendo ser: em andamento, pendentes, finalizados e cancelados */
@@ -697,6 +702,18 @@ BEGIN
 		s.cd_status_servico = vStatusServico
 	ORDER BY 
 		s.dt_inicio_servico;
+END$$
+
+/* Procedur proxCodigo será usada para bsucar o último código de somar 1 para saber o próximo */
+
+DROP PROCEDURE IF EXISTS proxCodigo$$
+
+CREATE PROCEDURE proxCodigo()
+BEGIN 
+	SELECT
+		MAX(cd_servico) + 1
+	FROM
+		servico;
 END$$
 
 DELIMITER ;
