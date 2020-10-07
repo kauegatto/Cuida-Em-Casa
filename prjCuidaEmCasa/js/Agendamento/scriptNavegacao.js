@@ -6,20 +6,46 @@ import scriptCuidador from "./scriptCuidador.js";
 import scriptInfoCuidador from "./scriptInfoCuidador.js";
 import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
+import scriptFiltro from "./scriptFiltro.js";
 
+var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
 
-var indexPage = 0;
-var jump = 0;
-var DomElement = $("#btnPaciente");
+function passarPagina(SentDomElement,Jump) {
+    
+    $(".conteudoGeral").children().eq(indexPage).css("display", "block" );
+    $(".conteudoGeral").children().eq(indexPage).addClass("visibleWrapper");
 
-function passarPagina(DomElement,Jump) {
     indexPage += Jump;
-    $(DomElement).parents("div.wrapper").css({ "display": "none" });
-    $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css({ "display": "block" });    
-    console.log("chegou aqui! - Página " + indexPage + " - Botão : " + DomElement);
+    DomElement = SentDomElement; // botao que enviou o último click pra chegar na página que estamos
+
+    if(Jump < 0){
+        console.log(indexPage);
+        if(indexPage>=0){
+            $(".visibleWrapper").css("display", "none" );
+            $(".visibleWrapper").removeClass("visibleWrapper");
+            $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css( "display", "block");
+            $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visibleWrapper");  
+        }
+        else{indexPage = 0}
+       
+    }
+    else{
+        $(".visibleWrapper").css("display", "none" );
+        
+        $(".visibleWrapper").removeClass("visibleWrapper");
+
+        $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css("display", "block" );
+
+        $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visibleWrapper"); 
+    }
+    
     return;
 };    	
 
+
+$(".iconeVoltar").click(function(){
+    passarPagina(DomElement, -1);
+});
 
 $(document).ready(function () {
 
@@ -91,11 +117,15 @@ $("#btnCuidador").click(function () {
     scriptInfoCuidador();
     
 });
+$("").click(function (){
 
+
+});
 //pg 6 : info cuidador -> vai para finalizar
 $("#btnInfoCuidador").click(function () {
     passarPagina($(this),1);
     carregarFinalizarServico();
+
 });
 //pg 7: pg finalizar pedido (resumo)
 $("#btnFinalizarServico").click(function () {

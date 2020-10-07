@@ -79,21 +79,18 @@ namespace prjCuidaEmCasa.lib
             {
                 var dataInicioSoma = new DateTime(int.Parse(dataSeparada[0]), int.Parse(dataSeparada[1]), int.Parse(dataSeparada[2]));
                 dataInicioSoma = dataInicioSoma.AddDays(1);
+                virarDia = true;
+            }
+            else {
+                virarDia = false;
             }
 
             #endregion
+            Session["virarDia"] = virarDia;
 
             clsCuidador classeCuidador = new clsCuidador();
-
-            if (dataI.Day == dataF.Day)
-            {
-                virarDia = false;
-            }
-            else
-            {
-                virarDia = true;
-            }
-
+            
+           
             if (!classeCuidador.listarCuidadores(dataInicio, horaInicio, horaFim, virarDia))
 	        {
 		        Response.Write("false");

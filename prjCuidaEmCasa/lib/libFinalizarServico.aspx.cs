@@ -33,8 +33,8 @@ namespace prjCuidaEmCasa.lib
             string emailCuidador = Request["cuidador"].ToString();
             string cdPaciente = Request["cdPaciente"].ToString();
             #endregion
-
-            if (!(servico.finalizarServico(proxCodigo, dtInicio, hrInicio, hrFim, cep, cidade, bairro, rua, num, uf, comp, emailCliente, emailCuidador, cdPaciente, false)))
+            bool viraDia = Convert.ToBoolean(Session["viraDia"]);
+            if (!(servico.finalizarServico(proxCodigo, dtInicio, hrInicio, hrFim, cep, cidade, bairro, rua, num, uf, comp, emailCliente, emailCuidador, cdPaciente, viraDia)))
             {
                 Response.Write("false");
             }
