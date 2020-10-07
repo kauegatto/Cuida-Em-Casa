@@ -131,7 +131,7 @@ namespace prjCuidaEmCasa.lib
                 #endregion
 
                 listaCuidadores += "<div class='hora'>";
-                listaCuidadores += "<img src='../../img/icones/cuidador/iconeCifrao.png' class='iconeCifrao' style='margin-left:0px'>";
+                listaCuidadores += "<img src='../../img/icones/cuidador/iconeCifrao.png' class='iconeCifrao' style='margin-left:0px !important'>";
                 listaCuidadores += "<span style='margin-left: 9px;'>" + classeCuidador.vl_cuidador[i] + " / Hora</span>";
                 listaCuidadores += "</div>";
                 listaCuidadores += "<div class='especializacao'>";

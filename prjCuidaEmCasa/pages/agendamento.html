@@ -11,6 +11,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 	<!-- CSS STYLESHEET -->
 	<link rel="stylesheet" type="text/css" href="../css/estiloGeral.css"/>
@@ -72,28 +73,28 @@
 			<div class="infoFiltro">
 					<div class="dadosFiltro">
 						<h3>Especialização</h3>
-						<select class="cbxEspecializacao">
+						<select class="cbxEspecializacao opcaoFiltro">
 							<option>Selecione</option>
 							<option>Fisioterapeuta</option>
 						</select>
 					</div>
 					<div class="dadosFiltro" style="width: 180px; height: 62px; float: left;">
 						<h3>Preço</h3>
-						<select class="cbxEspecializacao" style="width: 165px;">
+						<select class="cbxEspecializacao opcaoFiltro" style="width: 165px;">
 							<option>Selecione</option>
 							<option>80 / hora</option>
 						</select>
 					</div>
 					<div class="dadosFiltro" style="width: 180px; height: 62px; float: left;">
 						<h3>Avaliação</h3>
-						<select class="cbxEspecializacao" style="width: 130px;">
+						<select class="cbxEspecializacao opcaoFiltro" style="width: 130px;">
 							<option>Selecione</option>
 							<option>Muito Bom</option>
 						</select>
 					</div>
 					<div class="dadosFiltro">
 						<h3>Genêro</h3>
-						<select class="cbxEspecializacao">
+						<select class="cbxEspecializacao opcaoFiltro">
 							<option>Selecione</option>
 							<option>Masculino</option>
 							<option>Feminino</option>
@@ -170,20 +171,29 @@
 			</div>
 	
 			<div id="wrapper-escolherDataServico" class="wrapper">
-				<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
-				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
-					<input type="date" name="DATA" class="dataServico" id="data" required>
+
+				<div class="areaData">
+					<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
+					<div class="areaInfo">
+						<img src="../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
+						<input type="date" name="DATA" class="dataServico" id="data" required>
+					</div>
 				</div>
-				<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
-				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
+
+				<div class="areaData">
+					<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
+					<div class="areaInfo">
+						<img src="../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
+						<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
+					</div>
 				</div>
-				<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
-				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeTempo.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaFim" required>
+
+				<div class="areaData">
+					<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
+					<div class="areaInfo">
+						<img src="../img/icones/agendamento/iconeTempo.png" class="imgIcone">
+						<input type="time" name="DATA" class="dataServico" id="horaFim" required>
+					</div>
 				</div>
 	        	<button class="btnProximo navBtn" id="btnDataHora">Próximo</button>			
 			</div> 
@@ -200,7 +210,7 @@
 					<div class="areaInfoCuidador">
 						<h3 id="nm_cuidador"></h3>
 						<div class="hora">
-							<img src="../img/icones/cuidador/iconeCifrao.png" class="iconeCifrao">
+							<img src="../img/icones/cuidador/iconeCifrao.png" class="iconeCifrao" style="margin-left: 0px">
 							<span style="margin-left: 9px;" id="vl_hora_cuidador">70 / Hora</span>
 						</div>
 						<div class="especializacao">
@@ -240,7 +250,7 @@
 				</div>
 				<div class="areaDadosServico" style="height: 60px;">
 					<img src="../img/icones/agendamento/iconeCalendario.png" class="iconeCalendario">
-					<span class="dataServico" id="dataFinal"></span>
+					<span class="dataServicoConfirmarCuidador" id="dataFinal"></span>
 				</div>
 				<div class="areaDadosServico" style="height: 50px;">
 					<img src="../img/icones/agendamento/iconeRelogio.png" class="iconeRelogio">

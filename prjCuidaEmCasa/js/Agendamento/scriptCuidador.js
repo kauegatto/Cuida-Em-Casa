@@ -13,7 +13,7 @@
         $('#wrapper-cuidador').append(retorno[0]);
 
         $(".areaCuidador").each(function (i, obj) {
-            var url = "data:image/svg+xml;base64," + $(this).children().eq(i).html();
+            var url = "data:image/svg+xml;base64," + $(this).children("div.invi").html();
             $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         });
 

@@ -1,3 +1,3 @@
-export default function BuscaFiltro (){
+export default function BuscaFiltro (filtro,esultado){
 	
 };

@@ -8,7 +8,7 @@ import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 import scriptFiltro from "./scriptFiltro.js";
 
-var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
+var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente"); var filtros = "";
 
 function passarPagina(SentDomElement,Jump) {
     
@@ -117,9 +117,10 @@ $("#btnCuidador").click(function () {
     scriptInfoCuidador();
     
 });
-$("").click(function (){
-
-
+$(".opcaoFiltro").change(function (){
+    $( ".opcaoFiltro option:selected" ).each(function() {
+      filtros += $( this ).text() + " ";
+    });
 });
 //pg 6 : info cuidador -> vai para finalizar
 $("#btnInfoCuidador").click(function () {

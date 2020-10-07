@@ -18,7 +18,7 @@
             geocode += "&format=json&polygon=1&addressdetails=0";
             console.log(geocode);
 
-            localStorage.setItem("numEndereco", retorno[0]);$("#numEndereco").html(retorno[0]);
+            localStorage.setItem("numEndereco", retorno[0]);$("#numEndereco").html(" "+retorno[0]);
             localStorage.setItem("nomeRua", retorno[1]);$("#nomeRua").html(retorno[1]);
             localStorage.setItem("nomeComplemento", retorno[2]);$("#nomeComplemento").html(retorno[2]);
             localStorage.setItem("nomeCidade", retorno[3]);$("#nomeCidade").html(retorno[3]);
