@@ -5,7 +5,7 @@ import scriptDataHora from "./scriptDataHora.js";
 import scriptCuidador from "./scriptCuidador.js";
 import scriptInfoCuidador from "./scriptInfoCuidador.js";
 import carregarFinalizarServico  from "./scriptFinalizarServico.js";
-import enviarFinalizarServico  from "./scriptFinalizarServico.js";
+import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 
 
 var indexPage = 0;
@@ -97,8 +97,7 @@ $("#btnInfoCuidador").click(function () {
 });
 //pg 7: pg finalizar pedido (resumo)
 $("#btnFinalizarServico").click(function () {
-    passarPagina($(this),1);
-    enviarFinalizarServico();
+    EnviarFinalizarServico();
     
 });
 

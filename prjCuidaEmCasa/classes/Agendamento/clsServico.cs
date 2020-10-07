@@ -46,7 +46,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public bool finalizarServico(string cdServico, string dataServico, string horaInicio, string horaFim, string CEP, string cidade, string bairro, string rua, string num, string UF, string comp, string emailCliente, string emailCuidador, string cdPaciente, bool virarDia)
         {
             MySqlDataReader dados = null;
-            string[,] valores = new string[1, 2];
+            string[,] valores = new string[14, 2];
             valores[0, 0] = "vCodigo";
             valores[0, 1] = cdServico;
             valores[1, 0] = "vDataServico";
