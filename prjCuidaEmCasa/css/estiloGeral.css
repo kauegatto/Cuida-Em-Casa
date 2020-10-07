@@ -36,3 +36,5 @@ height: 47px;}
 .selecionado {background-color: rgba(40, 85, 147, 0.5);color:#FFF; transition:0.3s;}
 
 .invi { display: none; }
+
+main  { background-color: #f3f3f3;}

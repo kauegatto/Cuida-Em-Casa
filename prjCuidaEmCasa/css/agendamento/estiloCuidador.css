@@ -4,7 +4,7 @@
 
 .areaFiltro span { float: right; width: 229px; color: #E0E0E0; font-family: Archivo; font-style: normal; font-weight: normal; font-size: 16px; line-height: 19px; margin-right: 30px; }
 
-.infoFiltro { width: 100%; min-height: 220px; background: #2980B9; display: none;}
+.infoFiltro { width: 100%; min-height: 220px; background: #2980B9; display: none}
 
 .infoFiltro h3 { margin-left: 20px; color: white; font-family: Poppins; font-style: normal; font-weight: bold; font-size: 14px; line-height: 22px; }
 
@@ -28,5 +28,5 @@
 
 .iconeEstrela {  height:20px; top: 5px;left: -2%; }
 
-.invisivel { display:block !important; transition: 0.4s }
+.visivel { display:block !important;}
 

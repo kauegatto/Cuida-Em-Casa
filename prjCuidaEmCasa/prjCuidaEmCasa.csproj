@@ -87,8 +87,11 @@
     <Content Include="img\imgIdoso4.jpg" />
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
+<<<<<<< HEAD
     <Content Include="js\Agendamento\scriptAgendarServico.js" />
     <Content Include="js\form-validation.js" />
+=======
+>>>>>>> 535b0b5eed07cf4869b434edb631102d4b1ef619
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
     <Content Include="js\jquery-3.2.1.min.js" />

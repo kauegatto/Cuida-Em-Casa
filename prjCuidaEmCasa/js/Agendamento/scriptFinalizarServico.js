@@ -44,3 +44,15 @@
         $('#endereco').html(localStorage.getItem("nomeRua") + " - " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeBairro") + ", " + localStorage.getItem("nomeCidade") + " - " + localStorage.getItem("nomeEstado"));
     }
 };
+<<<<<<< HEAD
+=======
+
+export function EnviarFinalizarServico(){
+
+   // $.post("../../lib/libFinalizarServico.aspx", { dtInicioServico: localStorage.getItem("data"), horaInicio: localStorage.getItem("horaInicio"), horaFim: localStorage.getItem("horaFim"), cep: localStorage.getItem("cepEndereco"), cidade: localStorage.getItem("nomeCidade"), bairro: localStorage.getItem("nomeBairro"), rua: localStorage.getItem("nomeRua"), num: localStorage.getItem("numEndereco"), estado: localStorage.getItem("nomeEstado"), cliente: "flaviapriscilamarianasilveira@gmail.com", cuidador: localStorage.getItem("emailCuidador"), cdPaciente: localStorage.getItem("cdPaciente")}, function (retorno)
+   // {
+        
+   // }
+
+}
+>>>>>>> 535b0b5eed07cf4869b434edb631102d4b1ef619
