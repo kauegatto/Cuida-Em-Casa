@@ -1,5 +1,5 @@
 * { margin: 0; padding: 0; }
-
+body {background-color: #f3f3f3;}
 a { text-decoration: none; color: White;}
 
 .estruturaGeral { display: grid; grid-template-columns: repeat(4, 25%); grid-template-areas: "header header header header" "conteudo conteudo conteudo conteudo" "footer footer footer footer"; }
