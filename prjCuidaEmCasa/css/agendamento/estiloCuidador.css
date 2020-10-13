@@ -4,13 +4,21 @@
 
 .areaFiltro span { float: right; width: 229px; color: #E0E0E0; font-family: Archivo; font-style: normal; font-weight: normal; font-size: 16px; line-height: 19px; margin-right: 30px; }
 
-.infoFiltro { width: 100%; min-height: 220px; background: #2980B9; display: none}
+.infoFiltro { width: 100%; min-height: 415px; background: #2980B9; display: none}
 
 .infoFiltro h3 { margin-left: 20px; color: white; font-family: Poppins; font-style: normal; font-weight: bold; font-size: 14px; line-height: 22px; }
 
 .dadosFiltro { margin-bottom: 8px; }
 
-.cbxEspecializacao { width: 311px; height: 40px; margin-left: 18px; border: 1px solid #E6E6F0; box-sizing: border-box; border-radius: 8px;}
+.opcaoFiltro { height: 40px; margin-left: 18px; border: 1px solid #E6E6F0; box-sizing: border-box; border-radius: 8px;}
+
+.cbxEspecializacao {width: 311px;}
+
+.cbxPreco {width: 165px;}
+
+.cbxAvaliacao {width: 130px;}
+
+.cbxGenero {width: 311px;}
 
 .areaCuidador { display: inline-block;width: 85%; min-height: 100px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 14px;margin-left: 28px;padding-bottom: 7px;}
 

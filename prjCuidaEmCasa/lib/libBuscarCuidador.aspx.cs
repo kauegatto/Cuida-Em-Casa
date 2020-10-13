@@ -63,7 +63,6 @@ namespace prjCuidaEmCasa.lib
             string dataInicio = Request["d"].ToString();
             string horaInicio = Request["hi"].ToString();
             string horaFim = Request["hf"].ToString();
-            string qtdHoras = Request["qtd"].ToString();
             bool virarDia = false;
 
             string[] dataSeparada = dataInicio.Split('-');
@@ -89,13 +88,47 @@ namespace prjCuidaEmCasa.lib
             Session["virarDia"] = virarDia;
 
             clsCuidador classeCuidador = new clsCuidador();
-            
-           
-            if (!classeCuidador.listarCuidadores(dataInicio, horaInicio, horaFim, virarDia))
-	        {
-		        Response.Write("false");
-                return;
-	        }
+
+
+            #region Busca com Filtro
+            try
+            {
+                if (Request["filtro"] == "true")
+                {
+                    string vE, vP, vG, vA;
+                    vE = Request["vE"]; vP = Request["vP"]; vG = Request["vG"]; vA = Request["vA"];
+
+                    string vEspecializacao, vPreco, vAvaliacao, vGenero;
+                    vEspecializacao = Request["vEspecializacao"];
+                    vPreco = Request["vPreco"];
+                    vAvaliacao = Request["vAvaliacao"];
+                    vGenero = Request["vGenero"];
+                    if (!classeCuidador.listarCuidadoresFiltro(dataInicio, horaInicio, horaFim, vE, vP, vA, vG, vEspecializacao, vPreco, vAvaliacao, vGenero, virarDia))
+                    {
+                        Response.Write("false");
+                        return;
+                    }
+                }
+            #endregion
+            #region Busca Sem Filtro
+                else
+                {
+                    if (!classeCuidador.listarCuidadores(dataInicio, horaInicio, horaFim, virarDia))
+                    {
+                        Response.Write("false");
+                        return;
+                    }
+                }
+            }
+            catch {
+                if (!classeCuidador.listarCuidadores(dataInicio, horaInicio, horaFim, virarDia))
+                {
+                    Response.Write("false");
+                    return;
+                }
+            }
+                #endregion
+
 
             string listaCuidadores = "";
 

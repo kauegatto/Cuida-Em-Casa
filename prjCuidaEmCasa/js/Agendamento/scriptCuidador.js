@@ -1,16 +1,22 @@
 ﻿export default function scriptCuidador () {
 
     $.post("../../lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
+        var botao = "<button class='btnProximo' id='btnFinalizarServico'>Finalizar</button>";
+        
         retorno = retorno.split("|");
-        console.log(retorno);
+        
+        //console.log(retorno);
         
         if (retorno[0] == "" || retorno[0] == null){
             $('#wrapper-cuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%'>Desculpe, mas não encontramos cuidadores nesse horário</h2>");
         }
+
         else if (!retorno[0]) {
-            $('#wrapper-cuidador').append("ERRO NO RETORNO");
+            $('#wrapper-cuidador').html("ERRO NO RETORNO");
         }
-        $('#wrapper-cuidador').append(retorno[0]);
+
+
+        $('#wrapper-cuidador').html(retorno[0] + botao);
 
         $(".areaCuidador").each(function (i, obj) {
             var url = "data:image/svg+xml;base64," + $(this).children("div.invi").html();

@@ -116,7 +116,101 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true;
         }
+        public bool listarCuidadoresFiltro(string dataServico, string horaInicio, string horaFim, string vE, string vP, string vA, string vG, string vEspecializacao, string vPreco, string vAvaliacao, string vGenero, bool virarDia)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[11, 2];
+            valores[0, 0] = "vDataServico";
+            valores[0, 1] = dataServico;
+            valores[1, 0] = "vHoraInicio";
+            valores[1, 1] = horaInicio;
+            valores[2, 0] = "vHoraFim";
+            valores[2, 1] = horaFim; 
+            valores[3, 0] = "vE";
+            valores[3, 1] = vE;
+            valores[4, 0] = "vP";
+            valores[4, 1] = vP;
+            valores[5, 0] = "vA";
+            valores[5, 1] = vA;
+            valores[6, 0] = "vG";
+            valores[6, 1] = vG;
+            valores[7, 0] = "vEspecializacao";
+            valores[7, 1] = vEspecializacao;
+            valores[8, 0] = "vPreco";
+            valores[8, 1] = vPreco;
+            valores[9, 0] = "vAvaliacao";
+            valores[9, 1] = vAvaliacao; 
+            valores[10, 0] = "vGenero";
+            valores[10, 1] = vGenero;
+            base64standard = "PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJ1c2VyLW51cnNlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtdXNlci1udXJzZSBmYS13LTE0IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTMxOS40MSwzMjAsMjI0LDQxNS4zOSwxMjguNTksMzIwQzU3LjEsMzIzLjEsMCwzODEuNiwwLDQ1My43OUE1OC4yMSw1OC4yMSwwLDAsMCw1OC4yMSw1MTJIMzg5Ljc5QTU4LjIxLDU4LjIxLDAsMCwwLDQ0OCw0NTMuNzlDNDQ4LDM4MS42LDM5MC45LDMyMy4xLDMxOS40MSwzMjBaTTIyNCwzMDRBMTI4LDEyOCwwLDAsMCwzNTIsMTc2VjY1LjgyYTMyLDMyLDAsMCwwLTIwLjc2LTMwTDI0Ni40Nyw0LjA3YTY0LDY0LDAsMCwwLTQ0Ljk0LDBMMTE2Ljc2LDM1Ljg2QTMyLDMyLDAsMCwwLDk2LDY1LjgyVjE3NkExMjgsMTI4LDAsMCwwLDIyNCwzMDRaTTE4NCw3MS42N2E1LDUsMCwwLDEsNS01aDIxLjY3VjQ1YTUsNSwwLDAsMSw1LTVoMTYuNjZhNSw1LDAsMCwxLDUsNVY2Ni42N0gyNTlhNSw1LDAsMCwxLDUsNVY4OC4zM2E1LDUsMCwwLDEtNSw1SDIzNy4zM1YxMTVhNSw1LDAsMCwxLTUsNUgyMTUuNjdhNSw1LDAsMCwxLTUtNVY5My4zM0gxODlhNSw1LDAsMCwxLTUtNVpNMTQ0LDE2MEgzMDR2MTZhODAsODAsMCwwLDEtMTYwLDBaIj48L3BhdGg+PC9zdmc+";
 
+            //vira o dia
+
+            if (virarDia)
+            {
+                if (!Procedure("buscarCuidadoresVirarDia", true, valores, ref dados))
+                {
+                    Desconectar();
+                    return false;
+                }
+
+                if (dados.HasRows)
+                {
+                    while (dados.Read())
+                    {
+                        nm_email_cuidador.Add(dados[0].ToString());
+                        if (!Convert.IsDBNull(dados[1]))
+                        {
+                            byte[] imagem = (byte[])dados[1];
+
+                            base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
+                        }
+                        else { base64String.Add(base64standard); }
+                        nm_cuidador.Add(dados[2].ToString());
+                        vl_cuidador.Add(dados[3].ToString());
+                        cd_avaliacao.Add(dados[4].ToString());
+                        nm_especializacao.Add(dados[5].ToString());
+                    }
+
+                    if (!dados.IsClosed) { dados.Close(); }
+                    Desconectar();
+                }
+            }
+
+            // nao vira o dia
+            else
+            {
+                if (!Procedure("filtrarCuidadores", true, valores, ref dados))
+                {
+                    Desconectar();
+                    return false;
+                }
+
+                if (dados.HasRows)
+                {
+                    while (dados.Read())
+                    {
+                        nm_email_cuidador.Add(dados[0].ToString());
+                        if (!Convert.IsDBNull(dados[1]))
+                        {
+                            byte[] imagem = (byte[])dados[1];
+
+                            base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
+                        }
+                        else { base64String.Add(base64standard); }
+                        nm_cuidador.Add(dados[2].ToString());
+                        vl_cuidador.Add(dados[3].ToString());
+                        cd_avaliacao.Add(dados[4].ToString());
+                        nm_especializacao.Add(dados[5].ToString());
+                    }
+
+                    if (!dados.IsClosed) { dados.Close(); }
+                    Desconectar();
+                }
+            }
+
+            return true;
+        }
         #endregion
 
         #region Buscar Cuidador

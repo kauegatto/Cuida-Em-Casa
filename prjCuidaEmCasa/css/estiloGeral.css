@@ -21,7 +21,7 @@ height: 47px;}
 
 .tituloConteudo { margin-top: 5px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; width: 260px; margin-left: 49px;}
 
-.btnProximo {width: 166px; height: 34px; background: #27AE60; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; border-style: none; color: white; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 20px; line-height: 25px; position: fixed; left: 27%; bottom: 15.5%;}
+.btnProximo {width: 166px; height: 34px; background: #27AE60; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; border-style: none; color: white; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 20px; line-height: 25px; position: fixed; left: 27%; bottom: 15.5%;z-index: 999;}
 
 .footer { grid-area: footer; height: 70px; background: #2980B9; color: white; width: 100%; position: fixed; bottom: 0%; } 
 

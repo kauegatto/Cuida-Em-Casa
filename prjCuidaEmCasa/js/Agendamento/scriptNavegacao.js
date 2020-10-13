@@ -8,7 +8,7 @@ import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 import scriptFiltro from "./scriptFiltro.js";
 
-var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente"); var filtros = "";
+var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
 
 function passarPagina(SentDomElement,Jump) {
     
@@ -57,15 +57,15 @@ $("#btnPaciente").click(function () {
     if($('.selecionado').length){
         try{
 
-                            var classes = $(".selecionado").attr("class").split(/\s+/);
-                            localStorage.setItem("cdPaciente", classes[1]);
-                            $(".selecionado").removeClass("selecionado");
-                            passarPagina($(this),1);
-                            scriptConfirmarEndereco();
+            var classes = $(".selecionado").attr("class").split(/\s+/);
+            localStorage.setItem("cdPaciente", classes[1]);
+            $(".selecionado").removeClass("selecionado");
+            passarPagina($(this),1);
+            scriptConfirmarEndereco();
         }
         catch {
-                            alert("Por favor, escolha um paciente!");
-                            return;
+            alert("Por favor, escolha um paciente!");
+            return;
         }
     }   
     else{
@@ -110,6 +110,7 @@ $("#btnDataHora").click(function () {
 //pg 5: pag cuidador -> vai para info cuidador  
 $("#btnCuidador").click(function () {
     passarPagina($(this),1);
+    $(".areaFiltro").css('display','none');      
     $(".infoFiltro").removeClass("visivel");
     $(".areaFiltro").css("display","none");
     var classes = $(".selecionado").attr("class").split(/\s+/);
@@ -117,10 +118,8 @@ $("#btnCuidador").click(function () {
     scriptInfoCuidador();
     
 });
-$(".opcaoFiltro").change(function (){
-    $( ".opcaoFiltro option:selected" ).each(function() {
-      filtros += $( this ).text() + " ";
-    });
+$("#btnFiltro").click(function (){
+    scriptFiltro();
 });
 //pg 6 : info cuidador -> vai para finalizar
 $("#btnInfoCuidador").click(function () {

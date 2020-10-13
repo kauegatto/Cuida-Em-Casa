@@ -51,6 +51,18 @@ insert into tipo_genero values (1, 'Masculino');
 insert into tipo_genero values (2, 'Feminimo');
 insert into tipo_genero values (3, 'Outro');
 
+CREATE TABLE tipo_situacao_usuario
+(
+	cd_situacao_usuario INT,
+	nm_situacao_usuario VARCHAR(100),
+	CONSTRAINT pk_tipo_situacao_usuario PRIMARY KEY (cd_situacao_usuario)
+);
+
+insert into tipo_situacao_usuario values (1, 'Contratado');
+insert into tipo_situacao_usuario values (2, 'Em análise');
+insert into tipo_situacao_usuario values (3, 'Em advertência');
+insert into tipo_situacao_usuario values (4, 'Demitido');
+
 CREATE TABLE usuario
 (
 	nm_email_usuario VARCHAR(100),
@@ -66,38 +78,60 @@ CREATE TABLE usuario
 	ds_usuario TEXT,
 	cd_avaliacao DECIMAL(10, 2),
 	cd_tipo_usuario INT,
-	cd_tipo_especializacao INT,
 	cd_auth_recover VARCHAR (100),
 	cd_genero INT,
+	cd_situacao_usuario INT,
 	CONSTRAINT pk_usuario PRIMARY KEY (nm_email_usuario),
 	CONSTRAINT fk_usuario_tipo_usuario FOREIGN KEY (cd_tipo_usuario)
-	REFERENCES tipo_usuario (cd_tipo_usuario),
-	CONSTRAINT fk_usuario_tipo_especializacao FOREIGN KEY (cd_tipo_especializacao)
 	REFERENCES tipo_especializacao (cd_tipo_especializacao),
 	CONSTRAINT fk_usuario_auth_recover FOREIGN KEY (cd_auth_recover)
 	REFERENCES auth_recover (cd_auth_recover),
 	CONSTRAINT fk_usuario_genero FOREIGN KEY (cd_genero)
-	REFERENCES tipo_genero (cd_genero)
+	REFERENCES tipo_genero (cd_genero),
+	CONSTRAINT fk_usuario_tipo_situacao_usuario FOREIGN KEY (cd_situacao_usuario)
+	REFERENCES tipo_situacao_usuario (cd_situacao_usuario)
 );
 /*Adiministradores*/
-insert into usuario values('thiagofranciscojosefigueiredo-75@adiministrador.com','Thiago Francisco José Figueiredo','264.346.238-60','(13)98292-8428','123',null,null,null,null,null,null,null,1,null,null,null);
-insert into usuario values('giovannaisabelleisabelamoura-86@adiministrador.com','Giovanna Isabelle Isabela Moura','307.335.868-48','(13)99576-6640','123',null,null,null,null,null,null,null,1,null,null,null);
+insert into usuario values('thiagofranciscojosefigueiredo-75@adiministrador.com','Thiago Francisco José Figueiredo','264.346.238-60','(13)98292-8428',md5('123'),null,null,null,null,null,null,null,1,null,null,null);
+insert into usuario values('giovannaisabelleisabelamoura-86@adiministrador.com','Giovanna Isabelle Isabela Moura','307.335.868-48','(13)99576-6640',md5('123'),null,null,null,null,null,null,null,1,null,null,null);
 /*Clientes*/
-insert into usuario values('jenniferevelyngomes@gmail.com','Jennifer Evelyn Gomes','546.433.708-31','(13)98377-3877','123',null,null,null,null,null,null,null,2,null,123,null);
-insert into usuario values('flaviapriscilamarianasilveira@gmail.com','Flávia Priscila Mariana Silveira','585.753.038-56','(13)99525-1833','123',null,null,null,null,null,null,null,2,null,234,null);
-insert into usuario values('oosvaldocarlosdarosa@live.ie','Osvaldo Carlos da Rosa','797.113.308-14','(13)99906-6970','123',null,null,null,null,null,null,null,2,null,345,null);
-insert into usuario values('hadassabetinaviana-80@scuderiagwr.com.br','Hadassa Betina Viana','853.819.898-06','(13)99812-4922','123',null,null,null,null,null,null,null,2,null,456,null);
-insert into usuario values('emilyantoniadaianearagao@gmail.com','Emily Antônia Daiane Aragão','099.801.308-06','(13)99308-2893','123',null,null,null,null,null,null,null,2,null,null,null);
-insert into usuario values('raquelAurelia@gmail.com','Raquel Aureliana Souza','233.319.868-23','(13)99342-4872','123',null,null,null,null,null,null,null,2,null,null,null);
-insert into usuario values('mauriciorodolfo@gamil.com','Mauricio Rodolfo Santos','578.345.335-16','(13)99456-2123','123',null,null,null,null,null,null,null,2,null,null,null);
+insert into usuario values('jenniferevelyngomes@gmail.com','Jennifer Evelyn Gomes','546.433.708-31','(13)98377-3877',md5('123'),null,null,null,null,null,null,null,2,123,null,null);
+insert into usuario values('flaviapriscilamarianasilveira@gmail.com','Flávia Priscila Mariana Silveira','585.753.038-56','(13)99525-1833',md5('123'),null,null,null,null,null,null,null,2,234,null,null);
+insert into usuario values('oosvaldocarlosdarosa@live.ie','Osvaldo Carlos da Rosa','797.113.308-14','(13)99906-6970',md5('123'),null,null,null,null,null,null,null,2,345,null,null);
+insert into usuario values('hadassabetinaviana-80@scuderiagwr.com.br','Hadassa Betina Viana','853.819.898-06','(13)99812-4922',md5('123'),null,null,null,null,null,null,null,2,456,null,null);
+insert into usuario values('emilyantoniadaianearagao@gmail.com','Emily Antônia Daiane Aragão','099.801.308-06','(13)99308-2893',md5('123'),null,null,null,null,null,null,null,2,null,null,null);
+insert into usuario values('raquelAurelia@gmail.com','Raquel Aureliana Souza','233.319.868-23','(13)99342-4872',md5('123'),null,null,null,null,null,null,null,2,null,null,null);
+insert into usuario values('mauriciorodolfo@gamil.com','Mauricio Rodolfo Santos','578.345.335-16','(13)99456-2123',md5('123'),null,null,null,null,null,null,null,2,null,null,null);
 /*Cuidadores*/
-insert into usuario values('oliverbrunoluccanunes@gmail.com','Oliver Bruno Lucca Nunes','629.105.768-92','(13)99751-0239','123',null,7.5,'https://CurriculoDoOliver.com.br', true,'3 anos no hospital','Olá meu nome é Oliver e eu amo exercer o meu trabalho',4,3,1,null,1);
-insert into usuario values('brunastellaflaviadepaula@gmail.com','Bruna Stella Flávia de Paula','311.072.008-65','(13)98838-6063','123',null,7.5,'https://CurriculoDaBruna.com.br',true,'Autônomo há 4 anos','Me chamo Bruna e adoro cuidar de outras pessoas',5,3,1,null,2);
-insert into usuario values('verabarbarajoanaaparicio@gmail.com','Vera Bárbara Joana Aparício','896.735.338-30','(13)98445-2141','123',null,7.5,'https://CurriculoDaVera.com.br', true,'2 anos na SAIDSP','Sou a Vera e amo ajudar pessoas que precisam de cuidados especiais',2.4,3,1,null,2);
-insert into usuario values('rayssaelainevanessacosta-84@.com','Rayssa Elaine Vanessa Costa','018.471.618-71','(13)99643-0218','123',null,30.0,'https://CurriculoDaRayssa.com.br',true,'6 meses na HomeAngels','Me chamo Rayssa e tenho muita disposição para ajudar idosos',4.5,3,2,null,2);
-insert into usuario values('flaviabeneditamilenamelo@gmail.com','Flávia Benedita Milena Melo','516.150.178-28','(13)99611-4631','123',null,50.0,'https://CurriculoDaFlavia.com.br',true,'Trabalhei por 3 meses na Vidas Home Care','Estou iniciando na área e com a experiência que eu tenho posso dizer que amo o que faço',3.0,3,4,null,2);
-insert into usuario values('matheusraimundofarias@gmail.com','Matheus Raimundo Farias','829.441.818-82','(13)98375-6008','123',null,45.0,'https://CurriculoDoMatheus.com.br',true,'1 ano na Union HomeCare','Gosto bastante de trabalhar como cuidador de idosos',3.5,3,3,null,1);
-insert into usuario values('sarahelainealiciaribeiro@gmail.com','Sarah Elaine Alícia Ribeiro','426.701.408-66','(13)98279-0959','123',null,50.0,'https://CurriculoDaSarah.com.br',true,'5 anos no Hospital Guilherme Alvaro','Olá me chamo Sarah e carrego uma bagagem muito vasta como cuidadora de idosos e posso dizer que eu amo trabalhar nesta área',1.5,3,4,null,2);
+insert into usuario values('oliverbrunoluccanunes@gmail.com','Oliver Bruno Lucca Nunes','629.105.768-92','(13)99751-0239',md5('123'),null,7.5,'https://CurriculoDoOliver.com.br', true,'3 anos no hospital','Olá meu nome é Oliver e eu amo exercer o meu trabalho',4,3,null,1,1);
+insert into usuario values('brunastellaflaviadepaula@gmail.com','Bruna Stella Flávia de Paula','311.072.008-65','(13)98838-6063',md5('123'),null,7.5,'https://CurriculoDaBruna.com.br',true,'Autônomo há 4 anos','Me chamo Bruna e adoro cuidar de outras pessoas',5,3,null,2,1);
+insert into usuario values('verabarbarajoanaaparicio@gmail.com','Vera Bárbara Joana Aparício','896.735.338-30','(13)98445-2141',md5('123'),null,7.5,'https://CurriculoDaVera.com.br', true,'2 anos na SAIDSP','Sou a Vera e amo ajudar pessoas que precisam de cuidados especiais',2.4,3,null,2,1);
+insert into usuario values('rayssaelainevanessacosta-84@.com','Rayssa Elaine Vanessa Costa','018.471.618-71','(13)99643-0218',md5('123'),null,30.0,'https://CurriculoDaRayssa.com.br',true,'6 meses na HomeAngels','Me chamo Rayssa e tenho muita disposição para ajudar idosos',4.5,3,null,2,1);
+insert into usuario values('flaviabeneditamilenamelo@gmail.com','Flávia Benedita Milena Melo','516.150.178-28','(13)99611-4631',md5('123'),null,50.0,'https://CurriculoDaFlavia.com.br',true,'Trabalhei por 3 meses na Vidas Home Care','Estou iniciando na área e com a experiência que eu tenho posso dizer que amo o que faço',3.0,3,null,2,1);
+insert into usuario values('matheusraimundofarias@gmail.com','Matheus Raimundo Farias','829.441.818-82','(13)98375-6008',md5('123'),null,45.0,'https://CurriculoDoMatheus.com.br',true,'1 ano na Union HomeCare','Gosto bastante de trabalhar como cuidador de idosos',3.5,3,null,1,1);
+insert into usuario values('sarahelainealiciaribeiro@gmail.com','Sarah Elaine Alícia Ribeiro','426.701.408-66','(13)98279-0959',md5('123'),null,50.0,'https://CurriculoDaSarah.com.br',true,'5 anos no Hospital Guilherme Alvaro','Olá me chamo Sarah e carrego uma bagagem muito vasta como cuidadora de idosos e posso dizer que eu amo trabalhar nesta área',1.5,3,null,2,1);
+
+CREATE TABLE especializacao_usuario
+(
+	cd_tipo_especializacao INT,
+	nm_email_usuario VARCHAR(100),
+	CONSTRAINT pk_especializacao_usuario PRIMARY KEY (cd_tipo_especializacao, nm_email_usuario),
+	CONSTRAINT fk_especializacao_usuario_tipo_especializacao FOREIGN KEY (cd_tipo_especializacao)
+	REFERENCES tipo_especializacao (cd_tipo_especializacao),
+	CONSTRAINT fk_especializacao_usuario_usuario FOREIGN KEY (nm_email_usuario)
+	REFERENCES usuario (nm_email_usuario)
+);
+
+insert into especializacao_usuario values (1, 'oliverbrunoluccanunes@gmail.com');
+insert into especializacao_usuario values (1, 'brunastellaflaviadepaula@gmail.com');
+insert into especializacao_usuario values (1, 'verabarbarajoanaaparicio@gmail.com');
+insert into especializacao_usuario values (1, 'rayssaelainevanessacosta-84@.com');
+insert into especializacao_usuario values (1, 'flaviabeneditamilenamelo@gmail.com');
+insert into especializacao_usuario values (1, 'matheusraimundofarias@gmail.com');
+insert into especializacao_usuario values (1, 'sarahelainealiciaribeiro@gmail.com');
+insert into especializacao_usuario values (2, 'oliverbrunoluccanunes@gmail.com');
+insert into especializacao_usuario values (3, 'brunastellaflaviadepaula@gmail.com');
+insert into especializacao_usuario values (4, 'verabarbarajoanaaparicio@gmail.com');
 
 CREATE TABLE disponibilidade
 (
@@ -187,7 +221,7 @@ CREATE TABLE paciente
 	nm_rua_paciente VARCHAR(200),
 	cd_num_paciente INT,
 	nm_uf_paciente VARCHAR(200),
-	cd_complemento_paciente VARCHAR(100),
+	nm_complemento_paciente VARCHAR(100),
 	nm_email_usuario VARCHAR(100),
 	img_paciente BLOB,
 	CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
@@ -222,6 +256,11 @@ insert into necessidade_paciente values(2,1);
 insert into necessidade_paciente values(2,2);
 insert into necessidade_paciente values(3,1);
 insert into necessidade_paciente values(4,2);
+insert into necessidade_paciente values(5,1);
+insert into necessidade_paciente values(6,2);
+insert into necessidade_paciente values(7,1);
+insert into necessidade_paciente values(8,2);
+insert into necessidade_paciente values(9,1);
 
 CREATE TABLE tipo_status_servico
 (
@@ -261,7 +300,7 @@ CREATE TABLE servico
 	nm_rua_servico VARCHAR(200),
 	cd_num_servico INT,
 	nm_uf_servico VARCHAR(200),
-	cd_complemento_servico VARCHAR(100),
+	nm_complemento_servico VARCHAR(100),
 	hr_checkin_servico TIME,
 	dt_checkin_servico DATE,
 	hr_checkout_servico TIME,
@@ -299,6 +338,8 @@ insert into servico values(9,'2020-08-20','09:00:00','2020-08-20','16:00:00','11
 /*Serviços Pendentes*/
 insert into servico values(10,'2020-08-30','10:00:00','2020-08-30','22:00:00','11050-260','Santos','Encruzilhada','R. Dr. Leôncio Rezende Filho','789','SP',null,null,null,null,null,'-23.956151;-46.324515','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',null,2,7);
 insert into servico values(11,'2020-08-30','07:00:00','2020-08-30','17:00:00','11310-210','São Vicente','Centro','R. do Colégio','485','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,2,4);
+insert into servico values(55,'2020-10-14','07:00:00','2020-10-14','10:00:00','11533-040','Cubatão','Jardim Casqueiro','Av. Brasil','500','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
+insert into servico values(56,'2020-10-14','12:00:00','2020-10-14','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
 /*Serviços Cancelados*/
 insert into servico values(12,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São VicenteSão Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
 
