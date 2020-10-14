@@ -70,7 +70,7 @@ CREATE TABLE usuario
 	cd_CPF VARCHAR(15),
 	cd_telefone VARCHAR(15),
 	nm_senha VARCHAR(128),
-	img_usuario BLOB,
+	img_usuario LONGBLOB,
 	vl_hora_trabalho DECIMAL(10, 2),
 	cd_link_curriculo TEXT,
 	ic_ativo BOOl,
@@ -223,7 +223,7 @@ CREATE TABLE paciente
 	nm_uf_paciente VARCHAR(200),
 	nm_complemento_paciente VARCHAR(100),
 	nm_email_usuario VARCHAR(100),
-	img_paciente BLOB,
+	img_paciente LONGBLOB,
 	CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
 	CONSTRAINT fk_paciente_usuario FOREIGN KEY (nm_email_usuario)
 	REFERENCES usuario (nm_email_usuario)

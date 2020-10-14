@@ -141,7 +141,8 @@ BEGIN
 	AND 
 		hr_inicio_disponibilidade <= vHoraInicio 
 	AND 
-		hr_fim_disponibilidade >= vHoraFim;
+		hr_fim_disponibilidade >= vHoraFim
+	GROUP BY u.nm_email_usuario; 
 END$$
 
 /* Procedure buscarCuidadres será usada para buscar os cuidadores aptos para aqueles dias e horas de serviço escolhido pelo cliente (virou o dia) */
@@ -188,7 +189,8 @@ BEGIN
 				dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) 
 			AND
 				hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-		);
+		)
+        GROUP BY u.nm_email_usuario; 
 END$$
 
 /* Procedure filtrarCuidadores será usada caso o cliente queira buscar o cuidador pelas opções do filtro */
@@ -408,7 +410,7 @@ END$$
 
 DROP PROCEDURE IF EXISTS filtrarCuidadoresVirarDia$$
 
-CREATE PROCEDURE filtrarCuidadoresVirarDia(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao INT, vPreco DECIMAL(10, 2), vAvaliacao INT, vGenero STRING)
+CREATE PROCEDURE filtrarCuidadoresVirarDia(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao INT, vPreco DECIMAL(10, 2), vAvaliacao INT, vGenero VARCHAR(100))
 BEGIN 
 	IF (vE = TRUE) THEN
 		IF (vP = TRUE) THEN

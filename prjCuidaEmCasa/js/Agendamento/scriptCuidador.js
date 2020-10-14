@@ -19,7 +19,10 @@
         $('#wrapper-cuidador').html(retorno[0] + botao);
 
         $(".areaCuidador").each(function (i, obj) {
-            var url = "data:image/svg+xml;base64," + $(this).children("div.invi").html();
+            var tinhaImg = $(this).children("div.invi").html().split("#");
+            if (tinhaImg[1] == "true" ){var url = "data:image/png;base64," + tinhaImg[0];}
+            else{ var url = "data:image/svg+xml;base64," +tinhaImg[0]; }
+            
             $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         });
 

@@ -148,7 +148,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             if (virarDia)
             {
-                if (!Procedure("buscarCuidadoresVirarDia", true, valores, ref dados))
+                if (!Procedure("filtrarCuidadoresVirarDia", true, valores, ref dados))
                 {
                     Desconectar();
                     return false;
