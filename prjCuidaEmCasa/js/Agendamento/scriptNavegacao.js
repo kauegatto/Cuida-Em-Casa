@@ -44,7 +44,11 @@ function passarPagina(SentDomElement,Jump) {
 
 
 $(".iconeVoltar").click(function(){
-    passarPagina(DomElement, -1);
+    
+    if(indexPage == 4 ){
+        passarPagina(DomElement, -2);
+    } 
+    else{passarPagina(DomElement, -1);}
 });
 
 $(document).ready(function () {
@@ -55,7 +59,7 @@ scriptPaciente();
 $("#btnPaciente").click(function () {
 
     if($('.selecionado').length){
-        try{
+        try{    
 
             var classes = $(".selecionado").attr("class").split(/\s+/);
             localStorage.setItem("cdPaciente", classes[1]);

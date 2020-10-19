@@ -1,10 +1,7 @@
-
-.areaEndereco { font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; width: 261px; margin-left: 70px; margin-top: 5px;}
-.areaEndereco p{display:inline;2:59 PM 10/6/2020}
-#areaMapa { width: 354px; height: 218px; margin-top: 25px; text-align: center;}
-
+#map { width: 354px; height: 218px;   margin: 10px auto; text-align: center;}
+.areaEndereco { font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; width: 261px; margin:5px auto;}
+.areaEndereco p{display:inline;}
 .areaBotao { margin-top: 30px; }
 
-.btnConfirmar { width: 142px; height: 34px; background: #27AE60; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #DDDDDD; border-style: none; margin-left: 25px;}
 
 .btnAlterar { width: 142px; height: 34px;background: #9D2F42; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #DDDDDD; margin-left: 29px;}

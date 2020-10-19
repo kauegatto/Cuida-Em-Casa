@@ -8,8 +8,10 @@
 			return;
 		}
 		else{
-	        //retorno = retorno + "<button class='btnProximo navBtn' id='btnPaciente' type='button'>Próximo</button>";
-			$('#wrapper-paciente').append(retorno);
+	        retorno = retorno + retorno + retorno;
+	        var btnProx = "";
+			$('#listaPacientes').append(retorno);
+			$('#wrapper-paciente').append(btnProx);
 	        $(".areaPaciente").each(function (i, obj) {
 	        var url = "data:image/png;base64," + $(this).children().eq(3).html();
 	            $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
