@@ -28,7 +28,7 @@
                 
 
                 var endereco =  "rua " + retorno[1] + ", "+retorno[0] +" bairro" + retorno[5]+ "  "+ retorno [3] + " - " + retorno[5]; 
-                img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+endereco+'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:P|'+endereco+'&key=AIzaSyCpXqb0Wof39L-TpXqJojuCC4CIRcMpKM8';
+                img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+endereco+'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:P|'+endereco+'&key=APICODE';
             
                 document.getElementById('map').appendChild(img); 
             })
