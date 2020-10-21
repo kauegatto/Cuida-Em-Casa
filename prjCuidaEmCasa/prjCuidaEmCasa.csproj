@@ -116,6 +116,7 @@
     <Compile Include="classes\Agendamento\clsCuidador.cs" />
     <Compile Include="classes\Agendamento\clsPaciente.cs" />
     <Compile Include="classes\Agendamento\clsServico.cs" />
+    <Compile Include="classes\Agendamento\clsUsuario.cs" />
     <Compile Include="classes\clsBanco_32623.cs" />
     <Compile Include="classes\clsConexao.cs" />
     <Compile Include="lib\dadosEmailCuidador.aspx.cs">
