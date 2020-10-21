@@ -24,7 +24,7 @@ function passarPagina(SentDomElement,Jump) {
             $(".visibleWrapper").css("display", "none" );
             $(".visibleWrapper").removeClass("visibleWrapper");
             $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css( "display", "block");
-            $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visibleWrapper");  
+            $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visibleWrapper"); 
         }
         else{indexPage = 0}
        
@@ -45,7 +45,7 @@ function passarPagina(SentDomElement,Jump) {
 
 $(".iconeVoltar").click(function(){
     
-    if(indexPage == 4 ){
+    if(indexPage == 5 ){
         passarPagina(DomElement, -2);
     } 
     else{passarPagina(DomElement, -1);}
@@ -112,7 +112,7 @@ $("#btnDataHora").click(function () {
 });
 
 //pg 5: pag cuidador -> vai para info cuidador  
-$("#btnCuidador").click(function () {
+$(document).on("click", "#btnCuidador", function(){
     passarPagina($(this),1);
     $(".areaFiltro").css('display','none');      
     $(".infoFiltro").removeClass("visivel");
@@ -120,8 +120,8 @@ $("#btnCuidador").click(function () {
     var classes = $(".selecionado").attr("class").split(/\s+/);
     localStorage.setItem("emailCuidador", classes[1]);    
     scriptInfoCuidador();
-    
 });
+
 $("#btnFiltro").click(function (){
     scriptFiltro();
 });

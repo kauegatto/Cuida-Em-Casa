@@ -1,14 +1,16 @@
 ﻿export default function scriptPaciente() {
+	var retorno;
     $.post("../../lib/libBuscarPaciente.aspx", function (retorno) {
+       
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
         }
+
 		else if (retorno == "") {
-			$('#wrapper-paciente').html(retorno);
+			$('#wrapper-paciente').html("ta vazio kkkkkkkkkkkkk");
 			return;
 		}
 		else{
-	        retorno = retorno + retorno + retorno;
 	        var btnProx = "";
 			$('#listaPacientes').append(retorno);
 			$('#wrapper-paciente').append(btnProx);
@@ -22,6 +24,6 @@
     	$(".areaPaciente").click(function (e) {
 	            $(".areaPaciente").removeClass("selecionado");
 	            $(this).addClass("selecionado");
-	        });
+		});
 	});
 };

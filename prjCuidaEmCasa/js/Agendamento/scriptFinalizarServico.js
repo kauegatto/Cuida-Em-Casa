@@ -1,4 +1,4 @@
-﻿export default function carregarFinalizarServico () {
+﻿export default function carregarFinalizarServico() {
 
     var data = localStorage.getItem("data");
     var data_formatada;

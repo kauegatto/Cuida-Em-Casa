@@ -1,7 +1,7 @@
 ﻿export default function scriptCuidador () {
 
     $.post("../../lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
-        var botao = "<button class='btnProximo' id='btnFinalizarServico'>Finalizar</button>";
+        var botao = "<button class='btnProximo' id='btnCuidador'>Próximo</button>";
         
         retorno = retorno.split("|");
         

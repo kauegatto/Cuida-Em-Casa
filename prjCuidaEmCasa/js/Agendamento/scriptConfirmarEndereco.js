@@ -1,9 +1,8 @@
-﻿﻿export default function scriptConfirmarEndereco () {
+﻿export default function scriptConfirmarEndereco () {
 
             var cd = localStorage.getItem("cdPaciente");
-            var lati = ""; var long = ""; var retorno = "";
+            var retorno = "";
             var map = document.getElementById('map');
-            
             var img = document.createElement('img'); 
             
             
@@ -28,7 +27,8 @@
                 
 
                 var endereco =  "rua " + retorno[1] + ", "+retorno[0] +" bairro" + retorno[5]+ "  "+ retorno [3] + " - " + retorno[5]; 
-                img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+endereco+'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:P|'+endereco+'&key=AIzaSyCpXqb0Wof39L-TpXqJojuCC4CIRcMpKM8';
+                var apimaps = "api";
+                img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+ endereco+'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:k|'+endereco+'&key='+ apimaps;
             
                 document.getElementById('map').appendChild(img); 
             })
