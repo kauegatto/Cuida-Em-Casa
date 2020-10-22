@@ -61,6 +61,8 @@
     <Content Include="css\agendamento\estiloEndereco.css" />
     <Content Include="css\agendamento\estiloInfoCuidador.css" />
     <Content Include="css\agendamento\estiloPaciente.css" />
+    <Content Include="css\criarConta\estiloCriarConta.css" />
+    <Content Include="css\estiloIndex.css" />
     <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
     <Content Include="img\icones\agendamento\iconeAmpulheta.png" />
     <Content Include="img\icones\agendamento\iconeBuscarAtendimento.png" />
@@ -123,6 +125,7 @@
     <Content Include="js\Agendamento\scriptDataHora.js" />
     <Content Include="js\Agendamento\scriptInfoCuidador.js" />
     <Content Include="js\Agendamento\scriptPaciente.js" />
+    <Content Include="js\Login\scriptLogin.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
@@ -130,6 +133,7 @@
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="pages\agendamento.html" />
+    <Content Include="pages\criarConta\criarConta.html" />
     <Content Include="pages\index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -190,10 +194,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="css\index\" />
-    <Folder Include="pages\NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
