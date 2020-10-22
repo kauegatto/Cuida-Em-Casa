@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
+
 <html>
+
 <head>
 	<title>Cuida em Casa</title>
 	<meta charset="utf-8">
@@ -8,24 +10,36 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	
+
+	<script
+  	 src="https://code.jquery.com/jquery-3.5.1.js"
+ 	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ 	 crossorigin="anonymous"></script>
+
+	<script src="../js/Login/scriptLogin.js"></script>
 </head>
+
 <body>
 	<header>
 		<div class="areaLogo">
-			<img src="../img/logoIndex.svg">
+			<img src="../img/mapa.png"/>
 		</div>
 	</header>
 	<main>
 		<div class="areaForm">
-			<h1>Fazer Login</h1>
-			<label>Email:</label>
-			<input type="text" name="txtEmail" required>
-            <br />
-			<label>Senha:</label>
-			<input type="text" name="txtSenha" required>
-			<button type="submit">Entrar</button>
-            <p>Não tem uma conta? <span id="crieAgora">Crie Agora!</span></p>
+			
+				<h1>Fazer Login</h1>
+				<label>Email:</label>
+				<input type="email" name="txtEmail" id="txtEmail" required>
+	            <br />
+				<label>Senha:</label>
+				<input type="password" name="txtSenha" id="txtSenha" required>
+				<button type="button" id="btnLogin">Entrar</button>
+	            <p>Não tem uma conta? <span id="crieAgora">Crie Agora!</span></p>
+        	
 		</div>
 	</main>
 </body>
+
 </html>

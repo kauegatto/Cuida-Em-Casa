@@ -21,8 +21,15 @@ namespace prjCuidaEmCasa.lib
             {
                 Response.Write("false");
             }
-
-            Response.Write("true");
+            else {
+                if (usuario.emailUsuario == email)
+                {
+                    Response.Write("true" + "|" + usuario.tipoUsuario);
+                }
+                else {
+                    Response.Write("false");
+                }
+            }
         }
     }
 }

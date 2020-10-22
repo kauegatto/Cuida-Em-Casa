@@ -35,7 +35,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="MySql.Data, Version=6.5.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\MySql.Data.dll</HintPath>
+      <HintPath>mySqlDLL\MySql.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -133,6 +133,7 @@
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
+    <Content Include="mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\agendamento.html" />
     <Content Include="pages\criarConta\criarConta.html" />
     <Content Include="pages\index.html" />

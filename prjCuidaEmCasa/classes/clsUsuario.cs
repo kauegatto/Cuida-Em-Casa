@@ -44,7 +44,6 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
             }
-
             return true;
         }
         #endregion 
