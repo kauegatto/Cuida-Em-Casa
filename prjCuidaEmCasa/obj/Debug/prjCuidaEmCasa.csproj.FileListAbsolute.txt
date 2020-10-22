@@ -1,55 +1,6 @@
-c:\users\kaue\documents\visual studio 2010\Projects\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\User\Desktop\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\kaue\Downloads\tcc\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\kaue\Downloads\tcc\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\kaue\Downloads\tcc\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\kaue\Downloads\tcc\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\kaue\Downloads\tcc\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\kaue\Downloads\tcc\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\User\Desktop\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\kaue\Downloads\tcc\siteDinamico\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\kaue\Downloads\tcc\siteDinamico\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\kaue\Downloads\tcc\siteDinamico\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\kaue\Downloads\tcc\siteDinamico\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\kaue\Downloads\tcc\siteDinamico\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\kaue\Downloads\tcc\siteDinamico\siteDinamico\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\32808_32512_32623_32493_32509\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\32808_32512_32623_32493_32509\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\32808_32512_32623_32493_32509\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\User\Desktop\32808_32512_32623_32493_32509\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\32808_32512_32623_32493_32509\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\32808_32512_32623_32493_32509\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\kaue\Downloads\prjCuidaEmCasa\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\kaue\Downloads\prjCuidaEmCasa\prjCuidaEmCasa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\kaue\Downloads\prjCuidaEmCasa\prjCuidaEmCasa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\kaue\Downloads\prjCuidaEmCasa\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\kaue\Downloads\prjCuidaEmCasa\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\kaue\Downloads\prjCuidaEmCasa\prjCuidaEmCasa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\bin\MySql.Data.dll
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
