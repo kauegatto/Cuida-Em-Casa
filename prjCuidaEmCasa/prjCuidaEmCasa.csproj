@@ -88,6 +88,7 @@
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
     <Content Include="js\Agendamento\scriptAgendarServico.js" />
+    <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
     <Content Include="js\jquery-3.2.1.min.js" />

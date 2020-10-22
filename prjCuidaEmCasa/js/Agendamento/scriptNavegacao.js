@@ -114,7 +114,6 @@ $("#btnDataHora").click(function () {
 //pg 5: pag cuidador -> vai para info cuidador  
 $(document).on("click", "#btnCuidador", function(){
     passarPagina($(this),1);
-    $(".areaFiltro").css('display','none');      
     $(".infoFiltro").removeClass("visivel");
     $(".areaFiltro").css("display","none");
     var classes = $(".selecionado").attr("class").split(/\s+/);

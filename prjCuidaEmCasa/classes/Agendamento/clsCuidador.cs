@@ -118,6 +118,32 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         public bool listarCuidadoresFiltro(string dataServico, string horaInicio, string horaFim, string vE, string vP, string vA, string vG, string vEspecializacao, string vPreco, string vAvaliacao, string vGenero, bool virarDia)
         {
+            #region antigo
+            //MySqlDataReader dados = null;
+            //string[,] valores = new string[11, 2];
+            //valores[0, 0] = "vDataServico";
+            //valores[0, 1] = dataServico;
+            //valores[1, 0] = "vHoraInicio";
+            //valores[1, 1] = horaInicio;
+            //valores[2, 0] = "vHoraFim";
+            //valores[2, 1] = horaFim; 
+            //valores[3, 0] = "vE";
+            //valores[3, 1] = vE;
+            //valores[4, 0] = "vP";
+            //valores[4, 1] = vP;
+            //valores[5, 0] = "vA";
+            //valores[5, 1] = vA;
+            //valores[6, 0] = "vG";
+            //valores[6, 1] = vG;
+            //valores[7, 0] = "vEspecializacao";
+            //valores[7, 1] = vEspecializacao;
+            //valores[8, 0] = "vPreco";
+            //valores[8, 1] = vPreco;
+            //valores[9, 0] = "vAvaliacao";
+            //valores[9, 1] = vAvaliacao; 
+            //valores[10, 0] = "vGenero";
+            //valores[10, 1] = vGenero;
+            #endregion
             MySqlDataReader dados = null;
             string[,] valores = new string[11, 2];
             valores[0, 0] = "vDataServico";
@@ -125,21 +151,55 @@ namespace prjCuidaEmCasa.classes.Agendamento
             valores[1, 0] = "vHoraInicio";
             valores[1, 1] = horaInicio;
             valores[2, 0] = "vHoraFim";
-            valores[2, 1] = horaFim; 
+            valores[2, 1] = horaFim;
+            
+            
             valores[3, 0] = "vE";
-            valores[3, 1] = vE;
+
+            if (vE == "false")
+            {
+                valores[3, 1] = "0";
+            }
+            else 
+            {
+                valores[3, 1] = "1";
+            }
             valores[4, 0] = "vP";
-            valores[4, 1] = vP;
+
+            if (vP == "false")
+            {
+                valores[4, 1] = "0";
+            }
+            else
+            {
+                valores[4, 1] = "1";
+            }
+
             valores[5, 0] = "vA";
-            valores[5, 1] = vA;
+
+            if (vA == "false")
+            {
+                valores[5, 1] = "0";
+            }
+            else
+            {
+                valores[5, 1] = "1";
+            }
             valores[6, 0] = "vG";
-            valores[6, 1] = vG;
+            if (vG == "false")
+            {
+                valores[6, 1] = "0";
+            }
+            else
+            {
+                valores[6, 1] = "1";
+            }
             valores[7, 0] = "vEspecializacao";
             valores[7, 1] = vEspecializacao;
             valores[8, 0] = "vPreco";
             valores[8, 1] = vPreco;
             valores[9, 0] = "vAvaliacao";
-            valores[9, 1] = vAvaliacao; 
+            valores[9, 1] = vAvaliacao;
             valores[10, 0] = "vGenero";
             valores[10, 1] = vGenero;
             base64standard = "PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJ1c2VyLW51cnNlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtdXNlci1udXJzZSBmYS13LTE0IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTMxOS40MSwzMjAsMjI0LDQxNS4zOSwxMjguNTksMzIwQzU3LjEsMzIzLjEsMCwzODEuNiwwLDQ1My43OUE1OC4yMSw1OC4yMSwwLDAsMCw1OC4yMSw1MTJIMzg5Ljc5QTU4LjIxLDU4LjIxLDAsMCwwLDQ0OCw0NTMuNzlDNDQ4LDM4MS42LDM5MC45LDMyMy4xLDMxOS40MSwzMjBaTTIyNCwzMDRBMTI4LDEyOCwwLDAsMCwzNTIsMTc2VjY1LjgyYTMyLDMyLDAsMCwwLTIwLjc2LTMwTDI0Ni40Nyw0LjA3YTY0LDY0LDAsMCwwLTQ0Ljk0LDBMMTE2Ljc2LDM1Ljg2QTMyLDMyLDAsMCwwLDk2LDY1LjgyVjE3NkExMjgsMTI4LDAsMCwwLDIyNCwzMDRaTTE4NCw3MS42N2E1LDUsMCwwLDEsNS01aDIxLjY3VjQ1YTUsNSwwLDAsMSw1LTVoMTYuNjZhNSw1LDAsMCwxLDUsNVY2Ni42N0gyNTlhNSw1LDAsMCwxLDUsNVY4OC4zM2E1LDUsMCwwLDEtNSw1SDIzNy4zM1YxMTVhNSw1LDAsMCwxLTUsNUgyMTUuNjdhNSw1LDAsMCwxLTUtNVY5My4zM0gxODlhNSw1LDAsMCwxLTUtNVpNMTQ0LDE2MEgzMDR2MTZhODAsODAsMCwwLDEtMTYwLDBaIj48L3BhdGg+PC9zdmc+";

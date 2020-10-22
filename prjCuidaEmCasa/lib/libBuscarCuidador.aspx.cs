@@ -94,6 +94,7 @@ namespace prjCuidaEmCasa.lib
             #region Busca com Filtro
             try
             {
+                
                 if (Request["filtro"] == "true")
                 {
                     string vE, vP, vG, vA;
@@ -111,6 +112,7 @@ namespace prjCuidaEmCasa.lib
                     }
                 }
             #endregion
+
             #region Busca Sem Filtro
                 else
                 {
@@ -122,11 +124,9 @@ namespace prjCuidaEmCasa.lib
                 }
             }
             catch {
-                if (!classeCuidador.listarCuidadores(dataInicio, horaInicio, horaFim, virarDia))
-                {
-                    Response.Write("false");
+                    classes.clsBanco_32623 clsBanco = new classes.clsBanco_32623();
+                    Response.Write("Erro no resultado (" + clsBanco.msg + ")");
                     return;
-                }
             }
                 #endregion
 
