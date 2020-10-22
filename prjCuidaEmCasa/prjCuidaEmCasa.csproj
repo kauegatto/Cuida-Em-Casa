@@ -54,15 +54,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dll\MySql.Data.dll" />
     <Content Include="css\agendamento\estiloAgendamento.css" />
     <Content Include="css\agendamento\estiloConfirmacaoCuidador.css" />
     <Content Include="css\agendamento\estiloConfirmacaoEndereco.css" />
     <Content Include="css\agendamento\estiloCuidador.css" />
     <Content Include="css\agendamento\estiloEndereco.css" />
-    <Content Include="css\estiloGeral.css" />
     <Content Include="css\agendamento\estiloInfoCuidador.css" />
     <Content Include="css\agendamento\estiloPaciente.css" />
+    <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
+    <Content Include="img\icones\agendamento\iconeAmpulheta.png" />
+    <Content Include="img\icones\agendamento\iconeBuscarAtendimento.png" />
     <Content Include="img\icones\agendamento\iconeCalendario.png" />
     <Content Include="img\icones\agendamento\iconeFunil.png" />
     <Content Include="img\icones\agendamento\iconeRelogio.png" />
@@ -70,12 +71,35 @@
     <Content Include="img\icones\cuidador\iconeCifrao.png" />
     <Content Include="img\icones\cuidador\iconeCrifaoPequeno.png" />
     <Content Include="img\icones\cuidador\iconeMaleta.png" />
+    <Content Include="img\icones\editarPaciente\agenda.png" />
+    <Content Include="img\icones\editarPaciente\atendimento.png" />
+    <Content Include="img\icones\editarPaciente\configuracao.png" />
+    <Content Include="img\icones\editarPaciente\editar.png" />
+    <Content Include="img\icones\editarPaciente\pacientes.png" />
     <Content Include="img\icones\endereco\iconeCasa.png" />
+    <Content Include="img\icones\iconeAgenda.png" />
     <Content Include="img\icones\iconeCalendario.png" />
     <Content Include="img\icones\iconeConfiguracoes.png" />
     <Content Include="img\icones\iconePaciente.png" />
     <Content Include="img\icones\iconeServico.png" />
     <Content Include="img\icones\iconeVoltar.png" />
+    <Content Include="img\icones\index\iconeCuidador.png" />
+    <Content Include="img\icones\index\iconeMaleta.png" />
+    <Content Include="img\icones\servicoAgendado\iconeAgenda.png" />
+    <Content Include="img\icones\servicoAgendado\iconeBolinha.png" />
+    <Content Include="img\icones\servicoAgendado\iconeConfiguracao.png" />
+    <Content Include="img\icones\servicoAgendado\iconeHistorico.png" />
+    <Content Include="img\icones\servicoAgendado\iconeRelogio.png" />
+    <Content Include="img\icones\servicoAgendado\iconeServico.png" />
+    <Content Include="img\icones\servicoAgendado\iconeSolicitacao.png" />
+    <Content Include="img\icones\servicoCuidador\iconeConfiguracao.png" />
+    <Content Include="img\icones\servicoCuidador\iconeHistorico.png" />
+    <Content Include="img\icones\servicoCuidador\iconeServicos.png" />
+    <Content Include="img\icones\servicoCuidador\iconeSolicitacao.png" />
+    <Content Include="img\icones\servicoHistorico\iconeAgenda.png" />
+    <Content Include="img\icones\servicoHistorico\iconeConfiguracao.png" />
+    <Content Include="img\icones\servicoHistorico\iconeHistorico.png" />
+    <Content Include="img\icones\servicoHistorico\iconeServico.png" />
     <Content Include="img\imgCuidador1.jfif" />
     <Content Include="img\imgCuidador2.jpg" />
     <Content Include="img\imgCuidador3.jfif" />
@@ -85,6 +109,7 @@
     <Content Include="img\imgIdoso2.jfif" />
     <Content Include="img\imgIdoso3.jfif" />
     <Content Include="img\imgIdoso4.jpg" />
+    <Content Include="img\logoIndex.svg" />
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
     <Content Include="js\Agendamento\scriptAgendarServico.js" />
@@ -106,6 +131,7 @@
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="pages\agendamento.html" />
+    <Content Include="pages\index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -172,7 +198,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="css\index\" />
+    <Folder Include="pages\NewFolder1\" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
