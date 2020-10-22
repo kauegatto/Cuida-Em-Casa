@@ -70,7 +70,7 @@ CREATE TABLE usuario
 	cd_CPF VARCHAR(15),
 	cd_telefone VARCHAR(15),
 	nm_senha VARCHAR(128),
-	img_usuario LONGBLOB,
+	img_usuario BLOB,
 	vl_hora_trabalho DECIMAL(10, 2),
 	cd_link_curriculo TEXT,
 	ic_ativo BOOl,
@@ -131,6 +131,7 @@ insert into especializacao_usuario values (1, 'matheusraimundofarias@gmail.com')
 insert into especializacao_usuario values (1, 'sarahelainealiciaribeiro@gmail.com');
 insert into especializacao_usuario values (2, 'oliverbrunoluccanunes@gmail.com');
 insert into especializacao_usuario values (3, 'brunastellaflaviadepaula@gmail.com');
+insert into especializacao_usuario values (3, 'flaviabeneditamilenamelo@gmail.com');
 insert into especializacao_usuario values (4, 'verabarbarajoanaaparicio@gmail.com');
 
 CREATE TABLE disponibilidade
@@ -223,7 +224,7 @@ CREATE TABLE paciente
 	nm_uf_paciente VARCHAR(200),
 	nm_complemento_paciente VARCHAR(100),
 	nm_email_usuario VARCHAR(100),
-	img_paciente LONGBLOB,
+	img_paciente BLOB,
 	CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
 	CONSTRAINT fk_paciente_usuario FOREIGN KEY (nm_email_usuario)
 	REFERENCES usuario (nm_email_usuario)
