@@ -8,12 +8,12 @@ namespace prjCuidaEmCasa.classes.Agendamento
 {
     public class clsUsuario: clsBanco_32623 
     {
-        public string emailUsuario { get; set; }
+        public string emailUsuarioBusca { get; set; }
         public string tipoUsuario { get; set; }
 
         public clsUsuario(): base()
         {
-            emailUsuario = "";
+            emailUsuarioBusca = "";
             tipoUsuario = "";
         }
 
@@ -37,8 +37,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
             {
                 while (dados.Read())
                 {
-                    emailUsuario = dados[0].ToString();
+                    emailUsuarioBusca = dados[0].ToString();
                     tipoUsuario = dados[1].ToString();
+
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

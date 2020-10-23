@@ -12,15 +12,14 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"/>
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet"/>
 	<!-- CSS STYLESHEET -->
-	<link rel="stylesheet" type="text/css" href="../css/estiloGeral.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloAgendamento.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloConfirmacaoEndereco.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloConfirmacaoCuidador.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloCuidador.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloEndereco.css"/>
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloPaciente.css"/>
-
-	<link rel="stylesheet" type="text/css" href="../css/agendamento/estiloInfoCuidador.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/estiloGeral.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloAgendamento.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloConfirmacaoEndereco.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloConfirmacaoCuidador.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloCuidador.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloEndereco.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloPaciente.css"/>
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloInfoCuidador.css"/>
 
 	<!-- MAP API -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
@@ -36,7 +35,7 @@
  	 crossorigin="anonymous"></script>
 
     <!-- JS PÁGINA -->
-	<script src="../js/Agendamento/scriptNavegacao.js" type="module"></script>
+	<script src="../../js/Agendamento/scriptNavegacao.js" type="module"></script>
      
      
      
@@ -47,13 +46,13 @@
     <div class="estruturaGeral">
 		<header class="header">
 			<div class="areaLogo">
-				<img src="../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar">
+				<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar">
 			</div>
 			<div class="areaTituloGeral">
 				<h1 class="tituloGeral" style="text-align: center; margin-left: 0px;">Agendamento</h1>
 			</div>
 			<div class="areaFiltro">
-					<img src="../img/icones/agendamento/iconeFunil.png" class="iconeFunil">
+					<img src="../../img/icones/agendamento/iconeFunil.png" class="iconeFunil">
 					<span>Filtrar por preço, especilização, gênero e avaliação</span>
 			</div>
 			<div class="infoFiltro">
@@ -115,7 +114,7 @@
 			<div id="wrapper-alterarEndereco" class="wrapper">
 
 				<div class="areaIconeCasa">
-					<img src="../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
+					<img src="../../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
 				</div>
 				<form class="areaFormulario">
 					<div class="areaDados">
@@ -157,17 +156,17 @@
 			<div id="wrapper-escolherDataServico" class="wrapper">
 				<h3 class="tituloServico">Qual o dia de início do serviço ?</h3>
 				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
+					<img src="../../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
 					<input type="date" name="DATA" class="dataServico" id="data" required>
 				</div>
 				<h3 class="tituloServico">Qual a hora de início do serviço ?</h3>
 				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
+					<img src="../../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
 					<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
 				</div>
 				<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
 				<div class="areaInfo">
-					<img src="../img/icones/agendamento/iconeTempo.png" class="imgIcone">
+					<img src="../../img/icones/agendamento/iconeTempo.png" class="imgIcone">
 					<input type="time" name="DATA" class="dataServico" id="horaFim" required>
 				</div>
 	        	<button class="btnProximo navBtn" id="btnDataHora">Próximo</button>			
@@ -185,11 +184,11 @@
 					<div class="areaInfoCuidador">
 						<h3 id="nm_cuidador"></h3>
 						<div class="hora">
-							<img src="../img/icones/cuidador/iconeCifrao.png" style="margin-left: 0px;" class="iconeCifrao">
+							<img src="../../img/icones/cuidador/iconeCifrao.png" style="margin-left: 0px;" class="iconeCifrao">
 							<span style="margin-left: 9px;" id="vl_hora_cuidador">70 / Hora</span>
 						</div>
 						<div class="especializacao">
-							<img src="../img/icones/cuidador/iconeMaleta.png" class="iconeMaleta">
+							<img src="../../img/icones/cuidador/iconeMaleta.png" class="iconeMaleta">
 							<span id="nm_tipo_especializacao_cuidador">Fisioterapeuta</span>
 						</div>
 					</div>
@@ -224,19 +223,19 @@
 					<h3 class="nomeCuidador" id="nomeCuidador"></h3>
 				</div>
 				<div class="areaDadosServico" style="height: 60px;">
-					<img src="../img/icones/agendamento/iconeCalendario.png" class="iconeCalendario">
+					<img src="../../img/icones/agendamento/iconeCalendario.png" class="iconeCalendario">
 					<span class="dataServico" id="dataFinal"></span>
 				</div>
 				<div class="areaDadosServico" style="height: 50px;">
-					<img src="../img/icones/agendamento/iconeRelogio.png" class="iconeRelogio">
+					<img src="../../img/icones/agendamento/iconeRelogio.png" class="iconeRelogio">
 					<span class="horaServico" id="horaFinal"></span>
 				</div>
 				<div class="areaDadosServico" style="height: 40px;">
-					<img src="../img/icones/cuidador/iconeCrifaoPequeno.png" class="iconeCifrao" >
+					<img src="../../img/icones/cuidador/iconeCrifaoPequeno.png" class="iconeCifrao" >
 					<span class="valorServico" id="valorFinal"></span>
 				</div>
 				<div class="areaDadosServico" style="height: 70px;">
-					<img src="../img/icones/endereco/iconeCasa.png" class="iconeCasa1" >
+					<img src="../../img/icones/endereco/iconeCasa.png" class="iconeCasa1" >
 					<h3 class="enderecoServico" id="endereco"></h3>
 				</div>
 				
@@ -253,25 +252,25 @@
 			<nav>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../img/icones/iconeCalendario.png">
+						<img src="../../img/icones/iconeCalendario.png">
 					</div>
 					<span style="margin-left: 20px;">Agendar</span>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../img/icones/iconeServico.png">
+						<img src="../../img/icones/iconeServico.png">
 					</div>
 					<span style="margin-left: 18px;">Serviços</span>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../img/icones/iconePaciente.png">
+						<img src="../../img/icones/iconePaciente.png">
 					</div>
 					<span style="margin-left: 19px;">Pacientes</span>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../img/icones/iconeConfiguracoes.png">
+						<img src="../../img/icones/iconeConfiguracoes.png">
 					</div>
 					<span style="margin-left: 7px; ">Configuração</span>
 				</div>

@@ -1,15 +1,16 @@
 ﻿export default function scriptPaciente() {
 	var retorno;
-    $.post("../../lib/libBuscarPaciente.aspx", function (retorno) {
+    $.post("../../lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
        
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
         }
 
 		else if (retorno == "") {
-			$('#wrapper-paciente').html("ta vazio kkkkkkkkkkkkk");
+			$('#wrapper-paciente').html("Você ainda não tem pacientes cadastrados!");
 			return;
 		}
+        else if (retorno == "usuarioIncorreto"){window.location.href = "../index.html"}
 		else{
 	        var btnProx = "";
 			$('#listaPacientes').append(retorno);

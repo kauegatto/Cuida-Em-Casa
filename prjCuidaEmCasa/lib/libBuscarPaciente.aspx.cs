@@ -12,9 +12,11 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request["usuarioLogado"].ToString() == "" || Request["usuarioLogado"].ToString() == null || Request["tipoUsuario"].ToString() == "" || Request["tipoUsuario"].ToString() == null) 
+            { Response.Write("usuarioIncorreto"); return; }
             clsPaciente paciente = new clsPaciente();
-
-            if (!paciente.listarDadosPacientes("flaviapriscilamarianasilveira@gmail.com"))
+            string usuarioLogado = Request["usuarioLogado"].ToString();
+            if (!paciente.listarDadosPacientes(usuarioLogado))
             {
                 return;
             }

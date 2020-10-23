@@ -14,6 +14,10 @@ namespace prjCuidaEmCasa.lib
         {
             string email = Request["email"].ToString();
             string senha = Request["senha"].ToString();
+            
+            if (email == "" || email == null) { Response.Write("false"); }
+            if (senha == "" || senha == null) { Response.Write("false"); }
+
 
             clsUsuario usuario = new clsUsuario();
 
@@ -22,7 +26,7 @@ namespace prjCuidaEmCasa.lib
                 Response.Write("false");
             }
             else {
-                if (usuario.emailUsuario == email)
+                if (usuario.emailUsuarioBusca == email)
                 {
                     Response.Write("true" + "|" + usuario.tipoUsuario);
                 }
