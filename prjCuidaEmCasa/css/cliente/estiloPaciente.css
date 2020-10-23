@@ -1,6 +1,5 @@
-﻿#wrapper-AreaPaciente { display: none; }
-
-#wrapper-AreaDadosPaciente { display: none; }
+﻿
+#wrapper-AreaDadosPaciente,#wrapper-areaAdicionarPaciente { display: none; }
 
 .areaPaciente { width: 85%; height: 83px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 25px; margin-left: 24.5px; }
 

@@ -1,6 +1,7 @@
 ﻿export default function scriptPaciente() {
 	var retorno;
     $.post("../../lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
+       
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
         }
@@ -20,10 +21,5 @@
 	        });
 	        console.log("Pacientes encontrados!");
     	}
-    	
-    	$(".areaPaciente").click(function (e) {
-	            $(".areaPaciente").removeClass("selecionado");
-	            $(this).addClass("selecionado");
-		});
-	});
+    });
 };

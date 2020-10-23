@@ -128,6 +128,8 @@
     <Content Include="js\Agendamento\scriptInfoCuidador.js" />
     <Content Include="js\Agendamento\scriptPaciente.js" />
     <Content Include="js\Login\scriptLogin.js" />
+    <Content Include="js\Pacientes\scriptNavegacao.js" />
+    <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />

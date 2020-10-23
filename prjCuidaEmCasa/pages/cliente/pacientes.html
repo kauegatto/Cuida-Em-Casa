@@ -9,67 +9,175 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Jquery -->
+    
+    <script
+  	 src="https://code.jquery.com/jquery-3.5.1.js"
+ 	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ 	 crossorigin="anonymous"></script>
+
+    <!-- JS PÁGINA -->
+	<script src="../../js/Agendamento/scriptNavegacao.js" type="module"></script>
+     
 </head>
 <body>
 	<div class="estruturaGeral">
+		
 		<header class="header">
 			<div class="areaLogo">
 				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
 			</div>
 			<div class="areaTituloGeral">
-				<h1 class="tituloGeral">Agendar</h1>
+				<h1 class="tituloGeral" style="margin-left: 45px;">Pacientes</h1>
 			</div>
 		</header>
+
+
 		<main class="conteudoGeral">
-			<h3 class="tituloConteudo">Lista de pacientes:</h3>
-			<p>Para editar um paciente, clique em sua região</p>
-			<div class="areaPaciente">
-				<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso2.jfif');"></div>
-				<h3 class="nomePaciente">Tânia Rita Sophie Ferreira</h3>
-				<span class="enderecoPaciente">Santos - SP</span>
+
+			<div class="wrapper" id="wrapper-AreaPaciente">
+				<div class="areaPaciente">
+					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif');"></div>
+					<h3 class="nomePaciente">Tânia Rita Sophie</h3>
+					<span class="enderecoPaciente">Santos - SP</span>
+					<img src="../../img/icones/editarPaciente/editar.png" class="imgEditar">
+				</div>
+				<div class="areaPaciente">
+					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso1.jfif');"></div>
+					<h3 class="nomePaciente">Lúcio de Souza Sá</h3>
+					<span class="enderecoPaciente">Santos - SP</span>
+					<img src="../../img/icones/editarPaciente/editar.png" class="imgEditar">
+				</div>
+				<div class="areaPaciente">
+					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso2.jfif');"></div>
+					<h3 class="nomePaciente">Wagner Reis</h3>
+					<span class="enderecoPaciente">Santos - SP</span>
+					<img src="../../img/icones/editarPaciente/editar.png" class="imgEditar">
+				</div>
+				<button type="button" class="btnAdicionar">Adicionar</button>
 			</div>
-			<div class="areaPaciente">
-				<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso1.jfif');"></div>
-				<h3 class="nomePaciente">Lúcio de Souza Sá</h3>
-				<span class="enderecoPaciente">Santos - SP</span>
+
+			<div class="wrapper" id="wrapper-AreaDadosPaciente">
+				<div class="areaInfoDadosPaciente">
+					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif'); margin-top: 12px; margin-left: 13px;">
+					</div>
+					<div class="areaNomePaciente">
+						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
+						<input type="text" name="txtNomePaciente" class="inputInfo" style="width: 205px;
+						 height: 31px; margin-left: 8px; margin-top: 5px;">
+					</div>
+					<div class="areaNecessidadePaciente">
+						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
+						<select name="Necessidade" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
+						  <option value="Medicação">Medicação</option>
+						</select>
+					</div>
+					<div class="areaDescricaoPaciente">
+						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição:</h3>
+						<textarea class="inputInfo" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;">Sou um idoso muito amigável, tenho 75 anos e preciso de medicações para diabetes. Gosto muito de conversar sobre assuntos diversos.</textarea>
+					</div>
+					<div class="areaEnderecoPaciente">
+						<span class="tituloInfo" style="margin-left: 13px;">CEP:</span> 
+						<input type="text" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="1111111">
+						<span class="tituloInfo" style="margin-left: 16px;">Bairro:</span>
+						<input type="text" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="Gonzaga">
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
+						<input type="text" name="bairro" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="Rua maria do carmo">
+						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
+						<input type="text" name="bairro" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="856">
+						</div>
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
+							<input type="text" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
+							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
+							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
+						  		<option value="SP">SP</option>
+							</select>
+						</div>
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
+							<input type="text" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="Apartamento Vila Macuco">
+						</div>
+					</div>
+				</div>
+
+				<button type="button" class="btnSalvar">Salvar</button>
+				<button type="button" class="btnExcluir">Excluir</button>
 			</div>
-			<div class="areaPaciente">
-				<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif');"></div>
-				<h3 class="nomePaciente">Maria Dolores</h3>
-				<span class="enderecoPaciente">Santos - SP</span>
+
+			<div class="wrapper" id="wrapper-areaAdicionarPaciente">
+				<div class="areaInfoDadosPaciente">
+					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif'); margin-top: 12px; margin-left: 13px;"></div>
+					<div class="areaNomePaciente">
+						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
+						<input type="text" name="txtNomePaciente" class="inputInfo" style="width: 205px;
+							height: 31px; margin-left: 8px; margin-top: 5px;">
+					</div>
+					<div class="areaNecessidadePaciente">
+						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
+						<select name="Necessidade" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
+						  <option value="Medicação">Medicação</option>
+						</select>
+					</div>
+					<div class="areaDescricaoPaciente">
+						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição:</h3>
+						<textarea class="inputInfo" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;">Sou um idoso muito amigável, tenho 75 anos e preciso de medicações para diabetes. Gosto muito de conversar sobre assuntos diversos.</textarea>
+					</div>
+					<div class="areaEnderecoPaciente">
+						<span class="tituloInfo" style="margin-left: 13px;">CEP:</span> 
+						<input type="text" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="1111111">
+						<span class="tituloInfo" style="margin-left: 16px;">Bairro:</span>
+						<input type="text" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="Gonzaga">
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
+						<input type="text" name="bairro" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="Rua maria do carmo">
+						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
+						<input type="text" name="bairro" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="856">
+						</div>
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
+							<input type="text" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
+							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
+							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
+						  		<option value="SP">SP</option>
+							</select>
+						</div>
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
+							<input type="text" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="Apartamento Vila Macuco">
+						</div>
+					</div>
+				</div>
+
+				<button type="button" class="btnAdicionar" style="margin-top: 25px;">Adicionar</button>
 			</div>
-			<div class="areaPaciente">
-				<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso4.jpg');"></div>
-				<h3 class="nomePaciente">Owsvaldo Reis</h3>
-				<span class="enderecoPaciente">Santos - SP</span>
-			</div>
-			<a href="endereco.html">
-				<button class="btnAdicionar">Adicionar</button>
-			</a>
+
 		</main>
+
 		<footer class="footer">
 			<nav>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../../img/icones/iconeCalendario.png">
+						<img src="../../img/icones/editarPaciente/atendimento.png">
 					</div>
-					<span style="margin-left: 20px;">Agendar</span>
+					<span style="margin-left: 8px;">Atendimento</span>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../../img/icones/iconeServico.png">
+						<img src="../../img/icones/editarPaciente/agenda.png">
 					</div>
-					<span style="margin-left: 18px;">Serviços</span>
+					<span style="margin-left: 22px;">Agenda</span>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../../img/icones/iconePaciente.png">
+						<img src="../../img/icones/editarPaciente/pacientes.png">
 					</div>
 					<span style="margin-left: 19px;">Pacientes</span>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
-						<img src="../../img/icones/iconeConfiguracoes.png">
+						<img src="../../img/icones/editarPaciente/configuracao.png">
 					</div>
 					<span style="margin-left: 7px; ">Configuração</span>
 				</div>

@@ -39,7 +39,6 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 {
                     emailUsuarioBusca = dados[0].ToString();
                     tipoUsuario = dados[1].ToString();
-
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

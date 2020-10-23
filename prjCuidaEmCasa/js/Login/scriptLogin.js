@@ -14,7 +14,7 @@
             if (retornoLogin[0] == "true") {
                 localStorage.setItem("usuarioLogado", $("#txtEmail").val());
 
-                localStorage.setItem("tipoUsuario", retorno[1]);
+                localStorage.setItem("tipoUsuario", retornoLogin[1]);
 
                 if (retornoLogin[1] == "1") {
                     console.log("adm");

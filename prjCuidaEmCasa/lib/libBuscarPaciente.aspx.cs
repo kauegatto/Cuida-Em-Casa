@@ -12,8 +12,20 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request["usuarioLogado"].ToString() == "" || Request["usuarioLogado"].ToString() == null || Request["tipoUsuario"].ToString() == "" || Request["tipoUsuario"].ToString() == null) 
-            { Response.Write("usuarioIncorreto"); return; }
+            #region Verificação
+            if (Request["usuarioLogado"] != null)
+            {
+                if (Request["usuarioLogado"].ToString() == "")
+                {
+                    Response.Write("usuarioIncorreto");
+                    return;
+                }
+            }
+            else {
+                Response.Write("usuarioIncorreto");
+                return;
+            }
+            #endregion
             clsPaciente paciente = new clsPaciente();
             string usuarioLogado = Request["usuarioLogado"].ToString();
             if (!paciente.listarDadosPacientes(usuarioLogado))
