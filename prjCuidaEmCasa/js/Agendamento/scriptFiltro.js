@@ -41,7 +41,14 @@
 	            $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
 	        
 	        });
-	    
+	    $(".areaCuidador").click(function (e) {
+            $(".areaCuidador").removeClass("selecionado");
+            $(this).addClass("selecionado");
+        });
+
+        $(".areaFiltro").click(function (e){
+            $(".infoFiltro").toggleClass("visivel");
+        });
 
 	    });
 }

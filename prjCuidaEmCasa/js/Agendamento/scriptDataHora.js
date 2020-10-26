@@ -26,7 +26,8 @@
         localStorage.setItem("horaInicio", txt_horaInicio);
         localStorage.setItem("horaFim", horaFinal);
         localStorage.setItem("qtdHoras", txt_qtdHoras);
-        $.post("../lib/libDadosAgendamento.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
+
+        $.post("../../lib/libDadosAgendamento.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
             localStorage.setItem("dataFim", retorno);
         });
 }

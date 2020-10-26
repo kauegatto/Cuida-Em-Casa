@@ -53,7 +53,7 @@ $(document).ready(function () {
 scriptPaciente();
 
 // Pg 1  : btnPaciente
-$("#btnPaciente").click(function () {
+$(document).on("click", "#btnPaciente", function(){
 
     if($('.selecionado').length){
         try{    
