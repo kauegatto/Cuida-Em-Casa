@@ -63,6 +63,8 @@
     <Content Include="css\cliente\agendamento\estiloPaciente.css" />
     <Content Include="css\cliente\estiloPaciente.css" />
     <Content Include="css\criarConta\estiloCriarConta.css" />
+    <Content Include="css\cuidador\estiloInfoPaciente.css" />
+    <Content Include="css\cuidador\estiloServicoAgendado.css" />
     <Content Include="css\estiloGeral.css" />
     <Content Include="css\estiloIndex.css" />
     <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
@@ -90,12 +92,12 @@
     <Content Include="img\icones\index\iconeCuidador.png" />
     <Content Include="img\icones\index\iconeMaleta.png" />
     <Content Include="img\icones\servicoAgendado\iconeAgenda.png" />
+    <Content Include="img\icones\servicoAgendado\iconeAgendaCinza.png" />
     <Content Include="img\icones\servicoAgendado\iconeBolinha.png" />
     <Content Include="img\icones\servicoAgendado\iconeConfiguracao.png" />
     <Content Include="img\icones\servicoAgendado\iconeHistorico.png" />
     <Content Include="img\icones\servicoAgendado\iconeRelogio.png" />
     <Content Include="img\icones\servicoAgendado\iconeServico.png" />
-    <Content Include="img\icones\servicoAgendado\iconeSolicitacao.png" />
     <Content Include="img\icones\servicoCuidador\iconeConfiguracao.png" />
     <Content Include="img\icones\servicoCuidador\iconeHistorico.png" />
     <Content Include="img\icones\servicoCuidador\iconeServicos.png" />
@@ -141,6 +143,7 @@
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\pacientes.html" />
     <Content Include="pages\criarConta\criarConta.html" />
+    <Content Include="pages\cuidador\servicoAgendado.html" />
     <Content Include="pages\index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -208,9 +211,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="pages\cuidador\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
