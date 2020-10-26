@@ -134,10 +134,11 @@
     <Content Include="js\Agendamento\scriptPaciente.js" />
     <Content Include="js\Login\scriptLogin.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
-    <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
+    <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
+    <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
@@ -179,12 +180,26 @@
     <Compile Include="lib\dadosEndereco.aspx.designer.cs">
       <DependentUpon>dadosEndereco.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libAtualizarDadosPaciente.aspx.cs">
+      <DependentUpon>libAtualizarDadosPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAtualizarDadosPaciente.aspx.designer.cs">
+      <DependentUpon>libAtualizarDadosPaciente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libBuscarCuidador.aspx.cs">
       <DependentUpon>libBuscarCuidador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="lib\libBuscarCuidador.aspx.designer.cs">
       <DependentUpon>libBuscarCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarDadosPaciente.aspx.cs">
+      <DependentUpon>libBuscarDadosPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarDadosPaciente.aspx.designer.cs">
+      <DependentUpon>libBuscarDadosPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarPaciente.aspx.cs">
       <DependentUpon>libBuscarPaciente.aspx</DependentUpon>
