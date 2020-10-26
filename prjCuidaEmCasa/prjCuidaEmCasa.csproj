@@ -63,7 +63,12 @@
     <Content Include="css\cliente\agendamento\estiloPaciente.css" />
     <Content Include="css\cliente\estiloPaciente.css" />
     <Content Include="css\criarConta\estiloCriarConta.css" />
+<<<<<<< HEAD
     <Content Include="css\cuidador\estiloHistoricoServico.css" />
+=======
+    <Content Include="css\cuidador\estiloInfoPaciente.css" />
+    <Content Include="css\cuidador\estiloServicoAgendado.css" />
+>>>>>>> 258101405ccff49860b33ea184e3be39c302c1b0
     <Content Include="css\estiloGeral.css" />
     <Content Include="css\estiloIndex.css" />
     <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
@@ -91,12 +96,12 @@
     <Content Include="img\icones\index\iconeCuidador.png" />
     <Content Include="img\icones\index\iconeMaleta.png" />
     <Content Include="img\icones\servicoAgendado\iconeAgenda.png" />
+    <Content Include="img\icones\servicoAgendado\iconeAgendaCinza.png" />
     <Content Include="img\icones\servicoAgendado\iconeBolinha.png" />
     <Content Include="img\icones\servicoAgendado\iconeConfiguracao.png" />
     <Content Include="img\icones\servicoAgendado\iconeHistorico.png" />
     <Content Include="img\icones\servicoAgendado\iconeRelogio.png" />
     <Content Include="img\icones\servicoAgendado\iconeServico.png" />
-    <Content Include="img\icones\servicoAgendado\iconeSolicitacao.png" />
     <Content Include="img\icones\servicoCuidador\iconeConfiguracao.png" />
     <Content Include="img\icones\servicoCuidador\iconeHistorico.png" />
     <Content Include="img\icones\servicoCuidador\iconeServicos.png" />
@@ -145,7 +150,11 @@
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\pacientes.html" />
     <Content Include="pages\criarConta\criarConta.html" />
+<<<<<<< HEAD
     <Content Include="pages\cuidador\historicoServico.html" />
+=======
+    <Content Include="pages\cuidador\servicoAgendado.html" />
+>>>>>>> 258101405ccff49860b33ea184e3be39c302c1b0
     <Content Include="pages\index.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

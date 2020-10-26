@@ -1,5 +1,7 @@
 ﻿* { margin: 0; padding: 0; }
-body {background-color: #f3f3f3;}
+
+body {background: #f3f3f3;}
+
 a { text-decoration: none; color: White;}
 
 .estruturaGeral {     position: relative; display: grid; grid-template-columns: repeat(4, 25%); grid-template-areas: "header header header header" "conteudo conteudo conteudo conteudo" "footer footer footer footer"; }
@@ -38,5 +40,9 @@ height: 47px;}
 .selecionado {background-color: rgba(40, 85, 147, 0.5);color:#FFF; transition:0.3s;}
 
 .invi { display: none; }
+
+.visivel { display: block !important;}
+
+.clear {clear: both;}
 
 main  { background-color: #f3f3f3;}
