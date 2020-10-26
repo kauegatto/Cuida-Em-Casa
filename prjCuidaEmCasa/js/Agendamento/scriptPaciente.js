@@ -22,7 +22,6 @@
     	$(".areaPaciente").click(function (e) {
 	            $(".areaPaciente").removeClass("selecionado");
 	            $(this).addClass("selecionado");
-	            localStorage.setItem("paciente", $(this).parents(areaPaciente)); 
 		});
 	});
 };

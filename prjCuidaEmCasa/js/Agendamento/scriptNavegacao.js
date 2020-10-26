@@ -20,8 +20,8 @@ function passarPagina(SentDomElement,Jump) {
     if(Jump < 0){
         console.log(indexPage);
         if(indexPage>=0){
-            $(".visibleWrapper").css("display", "none" );
-            $(".visibleWrapper").removeClass("visivel");
+            $(".visivel").css("display", "none" );
+            $(".visivel").removeClass("visivel");
             $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css( "display", "block");
             $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visivel"); 
         }
@@ -29,12 +29,12 @@ function passarPagina(SentDomElement,Jump) {
        
     }
     else{
-        $(".visibleWrapper").css("display", "none" );
+        $(".visivel").css("display", "none" );
         
-        $(".visibleWrapper").removeClass("visivel");
+        $(".visivel").removeClass("visivel");
 
         $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visivel"); 
-    }
+    }   
     
     return;
 };    	
@@ -42,7 +42,7 @@ function passarPagina(SentDomElement,Jump) {
 
 $(".iconeVoltar").click(function(){
     
-    if(indexPage == 5 ){
+    if(indexPage == 3 ){
         passarPagina(DomElement, -2);
     } 
     else{passarPagina(DomElement, -1);}
@@ -104,15 +104,15 @@ $("#btnAlterarEndereco").click(function () {
 $("#btnDataHora").click(function () {
     passarPagina($(this),1);
     scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
-    scriptCuidador();
-    $(".areaFiltro").css('display','block');      
+    scriptCuidador(); 
+    $(".areaFiltro").addClass("visivel");
 });
 
 //pg 5: pag cuidador -> vai para info cuidador  
 $(document).on("click", "#btnCuidador", function(){
     passarPagina($(this),1);
     $(".infoFiltro").removeClass("visivel");
-    $(".areaFiltro").css("display","none");
+    $(".areaFiltro").removeClass("visivel");
     var classes = $(".selecionado").attr("class").split(/\s+/);
     localStorage.setItem("emailCuidador", classes[1]);    
     scriptInfoCuidador();
