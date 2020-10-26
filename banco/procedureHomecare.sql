@@ -1306,7 +1306,7 @@ CREATE PROCEDURE listarServicosFinalizadosAntigos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, u.vl_hora_trabalho
 	FROM 
 		servico s 
 	JOIN 
@@ -1321,6 +1321,10 @@ BEGIN
 		tipo_necessidade_paciente tnp 
 	ON 
 		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
+	JOIN 
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
 	ORDER BY 
@@ -1335,7 +1339,7 @@ CREATE PROCEDURE listarServicosFinalizadosRecentes(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, u.vl_hora_trabalho
 	FROM 
 		servico s 
 	JOIN 
@@ -1350,6 +1354,10 @@ BEGIN
 		tipo_necessidade_paciente tnp 
 	ON 
 		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
+	JOIN 
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
 	ORDER BY 
