@@ -1661,13 +1661,25 @@ BEGIN
 	select 
 	nm_paciente, tnp.nm_tipo_necessidade_paciente, ds_paciente, 
 	cd_CEP_paciente, nm_cidade_paciente, nm_bairro_cidade, nm_rua_paciente,cd_num_paciente,
-    nm_uf_paciente,nm_complemento_paciente 
+    nm_uf_paciente,nm_complemento_paciente, img_paciente
     from paciente
 	JOIN 
     necessidade_paciente np ON (paciente.cd_paciente = np.cd_paciente)
 	JOIN 
     tipo_necessidade_paciente tnp ON (np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
 	WHERE paciente.cd_paciente = vCdPaciente;
+END$$
+
+DROP PROCEDURE IF EXISTS atualizarDadosPaciente$$
+
+CREATE PROCEDURE atualizarDadosPaciente(vCdPaciente VARCHAR(200),vNmPaciente varchar(200),vDsPaciente varchar(200),vCepPaciente varchar(200),vCidadePaciente varchar(200),vBairroPaciente varchar(200),vRuaPaciente varchar(200),vNumPaciente varchar(200),vUFPaciente varchar(200),vComplementoPaciente varchar(200))
+BEGIN
+	UPDATE
+    paciente
+	SET nm_paciente = vNmPaciente, ds_paciente = vDsPaciente, cd_CEP_paciente = vCepPaciente, 
+	nm_cidade_paciente = vCidadePaciente, nm_bairro_cidade = vBairroPaciente, nm_rua_paciente = vRuaPaciente,cd_num_paciente = vNumPaciente,
+    nm_uf_paciente = vUFPaciente,nm_complemento_paciente = vComplementoPaciente
+	WHERE cd_paciente = vCdPaciente;
 END$$
 
 DELIMITER ;

@@ -14,10 +14,8 @@
 	        var btnProx = "";
 			$('#listaPacientes').append(retorno);
 	        $(".areaPaciente").each(function (i, obj) {
-
 		        	var url = "data:image/png;base64," + $(this).children().eq(3).html();
-		        	$(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-	        		
+		        	$(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");        		
 	        });
     	}
     	

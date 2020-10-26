@@ -224,7 +224,7 @@ CREATE TABLE paciente
 	nm_uf_paciente VARCHAR(200),
 	nm_complemento_paciente VARCHAR(100),
 	nm_email_usuario VARCHAR(100),
-	img_paciente BLOB,
+	img_paciente LONGBLOB,
 	CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
 	CONSTRAINT fk_paciente_usuario FOREIGN KEY (nm_email_usuario)
 	REFERENCES usuario (nm_email_usuario)
