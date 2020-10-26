@@ -132,6 +132,7 @@
     <Content Include="js\Login\scriptLogin.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
     <Content Include="js\Pacientes\scriptPaciente.js" />
+    <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
@@ -139,6 +140,7 @@
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
+    <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\pacientes.html" />
@@ -160,6 +162,7 @@
     <Compile Include="classes\clsUsuario.cs" />
     <Compile Include="classes\clsBanco_32623.cs" />
     <Compile Include="classes\clsConexao.cs" />
+    <Compile Include="classes\ServicoAgendado\clsServicoAgendado.cs" />
     <Compile Include="lib\dadosEmailCuidador.aspx.cs">
       <DependentUpon>dadosEmailCuidador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -208,6 +211,13 @@
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.designer.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libListarServicosAgendados.aspx.cs">
+      <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libListarServicosAgendados.aspx.designer.cs">
+      <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

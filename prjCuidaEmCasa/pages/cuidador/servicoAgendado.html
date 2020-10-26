@@ -11,6 +11,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script
+  	 src="https://code.jquery.com/jquery-3.5.1.js"
+ 	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ 	 crossorigin="anonymous"></script>
+
+	<script src="../../js/ServicoAgendado/scriptServicoAgendado.js"></script>
 </head>
 <body>
 	<div class="estruturaGeral">
@@ -24,51 +30,7 @@
 		</header>
 		<main class="conteudoGeral">
 			<div class="wrapper" id="wrapper-ServicoAgendado">
-					<div class="areaAgendaHeader">
-						<img src="../../img/icones/servicoAgendado/iconeAgendaCinza.png" class="imgAgenda">
-						<span class="spanAgenda">Agenda</span>
-						<img src="../../img/icones/servicoAgendado/iconeBolinha.png" class="imgBolinha">
-						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso4.jpg');"></div>
-						<span class="spanData">23/09</span>
-						<img src="../../img/icones/servicoAgendado/iconeBolinha.png" class="imgBolinha">
-						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso1.jfif');"></div>
-						<span class="spanData" style="left: 52.5%;">24/09</span>
-						<img src="../../img/icones/servicoAgendado/iconeBolinha.png" class="imgBolinha">
-						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso2.jfif');"></div>
-						<span class="spanData" style="left: 76%;">24/09</span>
-					</div>
-					<div class="areaAgendaConteudo">
-						<div class="areaDataAgendamento">
-							<img src="../../img/icones/servicoAgendado/iconeRelogio.png" class="iconeRelogio">
-							<span class="dataAgendamento">Daqui 11 dias - 23/09</span>
-						</div>
-						<div class="areaImagemPacienteAgendamento" style="background-image: url('img/imgIdoso4.jpg');"></div>
-						<div class="areaDadosServico">
-							<span class="nomePaciente">Edinalda da Silva</span>
-							<span class="necessidadePaciente">Medicação</span>
-							<span class="infoPaciente">Av. Pardal Luiz 114 - Bairro B 
-		23/09 - Domingo | 8:00 - 14:30 | R$ 200,00</span>
-							<div class="areaStatus">
-								<span class="status">Status: </span><span class="statusServico">Agendado</span>
-							</div>
-						</div>
-					</div>
-					<div class="areaAgendaConteudo">
-						<div class="areaDataAgendamento">
-							<img src="../../img/icones/servicoAgendado/iconeRelogio.png" class="iconeRelogio">
-							<span class="dataAgendamento">Daqui 12 dias - 24/09</span>
-						</div>
-						<div class="areaImagemPacienteAgendamento" style="background-image: url('img/imgIdoso1.jfif');"></div>
-						<div class="areaDadosServico">
-							<span class="nomePaciente">Lúcio de Sá</span>
-							<span class="necessidadePaciente">Medicação</span>
-							<span class="infoPaciente">Av. Pardal Luiz 114 - Bairro B 
-		23/09 - Domingo | 8:00 - 14:30 | R$ 200,00</span>
-							<div class="areaStatus">
-								<span class="status">Status: </span><span class="statusServico">Agendado</span>
-							</div>
-						</div>
-					</div>
+                    <div id="ListaServicosAgendados"></div>
 			</div>
 
 			<div class="wrapper" id="wrapper-InfoServicoAgendado">

@@ -224,7 +224,7 @@ CREATE TABLE paciente
 	nm_uf_paciente VARCHAR(200),
 	nm_complemento_paciente VARCHAR(100),
 	nm_email_usuario VARCHAR(100),
-	img_paciente BLOB,
+	img_paciente LONGBLOB,
 	CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
 	CONSTRAINT fk_paciente_usuario FOREIGN KEY (nm_email_usuario)
 	REFERENCES usuario (nm_email_usuario)
@@ -339,10 +339,11 @@ insert into servico values(9,'2020-08-20','09:00:00','2020-08-20','16:00:00','11
 /*Serviços Pendentes*/
 insert into servico values(10,'2020-08-30','10:00:00','2020-08-30','22:00:00','11050-260','Santos','Encruzilhada','R. Dr. Leôncio Rezende Filho','789','SP',null,null,null,null,null,'-23.956151;-46.324515','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',null,2,7);
 insert into servico values(11,'2020-08-30','07:00:00','2020-08-30','17:00:00','11310-210','São Vicente','Centro','R. do Colégio','485','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,2,4);
-insert into servico values(55,'2020-10-14','07:00:00','2020-10-14','10:00:00','11533-040','Cubatão','Jardim Casqueiro','Av. Brasil','500','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
-insert into servico values(56,'2020-10-14','12:00:00','2020-10-14','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
+insert into servico values(12,'2020-10-14','07:00:00','2020-10-14','10:00:00','11533-040','Cubatão','Jardim Casqueiro','Av. Brasil','500','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
+insert into servico values(13,'2020-10-14','12:00:00','2020-10-14','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
+insert into servico values(14,'2020-10-30','12:00:00','2020-10-30','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
 /*Serviços Cancelados*/
-insert into servico values(12,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São VicenteSão Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
+insert into servico values(15,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São VicenteSão Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
 
 CREATE TABLE tipo_ocorrencia
 (
