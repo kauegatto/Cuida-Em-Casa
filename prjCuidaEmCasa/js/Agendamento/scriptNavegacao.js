@@ -12,8 +12,7 @@ var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
 
 function passarPagina(SentDomElement,Jump) {
     
-    $(".conteudoGeral").children().eq(indexPage).css("display", "block" );
-    $(".conteudoGeral").children().eq(indexPage).addClass("visibleWrapper");
+    $(".conteudoGeral").children().eq(indexPage).addClass("visivel");
 
     indexPage += Jump;
     DomElement = SentDomElement; // botao que enviou o último click pra chegar na página que estamos
@@ -22,9 +21,9 @@ function passarPagina(SentDomElement,Jump) {
         console.log(indexPage);
         if(indexPage>=0){
             $(".visibleWrapper").css("display", "none" );
-            $(".visibleWrapper").removeClass("visibleWrapper");
+            $(".visibleWrapper").removeClass("visivel");
             $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css( "display", "block");
-            $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visibleWrapper"); 
+            $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visivel"); 
         }
         else{indexPage = 0}
        
@@ -32,11 +31,9 @@ function passarPagina(SentDomElement,Jump) {
     else{
         $(".visibleWrapper").css("display", "none" );
         
-        $(".visibleWrapper").removeClass("visibleWrapper");
+        $(".visibleWrapper").removeClass("visivel");
 
-        $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css("display", "block" );
-
-        $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visibleWrapper"); 
+        $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visivel"); 
     }
     
     return;

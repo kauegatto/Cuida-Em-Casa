@@ -17,18 +17,29 @@
  	 crossorigin="anonymous"></script>
 
     <!-- JS PÁGINA -->
-	<script src="../../js/Agendamento/scriptNavegacao.js" type="module"></script>
+	<script src="../../js/Pacientes/scriptNavegacao.js" type="module"></script>
      
 </head>
 <body>
 	<div class="estruturaGeral">
 		
 		<header class="header">
-			<div class="areaLogo">
-				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			<div id="headerComum">
+				<div class="areaLogo">
+					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" style="margin-left: 45px;">Pacientes</h1>
+				</div>
 			</div>
-			<div class="areaTituloGeral">
-				<h1 class="tituloGeral" style="margin-left: 45px;">Pacientes</h1>
+			<div id="headerNav">
+				<div class="areaLogo">
+					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 0px;">Adicionar Paciente</h1>
+				</div>
+
 			</div>
 		</header>
 
@@ -36,60 +47,46 @@
 		<main class="conteudoGeral">
 
 			<div class="wrapper" id="wrapper-AreaPaciente">
-				<div class="areaPaciente">
-					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif');"></div>
-					<h3 class="nomePaciente">Tânia Rita Sophie</h3>
-					<span class="enderecoPaciente">Santos - SP</span>
-					<img src="../../img/icones/editarPaciente/editar.png" class="imgEditar">
-				</div>
-				<div class="areaPaciente">
-					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso1.jfif');"></div>
-					<h3 class="nomePaciente">Lúcio de Souza Sá</h3>
-					<span class="enderecoPaciente">Santos - SP</span>
-					<img src="../../img/icones/editarPaciente/editar.png" class="imgEditar">
-				</div>
-				<div class="areaPaciente">
-					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso2.jfif');"></div>
-					<h3 class="nomePaciente">Wagner Reis</h3>
-					<span class="enderecoPaciente">Santos - SP</span>
-					<img src="../../img/icones/editarPaciente/editar.png" class="imgEditar">
+				<div id="listaPacientes">
+
 				</div>
 				<button type="button" class="btnAdicionar">Adicionar</button>
 			</div>
 
 			<div class="wrapper" id="wrapper-AreaDadosPaciente">
 				<div class="areaInfoDadosPaciente">
-					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif'); margin-top: 12px; margin-left: 13px;">
+					<div class="areaImagemPaciente" id="areaAlterarImagemPaciente" 
+					style="margin-top: 12px; margin-left: 13px;">
 					</div>
 					<div class="areaNomePaciente">
 						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
-						<input type="text" name="txtNomePaciente" class="inputInfo" style="width: 205px;
-						 height: 31px; margin-left: 8px; margin-top: 5px;">
+						<input type="text" name="txtNomePaciente" id="txtAlterarNomePaciente" class="inputInfo" 
+						 style="width: 205px;height: 31px; margin-left: 8px; margin-top: 5px;">
 					</div>
 					<div class="areaNecessidadePaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
-						<select name="Necessidade" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
+						<select name="Necessidade" id="txtAlterarNecessidadePaciente" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
 						  <option value="Medicação">Medicação</option>
 						</select>
 					</div>
 					<div class="areaDescricaoPaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição:</h3>
-						<textarea class="inputInfo" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;">Sou um idoso muito amigável, tenho 75 anos e preciso de medicações para diabetes. Gosto muito de conversar sobre assuntos diversos.</textarea>
+						<textarea class="inputInfo" id="txtAlterarDescricaoPaciente" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;"></textarea>
 					</div>
 					<div class="areaEnderecoPaciente">
 						<span class="tituloInfo" style="margin-left: 13px;">CEP:</span> 
-						<input type="text" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="1111111">
+						<input type="text" id="txtAlterarCEPPaciente" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="">
 						<span class="tituloInfo" style="margin-left: 16px;">Bairro:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="Gonzaga">
+						<input type="text" id="txtAlterarBairroPaciente" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="">
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="Rua maria do carmo">
+						<input type="text" id="txtAlterarRuaPaciente" name="rua" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="">
 						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="856">
+						<input type="text" id="txtAlterarNumeroPaciente" name="numero" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="">
 						</div>
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
-							<input type="text" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
+							<input type="text" id="txtAlterarCidadePaciente" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
 							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
 							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
 						  		<option value="SP">SP</option>
@@ -97,13 +94,16 @@
 						</div>
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
-							<input type="text" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="Apartamento Vila Macuco">
+							<input type="text" id="txtAlterarComplementoPaciente" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="">
 						</div>
 					</div>
-				</div>
+					<div class="clear"></div>
+					<div id="areaBotoes">
+						<button type="button" class="btnSalvar">Salvar</button>
+						<button type="button" class="btnExcluir">Excluir</button>
+					</div>
 
-				<button type="button" class="btnSalvar">Salvar</button>
-				<button type="button" class="btnExcluir">Excluir</button>
+				</div>
 			</div>
 
 			<div class="wrapper" id="wrapper-areaAdicionarPaciente">
@@ -116,41 +116,45 @@
 					</div>
 					<div class="areaNecessidadePaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
-						<select name="Necessidade" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
+						<select name="Necessidade"  class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
 						  <option value="Medicação">Medicação</option>
 						</select>
 					</div>
 					<div class="areaDescricaoPaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição:</h3>
-						<textarea class="inputInfo" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;">Sou um idoso muito amigável, tenho 75 anos e preciso de medicações para diabetes. Gosto muito de conversar sobre assuntos diversos.</textarea>
+						<textarea class="inputInfo" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;"></textarea>
 					</div>
 					<div class="areaEnderecoPaciente">
 						<span class="tituloInfo" style="margin-left: 13px;">CEP:</span> 
-						<input type="text" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="1111111">
+						<input type="text" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="">
 						<span class="tituloInfo" style="margin-left: 16px;">Bairro:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="Gonzaga">
+						<input type="text" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="">
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="Rua maria do carmo">
+						<input type="text" name="bairro" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="">
 						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="856">
+						<input type="text" name="bairro" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="">
 						</div>
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
-							<input type="text" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
+							<input type="text" name="cidade" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="">
 							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
 							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
 						  		<option value="SP">SP</option>
+						  		<option value="MG">MG</option>
+						  		<option value="RJ">RJ</option>
 							</select>
 						</div>
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
-							<input type="text" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="Apartamento Vila Macuco">
+							<input type="text" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="">
 						</div>
+
 					</div>
+					<button type="button" id="btnSalvarPaciente" style="margin-top: 25px;">Salvar</button>
+
 				</div>
 
-				<button type="button" class="btnAdicionar" style="margin-top: 25px;">Adicionar</button>
 			</div>
 
 		</main>
@@ -158,28 +162,36 @@
 		<footer class="footer">
 			<nav>
 				<div class="menuGeral">
-					<div class="areaIcone">
-						<img src="../../img/icones/editarPaciente/atendimento.png">
-					</div>
-					<span style="margin-left: 8px;">Atendimento</span>
+                  <a href="atendimento.html">
+                        <div class="areaIcone">
+						    <img src="../../img/icones/editarPaciente/atendimento.png">
+					    </div>
+					    <span style="margin-left: 8px;">Atendimento</span>
+                  </a>
 				</div>
 				<div class="menuGeral">
+                  <a href="agenda.html">
 					<div class="areaIcone">
 						<img src="../../img/icones/editarPaciente/agenda.png">
 					</div>
+                  </a>
 					<span style="margin-left: 22px;">Agenda</span>
 				</div>
 				<div class="menuGeral">
-					<div class="areaIcone">
-						<img src="../../img/icones/editarPaciente/pacientes.png">
-					</div>
-					<span style="margin-left: 19px;">Pacientes</span>
+                    <a href=pacientes.html>
+					    <div class="areaIcone">
+						    <img src="../../img/icones/editarPaciente/pacientes.png">
+					    </div>
+					    <span style="margin-left: 19px;">Pacientes</span>
+                    </a>
 				</div>
 				<div class="menuGeral">
-					<div class="areaIcone">
-						<img src="../../img/icones/editarPaciente/configuracao.png">
-					</div>
-					<span style="margin-left: 7px; ">Configuração</span>
+                    <a href=configuracao.html>
+					    <div class="areaIcone">
+						    <img src="../../img/icones/editarPaciente/configuracao.png">
+					    </div>
+					    <span style="margin-left: 7px; ">Configuração</span>
+                    </a>
 				</div>
 			</nav>
 		</footer>

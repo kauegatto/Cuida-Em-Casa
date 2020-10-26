@@ -1321,8 +1321,8 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosAntigos$$
 CREATE PROCEDURE listarServicosFinalizadosAntigos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, u.vl_hora_trabalho
 	FROM 
 		servico s 
 	JOIN 
@@ -1337,6 +1337,10 @@ BEGIN
 		tipo_necessidade_paciente tnp 
 	ON 
 		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
+	JOIN 
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
 	ORDER BY 
@@ -1350,8 +1354,8 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosRecentes$$
 CREATE PROCEDURE listarServicosFinalizadosRecentes(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, u.vl_hora_trabalho
 	FROM 
 		servico s 
 	JOIN 
@@ -1366,6 +1370,10 @@ BEGIN
 		tipo_necessidade_paciente tnp 
 	ON 
 		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
+	JOIN 
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
 	ORDER BY 
@@ -1667,6 +1675,35 @@ BEGIN
 		cd_situacao_usuario = 4
 	WHERE	
 		nm_email_usuario = vEmailCuidador;
+END$$
+
+
+DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
+
+CREATE PROCEDURE buscarDadosPaciente(vCdPaciente VARCHAR(200))
+BEGIN
+	select 
+	nm_paciente, tnp.nm_tipo_necessidade_paciente, ds_paciente, 
+	cd_CEP_paciente, nm_cidade_paciente, nm_bairro_cidade, nm_rua_paciente,cd_num_paciente,
+    nm_uf_paciente,nm_complemento_paciente, img_paciente
+    from paciente
+	JOIN 
+    necessidade_paciente np ON (paciente.cd_paciente = np.cd_paciente)
+	JOIN 
+    tipo_necessidade_paciente tnp ON (np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
+	WHERE paciente.cd_paciente = vCdPaciente;
+END$$
+
+DROP PROCEDURE IF EXISTS atualizarDadosPaciente$$
+
+CREATE PROCEDURE atualizarDadosPaciente(vCdPaciente VARCHAR(200),vNmPaciente varchar(200),vDsPaciente varchar(200),vCepPaciente varchar(200),vCidadePaciente varchar(200),vBairroPaciente varchar(200),vRuaPaciente varchar(200),vNumPaciente varchar(200),vUFPaciente varchar(200),vComplementoPaciente varchar(200))
+BEGIN
+	UPDATE
+    paciente
+	SET nm_paciente = vNmPaciente, ds_paciente = vDsPaciente, cd_CEP_paciente = vCepPaciente, 
+	nm_cidade_paciente = vCidadePaciente, nm_bairro_cidade = vBairroPaciente, nm_rua_paciente = vRuaPaciente,cd_num_paciente = vNumPaciente,
+    nm_uf_paciente = vUFPaciente,nm_complemento_paciente = vComplementoPaciente
+	WHERE cd_paciente = vCdPaciente;
 END$$
 
 DELIMITER ;

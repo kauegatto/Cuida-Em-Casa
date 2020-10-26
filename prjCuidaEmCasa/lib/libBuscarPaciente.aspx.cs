@@ -28,7 +28,7 @@ namespace prjCuidaEmCasa.lib
             #endregion
             clsPaciente paciente = new clsPaciente();
             string usuarioLogado = Request["usuarioLogado"].ToString();
-            if (!paciente.listarDadosPacientes(usuarioLogado))
+            if (!paciente.buscarPacientes(usuarioLogado))
             {
                 return;
             }

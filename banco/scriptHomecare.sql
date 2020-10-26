@@ -70,7 +70,7 @@ CREATE TABLE usuario
 	cd_CPF VARCHAR(15),
 	cd_telefone VARCHAR(15),
 	nm_senha VARCHAR(128),
-	img_usuario BLOB,
+	img_usuario LONGBLOB,
 	vl_hora_trabalho DECIMAL(10, 2),
 	cd_link_curriculo TEXT,
 	ic_ativo BOOl,

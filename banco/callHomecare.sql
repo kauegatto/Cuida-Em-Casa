@@ -38,6 +38,8 @@ call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('reinaldosouza@gmail.com');
 call infoServicoAtual(5);
 
+select * from paciente;
+
 /* PROCEDURE DO ADMINISTRADOR */
 
 call listarSituacaoCuidadores(3);

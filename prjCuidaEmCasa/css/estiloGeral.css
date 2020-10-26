@@ -41,4 +41,8 @@ height: 47px;}
 
 .invi { display: none; }
 
+.visivel { display: block !important;}
+
+.clear {clear: both;}
+
 main  { background-color: #f3f3f3;}
