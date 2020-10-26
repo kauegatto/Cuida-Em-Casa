@@ -152,6 +152,7 @@
     <Content Include="lib\libHistoricoServico.aspx" />
     <Content Include="mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
+    <Content Include="pages\cliente\atendimento.html" />
     <Content Include="pages\cliente\pacientes.html" />
     <Content Include="pages\criarConta\criarConta.html" />
     <Content Include="pages\cuidador\historicoServico.html" />

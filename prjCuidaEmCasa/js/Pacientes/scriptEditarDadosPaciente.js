@@ -24,7 +24,7 @@
 		}
         else if (retorno == "usuarioIncorreto"){window.location.href = "../index.html"}
 		else{
-	        alert("deu bom!! (acho)");
+	        alert("Os dados do(a) cliente "+nome+" foram alterados com sucesso!");
 	        console.log(retorno);	      
 	    }
     });

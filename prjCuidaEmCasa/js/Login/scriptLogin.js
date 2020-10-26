@@ -20,7 +20,7 @@
                     console.log("adm");
                 }
                 else if (retornoLogin[1] == "2") {
-                    window.location.href = "../../pages/cliente/agendamento.html";
+                    window.location.href = "../../pages/cliente/atendimento.html";
                 }
 
                 else if (retornoLogin[1] == "3") {
