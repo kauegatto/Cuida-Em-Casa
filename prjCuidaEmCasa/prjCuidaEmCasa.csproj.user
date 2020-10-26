@@ -4,11 +4,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-<<<<<<< HEAD
           <StartPageUrl>pages/cuidador/historicoServico.html</StartPageUrl>
-=======
-          <StartPageUrl>pages/cuidador/servicoAgendado.html</StartPageUrl>
->>>>>>> 258101405ccff49860b33ea184e3be39c302c1b0
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>
