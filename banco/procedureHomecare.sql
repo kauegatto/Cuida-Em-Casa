@@ -1653,4 +1653,21 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+
+DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
+
+CREATE PROCEDURE buscarDadosPaciente(vCdPaciente VARCHAR(200))
+BEGIN
+	select 
+	nm_paciente, tnp.nm_tipo_necessidade_paciente, ds_paciente, 
+	cd_CEP_paciente, nm_cidade_paciente, nm_bairro_cidade, nm_rua_paciente,cd_num_paciente,
+    nm_uf_paciente,nm_complemento_paciente 
+    from paciente
+	JOIN 
+    necessidade_paciente np ON (paciente.cd_paciente = np.cd_paciente)
+	JOIN 
+    tipo_necessidade_paciente tnp ON (np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
+	WHERE paciente.cd_paciente = vCdPaciente;
+END$$
+
 DELIMITER ;
