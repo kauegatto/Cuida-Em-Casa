@@ -1305,7 +1305,7 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosAntigos$$
 CREATE PROCEDURE listarServicosFinalizadosAntigos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico
 	FROM 
 		servico s 
@@ -1334,7 +1334,7 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosRecentes$$
 CREATE PROCEDURE listarServicosFinalizadosRecentes(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico
 	FROM 
 		servico s 

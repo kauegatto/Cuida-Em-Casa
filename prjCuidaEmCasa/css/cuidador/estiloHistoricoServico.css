@@ -1,0 +1,49 @@
+﻿#wrapper-historicoServico { display: inline; }
+
+#wrapper-detalhesServico { display: none; }
+
+.areaHistorico { margin-top: 20px; margin-left: 24px; width: 87%; height: 142px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; }
+
+.dataHistorico { margin-left: 20px; margin-top: 11px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.dadosHistorico { width: 90%; border-top: 1px solid black; height: 115px; margin-left: 15px; margin-top: 5px;}
+
+.areaImagemPaciente { width: 25%; height: 80px; float: left; background-size: cover; border-radius: 50%; background-position: center;  margin-top: 11px; }
+
+.areaDadosHistorico { width: 75%; height: 115px; float: right;  }
+
+.nomePacienteHistorico { margin-top: 10px; margin-left: 10px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.detalheHistorico { margin-bottom: 5px; margin-top: 5px; margin-left: 10px; font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
+
+.valorRecebido { margin-left: 10px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.valor {  font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
+
+.areaDetalhesInformacaoPaciente { width: 85%; height: 398px; background: #F1F1F1; border-radius: 10px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-top: 8px; margin-left: 29px;}
+
+.tituloInfoPaciente { margin-top: 13px; margin-left: 53px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
+
+.areaDadosDetalhe {  width: 70%; height: 80px; float: right; margin-top: 10px; }
+
+.nomePacienteDetalhes { margin-left: 20px; margin-top: 10px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; margin-bottom: 5px;}
+
+.necessidadePacienteDetalhes { margin-left: 20px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.necessidadePaciente { font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
+
+.areaDescricaoDetalhe { width: 100%; height: 85px; float: left; margin-top: 5px; border-bottom: 1px solid black; margin-bottom: 5px; }
+
+.tituloDescricao { margin-left: 10px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.descricao { margin-left: 10px; margin-top: 5px; font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
+
+.areaInfoServicoDetalhe { width: 100%; height: 170px; float: left; }
+
+.areaDetalhe { margin-top: 8px; width: 100%; }
+
+.dadosDetalhe { margin-left: 10px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.dadosServicoDetalhe {  font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
+
+.btnDenunciar { margin-top: 20px;  margin-left: 103px; width: 142px; border-style: none; height: 29px; background: #646464; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-family: Rubik; color: white; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; text-align: center;}
