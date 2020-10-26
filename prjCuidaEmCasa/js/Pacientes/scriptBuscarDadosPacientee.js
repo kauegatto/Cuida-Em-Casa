@@ -1,4 +1,4 @@
-﻿export default function scriptBuscarDadosPaciente() {
+export default function scriptBuscarDadosPaciente() {
 	var retorno;
     $.post("../../lib/libBuscarDadosPaciente.aspx",  { cd: localStorage.getItem("cdPaciente") }, function (retorno) {
        

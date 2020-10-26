@@ -1,4 +1,4 @@
-export default function scriptBuscarDadosPaciente() {
+﻿export default function scriptBuscarDadosPaciente() {
 	var retorno;
 
 	var descricao = $('#txtAlterarDescricaoPaciente').val();
