@@ -242,6 +242,7 @@
     </Compile>
     <Compile Include="lib\libListarServicosAgendados.aspx.designer.cs">
       <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libHistoricoServico.aspx.cs">
       <DependentUpon>libHistoricoServico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
