@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Cuida em Casa</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="../../css/estiloGeral.css">
+    <link rel="stylesheet" type="text/css" href="../../css/estiloCuidador.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/cuidador/estiloHistoricoServico.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="../../js/Cuidador/scriptHistoricoServico.js" type="text/javascript"></script>
+    <script src="../../js/Cuidador/scriptFiltro.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="estruturaGeral">
+		<header class="header" style="height: 158px; z-index: 1;">
+			<div class="areaLogo">
+				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			</div>
+			<div class="areaTituloGeral">
+				<h1 class="tituloGeral" style="width: 245px; margin-left:10px; margin-top: 45px;">Histórico de Serviços</h1>
+			</div>
+			<div class="areaFiltro" style="height: 40px;">
+				<img src="../../img/icones/agendamento/iconeFunil.png" class="iconeFunil" style="margin-left: 29px;">
+				<span style="margin-right: -4px; margin-top: 6px;">Filtrar serviços por ordem</span>
+			</div>
+			<div class="infoFiltro" style=" height: auto">
+				<div class="dadosFiltro" style="float: left;">
+					<h3>Filtrar por: </h3>
+					<select class="cbxEspecializacao" style="width: 152px">
+						<option>Selecione</option>
+						<option>Mais Recente</option>
+						<option>Mais Antiga</option>
+					</select>
+				</div>
+				<div class="dadosFiltro" >
+					<h3 style="display: inline;">Data Serviço </h3>
+					<input type="date" name="dataServico" class="cbxEspecializacao" style="width: 152px">
+				</div>
+				
+			</div>
+		</header>
+
+		<main class="conteudoGeral">
+			<div class="wrapper" id="wrapper-historicoServico">
+				<!--<div class="areaHistorico">
+					<span class="dataHistorico">10/09/2020 - 8h às 14h</span>
+					<div class="dadosHistorico">
+						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso2.jfif');"></div>
+						<div class="areaDadosHistorico">
+							<h3 class="nomePacienteHistorico">Lucio de Sá</h3>
+							<h3 class="detalheHistorico">Serviço realizado no dia 10/09/2020, duração de 6 horas.</h3>
+							<span class="valorRecebido">Valor Recebido: </span><span class="valor">R$ 100,00</span>
+						</div>
+					</div>
+				</div>
+				<div class="areaHistorico">
+					<span class="dataHistorico">11/09/2020 - 8h às 14h</span>
+					<div class="dadosHistorico">
+						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso1.jfif');"></div>
+						<div class="areaDadosHistorico">
+							<h3 class="nomePacienteHistorico">Wagner Reis</h3>
+							<h3 class="detalheHistorico">Serviço realizado no dia 11/09/2020, duração de 6 horas.</h3>
+							<span class="valorRecebido">Valor Recebido: </span><span class="valor">R$ 100,00</span>
+						</div>
+					</div>
+				</div>-->
+			</div>
+
+			<div class="wrapper" id="wrapper-detalhesServico">
+				<div class="areaDetalhesInformacaoPaciente">
+					<h3 class="tituloInfoPaciente">Informações do Paciente</h3>
+					<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso2.jfif'); margin-left:15px;"></div>
+					<div class="areaDadosDetalhe">
+						<h3 class="nomePacienteDetalhes">Lucio de Sá</h3>
+						<span class="necessidadePacienteDetalhes">Necessidade: </span><span class="necessidadePaciente">Medicação</span>
+					</div>
+					<div class="areaDescricaoDetalhe">
+						<h3 class="tituloDescricao">Descrição:</h3>
+						<h3 class="descricao">Sou um idoso muito amigável, tenho 75 anos e preciso de medicações para diabetes. Gosto muito de conversar sobre assuntos diversos.</h3>
+					</div>
+					<h3 class="tituloInfoPaciente">Informações do Serviço</h3>
+					<div class="areaInfoServicoDetalhe">
+						<div class="areaDetalhe">
+							<span class="dadosDetalhe">Endereço: </span><span class="dadosServicoDetalhe">Av. Gonzaga 144 -  11111-410 - Apt. Bloco B - Santos SP</span>
+						</div>
+						<div class="areaDetalhe">
+							<span class="dadosDetalhe">Horário: </span><span class="dadosServicoDetalhe">08:00AM - 14:00PM</span>
+						</div>
+						<div class="areaDetalhe">
+							<span class="dadosDetalhe">Duração: </span><span class="dadosServicoDetalhe">06 hr(s)</span>
+						</div>
+						<div class="areaDetalhe">
+							<span class="dadosDetalhe">Valor pago: </span><span class="dadosServicoDetalhe">R$ 100,00</span>
+						</div>
+						<div class="areaDetalhe">
+							<span class="dadosDetalhe">Valor hora: </span><span class="dadosServicoDetalhe">R$ 15,00</span>
+						</div>
+					</div>
+				</div>
+				<button type="submit" class="btnDenunciar">Denunciar</button>
+			</div>
+		</main>
+		<footer class="footer">
+			<nav>
+				<div class="menuGeral">
+					<div class="areaIcone">
+						<img src="../../img/icones/servicoHistorico/iconeServico.png" style="margin-left: 10px;">
+					</div>
+					<span style="margin-left: 15px;">Atendimento</span>
+				</div>
+				<div class="menuGeral">
+					<div class="areaIcone">
+						<img src="../../img/icones/servicoHistorico/iconeAgenda.png" style="margin-left: 10px;">
+					</div>
+					<span style="margin-left: 20px;">Agendados</span>
+				</div>
+				<div class="menuGeral">
+					<div class="areaIcone">
+						<img src="../../img/icones/servicoHistorico/iconeHistorico.png" style="margin-left: 5px;">
+					</div>
+					<span style="margin-left: 22px;">Histórico</span>
+				</div>
+				<div class="menuGeral">
+					<div class="areaIcone">
+						<img src="../../img/icones/servicoHistorico/iconeConfiguracao.png">
+					</div>
+					<span style="margin-left: 7px; ">Configuração</span>
+				</div>
+			</nav>
+		</footer>
+	</div>
+</body>
+
+</html>

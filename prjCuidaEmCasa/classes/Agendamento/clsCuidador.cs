@@ -19,6 +19,17 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> ds_experiencia { get; set; }
         public List<string> cd_avaliacao { get; set; }
         public string nm_email_cuidador_selecionado { get; set; }
+
+        /* Propriedades para o histórico do cuidador */
+
+        public List<string> nm_paciente { get; set; }
+        public List<string> nm_rua_servico { get; set; }
+        public List<string> cd_num_servico { get; set; }
+        public List<string> nm_tipo_necessidade_paciente { get; set; }
+        public List<string> dt_inicio_servico { get; set; }
+        public List<string> hr_inicio_servico { get; set; }
+        public List<string> hr_fim_servico { get; set; }
+
         public clsCuidador()
             : base()
         {
@@ -33,6 +44,16 @@ namespace prjCuidaEmCasa.classes.Agendamento
             ds_experiencia = new List<string>();
             cd_avaliacao = new List<string>();
             nm_email_cuidador_selecionado = "";
+
+            /* Propriedade para o histórico do cuidador */
+
+            nm_paciente = new List<string>();
+            nm_rua_servico = new List<string>();
+            cd_num_servico = new List<string>();
+            nm_tipo_necessidade_paciente = new List<string>();
+            dt_inicio_servico = new List<string>();
+            hr_inicio_servico = new List<string>();
+            hr_fim_servico = new List<string>();
         }
 
         #region Listar Cuidadores
@@ -315,7 +336,76 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 return true;
             }
             return false;
-        #endregion
         }
+        #endregion
+
+        #region Histórico serviço antigos
+        public bool historicoAntigo(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("listarServicosFinalizadosAntigos", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    nm_paciente = dados[1].ToString();
+                    nm_rua_servico = dados[2].ToString();
+                    cd_num_servico = dados[3].ToString();
+                    nm_tipo_necessidade_paciente = dados[4].ToString();
+                    dt_inicio_servico = dados[5].ToString();
+                    hr_inicio_servico = dados[6].ToString();
+                    hr_fim_servico = dados[7].ToString();
+                }
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+                return true;
+            }
+            return false;
+        }
+        #endregion 
+
+        #region Histórico serviço recentes
+        public bool historicoRecente(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("listarServicosFinalizadosRecentes", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    nm_paciente = dados[0].ToString();
+                    nm_rua_servico = dados[1].ToString();
+                    cd_num_servico = dados[2].ToString();
+                    nm_tipo_necessidade_paciente = dados[3].ToString();
+                    dt_inicio_servico = dados[4].ToString();
+                    hr_inicio_servico = dados[5].ToString();
+                    hr_fim_servico = dados[6].ToString();
+                }
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+                return true;
+            }
+            return false;
+        }
+        #endregion 
+
     }
 }

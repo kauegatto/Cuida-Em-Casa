@@ -57,12 +57,13 @@
     <Content Include="css\cliente\agendamento\estiloAgendamento.css" />
     <Content Include="css\cliente\agendamento\estiloConfirmacaoCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
-    <Content Include="css\cliente\agendamento\estiloCuidador.css" />
+    <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
     <Content Include="css\cliente\agendamento\estiloInfoCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloPaciente.css" />
     <Content Include="css\cliente\estiloPaciente.css" />
     <Content Include="css\criarConta\estiloCriarConta.css" />
+    <Content Include="css\cuidador\estiloHistoricoServico.css" />
     <Content Include="css\cuidador\estiloInfoPaciente.css" />
     <Content Include="css\cuidador\estiloServicoAgendado.css" />
     <Content Include="css\estiloGeral.css" />
@@ -122,6 +123,8 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+    <Content Include="js\Cuidador\scriptFiltro.js" />
+    <Content Include="js\Cuidador\scriptHistoricoServico.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\Agendamento\scriptAlterarEndereco.js" />
     <Content Include="js\Agendamento\scriptConfirmarEndereco.js" />
@@ -140,10 +143,12 @@
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
+    <Content Include="lib\libHistoricoServico.aspx" />
     <Content Include="mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\pacientes.html" />
     <Content Include="pages\criarConta\criarConta.html" />
+    <Content Include="pages\cuidador\historicoServico.html" />
     <Content Include="pages\cuidador\servicoAgendado.html" />
     <Content Include="pages\index.html" />
     <Content Include="Web.config" />
@@ -223,6 +228,13 @@
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.designer.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libHistoricoServico.aspx.cs">
+      <DependentUpon>libHistoricoServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libHistoricoServico.aspx.designer.cs">
+      <DependentUpon>libHistoricoServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
