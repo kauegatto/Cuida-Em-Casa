@@ -6,11 +6,9 @@
         }
 
         $('#wrapper-detalhesServico').html(retorno);
-
-        $(".dadosHistorico").each(function (i, obj) {
-                var url = "data:image/svg+xml;base64," + $(this).children(".invi").html();
-                $(this).children(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-        });
+        console.log(retorno);
+        var url = "data:image/svg+xml;base64," + $(".invi").html();
+        $(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
     });
 
 }

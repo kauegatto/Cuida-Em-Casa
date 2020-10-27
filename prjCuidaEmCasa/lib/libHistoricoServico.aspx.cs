@@ -40,7 +40,7 @@ namespace prjCuidaEmCasa.lib
             }
             for (int i = 0; i < cuidador.nm_paciente.Count; i++)
             {
-                listaServicos += "<div class='areaHistorico'>";
+                listaServicos += "<div class='areaHistorico "+ cuidador.cd_servico[0]+ "'>";
                 listaServicos += "<span class='dataHistorico'>" + cuidador.dt_inicio_servico[i] + " - " + cuidador.hr_inicio_servico[i] + " às " + cuidador.hr_fim_servico[i] + "</span>";
                 listaServicos += "<div class='dadosHistorico'>";
                 if (cuidador.base64String[i] == imgPadrao) { tinhaImg = "false"; } else { tinhaImg = "true"; }

@@ -24,7 +24,7 @@
                 }
 
                 else if (retornoLogin[1] == "3") {
-                    console.log("cuidador");
+                    window.location.href = "../../pages/cuidador/servicoAgendado.html";
                 }
 
             }

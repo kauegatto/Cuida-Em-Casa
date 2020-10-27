@@ -8,13 +8,19 @@ $(document).ready(function () {
 
 
  	$(".iconeVoltar").click(function () {
+
     	$(".visivel").each(function (i, obj) {
 	       $(this).removeClass("visivel");
 	    });
+        
+        $("#wrapper-detalhesServico").css("display","none");
+
 
 	    $("#wrapper-historicoServico").addClass("visivel");
 	    $('#headerComum').addClass("visivel");
+
         scriptHistoricoServico();
+
     });
 
     $(document).on("click", ".areaHistorico", function(){
@@ -23,14 +29,19 @@ $(document).ready(function () {
            $(this).removeClass("visivel");
         });
 
-        var classes = $(this).parent().attr("class").split(/\s+/);
+        var classes = $(this).attr("class").split(/\s+/);
+
         scriptDetalhesServico(classes[1]);
-        $("#wrapper-AreaDadosPaciente").addClass("visivel");
+      
+        $("#wrapper-historicoServico").css("display","none");
+        $('#headerComum').css("display","none");
+        $(".areaFiltro").css("display","none");
 
+
+        $("#wrapper-detalhesServico").addClass("visivel");
         $('#headerNav').addClass("visivel");
-
         $('#tituloGeral-Nav').html("Informações do serviço");
-        colocarImagem();
+
     });
 
 });
