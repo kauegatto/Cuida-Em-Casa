@@ -125,6 +125,7 @@
     <Content Include="js\Agendamento\scriptNavegacao.js" />
     <Content Include="js\Cuidador\scriptFiltroServico.js" />
     <Content Include="js\Cuidador\scriptHistoricoServico.js" />
+    <Content Include="js\Cuidador\scriptNavegacao.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\Agendamento\scriptAlterarEndereco.js" />
     <Content Include="js\Agendamento\scriptConfirmarEndereco.js" />
@@ -149,6 +150,7 @@
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
+    <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
@@ -238,6 +240,13 @@
     </Compile>
     <Compile Include="lib\libDadosLogin.aspx.designer.cs">
       <DependentUpon>libDadosLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDetalhesServico.aspx.cs">
+      <DependentUpon>libDetalhesServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDetalhesServico.aspx.designer.cs">
+      <DependentUpon>libDetalhesServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
