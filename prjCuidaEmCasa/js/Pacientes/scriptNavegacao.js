@@ -1,6 +1,8 @@
 ﻿import scriptPacientes from "./scriptPacientes.js";
 import scriptBuscarDadosPaciente from "./scriptBuscarDadosPaciente.js";
 import scriptEditarDadosPaciente from "./scriptEditarDadosPaciente.js";
+import scriptAdicionarPaciente from "./scriptAdicionarPaciente.js";
+
 var indexPage = 0; var jump = 0;
 
 $(".iconeVoltar").click(function(){    
@@ -54,4 +56,13 @@ $(document).ready(function () {
         scriptPacientes();
        
     });
+
+    $(document).on("click", "#btnSalvarPaciente", function(){
+        scriptAdicionarPaciente();
+        $(".iconeVoltar").click();
+        $("#listaPacientes").html(""); 
+        scriptPacientes();
+       
+    });
+
 });

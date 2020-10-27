@@ -133,6 +133,7 @@
     <Content Include="js\Agendamento\scriptInfoCuidador.js" />
     <Content Include="js\Agendamento\scriptPaciente.js" />
     <Content Include="js\Login\scriptLogin.js" />
+    <Content Include="js\Pacientes\scriptAdicionarPaciente.js" />
     <Content Include="js\Pacientes\scriptBuscarDadosPaciente.js" />
     <Content Include="js\Pacientes\scriptEditarDadosPaciente.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
@@ -141,6 +142,7 @@
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
+    <Content Include="lib\libAdicionarPaciente.aspx" />
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
@@ -187,6 +189,13 @@
     </Compile>
     <Compile Include="lib\dadosEndereco.aspx.designer.cs">
       <DependentUpon>dadosEndereco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAdicionarPaciente.aspx.cs">
+      <DependentUpon>libAdicionarPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAdicionarPaciente.aspx.designer.cs">
+      <DependentUpon>libAdicionarPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libAtualizarDadosPaciente.aspx.cs">
       <DependentUpon>libAtualizarDadosPaciente.aspx</DependentUpon>
