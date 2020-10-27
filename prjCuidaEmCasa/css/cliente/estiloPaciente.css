@@ -2,7 +2,7 @@
 
 #btnSalvarPaciente {background: #27AE60; border-radius: 10px; width: 143px; min-height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:relative; margin-bottom:30px;left: 27%;}
 
-#wrapper-AreaDadosPaciente,#wrapper-areaAdicionarPaciente { display: none; }
+#wrapper-AreaDadosPaciente, #wrapper-areaAdicionarPaciente { display: none; }
 
 .areaPaciente { width: 85%; height: 83px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 25px; margin-left: 24.5px; }
 

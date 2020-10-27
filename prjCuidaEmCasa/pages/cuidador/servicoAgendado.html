@@ -16,16 +16,28 @@
  	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
  	 crossorigin="anonymous"></script>
 
-	<script src="../../js/ServicoAgendado/scriptServicoAgendado.js"></script>
+
+	<script src="../../js/ServicoAgendado/scriptNavegacaoAgendados.js" type="module"></script>
+	
 </head>
 <body>
 	<div class="estruturaGeral">
 		<header class="header">
-			<div class="areaLogo">
-				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			<div id="headerComum">
+				<div class="areaLogo">
+					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" style="width: 200px; margin-left: 23px; margin-top: 45px;">Serviços Agendados</h1>
+				</div>
 			</div>
-			<div class="areaTituloGeral">
-				<h1 class="tituloGeral" style="width: 200px; margin-left: 23px; margin-top: 45px;">Serviços Agendados</h1>
+			<div id="headerNav">
+				<div class="areaLogo">
+					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 0px;">Informações  do serviço e paciente</h1>
+				</div>
 			</div>
 		</header>
 		<main class="conteudoGeral">

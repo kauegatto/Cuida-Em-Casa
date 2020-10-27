@@ -37,7 +37,7 @@ height: 47px;}
 
 .iconeCasa { margin-top: 10px; margin-left: 159px; }
 
-.selecionado {background-color: rgba(40, 85, 147, 0.5);color:#FFF; transition:0.3s;}
+.selecionado {background-color: rgba(40, 85, 147, 0.5) !important; color:#FFF; transition:0.3s; }
 
 .invi { display: none; }
 
