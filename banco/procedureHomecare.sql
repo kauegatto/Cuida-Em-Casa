@@ -1708,4 +1708,23 @@ BEGIN
 	WHERE cd_paciente = vCdPaciente;
 END$$
 
+DROP PROCEDURE IF EXISTS adicionarPaciente$$
+
+CREATE PROCEDURE adicionarPaciente(vNmPaciente varchar(200),vDsPaciente varchar(200),vCepPaciente varchar(200),vCidadePaciente varchar(200),vBairroPaciente varchar(200),vRuaPaciente varchar(200),vNumPaciente varchar(200),vUFPaciente varchar(200),vComplementoPaciente varchar(200))
+BEGIN
+	Insert into paciente (nm_paciente, ds_paciente,cd_CEP_paciente,nm_cidade_paciente,nm_bairro_cidade,nm_rua_paciente,cd_num_paciente,nm_uf_paciente,nm_complemento_paciente)
+	Values (vNmPaciente,vDsPaciente,vCepPaciente,vCidadePaciente ,vBairroPaciente,vRuaPaciente,vNumPaciente ,vUFPaciente ,vComplementoPaciente);
+END$$
+
+DROP PROCEDURE IF EXISTS proxCdPaciente$$
+
+CREATE PROCEDURE proxCdPaciente()
+BEGIN 
+	SELECT
+		MAX(cd_paciente) + 1
+	FROM
+		paciente;
+END$$
+
+
 DELIMITER ;
