@@ -42,7 +42,7 @@ namespace prjCuidaEmCasa.lib
 
             for (int i = 0; i < classeServicoAgendado.nomePaciente.Count; i++)
             {
-                listaServicosAgendados += "<div class='areaAgendaConteudo'>";
+                listaServicosAgendados += "<div class='areaAgendaConteudo " + classeServicoAgendado.codigoServico[i].ToString() + "'>";
                 listaServicosAgendados += "    <div class='areaDataAgendamento'>";
                 listaServicosAgendados += "        <div class='iconeRelogio'>";
                 listaServicosAgendados += "            <img src='../../img/icones/servicoAgendado/iconeRelogio.png' >";
