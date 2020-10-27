@@ -1321,7 +1321,7 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosAntigos$$
 CREATE PROCEDURE listarServicosFinalizadosAntigos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
 		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
 	FROM 
@@ -1355,7 +1355,7 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosRecentes$$
 CREATE PROCEDURE listarServicosFinalizadosRecentes(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
 		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
 	FROM 
@@ -1389,9 +1389,10 @@ DROP PROCEDURE IF EXISTS servicoSelecionado$$
 CREATE PROCEDURE servicoSelecionado(vCodigoServico INT)
 BEGIN
 	SELECT 
-		p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente), p.ds_paciente, s.cd_CEP_servico, s.nm_cidade_servico, s.nm_uf_servico, 
-		s.nm_bairro_servico, s.nm_rua_servico, s.cd_num_servico, s.nm_complemento_servico, s.hr_inicio_servico, s.hr_fim_servico, s.dt_inicio_servico,
-		u.vl_hora_trabalho
+		p.img_paciente, p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente), p.ds_paciente, s.cd_CEP_servico, s.nm_cidade_servico, 
+		s.nm_uf_servico, s.nm_bairro_servico, s.nm_rua_servico, s.cd_num_servico, s.nm_complemento_servico, 
+		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), 
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
 	FROM 
 		servico s 
 	JOIN

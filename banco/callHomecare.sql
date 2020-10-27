@@ -31,7 +31,7 @@ call listarServicosFuturos('flaviabeneditamilenamelo@gmail.com');
 call listarServicosProximos('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosAntigos('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
-call servicoSelecionado(5);
+call servicoSelecionado(2);
 call marcarCheckin(5);
 call marcarCheckout(5);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
@@ -50,5 +50,4 @@ call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
 
-
-select * from servico
+select * from servico where cd_servico = 33
