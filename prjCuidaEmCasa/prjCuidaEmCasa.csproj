@@ -125,6 +125,7 @@
     <Content Include="js\Agendamento\scriptNavegacao.js" />
     <Content Include="js\Cuidador\scriptFiltroServico.js" />
     <Content Include="js\Cuidador\scriptHistoricoServico.js" />
+    <Content Include="js\Cuidador\scriptNavegacaoHistorico.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\Agendamento\scriptAlterarEndereco.js" />
     <Content Include="js\Agendamento\scriptConfirmarEndereco.js" />

@@ -1,28 +1,34 @@
-﻿$(document).ready(function () {
+﻿export default function scriptHistoricoServico(){
 
-    $.post("../../lib/libHistoricoServico.aspx", { email: "flaviabeneditamilenamelo@gmail.com", filtro: "true" }, function (retorno) {
-        if (retorno == "" || retorno == null) {
-            $('#wrapper-historicoServico').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%'>Desculpe, mas você não tem serviços finalizados</h2>");
-        }
+        $.post("../../lib/libHistoricoServico.aspx", { email: localStorage.getItem("usuarioLogado"), filtro: "true" }, function (retorno) {
+            
+            //console.log(retorno);
 
-        else if (!retorno[0]) {
-            $('#wrapper-historicoServico').html("ERRO NO RETORNO");
-        }
+            if (retorno == "" || retorno == null) {
+                $('#wrapper-historicoServico').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%'>Desculpe, mas você não tem serviços finalizados</h2>");
+            }
 
-        $('#wrapper-historicoServico').html(retorno);
+            else if (!retorno[0]) {
+                $('#wrapper-historicoServico').html("ERRO NO RETORNO");
+            }
 
-        $(".areaHistorico").each(function (i, obj) {
-            var url = "data:image/png;base64," + $(this).children().eq(3).html();
-            $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            $('#wrapper-historicoServico').html(retorno);
+
+            $(".dadosHistorico").each(function (i, obj) {
+                var url = "data:image/svg+xml;base64," + $(this).children(".invi").html();
+                $(this).children(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            });
+            
+            $(".areaHistorico").click(function (e) {
+                $(".areaHistorico").removeClass("selecionado");
+                $(this).addClass("selecionado");
+            });
+
+            $(".areaFiltro").click(function (e) {
+                $(".infoFiltro").toggleClass("visivel");
+            });
+
+           
         });
 
-        $(".areaHistorico").click(function (e) {
-            $(".areaHistorico").removeClass("selecionado");
-            $(this).addClass("selecionado");
-        });
-
-        $(".areaFiltro").click(function (e) {
-            $(".infoFiltro").toggleClass("visivel");
-        });
-    });
-});
+}

@@ -27,29 +27,7 @@ namespace prjCuidaEmCasa.lib
                     Response.Write("false");
                     return;
                 }
-
-                for (int i = 0; i < cuidador.nm_paciente.Count; i++)
-                {
-                    listaServicos += "<div class='areaHistorico'>";
-					listaServicos += "<span class='dataHistorico'>" + cuidador.dt_inicio_servico[i] + " - " + cuidador.hr_inicio_servico[i] + " às " + cuidador.hr_fim_servico[i] + "</span>";
-					listaServicos += "<div class='dadosHistorico'>";
-                    if (cuidador.base64String[i] == imgPadrao) { tinhaImg = "false"; } else { tinhaImg = "true"; }
-					listaServicos += "<div class='areaImagemPaciente'>" + cuidador.base64String[i] + "#" + tinhaImg + "</div>";
-					listaServicos += "<div class='areaDadosHistorico'>";
-					listaServicos += "<h3 class='nomePacienteHistorico'>" + cuidador.nm_paciente[i] + "</h3>";
-                    string duracao = cuidador.duracaoServico[i];
-                    string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
-                    string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
-                    double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
-                    double valorTotal = horaFinal * double.Parse(cuidador.vl_cuidador[i]);
-					listaServicos += "<h3 class='detalheHistorico'>Serviço realizado no dia " + cuidador.dt_inicio_servico[i] + ", duração de " + cuidador.duracaoServico[i] + " horas.</h3>";
-                    listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>"; 
-					listaServicos += "</div>";
-					listaServicos += "</div>";
-    				listaServicos += "</div>";
-                }
-
-                Response.Write(listaServicos);
+                
             }
             else
             {
@@ -58,31 +36,30 @@ namespace prjCuidaEmCasa.lib
                     Response.Write("false");
                     return;
                 }
-
-                for (int i = 0; i < cuidador.nm_paciente.Count; i++)
-                {
-                    listaServicos += "<div class='areaHistorico'>";
-                    listaServicos += "<span class='dataHistorico'>" + cuidador.dt_inicio_servico[i] + " - " + cuidador.hr_inicio_servico[i] + " às " + cuidador.hr_fim_servico[i] + "</span>";
-                    listaServicos += "<div class='dadosHistorico'>";
-                    if (cuidador.base64String[i] == imgPadrao) { tinhaImg = "false"; } else { tinhaImg = "true"; }
-                    listaServicos += "<div class='areaImagemPaciente'></div>";
-                    listaServicos += "<div class='invi' style='display: none'>" + cuidador.base64String[i] + "#" + tinhaImg + "</div>";
-                    listaServicos += "<div class='areaDadosHistorico'>";
-                    listaServicos += "<h3 class='nomePacienteHistorico'>" + cuidador.nm_paciente[i] + "</h3>";
-                    string duracao = cuidador.duracaoServico[i];
-                    string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
-                    string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
-                    double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
-                    double valorTotal = horaFinal * double.Parse(cuidador.vl_cuidador[i]);
-                    listaServicos += "<h3 class='detalheHistorico'>Serviço realizado no dia " + cuidador.dt_inicio_servico[i] + ", duração de " + cuidador.duracaoServico[i] + " horas.</h3>";
-                    listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
-                    listaServicos += "</div>";
-                    listaServicos += "</div>";
-                    listaServicos += "</div>";
-                }
-
-                Response.Write(listaServicos);
+               
             }
+            for (int i = 0; i < cuidador.nm_paciente.Count; i++)
+            {
+                listaServicos += "<div class='areaHistorico'>";
+                listaServicos += "<span class='dataHistorico'>" + cuidador.dt_inicio_servico[i] + " - " + cuidador.hr_inicio_servico[i] + " às " + cuidador.hr_fim_servico[i] + "</span>";
+                listaServicos += "<div class='dadosHistorico'>";
+                if (cuidador.base64String[i] == imgPadrao) { tinhaImg = "false"; } else { tinhaImg = "true"; }
+                listaServicos += "<div class='areaImagemPaciente'></div>";
+                listaServicos += "<div class='invi' style='display: none'>" + cuidador.base64String[i]+ "</div>";
+                listaServicos += "<div class='areaDadosHistorico'>";
+                listaServicos += "<h3 class='nomePacienteHistorico'>" + cuidador.nm_paciente[i] + "</h3>";
+                string duracao = cuidador.duracaoServico[i];
+                string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
+                string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
+                double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
+                double valorTotal = horaFinal * double.Parse(cuidador.vl_cuidador[i]);
+                listaServicos += "<h3 class='detalheHistorico'>Serviço realizado no dia " + cuidador.dt_inicio_servico[i] + ", duração de " + cuidador.duracaoServico[i] + " horas.</h3>";
+                listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
+                listaServicos += "</div>";
+                listaServicos += "</div>";
+                listaServicos += "</div>";
+            }
+            Response.Write(listaServicos);
         }
     }
 }

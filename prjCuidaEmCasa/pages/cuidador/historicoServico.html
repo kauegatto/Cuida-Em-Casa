@@ -3,30 +3,49 @@
 <html>
 
 <head>
+    
     <title>Cuida em Casa</title>
+	
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
 	<link rel="stylesheet" type="text/css" href="../../css/estiloGeral.css">
     <link rel="stylesheet" type="text/css" href="../../css/estiloCuidador.css" />
     <link rel="stylesheet" type="text/css" href="../../css/cuidador/estiloHistoricoServico.css" />
+	
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
     <script src="../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
-    <script src="../../js/Cuidador/scriptHistoricoServico.js" type="text/javascript"></script>
-    <script src="../../js/Cuidador/scriptFiltroServico.js" type="text/javascript"></script>
+	<script src="../../js/Cuidador/scriptNavegacaoHistorico.js" type="module"></script>
+
 </head>
 
 <body>
     <div class="estruturaGeral">
-		<header class="header" style="height: 158px; z-index: 1;">
-			<div class="areaLogo">
-				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+
+		<header class="header" style="min-height: 158px; z-index: 1;">
+			<div id="headerComum" class="visivel" style="display:none;" >
+				<div class="areaLogo">
+					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" style="width: 245px; margin-left:10px; margin-top: 45px;">Histórico de Serviços</h1>
+				</div>
 			</div>
-			<div class="areaTituloGeral">
-				<h1 class="tituloGeral" style="width: 245px; margin-left:10px; margin-top: 45px;">Histórico de Serviços</h1>
+			
+			<div id="headerNav" style="display:none;">
+				<div class="areaLogo">
+					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 0px;">Adicionar Paciente</h1>
+				</div>
+
 			</div>
+
 			<div class="areaFiltro" style="height: 40px; display: inline;">
 				<img src="../../img/icones/agendamento/iconeFunil.png" class="iconeFunil" style="margin-left: 29px;display: inline;">
 				<span style="margin-right: -4px; margin-top: 6px;">Filtrar serviços por ordem</span>
@@ -49,30 +68,7 @@
 		</header>
 
 		<main class="conteudoGeral">
-			<div class="wrapper" id="wrapper-historicoServico">
-				<!--<div class="areaHistorico">
-					<span class="dataHistorico">10/09/2020 - 8h às 14h</span>
-					<div class="dadosHistorico">
-						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso2.jfif');"></div>
-						<div class="areaDadosHistorico">
-							<h3 class="nomePacienteHistorico">Lucio de Sá</h3>
-							<h3 class="detalheHistorico">Serviço realizado no dia 10/09/2020, duração de 6 horas.</h3>
-							<span class="valorRecebido">Valor Recebido: </span><span class="valor">R$ 100,00</span>
-						</div>
-					</div>
-				</div>
-				<div class="areaHistorico">
-					<span class="dataHistorico">11/09/2020 - 8h às 14h</span>
-					<div class="dadosHistorico">
-						<div class="areaImagemPaciente" style="background-image: url('img/imgIdoso1.jfif');"></div>
-						<div class="areaDadosHistorico">
-							<h3 class="nomePacienteHistorico">Wagner Reis</h3>
-							<h3 class="detalheHistorico">Serviço realizado no dia 11/09/2020, duração de 6 horas.</h3>
-							<span class="valorRecebido">Valor Recebido: </span><span class="valor">R$ 100,00</span>
-						</div>
-					</div>
-				</div>-->
-			</div>
+			<div class="wrapper visivel" id="wrapper-historicoServico" style="display: none" ></div>
 
 			<div class="wrapper" id="wrapper-detalhesServico">
 				<div class="areaDetalhesInformacaoPaciente">
