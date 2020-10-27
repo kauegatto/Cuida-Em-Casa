@@ -111,7 +111,7 @@
 					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif'); margin-top: 12px; margin-left: 13px;"></div>
 					<div class="areaNomePaciente">
 						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
-						<input type="text" name="txtNomePaciente" class="inputInfo" style="width: 205px;
+						<input type="text" name="txtAdicionarNomePaciente" class="inputInfo" style="width: 205px;
 							height: 31px; margin-left: 8px; margin-top: 5px;">
 					</div>
 					<div class="areaNecessidadePaciente">
@@ -122,29 +122,33 @@
 					</div>
 					<div class="areaDescricaoPaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição:</h3>
-						<textarea class="inputInfo" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;"></textarea>
+						<textarea class="inputInfo" id="txtAdicionarDescricaoPaciente" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 87px;"></textarea>
 					</div>
 					<div class="areaEnderecoPaciente">
 						<span class="tituloInfo" style="margin-left: 13px;">CEP:</span> 
-						<input type="text" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="">
+						<input type="text" id="txtAdicionarCEPPaciente" name="cep" class="inputInfo" style="width: 78px; height: 30px; text-align: center;" value="">
+
 						<span class="tituloInfo" style="margin-left: 16px;">Bairro:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="">
+						<input type="text" id="txtAdicionarBairroPaciente" name="bairro" class="inputInfo" style="width: 120px; height: 30px; text-align: center;" value="">
+						
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="">
-						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
-						<input type="text" name="bairro" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="">
+							<input type="text" id="txtAdicionarRuaPaciente" name="rua" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="">
+							<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
+							<input type="text" id="txtAdicionarNumeroPaciente" name="Número" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="">
 						</div>
+						
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
-							<input type="text" name="cidade" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="">
+							<input type="text" id="txtAdicionarCidadePaciente" name="cidade" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="">
 							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
-							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
+							<select name="UF" id="txtAdicionarCidadePaciente" class="inputInfo" style="width: 48px; height: 30px;">
 						  		<option value="SP">SP</option>
 						  		<option value="MG">MG</option>
 						  		<option value="RJ">RJ</option>
 							</select>
 						</div>
+						
 						<div class="enderecos">
 							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
 							<input type="text" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="">

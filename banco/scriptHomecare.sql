@@ -48,7 +48,7 @@ CREATE TABLE tipo_genero
 );
 
 insert into tipo_genero values (1, 'Masculino');
-insert into tipo_genero values (2, 'Feminimo');
+insert into tipo_genero values (2, 'Feminino');
 insert into tipo_genero values (3, 'Outro');
 
 CREATE TABLE tipo_situacao_usuario
