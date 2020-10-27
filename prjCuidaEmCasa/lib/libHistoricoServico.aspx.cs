@@ -56,6 +56,7 @@ namespace prjCuidaEmCasa.lib
                 listaServicos += "<h3 class='detalheHistorico'>Serviço realizado no dia " + cuidador.dt_inicio_servico[i] + ", duração de " + cuidador.duracaoServico[i] + " horas.</h3>";
                 listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
                 listaServicos += "</div>";
+                listaServicos += "<div class='clear'></div>";
                 listaServicos += "</div>";
                 listaServicos += "</div>";
             }
