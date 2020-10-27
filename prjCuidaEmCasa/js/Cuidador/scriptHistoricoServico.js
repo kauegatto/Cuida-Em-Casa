@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
 //    $.post("../../lib/libHistoricoServico.aspx", { email: "flaviabeneditamilenamelo@gmail.com", filtro: "true" }, function (retorno) {
 //        if (retorno == "" || retorno == null) {
 //            $('#wrapper-historicoServico').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%'>Desculpe, mas você não tem serviços finalizados</h2>");
@@ -25,12 +24,4 @@
 //            $(".infoFiltro").toggleClass("visivel");
 //        });
 //    });
-
-    $.post("../../lib/libDetalhesServico.aspx", { cdServico: "33" }, function (retorno) {
-        if (!retorno) {
-            console.log("Erro");
-        }
-
-        $('#wrapper-detalhesServico').html(retorno);
-    });
 });
