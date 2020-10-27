@@ -1,4 +1,7 @@
-﻿$(document).on("click", "#btnLogin", function () {
+﻿localStorage.clear();
+
+$(document).on("click", "#btnLogin", function () {
+
     $.post("../../lib/libDadosLogin.aspx", { email: $("#txtEmail").val(), senha: $("#txtSenha").val() }, function (retorno) {
 
         var retorno;
@@ -29,7 +32,7 @@
 
             }
             else {
-                console.log("O login e/ou senha inserida é inválido");
+                alert("O login e/ou senha inserida é inválido, tente novamente!");
             }
         }
     });

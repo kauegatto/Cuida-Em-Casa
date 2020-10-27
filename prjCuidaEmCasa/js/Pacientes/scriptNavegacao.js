@@ -9,6 +9,12 @@ $(".iconeVoltar").click(function(){
 });
 
 $(document).ready(function () {
+    
+    if(!localStorage.getItem("tipoUsuario") == 2){
+        alert("Você não tem acesso a essa página, realize o login novamente");
+        localStorage.clear();
+        window.location.href = "../../pages/index.html";
+    }
 
     scriptPacientes();
 
