@@ -127,7 +127,6 @@
     <Content Include="js\Cuidador\scriptFiltroServico.js" />
     <Content Include="js\Cuidador\scriptHistoricoServico.js" />
     <Content Include="js\Cuidador\scriptNavegacaoHistorico.js" />
-
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\Agendamento\scriptAlterarEndereco.js" />
     <Content Include="js\Agendamento\scriptConfirmarEndereco.js" />
@@ -143,6 +142,7 @@
     <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="js\Pacientes\scriptPacientes.js" />
+    <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
     <Content Include="lib\libAdicionarPaciente.aspx" />
@@ -156,6 +156,7 @@
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
+    <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\atendimento.html" />
@@ -270,6 +271,13 @@
     </Compile>
     <Compile Include="lib\libHistoricoServico.aspx.designer.cs">
       <DependentUpon>libHistoricoServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libServicoAgendadoSelecionado.aspx.cs">
+      <DependentUpon>libServicoAgendadoSelecionado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libServicoAgendadoSelecionado.aspx.designer.cs">
+      <DependentUpon>libServicoAgendadoSelecionado.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

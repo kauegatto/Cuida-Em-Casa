@@ -150,6 +150,7 @@ namespace prjCuidaEmCasa.classes.ServicoAgendado
                     dataServico.Add(dados[13].ToString());
                     valorHora.Add(dados[14].ToString());
                     duracaoServico.Add(dados[15].ToString());
+                    situacaoServico.Add(dados[16].ToString());
                 }
             }
 

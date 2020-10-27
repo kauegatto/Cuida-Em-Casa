@@ -13,11 +13,6 @@
                 var url = "data:image/png;base64," + $(this).children('.invi').html();
                 $(this).children(".areaImagemPacienteAgendamento").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             });
-
-            $(".areaAgendaConteudo").click(function (e) {
-                    $(".areaAgendaConteudo").removeClass("selecionado");
-                    $(this).addClass("selecionado");
-            });
         }
     });
 };
