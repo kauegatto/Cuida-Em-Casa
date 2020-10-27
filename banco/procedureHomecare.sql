@@ -1114,10 +1114,10 @@ CREATE PROCEDURE agendarServico(vCodigo INT, vDataServico DATE, vHoraInicioServi
 BEGIN
 	INSERT INTO servico
 		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
-		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_paciente)
+		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_status_servico, cd_paciente)
 	VALUES
 		(vCodigo, vDataServico, vHoraInicioServico, vDataServico, vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
-		vEmailCliente, vEmailCuidador, vCodigoPaciente);
+		vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado que mude o dia de término */
@@ -1128,10 +1128,10 @@ CREATE PROCEDURE agendarServicoVirarDia(vCodigo INT, vDataServico DATE, vHoraIni
 BEGIN
 	INSERT INTO servico
 		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
-		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_paciente)
+		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_status_servico, cd_paciente)
 	VALUES
 		(vCodigo, vDataServico, vHoraInicioServico, DATE_ADD(vDataServico, INTERVAL 1 DAY), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, 
-		vComp, vEmailCliente, vEmailCuidador, vCodigoPaciente);
+		vComp, vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
 END$$
 
 /* Procedure listarServicos será usada para listar todos os servicos agendados pelo cliente e ordenados de forma decrescente, podendo ser: em andamento, pendentes, finalizados e cancelados */

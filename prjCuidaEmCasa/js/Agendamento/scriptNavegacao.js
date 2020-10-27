@@ -132,5 +132,4 @@ $("#btnFinalizarServico").click(function () {
     EnviarFinalizarServico();
     
 });
-
 });
