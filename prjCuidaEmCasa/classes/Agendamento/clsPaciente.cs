@@ -192,5 +192,43 @@ namespace prjCuidaEmCasa.classes.Agendamento
             }
         }
         #endregion
+        #region Adicionar Paciente
+        public bool adicionarPaciente(string emailLogado,string nmPaciente, string dsPaciente, string cepPaciente, string cidadePaciente, string bairroPaciente, string ruaPaciente, string numPaciente, string UFPaciente, string complementoPaciente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[10, 2];
+            valores[0, 0] = "vUsuarioLogado";
+            valores[0, 1] = emailLogado;
+            valores[1, 0] = "vNmPaciente";
+            valores[1, 1] = nmPaciente;
+            valores[2, 0] = "vDsPaciente";
+            valores[2, 1] = dsPaciente;
+            valores[3, 0] = "vCepPaciente";
+            valores[3, 1] = cepPaciente;
+            valores[4, 0] = "vCidadePaciente";
+            valores[4, 1] = cidadePaciente;
+            valores[5, 0] = "vBairroPaciente";
+            valores[5, 1] = bairroPaciente;
+            valores[6, 0] = "vRuaPaciente";
+            valores[6, 1] = ruaPaciente;
+            valores[7, 0] = "vNumPaciente";
+            valores[7, 1] = numPaciente;
+            valores[8, 0] = "vUFPaciente";
+            valores[8, 1] = UFPaciente;
+            valores[9, 0] = "vComplementoPaciente";
+            valores[9, 1] = complementoPaciente;
+            if (!Procedure("adicionarPaciente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+        #endregion 
+        
     }
 }

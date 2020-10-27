@@ -1,7 +1,7 @@
 ﻿import scriptPacientes from "./scriptPacientes.js";
 import scriptBuscarDadosPaciente from "./scriptBuscarDadosPaciente.js";
 import scriptEditarDadosPaciente from "./scriptEditarDadosPaciente.js";
-import scriptAdicionarDadosPaciente from "./scriptAdicionarDadosPaciente.js";
+import scriptAdicionarPaciente from "./scriptAdicionarPaciente.js";
 
 var indexPage = 0; var jump = 0;
 
@@ -60,7 +60,7 @@ $(document).ready(function () {
     $(document).on("click", "#btnSalvarPaciente", function(){
         scriptAdicionarPaciente();
         $(".iconeVoltar").click();
-        $("#listaPacientes").html("");        
+        $("#listaPacientes").html(""); 
         scriptPacientes();
        
     });

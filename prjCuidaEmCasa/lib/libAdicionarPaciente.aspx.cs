@@ -12,17 +12,29 @@ namespace prjCuidaEmCasa.lib
         protected void Page_Load(object sender, EventArgs e)
         {
             clsPaciente clsPaciente = new clsPaciente();
-            string cd_paciente = Request["cd"].ToString();
-            string ds_paciente = Request["descricao"].ToString();
-            string cep_paciente = Request["CEP"].ToString();
-            string nm_paciente = Request["nome"].ToString();
-            string cidade_paciente = Request["cidade"].ToString();
-            string bairro_paciente = Request["bairro"].ToString();
-            string rua_paciente = Request["rua"].ToString();
-            string num_paciente = Request["numero"].ToString();
-            string complemento_paciente = Request["complemento"].ToString();
-            string uf_paciente = Request["uf"].ToString();
-            if (clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente))
+            string email_logado = "",ds_paciente="", cep_paciente="", nm_paciente="", cidade_paciente="", bairro_paciente="", rua_paciente="", num_paciente="", complemento_paciente="", uf_paciente = "";
+            try
+            {
+                email_logado = Request["usuarioLogado"].ToString();
+                ds_paciente = Request["descricao"].ToString();
+                cep_paciente = Request["CEP"].ToString();
+                nm_paciente = Request["nome"].ToString();
+                cidade_paciente = Request["cidade"].ToString();
+                bairro_paciente = Request["bairro"].ToString();
+                rua_paciente = Request["rua"].ToString();
+                num_paciente = Request["numero"].ToString();    
+                uf_paciente = Request["uf"].ToString();
+            }
+            catch {
+                Response.Write("false");
+                return;
+            }
+            try
+            {
+                complemento_paciente = Request["complemento"].ToString();
+            }
+            catch { complemento_paciente = ""; }
+            if (clsPaciente.adicionarPaciente( email_logado,nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente))
             {
                 Response.Write("true");
             }

@@ -1,4 +1,4 @@
-﻿export default function scriptBuscarDadosPaciente() {
+﻿export default function scriptAdicionarPaciente() {
 	var retorno;
 
 	var descricao = $('#txtAdicionarDescricaoPaciente').val();
@@ -10,8 +10,8 @@
 	var uf = "SP";
 	var numero = $('#txtAdicionarNumeroPaciente').val();
 	var complemento = $('#txtAdicionarComplementoPaciente').val();
-
-    $.post("../../lib/libAdicionarDadosPaciente.aspx",  { nome:nome, uf:uf, descricao: descricao, CEP:CEP, cidade : cidade,bairro: bairro,rua:rua, numero:numero,complemento:complemento  }, function (retorno) {
+	var usuarioLogado =  localStorage.getItem("usuarioLogado");
+    $.post("../../lib/libAdicionarPaciente.aspx",  { usuarioLogado : usuarioLogado,nome:nome, uf:uf, descricao: descricao, CEP:CEP, cidade : cidade,bairro: bairro,rua:rua, numero:numero,complemento:complemento  }, function (retorno) {
        
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
