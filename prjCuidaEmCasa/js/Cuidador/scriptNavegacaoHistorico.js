@@ -1,6 +1,6 @@
 ﻿﻿import scriptFiltroServico from "./scriptFiltroServico.js";
 import scriptHistoricoServico from "./scriptHistoricoServico.js";
-//import scriptBuscarDetalhesServico from "./scriptBuscarDetalhesServico.js";
+import scriptDetalhesServico from "./scriptDetalhesServico.js";
 
 $(document).ready(function () {
 
@@ -19,15 +19,12 @@ $(document).ready(function () {
 
     $(document).on("click", ".areaHistorico", function(){
 
-        //scriptBuscarDetalhesServico();
-        
         $(".visivel").each(function (i, obj) {
            $(this).removeClass("visivel");
         });
 
         var classes = $(this).parent().attr("class").split(/\s+/);
-        localStorage.setItem("cdServico", classes[1]);
-
+        scriptDetalhesServico(classes[1]);
         $("#wrapper-AreaDadosPaciente").addClass("visivel");
 
         $('#headerNav').addClass("visivel");
