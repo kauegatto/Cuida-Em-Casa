@@ -15,7 +15,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <script src="../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
     <script src="../../js/Cuidador/scriptHistoricoServico.js" type="text/javascript"></script>
-    <script src="../../js/Cuidador/scriptFiltro.js" type="text/javascript"></script>
+    <script src="../../js/Cuidador/scriptFiltroServico.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 			<div class="areaTituloGeral">
 				<h1 class="tituloGeral" style="width: 245px; margin-left:10px; margin-top: 45px;">Histórico de Serviços</h1>
 			</div>
-			<div class="areaFiltro" style="height: 40px;">
+			<div class="areaFiltro" style="height: 40px; display: inline;">
 				<img src="../../img/icones/agendamento/iconeFunil.png" class="iconeFunil" style="margin-left: 29px;display: inline;">
 				<span style="margin-right: -4px; margin-top: 6px;">Filtrar serviços por ordem</span>
 			</div>
@@ -44,7 +44,7 @@
 					<h3 style="display: inline;">Data Serviço </h3>
 					<input type="date" name="dataServico" class="cbxEspecializacao" style="width: 152px">
 				</div>
-				
+				<button id="btnFiltroServico" style="margin: 0 auto" type="button">Buscar</button>
 			</div>
 		</header>
 
