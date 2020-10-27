@@ -123,7 +123,7 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
-    <Content Include="js\Cuidador\scriptFiltro.js" />
+    <Content Include="js\Cuidador\scriptFiltroServico.js" />
     <Content Include="js\Cuidador\scriptHistoricoServico.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\Agendamento\scriptAlterarEndereco.js" />

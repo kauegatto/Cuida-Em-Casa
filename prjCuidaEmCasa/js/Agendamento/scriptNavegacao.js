@@ -25,7 +25,7 @@ function passarPagina(SentDomElement,Jump) {
             $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).css( "display", "block");
             $(DomElement).parents("main.conteudoGeral").children().eq(indexPage).addClass("visivel"); 
         }
-        else{indexPage = 0}
+        else{window.location.href = "../../pages/cliente/atendimento.html"}
        
     }
     else{
@@ -132,5 +132,4 @@ $("#btnFinalizarServico").click(function () {
     EnviarFinalizarServico();
     
 });
-
 });
