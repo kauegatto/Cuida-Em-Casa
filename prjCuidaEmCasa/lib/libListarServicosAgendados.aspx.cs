@@ -40,25 +40,31 @@ namespace prjCuidaEmCasa.lib
 
             string listaServicosAgendados = "";
 
-            // falta fazer o calculo do valor do servico 
-
             for (int i = 0; i < classeServicoAgendado.nomePaciente.Count; i++)
             {
                 listaServicosAgendados += "<div class='areaAgendaConteudo'>";
-                listaServicosAgendados += "  <div class='areaDataAgendamento'>";
-                listaServicosAgendados += "      <img src='../../img/icones/servicoAgendado/iconeRelogio.png' class='iconeRelogio'>";
-                listaServicosAgendados += "      <h3 class='dataAgendamento'>Daqui " + classeServicoAgendado.diferencaData[i].ToString() +" dias - " + classeServicoAgendado.dataServico[i].ToString() + "</h3>";
-                listaServicosAgendados += "  </div>";
-                listaServicosAgendados += "  <div class='areaImagemPacienteAgendamento'></div>";
-                listaServicosAgendados += "      <div class='areaDadosServico'>";
-                listaServicosAgendados += "          <h3 class='nomePaciente'>" + classeServicoAgendado.nomePaciente[i].ToString() + "</h3>";
-                listaServicosAgendados += "          <span class='necessidadePaciente'>" + classeServicoAgendado.necessidadePaciente[i].ToString() + "</span>";
-                listaServicosAgendados += "          <span class='infoPaciente'>" + classeServicoAgendado.nomeRuaPaciente[i].ToString() + " - " + classeServicoAgendado.numeroCasaPaciente[i].ToString() + " | " + classeServicoAgendado.dataServico[i].ToString() + " | " + classeServicoAgendado.horaInicioServico[i].ToString() + " - " + classeServicoAgendado.horaFimServico[i].ToString() + " | R$ </span>";
-                listaServicosAgendados += "          <div class='areaStatus'>";
-                listaServicosAgendados += "              <span class='status'>Status: </span><span class='statusServico'>" + classeServicoAgendado.situacaoServico[i].ToString() + "</span>";
-                listaServicosAgendados += "          </div>";
-                listaServicosAgendados += "  </div>";
-                listaServicosAgendados += "<div class='invi'> "+ classeServicoAgendado.base64String[i].ToString() + "</div>";
+                listaServicosAgendados += "    <div class='areaDataAgendamento'>";
+                listaServicosAgendados += "        <div class='iconeRelogio'>";
+                listaServicosAgendados += "            <img src='../../img/icones/servicoAgendado/iconeRelogio.png' >";
+                listaServicosAgendados += "        </div>";
+                listaServicosAgendados += "    <h3 class='dataAgendamento'>Daqui " + classeServicoAgendado.diferencaData[i].ToString() + " dias - " + classeServicoAgendado.dataServico[i].ToString() +"</h3>";
+                listaServicosAgendados += "    </div>";
+                listaServicosAgendados += "    <div class='linha'></div>";
+                listaServicosAgendados += "    <div class='areaImagemPacienteAgendamento'></div>";
+                listaServicosAgendados += "        <div class='areaDadosServico'>";
+                listaServicosAgendados += "            <h3 class='nomePaciente'>" + classeServicoAgendado.nomePaciente[i].ToString() +"</h3>";
+                listaServicosAgendados += "            <span class='necessidadePaciente'>" + classeServicoAgendado.necessidadePaciente[i].ToString() +"</span>";
+                string duracao = classeServicoAgendado.duracaoServico[i];
+                string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
+                string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
+                double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
+                double valorTotal = horaFinal * double.Parse(classeServicoAgendado.valorHora[i]);
+                listaServicosAgendados += "            <span class='infoPaciente'>" + classeServicoAgendado.nomeRuaPaciente[i].ToString() + " - " + classeServicoAgendado.numeroCasaPaciente[i].ToString() + " | " + classeServicoAgendado.horaInicioServico[i].ToString() + " - " + classeServicoAgendado.horaFimServico[i].ToString() + " | " + "R$ " + valorTotal.ToString()  +"</span>";
+                listaServicosAgendados += "            <div class='areaStatus'>";
+                listaServicosAgendados += "                <span class='status'>Status: </span><span class='statusServico'>" + classeServicoAgendado.situacaoServico[i].ToString() +"</span>";
+                listaServicosAgendados += "           </div>";
+                listaServicosAgendados += "   </div>";
+                listaServicosAgendados += "   <div class='invi'> " + classeServicoAgendado.base64String[i].ToString() + "</div>";
                 listaServicosAgendados += "</div>";
             }
 

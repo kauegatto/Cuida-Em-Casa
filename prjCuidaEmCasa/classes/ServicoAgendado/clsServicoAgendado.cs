@@ -20,7 +20,7 @@ namespace prjCuidaEmCasa.classes.ServicoAgendado
         public List<string> situacaoServico { get; set; }
         public List<string> diferencaData { get; set; }
         public List<string> valorHora { get; set; }
-        public List<string> horaDiferenca { get; set; }
+        public List<string> duracaoServico { get; set; }
 
         public clsServicoAgendado()
             : base()
@@ -37,7 +37,7 @@ namespace prjCuidaEmCasa.classes.ServicoAgendado
             base64standard = "";
             diferencaData = new List<string>();
             valorHora = new List<string>();
-            horaDiferenca = new List<string>();
+            duracaoServico = new List<string>();
         }
 
         #region Listar Serviços Agendados 
@@ -77,7 +77,7 @@ namespace prjCuidaEmCasa.classes.ServicoAgendado
                     else { base64String.Add(base64standard); }
                     diferencaData.Add(dados[9].ToString());
                     valorHora.Add(dados[10].ToString());
-                    horaDiferenca.Add(dados[11].ToString());
+                    duracaoServico.Add(dados[11].ToString());
                 }
             }
 
