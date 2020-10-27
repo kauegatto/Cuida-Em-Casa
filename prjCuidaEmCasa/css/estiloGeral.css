@@ -27,7 +27,11 @@ height: 47px;}
 
 .btnConfirmar { width: 142px; height: 34px; background: #27AE60; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA; border-style: none; margin-left: 25px;}
 
-.footer { grid-area: footer; height: 70px; background: #2980B9; color: white; width: 100%; position: fixed; bottom: 0%; transform: translateZ(0);} 
+.footer { color: rgba(240,240,247,0.65) !important; grid-area: footer; height: 70px; background: #2980B9;  width: 100%; position: fixed; bottom: 0%; transform: translateZ(0);} 
+
+.paginaAtual { color : #fafafa;  }
+
+/*.paginaAtual img{ background:#fafafa; }*/
 
 .menuGeral { width: 25%; float: left; }
 

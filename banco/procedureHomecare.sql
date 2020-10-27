@@ -1326,7 +1326,7 @@ BEGIN
 	SELECT 
 		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
 	FROM 
 		servico s 
 	JOIN 
@@ -1360,7 +1360,7 @@ BEGIN
 	SELECT 
 		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
 	FROM 
 		servico s 
 	JOIN 

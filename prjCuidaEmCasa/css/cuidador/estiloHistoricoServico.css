@@ -1,7 +1,5 @@
 ﻿#wrapper-historicoServico { display: none; }
 
-#wrapper-detalhesServico { display: inline; }
-
 .areaHistorico { margin-top: 20px; margin-left: 24px; width: 87%; height: 142px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; }
 
 .dataHistorico { margin-left: 20px; margin-top: 11px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
@@ -47,3 +45,5 @@
 .dadosServicoDetalhe {  font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
 
 .btnDenunciar { margin-top: 20px;  margin-left: 103px; width: 142px; border-style: none; height: 29px; background: #646464; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-family: Rubik; color: white; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; text-align: center;}
+
+#areaImagemDetalhes{ margin-left:15px; }
