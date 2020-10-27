@@ -1,4 +1,5 @@
 import scriptServicoAgendado from "./scriptServicoAgendado.js";
+import scriptServicoAgendadoSelecionado from "./scriptServicoAgendadoSelecionado.js";
 
 $(document).ready(function () {
 

@@ -1248,7 +1248,9 @@ CREATE PROCEDURE listarServicosFuturos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, tss.nm_status_servico, p.img_paciente,DATEDIFF(s.dt_inicio_servico, current_date()), u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico)
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, 
+		tss.nm_status_servico, p.img_paciente,DATEDIFF(s.dt_inicio_servico, current_date()), 
+		u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), s.cd_servico
 	FROM 
 		servico s 
 	JOIN 
@@ -1285,7 +1287,8 @@ CREATE PROCEDURE listarServicosProximos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, tss.nm_status_servico, p.img_paciente, DATEDIFF(s.dt_inicio_servico, current_date()), u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico)
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, tss.nm_status_servico, p.img_paciente, DATEDIFF(s.dt_inicio_servico, current_date()),
+		u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), s.cd_servico
 	FROM 
 		servico s 
 	JOIN 
