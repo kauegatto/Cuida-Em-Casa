@@ -29,9 +29,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> dt_inicio_servico { get; set; }
         public List<string> hr_inicio_servico { get; set; }
         public List<string> hr_fim_servico { get; set; }
+        public List<string> duracaoServico { get; set; }
 
-        public clsCuidador()
-            : base()
+        public clsCuidador(): base()
         {
             base64String = new List<string>();
             base64standard = "";
@@ -54,6 +54,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             dt_inicio_servico = new List<string>();
             hr_inicio_servico = new List<string>();
             hr_fim_servico = new List<string>();
+            duracaoServico = new List<string>();
         }
 
         #region Listar Cuidadores
@@ -373,6 +374,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     hr_inicio_servico.Add(dados[6].ToString());
                     hr_fim_servico.Add(dados[7].ToString());
                     vl_cuidador.Add(dados[8].ToString());
+                    duracaoServico.Add(dados[9].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
@@ -416,6 +418,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     hr_inicio_servico.Add(dados[6].ToString());
                     hr_fim_servico.Add(dados[7].ToString());
                     vl_cuidador.Add(dados[8].ToString());
+                    duracaoServico.Add(dados[9].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
