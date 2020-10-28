@@ -46,40 +46,6 @@ END$$
 
 /* CRIAÇÃO DE FUNCTIONS */
 
-/* Function criada para validar a data como dia da semana  PRECISA SER ARRUMADA!!!! */
-
-/*DROP FUNCTION IF EXISTS validarDiaSemana$$
-
-CREATE FUNCTION validarDiaSemana(dataDia DATETIME) RETURNS VARCHAR (20) 
-BEGIN
-	DECLARE dia INT DEFAULT 0; 
-	DECLARE diaSemana VARCHAR(20);
-
-	SELECT dia = (DATEPART(DW,dataDia));
-	IF (dia=1) THEN
-		SET diaSemana ='DOMINGO';
-	END IF;
-	IF (dia=2) THEN
-		SET diaSemana ='SEGUNDA-FEIRA';
-	END IF;
-	IF (dia=3) THEN
-		SET diaSemana ='TERÇA-FEIRA';
-	END IF;
-	IF (dia=4) THEN
-		SET diaSemana ='QUARTA-FEIRA';
-	END IF;
-	IF (dia=5) THEN
-		SET diaSemana ='QUINTA-FEIRA';
-	END IF;
-	IF (dia=6) THEN
-		SET diaSemana ='SEXTA-FEIRA';
-	END IF;
-	IF (dia=7) THEN
-		SET diaSemana ='SÁBADO';
-	END IF;
-	RETURN diaSemana;
-END$$*/
-
 /* PROCEDURES PARA O FUNCIONAMENTO DO AGENDAMENTO DE SERVIÇO */
 
 /* Procedure buscarPaciente será usada para encontrar o nome e código do cliente, pelo email do cliente */
@@ -1245,6 +1211,47 @@ BEGIN
 		u.vl_hora_trabalho <= vValorHora
 	GROUP BY
 		u.nm_email_usuario;
+END$$
+
+/* Procedure criada para buscar os pacientes que estão em serviço no momento da busca */
+
+DROP PROCEDURE IF EXISTS buscarPacienteServicoEmAndamento$$
+
+CREATE PROCEDURE buscarPacienteServicoEmAndamento(vCodigoPaciente INT)
+BEGIN
+	SELECT 
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico,
+		s.cd_num_servico, s.nm_complemento_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m'),
+		(CASE WEEKDAY(s.dt_inicio_servico) 
+                       when 0 then 'Segunda-feira'
+                       when 1 then 'Terça-feira'
+                       when 2 then 'Quarta-feira'
+                       when 3 then 'Quinta-feira'
+                       when 4 then 'Sexta-feira'
+                       when 5 then 'Sábado'
+                       when 6 then 'Domingo'                 
+                       END) AS DiaDaSemana, TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
+		u.vl_hora_trabalho, s.cd_geolocalizacao_entrada
+	FROM
+		servico s 
+	JOIN
+		paciente p 
+	ON
+		(s.cd_paciente = p.cd_paciente)
+	JOIN
+		usuario u 
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	WHERE
+		s.dt_inicio_servico = CURRENT_DATE()
+	AND
+		s.hr_inicio_servico <= CURRENT_TIME()
+	AND
+		s.hr_fim_servico >= CURRENT_TIME()
+	AND
+		p.cd_paciente = vCodigoPaciente
+	AND 
+		s.cd_status_servico = 1;
 END$$
 
 /*PROCEDURES REFENRENTE AO CUIDADOR*/
