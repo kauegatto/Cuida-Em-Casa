@@ -20,6 +20,7 @@ call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
+call buscarPacienteServicoEmAndamento(6);
 
 /* PROCEDURE DO CUIDADOR */
 
@@ -49,5 +50,7 @@ call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
+
+select * from servico where cd_paciente = 6;
 
 select * from servico where cd_servico = 33
