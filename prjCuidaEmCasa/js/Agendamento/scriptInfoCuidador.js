@@ -41,6 +41,7 @@
         $('#nm_genero_cuidador').html(retorno[3]);
         $('#nm_experiencia_cuidador').html(retorno[4]);
         $('#ds_cuidador').html(retorno[5]);
+        localStorage.setItem("imagemCuidador", retorno[6]);
         localStorage.setItem("valorHora", retorno[0]);
         localStorage.setItem("nomeCuidador", retorno[1]);
     });

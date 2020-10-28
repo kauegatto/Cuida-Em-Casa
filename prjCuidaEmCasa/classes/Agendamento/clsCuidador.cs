@@ -343,13 +343,13 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     else
                     {
                         base64String.Add(base64standard);
-                        vl_cuidador.Add(dados[1].ToString());
-                        nm_cuidador.Add(dados[2].ToString());
-                        nm_especializacao.Add(dados[3].ToString());
-                        nm_genero.Add(dados[4].ToString());
-                        ds_experiencia.Add(dados[5].ToString());
-                        ds_usuario.Add(dados[6].ToString());
                     }
+                    vl_cuidador.Add(dados[1].ToString());
+                    nm_cuidador.Add(dados[2].ToString());
+                    nm_especializacao.Add(dados[3].ToString());
+                    nm_genero.Add(dados[4].ToString());
+                    ds_experiencia.Add(dados[5].ToString());
+                    ds_usuario.Add(dados[6].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();

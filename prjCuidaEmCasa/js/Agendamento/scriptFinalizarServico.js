@@ -34,6 +34,12 @@
         return;
     }
 
+    $('.invi').html(localStorage.getItem("imagemCuidador"));
+    $(".areaDadosServico").each(function (i, obj) {
+        var url = "data:image/png;base64," + $(this).children('.invi').html();
+        $(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+    });
+
     somaHoraValorFinal();
     formatarData(data);
     $('#nomeCuidador').html(localStorage.getItem("nomeCuidador"));
@@ -43,4 +49,7 @@
     else {
         $('#endereco').html(localStorage.getItem("nomeRua") + " - " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeBairro") + ", " + localStorage.getItem("nomeCidade") + " - " + localStorage.getItem("nomeEstado"));
     }
+
+    
+
 };
