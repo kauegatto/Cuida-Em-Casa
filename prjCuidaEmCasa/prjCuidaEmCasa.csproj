@@ -174,6 +174,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\AgendaCliente\clsAgendaCliente.cs" />
     <Compile Include="classes\Agendamento\clsCuidador.cs" />
     <Compile Include="classes\Agendamento\clsPaciente.cs" />
     <Compile Include="classes\Agendamento\clsServico.cs" />
