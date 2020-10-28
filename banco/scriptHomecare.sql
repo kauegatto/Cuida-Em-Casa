@@ -159,10 +159,11 @@ insert into disponibilidade values('2020-08-21','00:00:00','02:00:00','rayssaela
 
 insert into disponibilidade values('2020-08-20','14:00:00','22:00:00','flaviabeneditamilenamelo@gmail.com');
 insert into disponibilidade values('2020-07-13','10:00:00','20:00:00','flaviabeneditamilenamelo@gmail.com');
-insert into disponibilidade values('2020-08-30','10:00:00','22:00:00','flaviabeneditamilenamelo@gmail.com');
+insert into disponibilidade values('2020-11-03','10:00:00','22:00:00','flaviabeneditamilenamelo@gmail.com');
 
 insert into disponibilidade values('2020-08-20','05:00:00','22:00:00','matheusraimundofarias@gmail.com');
-insert into disponibilidade values('2020-08-30','07:00:00','17:00:00','matheusraimundofarias@gmail.com');
+insert into disponibilidade values('2020-11-03','07:00:00','17:00:00','matheusraimundofarias@gmail.com');
+insert into disponibilidade values('2020-11-02','07:00:00','17:00:00','matheusraimundofarias@gmail.com');
 
 insert into disponibilidade values('2020-08-20','13:30:00','22:00:00','sarahelainealiciaribeiro@gmail.com');
 insert into disponibilidade values('2020-08-20','08:00:00','20:00:00','sarahelainealiciaribeiro@gmail.com');
