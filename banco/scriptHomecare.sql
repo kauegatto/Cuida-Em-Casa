@@ -12,7 +12,7 @@ CREATE TABLE tipo_especializacao
 
 insert into tipo_especializacao values(1,'Cuidador');
 insert into tipo_especializacao values(2,'Fisioterapia');
-insert into tipo_especializacao values(3,'Pscicologia');
+insert into tipo_especializacao values(3,'Psicologia');
 insert into tipo_especializacao values(4,'Enfermagem');
 
 
@@ -335,6 +335,8 @@ insert into servico values(17,'2020-02-20','07:00:00','2020-08-20','19:00:00','0
 insert into servico values(18,'2020-07-20','05:00:00','2020-08-20','17:00:00','11050-230','Santos','Encruzilhada','R. Dr. Guedes Coelho','1028','SP',null,'06:00:00','2020-08-20',null,null,'-23.954143;-46.330406','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,3,4);
 insert into servico values(19,'2020-01-20','12:00:00','2020-08-20','20:00:00','11070-180','Santos','Vila Belmiro','R. Delfino Stockler de Lima','127','SP',null,'12:00:00','2020-08-20',null,null,'-23.949846;-46.342424','emilyantoniadaianearagao@gmail.com','rayssaelainevanessacosta-84@.com',null,3,5);
 insert into servico values(20,'2020-02-20','09:00:00','2020-08-20','16:00:00','11525-050','Cubatão','Vila Nova','Praça Francisco da Silva Cardoso','50','SP',null,'09:00:00','2020:08:20',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','brunastellaflaviadepaula@gmail.com',null,3,6);
+insert into servico values(21,'2020-06-11','15:20:00','2020-06-11','18:00:00','11533-040','Cubatão','Jardim Casqueiro','R. Estados Unidos','530','SP',null,'15:22:00','2020:06:11',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','flaviabeneditamilenamelo@gmail.com',null,3,6);
+insert into servico values(22,'2020-07-15','10:00:00','2020-07-15','14:30:00','11330-060','São Vicente','Parque Bitaru','R. Osvaldo Eduardo','49','SP',null,'10:01:00','2020:07:15',null,null,'-23.893013;-46.429228','emilyantoniadaianearagao@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,5);
 
 /*Serviços Em Andamento*/
 insert into servico values(5,'2020-08-20','08:00:00','2020-08-20','17:00:00','05024-000','São Paulo','Pompeia','R. Barão do Bananal','1328','SP',null,'08:30:00','2020-08-20',null,null,'-23.535457;-46.690143','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',null,1,2);

@@ -50,4 +50,8 @@ $(document).ready(function () {
 
     });
 
+    $("#btnFiltroServico").click(function () {
+        scriptFiltroServico();
+    });
+
 });
