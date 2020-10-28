@@ -1,5 +1,6 @@
 ﻿export default function scriptFiltroServico(){
-
+    
+    var recente;
     var filtroEspecializacao = $('.cbxEspecializacao').val();
     
     //console.log(filtroEspecializacao);
@@ -28,6 +29,4 @@
 
             });    
     });
-
-
 }
