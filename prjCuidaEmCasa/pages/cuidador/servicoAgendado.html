@@ -36,7 +36,7 @@
 					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
 				</div>
 				<div class="areaTituloGeral">
-					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 0px;">Informações  do serviço e paciente</h1>
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 18px;">Informações  do serviço</h1>
 				</div>
 			</div>
 		</header>
@@ -46,56 +46,57 @@
 			</div>
 
 			<div class="wrapper" id="wrapper-InfoServicoAgendado">
-				<h3 class="tituloConteudo" style="margin-left: 82px; margin-top: 10px;">Informações do Paciente</h3>
+				<h3 class="tituloConteudo" style="margin-top: 10px;">Informações do Paciente</h3>
 				<div class="areaInfoPaciente">
-					<div class="areaImagemPacienteAgendamento" style="background-image: url('img/imgIdoso1.jfif');"></div>
+					<div class="areaImagemPacienteAgendamento"></div>
 					<div class="areaDadosInfoPaciente">
-						<h3 class="nomeInfoPaciente">Lucio de Sá</h3>
+						<h3 class="nomeInfoPaciente"></h3>
 						<div class="necessidadeInfoPaciente">
 							<span style="font-weight: bold;">Necessidade:</span>
-							<span>Medicação</span>
+							<span id="medicacao"></span>
 						</div>
 						<div class="areaDescricaoInfo">
-							<h3>Descrição: </h3>
-							<span>Sou um idoso muito amigável, tenho 75 anos e preciso de medicações para diabetes. Gosto muito de conversar sobre assuntos diversos.</span>
+							<h3>Descrição:</h3>
+							<span id="descricao"></span>
 						</div>
 					</div>
+					<div class="invi"></div>
 				</div>
-				<h3 class="tituloConteudo" style="margin-left: 78px; margin-top: 10px;">Localização do Paciente</h3>
+				<h3 class="tituloConteudo" style="margin-top: 10px;">Localização do Paciente</h3>
 				<div class="areaLocalizacaoPaciente">
 					<div class="areaInfoLocal">
-						<span class="infoLocal">CEP: </span><span class="infoDados">11530-040</span>
+						<span class="infoLocal">CEP: </span><span class="infoDados" id="cep"></span>
 					</div>
 					<div class="areaInfoLocal">
-						<span class="infoLocal">Bairro: </span><span class="infoDados">Jardim Casqueiro</span>
+						<span class="infoLocal">Bairro: </span><span class="infoDados" id="bairro"></span>
 					</div>
 					<div class="areaInfoLocal">
-						<span class="infoLocal">Rua: </span><span class="infoDados">Rua Maria do Carmo</span>
-						<span class="infoLocal">Nº: </span><span class="infoDados">856</span>
+						<span class="infoLocal">Rua: </span><span class="infoDados" id="rua"></span>
+						<span class="infoLocal">Nº: </span><span class="infoDados" id="numero"></span>
 					</div>
 					<div class="areaInfoLocal">
-						<span class="infoLocal">Cidade: </span><span class="infoDados">Cubatão</span>
-						<span class="infoLocal">UF: </span><span class="infoDados">SP</span>
+						<span class="infoLocal">Cidade: </span><span class="infoDados" id="cidade"></span>
+						<span class="infoLocal">UF: </span><span class="infoDados" id="uf"></span>
 					</div>
 					<div class="areaInfoLocal">
-						<span class="infoLocal">Complemento: </span><span class="infoDados">Casa</span>
+						<span class="infoLocal">Complemento: </span><span class="infoDados" id="complemento"></span>
 					</div>
 					<div>
 						<button type="submit" class="verMapa">Ver Mapa</button>
 					</div>
 				</div>
-				<h3 class="tituloConteudo" style="margin-left: 78px; margin-top: 10px;">Informações do Serviço</h3>
+				<h3 class="tituloConteudo" style="margin-top: 10px;">Informações do Serviço</h3>
 				<div class="areaInformacoesServico">
 					<div class="areaInfoServico">
-						<span class="dadosInfoServico">Horário: </span><span class="infoServico">08:00 - 14:00</span>
-						<span class="dadosInfoServico">Duração: </span><span class="infoServico">6 Hora(s)</span>
+						<span class="dadosInfoServico">Horário: </span><span class="infoServico" id="horario"></span>
+						<span class="dadosInfoServico">Duração: </span><span class="infoServico" id="duracao"></span>
 					</div>
 					<div class="areaInfoServico">
-						<span class="dadosInfoServico">Valor Hora: </span><span class="infoServico">R$20,00</span>
-						<span class="dadosInfoServico">Status: </span><span class="infoServico" style="color: #27AE60;">Agendado</span>
+						<span class="dadosInfoServico">Valor Hora: </span><span class="infoServico" id="valorHora"></span>
+						<span class="dadosInfoServico">Status: </span><span class="infoServico" style="color: #27AE60;" id="status"></span>
 					</div>
 					<div class="areaEstimativa">
-						<span class="estimativa" style="font-weight: bold; ">Estimativas de ganhos Totais: </span><span class="estimativa">R$ 120,00</span>
+						<span class="estimativa" style="font-weight: bold; ">Estimativas de ganhos Totais: </span><span class="estimativa" id="valorTotal"></span>
 					</div>
 				</div>
 

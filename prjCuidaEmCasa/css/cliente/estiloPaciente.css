@@ -14,7 +14,7 @@
 
 .nomePaciente { width: 200px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; float: left; margin-top: 14px; margin-left: 27px; }
 
-.enderecoPaciente { width: 70px; font-family: Roboto; font-style: normal; font-weight: normal; font-size: 13px; line-height: 15px; float: left;  margin-left: 28px; margin-top: 7px;}
+.enderecoPaciente { font-family: Roboto; font-style: normal; font-weight: normal; font-size: 13px; line-height: 15px; float: left;  margin-left: 28px; margin-top: 7px;}
 
 .imgEditar { float: right; margin-right: 9px; margin-top: -5px; }
 
