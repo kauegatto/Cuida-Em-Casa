@@ -1136,12 +1136,12 @@ END$$
 
 /* Procedure listarServicos será usada para listar todos os servicos agendados pelo cliente e ordenados de forma decrescente, podendo ser: em andamento, pendentes, finalizados e cancelados */
 
-DROP PROCEDURE IF EXISTS listarServicos$$
+DROP PROCEDURE IF EXISTS listarAgendaClienteJaFoi$$
 
-CREATE PROCEDURE listarServicos(vEmailCliente VARCHAR(200), vStatusServico INT)
+CREATE PROCEDURE listarAgendaClienteJaFoi(vCdPaciente VARCHAR(200))
 BEGIN 
 	SELECT 
-		s.dt_inicio_servico AS DtInicioServico, u.nm_usuario AS Nome_Cuidador, p.nm_paciente AS NomePaciente
+		s.dt_inicio_servico AS DtInicioServico, u.nm_usuario AS Nome_Cuidador, s.hr_inicio_servico as Hora_Inicio, s.hr_fim_servico as Hora_Fim, s.cd_
 	FROM 
 		servico s 
 	JOIN 
@@ -1152,15 +1152,50 @@ BEGIN
 		paciente p 
 	ON 
 		(p.cd_paciente = s.cd_paciente)
-	AND 
-		s.nm_email_usuario = vEmailCliente 
-	AND 
-		s.cd_status_servico = vStatusServico
+	WHERE 
+		p.cd_paciente = vCdPaciente
+    AND 
+		s.cd_status_servico = 3
+	OR  
+		s.cd_status_servico = 4
+    
 	ORDER BY 
 		s.dt_inicio_servico;
 END$$
 
-/* Procedure proxCodigo será usada para bsucar o último código e somar 1 para saber o próximo */
+
+DROP PROCEDURE IF EXISTS listarAgendaClienteNaoFoi$$
+
+CREATE PROCEDURE listarAgendaClienteNaoFoi(vCdPaciente VARCHAR(200))
+BEGIN 
+	SELECT 
+		u.img_usuario,s.dt_inicio_servico AS DtInicioServico, u.nm_usuario AS Nome_Cuidador, s.hr_inicio_servico as Hora_Inicio, s.hr_fim_servico as Hora_Fim
+	FROM 
+		servico s 
+	JOIN 
+		usuario u 
+	ON 
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario) 
+	JOIN 
+		paciente p 
+	ON 
+		(p.cd_paciente = s.cd_paciente)
+	JOIN
+		tipo_status_servico tsp
+	ON 
+		(tsp.cd_status_servico = s.cd_status_servico)
+	WHERE 
+		p.cd_paciente = vCdPaciente
+    AND 
+		s.cd_status_servico = 1
+	OR  
+		s.cd_status_servico = 2
+	OR
+		s.cd_status_servico = 5
+    
+	ORDER BY 
+		s.dt_inicio_servico;
+END$$
 
 DROP PROCEDURE IF EXISTS proxCodigo$$
 

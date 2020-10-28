@@ -31,7 +31,8 @@
     }); //VA I SE F8UDE AJAVASCIRPT!!!
     $.post("../../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
         if (!retorno) {
-            response.redirect('google.com');
+            alert("Ocorreu um erro na busca dos dados do cuidador!");
+            window.location.href = "../index.html"
         }
         retorno = retorno.split("/");
         console.log(retorno);
@@ -44,5 +45,7 @@
         localStorage.setItem("imagemCuidador", retorno[6]);
         localStorage.setItem("valorHora", retorno[0]);
         localStorage.setItem("nomeCuidador", retorno[1]);
+        var url = "data:image/svg+xml;base64," + localStorage.getItem("imagemCuidador");
+        $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
     });
 };

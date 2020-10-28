@@ -19,7 +19,7 @@ namespace prjCuidaEmCasa.lib
 
             clsServico servico = new clsServico();
 
-            if (!(servico.detalhesServico(cdServico)))
+            if (!(servico.detalhesServicoHistoricoCuidador(cdServico)))
             {
                 Response.Write("false");
                 return;

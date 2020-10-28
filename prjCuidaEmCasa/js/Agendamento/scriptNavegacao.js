@@ -131,11 +131,11 @@ $("#btnFiltro").click(function (){
 $("#btnInfoCuidador").click(function () {
     passarPagina($(this),1);
     carregarFinalizarServico();
-
 });
 //pg 7: pg finalizar pedido (resumo)
 $("#btnFinalizarServico").click(function () {
     EnviarFinalizarServico();
     
 });
+
 });
