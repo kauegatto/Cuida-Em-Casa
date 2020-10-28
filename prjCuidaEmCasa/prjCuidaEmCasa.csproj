@@ -57,6 +57,7 @@
     <Content Include="css\cliente\agendamento\estiloAgendamento.css" />
     <Content Include="css\cliente\agendamento\estiloConfirmacaoCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
+    <Content Include="css\cliente\agenda\estiloAgenda.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
     <Content Include="css\cliente\agendamento\estiloInfoCuidador.css" />
@@ -75,6 +76,14 @@
     <Content Include="img\icones\agendamento\iconeFunil.png" />
     <Content Include="img\icones\agendamento\iconeRelogio.png" />
     <Content Include="img\icones\agendamento\iconeTempo.png" />
+    <Content Include="img\icones\agenda\iconeAgenda.png" />
+    <Content Include="img\icones\agenda\iconeAtendimento.png" />
+    <Content Include="img\icones\agenda\iconeConfiguracao.png" />
+    <Content Include="img\icones\agenda\iconeEstrelaPreenchida.png" />
+    <Content Include="img\icones\agenda\iconeEstrelaVazada.png" />
+    <Content Include="img\icones\agenda\iconeMaleta.png" />
+    <Content Include="img\icones\agenda\iconePaciente.png" />
+    <Content Include="img\icones\agenda\iconeRelogio.png" />
     <Content Include="img\icones\cuidador\iconeCifrao.png" />
     <Content Include="img\icones\cuidador\iconeCrifaoPequeno.png" />
     <Content Include="img\icones\cuidador\iconeMaleta.png" />
@@ -146,6 +155,7 @@
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
     <Content Include="lib\libAdicionarPaciente.aspx" />
+    <Content Include="lib\libAgendadosAgendaCliente.aspx" />
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
@@ -157,6 +167,7 @@
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
+    <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\atendimento.html" />
@@ -174,7 +185,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="classes\AgendaCliente\clsAgendaCliente.cs" />
     <Compile Include="classes\Agendamento\clsCuidador.cs" />
     <Compile Include="classes\Agendamento\clsPaciente.cs" />
     <Compile Include="classes\Agendamento\clsServico.cs" />
@@ -202,6 +212,13 @@
     </Compile>
     <Compile Include="lib\libAdicionarPaciente.aspx.designer.cs">
       <DependentUpon>libAdicionarPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAgendadosAgendaCliente.aspx.cs">
+      <DependentUpon>libAgendadosAgendaCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAgendadosAgendaCliente.aspx.designer.cs">
+      <DependentUpon>libAgendadosAgendaCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libAtualizarDadosPaciente.aspx.cs">
       <DependentUpon>libAtualizarDadosPaciente.aspx</DependentUpon>

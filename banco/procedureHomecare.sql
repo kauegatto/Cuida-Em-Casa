@@ -46,40 +46,6 @@ END$$
 
 /* CRIAÇÃO DE FUNCTIONS */
 
-/* Function criada para validar a data como dia da semana  PRECISA SER ARRUMADA!!!! */
-
-/*DROP FUNCTION IF EXISTS validarDiaSemana$$
-
-CREATE FUNCTION validarDiaSemana(dataDia DATETIME) RETURNS VARCHAR (20) 
-BEGIN
-	DECLARE dia INT DEFAULT 0; 
-	DECLARE diaSemana VARCHAR(20);
-
-	SELECT dia = (DATEPART(DW,dataDia));
-	IF (dia=1) THEN
-		SET diaSemana ='DOMINGO';
-	END IF;
-	IF (dia=2) THEN
-		SET diaSemana ='SEGUNDA-FEIRA';
-	END IF;
-	IF (dia=3) THEN
-		SET diaSemana ='TERÇA-FEIRA';
-	END IF;
-	IF (dia=4) THEN
-		SET diaSemana ='QUARTA-FEIRA';
-	END IF;
-	IF (dia=5) THEN
-		SET diaSemana ='QUINTA-FEIRA';
-	END IF;
-	IF (dia=6) THEN
-		SET diaSemana ='SEXTA-FEIRA';
-	END IF;
-	IF (dia=7) THEN
-		SET diaSemana ='SÁBADO';
-	END IF;
-	RETURN diaSemana;
-END$$*/
-
 /* PROCEDURES PARA O FUNCIONAMENTO DO AGENDAMENTO DE SERVIÇO */
 
 /* Procedure buscarPaciente será usada para encontrar o nome e código do cliente, pelo email do cliente */
@@ -1138,10 +1104,12 @@ END$$
 
 DROP PROCEDURE IF EXISTS listarAgendaClienteJaFoi$$
 
-CREATE PROCEDURE listarAgendaClienteJaFoi(vCdPaciente VARCHAR(200))
+CREATE PROCEDURE listarAgendaClienteJaFoi(vEmailCliente VARCHAR(200))
 BEGIN 
 	SELECT 
-		s.dt_inicio_servico AS DtInicioServico, u.nm_usuario AS Nome_Cuidador, s.hr_inicio_servico as Hora_Inicio, s.hr_fim_servico as Hora_Fim, s.cd_
+		date_format(s.dt_inicio_servico, '%d/%m/%Y') AS DtInicioServico, time_format(s.hr_inicio_servico,'%H:%i') as Hora_Inicio, time_format(s.hr_fim_servico, '%H:%i') as Hora_Fim, u.img_usuario AS ImagemCuidador,u.nm_usuario 
+	AS Nome_Cuidador, te.nm_tipo_especializacao AS NomeEspecializacao, TIMEDIFF(time_format(s.hr_fim_servico,'%H:%i'), time_format(s.hr_inicio_servico,'%H:%i')) AS DuracaoServico, p.nm_paciente AS nomePaciente,
+	tss.nm_status_servico AS StatusServico, u.vl_hora_trabalho AS valorHora
 	FROM 
 		servico s 
 	JOIN 
@@ -1152,8 +1120,20 @@ BEGIN
 		paciente p 
 	ON 
 		(p.cd_paciente = s.cd_paciente)
+	JOIN 
+		especializacao_usuario eu
+	ON
+		(u.nm_email_usuario = eu.nm_email_usuario)
+	JOIN
+		tipo_especializacao te
+	ON
+		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
+	JOIN
+		tipo_status_servico tss
+	ON
+		(s.cd_status_servico = tss.cd_status_servico)
 	WHERE 
-		p.cd_paciente = vCdPaciente
+		u.nm_email_usuario = vEmailCliente
     AND 
 		s.cd_status_servico = 3
 	OR  
@@ -1166,10 +1146,13 @@ END$$
 
 DROP PROCEDURE IF EXISTS listarAgendaClienteNaoFoi$$
 
-CREATE PROCEDURE listarAgendaClienteNaoFoi(vCdPaciente VARCHAR(200))
+CREATE PROCEDURE listarAgendaClienteNaoFoi(vEmailCliente VARCHAR(200))
 BEGIN 
 	SELECT 
-		u.img_usuario,s.dt_inicio_servico AS DtInicioServico, u.nm_usuario AS Nome_Cuidador, s.hr_inicio_servico as Hora_Inicio, s.hr_fim_servico as Hora_Fim
+		DATEDIFF(s.dt_inicio_servico,current_date()) as diferencaDia, u.nm_usuario as nomeCuidador, te.nm_tipo_especializacao as Especializacao,
+		date_format(s.dt_inicio_servico, '%d/%m/%Y') as dataServico, time_format(s.hr_inicio_servico, '%H:%i') as horaInicioServico, time_format(s.hr_fim_servico, '%H:%i') as horaFimServico, p.nm_paciente as nomePaciente,
+		tss.nm_status_servico as statusServico, u.vl_hora_trabalho as valorHora, TIMEDIFF(time_format(s.hr_fim_servico,'%H:%i'),time_format(s.hr_inicio_servico,'%H:%i')) 
+		as duracaoServico, u.img_usuario as imagemCuidador
 	FROM 
 		servico s 
 	JOIN 
@@ -1181,11 +1164,19 @@ BEGIN
 	ON 
 		(p.cd_paciente = s.cd_paciente)
 	JOIN
-		tipo_status_servico tsp
+		tipo_status_servico tss
 	ON 
-		(tsp.cd_status_servico = s.cd_status_servico)
+		(tss.cd_status_servico = s.cd_status_servico)
+	JOIN 
+		especializacao_usuario eu
+	ON
+		(eu.nm_email_usuario = u.nm_email_usuario)
+	JOIN
+		tipo_especializacao te
+	ON
+		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
 	WHERE 
-		p.cd_paciente = vCdPaciente
+		u.nm_email_usuario = vEmailCliente
     AND 
 		s.cd_status_servico = 1
 	OR  
@@ -1245,6 +1236,47 @@ BEGIN
 		u.vl_hora_trabalho <= vValorHora
 	GROUP BY
 		u.nm_email_usuario;
+END$$
+
+/* Procedure criada para buscar os pacientes que estão em serviço no momento da busca */
+
+DROP PROCEDURE IF EXISTS buscarPacienteServicoEmAndamento$$
+
+CREATE PROCEDURE buscarPacienteServicoEmAndamento(vCodigoPaciente INT)
+BEGIN
+	SELECT 
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico,
+		s.cd_num_servico, s.nm_complemento_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m'),
+		(CASE WEEKDAY(s.dt_inicio_servico) 
+                       when 0 then 'Segunda-feira'
+                       when 1 then 'Terça-feira'
+                       when 2 then 'Quarta-feira'
+                       when 3 then 'Quinta-feira'
+                       when 4 then 'Sexta-feira'
+                       when 5 then 'Sábado'
+                       when 6 then 'Domingo'                 
+                       END) AS DiaDaSemana, TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
+		u.vl_hora_trabalho, s.cd_geolocalizacao_entrada
+	FROM
+		servico s 
+	JOIN
+		paciente p 
+	ON
+		(s.cd_paciente = p.cd_paciente)
+	JOIN
+		usuario u 
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	WHERE
+		s.dt_inicio_servico = CURRENT_DATE()
+	AND
+		s.hr_inicio_servico <= CURRENT_TIME()
+	AND
+		s.hr_fim_servico >= CURRENT_TIME()
+	AND
+		p.cd_paciente = vCodigoPaciente
+	AND 
+		s.cd_status_servico = 1;
 END$$
 
 /*PROCEDURES REFENRENTE AO CUIDADOR*/

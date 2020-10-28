@@ -108,7 +108,6 @@ namespace prjCuidaEmCasa.classes.ServicoAgendado
 
         #endregion 
 
-
         #region Listar Serviço Selecionado
         public bool listarServicoSelecionado(string codigoServicoSelecionado) 
         {
