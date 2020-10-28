@@ -1395,7 +1395,7 @@ BEGIN
 		p.img_paciente, p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente), p.ds_paciente, s.cd_CEP_servico, s.nm_cidade_servico, 
 		s.nm_uf_servico, s.nm_bairro_servico, s.nm_rua_servico, s.cd_num_servico, s.nm_complemento_servico, 
 		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), 
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), tsp.nm_status_servico
 	FROM 
 		servico s 
 	JOIN
@@ -1414,6 +1414,9 @@ BEGIN
 		usuario u 
 	ON
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	JOIN
+		tipo_status_servico tsp
+	ON  (tsp.cd_status_servico = s.cd_status_servico)
 	WHERE 
 		s.cd_servico = vCodigoServico;
 END$$
