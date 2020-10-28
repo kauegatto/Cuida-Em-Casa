@@ -4,18 +4,3 @@ C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\bin\MySql.Data.dll
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
 C:\Users\kaue\Downloads\tcc\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-<<<<<<< HEAD
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\User\Desktop\EAD\TÉCNICO\TCC\plataforma homecare\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
-=======
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.dll
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\Cuida-Em-Casa\prjCuidaEmCasa\bin\prjCuidaEmCasa.pdb
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\Cuida-Em-Casa\prjCuidaEmCasa\bin\MySql.Data.dll
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.csprojResolveAssemblyReference.cache
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.dll
-C:\Users\Dougl\OneDrive\Área de Trabalho\3 ° ANO\TCC\Cuida-Em-Casa\prjCuidaEmCasa\obj\Debug\prjCuidaEmCasa.pdb
->>>>>>> 258101405ccff49860b33ea184e3be39c302c1b0
