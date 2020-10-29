@@ -1108,8 +1108,8 @@ CREATE PROCEDURE listarAgendaClienteJaFoi(vEmailCliente VARCHAR(200))
 BEGIN 
 	SELECT 
 		date_format(s.dt_inicio_servico, '%d/%m/%Y') AS DtInicioServico, time_format(s.hr_inicio_servico,'%H:%i') as Hora_Inicio, time_format(s.hr_fim_servico, '%H:%i') as Hora_Fim, u.img_usuario AS ImagemCuidador,u.nm_usuario 
-	AS Nome_Cuidador, te.nm_tipo_especializacao AS NomeEspecializacao, TIMEDIFF(time_format(s.hr_fim_servico,'%H:%i'), time_format(s.hr_inicio_servico,'%H:%i')) AS DuracaoServico, p.nm_paciente AS nomePaciente,
-	tss.nm_status_servico AS StatusServico, u.vl_hora_trabalho AS valorHora
+	AS Nome_Cuidador, group_concat(te.nm_tipo_especializacao) AS NomeEspecializacao, time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i') AS DuracaoServico, p.nm_paciente AS nomePaciente,
+	tss.nm_status_servico AS StatusServico, u.vl_hora_trabalho AS valorHora, s.cd_servico as cdServico
 	FROM 
 		servico s 
 	JOIN 
@@ -1138,7 +1138,8 @@ BEGIN
 		s.cd_status_servico = 3
 	OR  
 		s.cd_status_servico = 4
-    
+    GROUP BY
+		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico;
 END$$
@@ -1149,10 +1150,10 @@ DROP PROCEDURE IF EXISTS listarAgendaClienteNaoFoi$$
 CREATE PROCEDURE listarAgendaClienteNaoFoi(vEmailCliente VARCHAR(200))
 BEGIN 
 	SELECT 
-		DATEDIFF(s.dt_inicio_servico,current_date()) as diferencaDia, u.nm_usuario as nomeCuidador, te.nm_tipo_especializacao as Especializacao,
+		DATEDIFF(s.dt_inicio_servico,current_date()) as diferencaDia, u.nm_usuario as nomeCuidador, group_concat(te.nm_tipo_especializacao) as Especializacao,
 		date_format(s.dt_inicio_servico, '%d/%m/%Y') as dataServico, time_format(s.hr_inicio_servico, '%H:%i') as horaInicioServico, time_format(s.hr_fim_servico, '%H:%i') as horaFimServico, p.nm_paciente as nomePaciente,
 		tss.nm_status_servico as statusServico, u.vl_hora_trabalho as valorHora, TIMEDIFF(time_format(s.hr_fim_servico,'%H:%i'),time_format(s.hr_inicio_servico,'%H:%i')) 
-		as duracaoServico, u.img_usuario as imagemCuidador
+		as duracaoServico, u.img_usuario as imagemCuidador, s.cd_servico as cdServico
 	FROM 
 		servico s 
 	JOIN 
@@ -1183,7 +1184,7 @@ BEGIN
 		s.cd_status_servico = 2
 	OR
 		s.cd_status_servico = 5
-    
+	GROUP BY s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico;
 END$$
@@ -1314,7 +1315,7 @@ DROP PROCEDURE IF EXISTS listarServicosFuturos$$
 CREATE PROCEDURE listarServicosFuturos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, group_concat(tnp.nm_tipo_necessidade_paciente),
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, 
 		tss.nm_status_servico, p.img_paciente,DATEDIFF(s.dt_inicio_servico, current_date()), 
 		u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), s.cd_servico
@@ -1342,6 +1343,8 @@ BEGIN
 		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 2
+	GROUP BY
+		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico DESC, s.hr_inicio_servico; 
 END$$
@@ -1353,7 +1356,7 @@ DROP PROCEDURE IF EXISTS listarServicosProximos$$
 CREATE PROCEDURE listarServicosProximos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, tnp.nm_tipo_necessidade_paciente,
+		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, group_concat(tnp.nm_tipo_necessidade_paciente),
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, tss.nm_status_servico, p.img_paciente, DATEDIFF(s.dt_inicio_servico, current_date()),
 		u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), s.cd_servico
 	FROM 
@@ -1380,6 +1383,8 @@ BEGIN
 		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 2
+	GROUP BY
+		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$

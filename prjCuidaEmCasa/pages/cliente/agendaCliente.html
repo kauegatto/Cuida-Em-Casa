@@ -22,11 +22,21 @@
 <body>
 	<div class="estruturaGeral">
 		<header class="header">
-			<div class="areaLogo">
-				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			<div id="headerComum" class="visivel" style="display:none;">
+				<div class="areaLogo">
+					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" style="margin-left: 45px;">Agenda</h1>
+				</div>
 			</div>
-			<div class="areaTituloGeral">
-				<h1 class="tituloGeral" style="margin-left: 45px;">Agenda</h1>
+			<div id="headerNav" style="display:none;">
+				<div class="areaLogo">
+					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 18px;">Detalhes  do serviço</h1>
+				</div>
 			</div>
 		</header>
 		<main class="conteudoGeral">
@@ -68,7 +78,8 @@
 						<h3>Histórico</h3>
 					</div>
 				</div>
-				<div class="areaDadosAgendados">
+				<div id="listaHistorico"></div>
+				<!--<div class="areaDadosAgendados">
 					<h3 class="dataServico">10/09/2020 - 8h às 14h</h3>
 					<div class="areaImagemCuidador" style="background-image: url('img/imgCuidador1.jfif'); margin-top: 10px; margin-left: 16px;"></div>
 					<div class="areaInfoAgenda">
@@ -92,7 +103,7 @@
 						<p>Serviço realizado no dia 10/09/2020 duração de 6 horas.</p>
 						<span class="status">Status: </span><span class="status">Finalizado</span>
 					</div>
-				</div>
+				</div>-->
 			</div>
 			<div class="wrapper" id="wrapper-areaDetalhesServico">
 				<div class="areaInformacoesCuidador">

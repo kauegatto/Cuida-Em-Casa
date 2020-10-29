@@ -22,7 +22,7 @@ call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
-
+call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
