@@ -21,6 +21,7 @@ call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
 
+
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
 call infoServicoAtual(24);
 
@@ -30,6 +31,15 @@ call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
 
 call listarAgendaClienteJaFoiSelecionado(1);
+
+
+
+call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
+call infoServicoAtual(24);
+
+call buscarPacienteServicoEmAndamento(6);
+call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
+call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
 
 /* PROCEDURE DO CUIDADOR */
 
