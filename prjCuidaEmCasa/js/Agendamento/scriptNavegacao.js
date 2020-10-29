@@ -124,8 +124,9 @@ $(document).on("click", "#btnCuidador", function(){
     scriptInfoCuidador();
 });
 
-$("#btnFiltro").click(function (){
+$(document).on("click", "#btnFiltro", function(){
     scriptFiltro();
+    $(".infoFiltro").removeClass("visivel");
 });
 //pg 6 : info cuidador -> vai para finalizar
 $("#btnInfoCuidador").click(function () {

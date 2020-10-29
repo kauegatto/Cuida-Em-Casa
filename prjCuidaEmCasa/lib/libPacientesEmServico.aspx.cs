@@ -8,7 +8,7 @@ using prjCuidaEmCasa.classes.Agendamento;
 
 namespace prjCuidaEmCasa.lib
 {
-    public partial class libBuscarPaciente : System.Web.UI.Page
+    public partial class libPacientesEmServico : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,7 +21,8 @@ namespace prjCuidaEmCasa.lib
                     return;
                 }
             }
-            else {
+            else
+            {
                 Response.Write("usuarioIncorreto");
                 return;
             }
@@ -31,16 +32,16 @@ namespace prjCuidaEmCasa.lib
 
             string usuarioLogado = Request["usuarioLogado"].ToString();
 
-            if (!paciente.buscarPacientes(usuarioLogado))
+            if (!paciente.buscarPacientesEmServico(usuarioLogado))
             {
                 return;
             }
 
             string listaPacientes = "";
 
-            for (int i = 0; i < paciente.cd_paciente.Count; i++)
+            for (int i = 0; i < paciente.cd_servico.Count; i++)
             {
-                listaPacientes += "<div class='areaPaciente " + paciente.cd_paciente[i] + "'>";
+                listaPacientes += "<div class='areaPaciente " + paciente.cd_servico[i] + "'>";
                 listaPacientes += "<div class='areaImagemPaciente'></div>";
                 listaPacientes += "<h3 class='nomePaciente'>" + paciente.nm_paciente[i] + "</h3>";
                 listaPacientes += "<span class='enderecoPaciente'>" + paciente.nm_cidade[i] + " - " + paciente.nm_estado[i] + "</span>";

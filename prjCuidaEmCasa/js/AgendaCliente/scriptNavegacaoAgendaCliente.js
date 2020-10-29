@@ -1,5 +1,6 @@
 ﻿import scriptAgendaClienteAgendado from './scriptAgendaCliente.js';
 import scriptHistoricoClienteAgendado from './scriptHistoricoCliente.js';
+import scriptDetalheHistoricoCliente from './scriptDetalheHistoricoCliente.js';
 
 $(document).ready(function(){
 
@@ -55,5 +56,25 @@ $(document).ready(function(){
          scriptAgendaClienteAgendado();
 
     });
+
+    $(document).on("click", ".areaDadosAgendados", function(){
+
+        $(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+        });
+
+        var classes = $(this).attr("class").split(/\s+/);
+
+        scriptDetalheHistoricoCliente(classes[1]);
+      
+        $("#wrapper-areaHistoricoAgendaCliente").css("display","none");
+        $('#headerComum').css("display","none");
+ 
+        $("#wrapper-areaDetalhesServico").addClass("visivel");
+        $('#headerNav').addClass("visivel");
+        
+
+    });
+
 
 });
