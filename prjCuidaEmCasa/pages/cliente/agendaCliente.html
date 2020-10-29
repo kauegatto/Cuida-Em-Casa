@@ -9,15 +9,34 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+
+	<script
+  	 src="https://code.jquery.com/jquery-3.5.1.js"
+ 	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ 	 crossorigin="anonymous"></script>
+
+    <!-- JS PÁGINA -->
+	<script src="../../js/AgendaCliente/scriptNavegacaoAgendaCliente.js" type="module"></script>
+
 </head>
 <body>
 	<div class="estruturaGeral">
 		<header class="header">
-			<div class="areaLogo">
-				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			<div id="headerComum" class="visivel" style="display:none;">
+				<div class="areaLogo">
+					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" style="margin-left: 45px;">Agenda</h1>
+				</div>
 			</div>
-			<div class="areaTituloGeral">
-				<h1 class="tituloGeral" style="margin-left: 45px;">Agenda</h1>
+			<div id="headerNav" style="display:none;">
+				<div class="areaLogo">
+					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 18px;">Detalhes  do serviço</h1>
+				</div>
 			</div>
 		</header>
 		<main class="conteudoGeral">
@@ -30,6 +49,7 @@
 						<h3>Histórico</h3>
 					</div>
 				</div>
+				<div id="listaAgenda"></div>
 				<!--<div class="areaDadosAgendados" >
 					<div class="iconeRelogio">
 						<img src="../../img/icones/agenda/iconeRelogio.png" >
@@ -58,12 +78,13 @@
 						<h3>Histórico</h3>
 					</div>
 				</div>
-				<div class="areaDadosAgendados">
+				<div id="listaHistorico"></div>
+				<!--<div class="areaDadosAgendados">
 					<h3 class="dataServico">10/09/2020 - 8h às 14h</h3>
 					<div class="areaImagemCuidador" style="background-image: url('img/imgCuidador1.jfif'); margin-top: 10px; margin-left: 16px;"></div>
 					<div class="areaInfoAgenda">
 						<h3>Marcelo Castro</h3>
-						<img src="img/icones/agenda/iconeMaleta.png">
+						<img src="../../img/icones/agenda/iconeMaleta.png">
 						<span class="especializacao">Fisioterapeuta</span>
 						<p>Serviço realizado no dia 10/09/2020 duração de 6 horas para paciente Maria Graça Dolores.</p>
 						<span class="status">Status: </span><span class="status">Finalizado</span>
@@ -77,12 +98,12 @@
 					<div class="areaImagemCuidador" style="background-image: url('img/imgCuidador1.jfif'); margin-top: 10px; margin-left: 16px;"></div>
 					<div class="areaInfoAgenda">
 						<h3>Marcelo Castro</h3>
-						<img src="img/icones/agenda/iconeMaleta.png">
+						<img src="../../img/icones/agenda/iconeMaleta.png">
 						<span class="especializacao">Fisioterapeuta</span>
 						<p>Serviço realizado no dia 10/09/2020 duração de 6 horas.</p>
 						<span class="status">Status: </span><span class="status">Finalizado</span>
 					</div>
-				</div>
+				</div>-->
 			</div>
 			<div class="wrapper" id="wrapper-areaDetalhesServico">
 				<div class="areaInformacoesCuidador">
@@ -91,15 +112,15 @@
 					<div class="areaDadosCuidador">
 						<h3>Marcelo Castro</h3>
 						<div class="areaEstrela">
-							<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-							<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-							<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-							<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-							<img src="img/icones/agenda/iconeEstrelaVazada.png">
+							<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+							<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+							<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+							<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+							<img src="../../img/icones/agenda/iconeEstrelaVazada.png">
 							<span>4.0/5.0</span>
 						</div>
 						<div>
-							<img src="img/icones/agenda/iconeMaleta.png">
+							<img src="../../img/icones/agenda/iconeMaleta.png">
 							<span>Fisioperapeuta</span>
 						</div>
 						<div>
@@ -127,11 +148,11 @@
 						<div class="areaAvaliacao">
 							<div class="areaEstrela">
 								<span style="font-size: 16px; margin-left: 5px;">Sua Avaliação: </span>
-								<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-								<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-								<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-								<img src="img/icones/agenda/iconeEstrelaPreenchida.png">
-								<img src="img/icones/agenda/iconeEstrelaVazada.png">
+								<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+								<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+								<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+								<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
+								<img src="../../img/icones/agenda/iconeEstrelaVazada.png">
 								<span>5.0/5.0</span>
 							</div>
 							<span>Comentário: </span><span style="font-size: 14px; font-weight: normal;">Muito bom  e atencioso!</span>
@@ -168,10 +189,12 @@
 		<footer class="footer">
 			<nav>
 				<div class="menuGeral">
-					<div class="areaIcone">
-						<img src="../../img/icones/agenda/iconeAtendimento.png">
-					</div>
-					<span style="margin-left: 8px;">Atendimento</span>
+					<a href="atendimento.html">
+						<div class="areaIcone">
+							<img src="../../img/icones/agenda/iconeAtendimento.png">
+						</div>
+						<span style="margin-left: 8px;">Atendimento</span>
+					</a>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">
@@ -180,10 +203,12 @@
 					<span style="margin-left: 22px;">Agenda</span>
 				</div>
 				<div class="menuGeral">
-					<div class="areaIcone">
-						<img src="../../img/icones/agenda/iconePaciente.png">
-					</div>
-					<span style="margin-left: 19px;">Pacientes</span>
+					<a href="pacientes.html">
+						<div class="areaIcone">
+							<img src="../../img/icones/agenda/iconePaciente.png">
+						</div>
+						<span style="margin-left: 19px;">Pacientes</span>
+					</a>
 				</div>
 				<div class="menuGeral">
 					<div class="areaIcone">

@@ -40,11 +40,11 @@ namespace prjCuidaEmCasa.lib
 
             for (int i = 0; i < classeAgendaCliente.nm_cuidador.Count; i++)
             {
-                listaAgendaCliente += "<div class='areaDadosAgendados'>";
+                listaAgendaCliente += "<div class='areaDadosAgendados " + classeAgendaCliente.cd_servico[i].ToString() + "'>";
                 listaAgendaCliente += "   <div class='iconeRelogio'>";
                 listaAgendaCliente += "       <img src='../../img/icones/agenda/iconeRelogio.png' >";
                 listaAgendaCliente += "   </div>";
-                listaAgendaCliente += "   <h3 class='dataServico'>Serviço agendado para " + classeAgendaCliente.diferencaData[i].ToString() +"dias</h3>";
+                listaAgendaCliente += "   <h3 class='dataServico'>Serviço agendado para " + classeAgendaCliente.diferencaData[i].ToString() +" dias</h3>";
                 listaAgendaCliente += "   <div class='areaImagemCuidador'); margin-top: 10px; margin-left: 16px;'></div>";
                 listaAgendaCliente += "       <div class='areaInfoAgenda'>";
                 listaAgendaCliente += "           <h3>"+ classeAgendaCliente.nm_cuidador[i].ToString() +"</h3>";
@@ -58,12 +58,14 @@ namespace prjCuidaEmCasa.lib
                 string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
                 double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
                 double valorTotal = horaFinal * double.Parse(classeAgendaCliente.vl_cuidador[i]);
-                listaAgendaCliente += "               <span>Total: </span><span>" + valorTotal.ToString() + "</span>";
+                listaAgendaCliente += "               <span>Total: </span><span>" + valorTotal.ToString() + " Reais</span>";
                 listaAgendaCliente += "           </div>";
                 listaAgendaCliente += "   </div>";
                 listaAgendaCliente += "   <div class='invi'>" + classeAgendaCliente.base64String[i].ToString() +"</div>";
                 listaAgendaCliente += "</div>";
             }
+
+            Response.Write(listaAgendaCliente);
 
         }
     }

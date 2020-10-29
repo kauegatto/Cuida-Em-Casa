@@ -275,6 +275,7 @@ insert into tipo_status_servico values(1,'Em Andamento');
 insert into tipo_status_servico values(2,'Pendente');
 insert into tipo_status_servico values(3,'Finalizado');
 insert into tipo_status_servico values(4,'Cancelado');
+insert into tipo_status_servico values(5,'Confirmado');
 
 CREATE TABLE avaliacao
 (

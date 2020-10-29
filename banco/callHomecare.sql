@@ -20,9 +20,15 @@ call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
+<<<<<<< HEAD
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
 call infoServicoAtual(24);
 
+=======
+call buscarPacienteServicoEmAndamento(6);
+call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
+call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
+>>>>>>> 2f87e9bb88971120da1d667e2136fba4e5109dce
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 

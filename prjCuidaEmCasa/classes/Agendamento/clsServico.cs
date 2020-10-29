@@ -250,6 +250,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                         nm_paciente.Add(dados[7].ToString());
                         situacaoServico.Add(dados[8].ToString());
                         vl_cuidador.Add(dados[9].ToString());
+                        cd_servico.Add(dados[10].ToString());
                     }
                 }
 
@@ -286,6 +287,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                             base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
                         }
                         else { base64String.Add(base64standard); }
+                        cd_servico.Add(dados[11].ToString());
                     }
                 }
 
