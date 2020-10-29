@@ -21,6 +21,7 @@ call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
 call buscarPacienteServicoEmAndamento(6);
+call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 
 /* PROCEDURE DO CUIDADOR */
 

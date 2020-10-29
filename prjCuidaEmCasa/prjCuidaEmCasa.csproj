@@ -128,6 +128,8 @@
     <Content Include="img\logoIndex.svg" />
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
+    <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
+    <Content Include="js\AgendaCliente\scriptNavegacaoAgendaCliente.js" />
     <Content Include="js\Agendamento\scriptAgendarServico.js" />
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />

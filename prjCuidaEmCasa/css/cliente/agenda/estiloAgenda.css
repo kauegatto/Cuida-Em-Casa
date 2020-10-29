@@ -22,11 +22,11 @@
 
 .areaHistorico h3 { text-align: center; margin-top: 17px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
 
-.areaDadosAgendados { margin-bottom: 14px; width: 87%; min-height: 196px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 22px;}
+.areaDadosAgendados { margin-bottom: 14px; width: 87%; min-height: 215px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 22px;}
 
-.dataServico { font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; padding: 5px; margin-left: 11px; border-bottom: 1px solid black; }
+.dataServico { width: 90%; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; padding: 5px; margin-left: 11px; border-bottom: 1px solid black; }
 
-.areaImagemCuidador { width: 23%; height: 77px; float: left; position: relative; background-size: cover; border-radius: 50%; background-position: center;}
+.areaImagemCuidador { margin-left: 14px; margin-top: 10px;width: 23%; height: 77px; float: left; position: relative; background-size: cover; border-radius: 50%; background-position: center;}
 
 .areaInfoAgenda { width: 70%; height: 128px; float: right; }
 
