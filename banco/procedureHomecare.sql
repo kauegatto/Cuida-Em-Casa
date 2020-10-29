@@ -1242,41 +1242,21 @@ END$$
 
 DROP PROCEDURE IF EXISTS buscarPacienteServicoEmAndamento$$
 
-CREATE PROCEDURE buscarPacienteServicoEmAndamento(vCodigoPaciente INT)
+CREATE PROCEDURE buscarPacienteServicoEmAndamento(vEmailUsuario VARCHAR(200	))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico,
-		s.cd_num_servico, s.nm_complemento_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m'),
-		(CASE WEEKDAY(s.dt_inicio_servico) 
-                       when 0 then 'Segunda-feira'
-                       when 1 then 'Terça-feira'
-                       when 2 then 'Quarta-feira'
-                       when 3 then 'Quinta-feira'
-                       when 4 then 'Sexta-feira'
-                       when 5 then 'Sábado'
-                       when 6 then 'Domingo'                 
-                       END) AS DiaDaSemana, TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, s.cd_geolocalizacao_entrada
+		p.img_paciente, p.nm_paciente, p.nm_cidade_paciente, 
+		p.nm_uf_paciente, s.cd_servico
 	FROM
 		servico s 
 	JOIN
 		paciente p 
 	ON
 		(s.cd_paciente = p.cd_paciente)
-	JOIN
-		usuario u 
-	ON
-		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE
-		s.dt_inicio_servico = CURRENT_DATE()
+		s.cd_status_servico = 1
 	AND
-		s.hr_inicio_servico <= CURRENT_TIME()
-	AND
-		s.hr_fim_servico >= CURRENT_TIME()
-	AND
-		p.cd_paciente = vCodigoPaciente
-	AND 
-		s.cd_status_servico = 1;
+	    s.nm_email_usuario = vEmailUsuario;
 END$$
 
 /*PROCEDURES REFENRENTE AO CUIDADOR*/
@@ -1523,9 +1503,19 @@ DROP PROCEDURE IF EXISTS infoServicoAtual$$
 CREATE PROCEDURE infoServicoAtual(vServico INT)
 BEGIN
 	SELECT
-		p.img_paciente, p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente) AS Necessidade,
-		s.nm_rua_servico, s.cd_num_servico, s.nm_bairro_servico, s.dt_inicio_servico,
-		s.hr_inicio_servico, s.hr_fim_servico, s.cd_geolocalizacao_entrada
+		u.img_usuario, u.nm_usuario, s.nm_rua_servico, s.cd_num_servico, 
+		s.nm_bairro_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'),
+		CASE WEEKDAY(s.dt_inicio_servico) 
+                       when 0 then 'Segunda-feira'
+                       when 1 then 'Terça-feira'
+                       when 2 then 'Quarta-feira'
+                       when 3 then 'Quinta-feira'
+                       when 4 then 'Sexta-feira'
+                       when 5 then 'Sábado'
+                       when 6 then 'Domingo'                 
+                       END AS DiaDaSemana,
+		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
 	FROM
 		servico s
 	JOIN
@@ -1540,6 +1530,10 @@ BEGIN
 		tipo_necessidade_paciente tnp
 	ON
 		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
+	JOIN
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE
 		s.cd_servico = vServico;
 END$$	

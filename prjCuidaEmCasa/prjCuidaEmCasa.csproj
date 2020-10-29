@@ -58,6 +58,7 @@
     <Content Include="css\cliente\agendamento\estiloConfirmacaoCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
     <Content Include="css\cliente\agenda\estiloAgenda.css" />
+    <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
     <Content Include="css\cliente\agendamento\estiloInfoCuidador.css" />
@@ -147,8 +148,10 @@
     <Content Include="js\Pacientes\scriptAdicionarPaciente.js" />
     <Content Include="js\Pacientes\scriptBuscarDadosPaciente.js" />
     <Content Include="js\Pacientes\scriptEditarDadosPaciente.js" />
+    <Content Include="js\Pacientes\scriptInfoServicoAtual.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
     <Content Include="js\Pacientes\scriptPaciente.js" />
+    <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
@@ -164,10 +167,13 @@
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
+    <Content Include="lib\libInfoServicoAtual.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
+    <Content Include="lib\libPacientesEmServico.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="pages\cliente\agendaCliente.html" />
+    <Content Include="pages\cliente\servicoAtual.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\atendimento.html" />
@@ -276,6 +282,13 @@
     <Compile Include="lib\libFinalizarServico.aspx.designer.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libInfoServicoAtual.aspx.cs">
+      <DependentUpon>libInfoServicoAtual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libInfoServicoAtual.aspx.designer.cs">
+      <DependentUpon>libInfoServicoAtual.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libListarServicosAgendados.aspx.cs">
       <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -289,6 +302,13 @@
     </Compile>
     <Compile Include="lib\libHistoricoServico.aspx.designer.cs">
       <DependentUpon>libHistoricoServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libPacientesEmServico.aspx.cs">
+      <DependentUpon>libPacientesEmServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libPacientesEmServico.aspx.designer.cs">
+      <DependentUpon>libPacientesEmServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libServicoAgendadoSelecionado.aspx.cs">
       <DependentUpon>libServicoAgendadoSelecionado.aspx</DependentUpon>

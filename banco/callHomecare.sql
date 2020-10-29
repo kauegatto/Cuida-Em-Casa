@@ -20,7 +20,8 @@ call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
-call buscarPacienteServicoEmAndamento(6);
+call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
+call infoServicoAtual(24);
 
 /* PROCEDURE DO CUIDADOR */
 
@@ -37,7 +38,6 @@ call marcarCheckin(5);
 call marcarCheckout(5);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('reinaldosouza@gmail.com');
-call infoServicoAtual(5);
 
 /* PROCEDURE DO ADMINISTRADOR */
 
