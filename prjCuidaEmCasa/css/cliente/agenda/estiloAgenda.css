@@ -42,7 +42,7 @@
 
 .statusAgendado { font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 16px; margin-left: 4px; color: #27AE60; }
 
-.areaInformacoesCuidador { width: 87%; height: 418px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 25px; margin-top: 10px; }
+.areaInformacoesCuidador { width: 87%; min-height: 455px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 25px; margin-top: 10px; }
 
 .tituloInformacoesCuidador { float: left; margin-top: 11px; margin-left: 40px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
 
@@ -56,7 +56,7 @@
 
 .areaEstrela img { margin-top: 5px; }
 
-.areaDescricao { width: 100%; height: 80px; float: left;}
+.areaDescricao { width: 100%; height: 80px; float: left; margin-top: 15px;}
 
 .areaDescricao h3 {  margin-left: 5px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; }
 
@@ -76,7 +76,7 @@
 
 .areaAvaliacao span { margin-left: 5px; float: left; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
 
-.btnDenunciar { font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF; width: 142px; margin-left: 109px; height: 34px; background: #646464; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; border-style: none;} 
+.btnDenunciar { margin-top: 20px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF; width: 142px; margin-left: 109px; height: 34px; background: #646464; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; border-style: none;} 
 
 .areaEmail { width: 100%; height: 55px; background: #285593; }
 

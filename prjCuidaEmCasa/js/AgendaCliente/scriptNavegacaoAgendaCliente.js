@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 		$(".visivel").each(function (i, obj) {
 	       $(this).removeClass("visivel");
-	    });
+	});
 	    
 	    $("#wrapper-areaHistoricoAgendaCliente").css("display","none");
 

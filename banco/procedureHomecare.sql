@@ -1153,8 +1153,8 @@ BEGIN
 	SELECT 
 		u.img_usuario, u.nm_usuario, u.cd_avaliacao, group_concat(te.nm_tipo_especializacao), tg.nm_genero, u.ds_usuario, 
 		s.nm_rua_servico, s.cd_num_servico ,s.cd_CEP_servico, s.nm_complemento_servico, 
-		s.nm_cidade_servico, s.nm_uf_servico, s.hr_inicio_servico, s.hr_fim_servico, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico),
-		u.vl_hora_trabalho 
+		s.nm_cidade_servico, s.nm_uf_servico, time_format(s.hr_inicio_servico, '%H:%i'), time_format(s.hr_fim_servico, '%H:%i'), 
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho 
 	FROM 
 		usuario u
 	JOIN

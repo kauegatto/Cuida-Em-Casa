@@ -50,24 +50,6 @@
 					</div>
 				</div>
 				<div id="listaAgenda"></div>
-				<!--<div class="areaDadosAgendados" >
-					<div class="iconeRelogio">
-						<img src="../../img/icones/agenda/iconeRelogio.png" >
-					</div>
-					<h3 class="dataServico">Serviço agendado para 11 dias</h3>
-					<div class="areaImagemCuidador" style="background-image: url('img/imgCuidador1.jfif'); margin-top: 10px; margin-left: 16px;"></div>
-					<div class="areaInfoAgenda">
-						<h3>Marcelo Castro</h3>
-						<img src="../../img/icones/agenda/iconeMaleta.png">
-						<span class="especializacao">Fisioterapeuta</span>
-						<p>Serviço agendado para 23/09/2020, das 08:00 ás 14:00 horas para paciente Maria Graça Dolores</p>
-						<span class="status">Status: </span><span class="statusAgendado">Agendado</span>
-						<div class="valor">
-							<span>Total: </span><span>R$ 100,00</span>
-						</div>
-					</div>
-				</div>	-->
-				
 			</div>
 			<div class="wrapper" id="wrapper-areaHistoricoAgendaCliente">
 				<div class="opcoes">
@@ -79,36 +61,12 @@
 					</div>
 				</div>
 				<div id="listaHistorico"></div>
-				<!--<div class="areaDadosAgendados">
-					<h3 class="dataServico">10/09/2020 - 8h às 14h</h3>
-					<div class="areaImagemCuidador" style="background-image: url('img/imgCuidador1.jfif'); margin-top: 10px; margin-left: 16px;"></div>
-					<div class="areaInfoAgenda">
-						<h3>Marcelo Castro</h3>
-						<img src="../../img/icones/agenda/iconeMaleta.png">
-						<span class="especializacao">Fisioterapeuta</span>
-						<p>Serviço realizado no dia 10/09/2020 duração de 6 horas para paciente Maria Graça Dolores.</p>
-						<span class="status">Status: </span><span class="status">Finalizado</span>
-						<div class="valor">	
-							<span>Total: </span><span>R$ 200,00</span>
-						</div>
-					</div>
-				</div>
-				<div class="areaDadosAgendados">
-					<h3 class="dataServico">10/09/2020 - 8h às 14h</h3>
-					<div class="areaImagemCuidador" style="background-image: url('img/imgCuidador1.jfif'); margin-top: 10px; margin-left: 16px;"></div>
-					<div class="areaInfoAgenda">
-						<h3>Marcelo Castro</h3>
-						<img src="../../img/icones/agenda/iconeMaleta.png">
-						<span class="especializacao">Fisioterapeuta</span>
-						<p>Serviço realizado no dia 10/09/2020 duração de 6 horas.</p>
-						<span class="status">Status: </span><span class="status">Finalizado</span>
-					</div>
-				</div>-->
 			</div>
 			<div class="wrapper" id="wrapper-areaDetalhesServico">
 				<div class="areaInformacoesCuidador">
 					<h3 class="tituloInformacoesCuidador">Informações do Cuidador</h3>
 					<div class="areaImagemCuidador" style="margin-top: 10px; margin-left: 16px;"></div>
+					<div class="invi"></div>
 					<div class="areaDadosCuidador">
 						<h3 id="nomeCuidador"></h3>
 						<div class="areaEstrela">
@@ -117,32 +75,31 @@
 							<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
 							<img src="../../img/icones/agenda/iconeEstrelaPreenchida.png">
 							<img src="../../img/icones/agenda/iconeEstrelaVazada.png">
-							<span>4.0/5.0</span>
+							<span id="notaAvaliacao"></span>
 						</div>
 						<div>
 							<img src="../../img/icones/agenda/iconeMaleta.png">
-							<span>Fisioperapeuta</span>
+							<span id="especializacao"></span>
 						</div>
 						<div>
-							<span>Gênero: </span><span style="font-weight: normal">Masculino</span>
+							<span>Gênero: </span><span style="font-weight: normal" id="genero"></span>
 						</div>
-						<div class="invi"></div>
 					</div>
 					<div class="areaDescricao">
 						<h3>Descrição:</h3>
-						<p>Gosto muito de idosos, e adoro conversar. Sou muito exigente comigo mesmo em tudo que faço, e tento ser o mais eficiente que posso. </p>
+						<p id="descricao"></p>
 					</div>
 					<div class="linha"></div>
 					<h3 class="tituloInformacoesCuidador" style="margin-top: 0px;">Informações do Serviço</h3>
 					<div class="areaEndereco">
 						<div class="endereco">
-							<span class="tituloEndereco">Endereço: </span> <span class="infoEndereco">Av. Gonzaga 144 </span>
+							<span class="tituloEndereco">Endereço: </span> <span class="infoEndereco" id="ruaServico"></span>
 						</div>
 						<div class="endereco">
-							<span class="tituloEndereco">Horário: </span><span class="infoEndereco">08:00AM - 14:00PM</span>
+							<span class="tituloEndereco">Horário: </span><span class="infoEndereco" id="horario"></span>
 						</div>
 						<div class="endereco">
-							<span class="tituloEndereco">Valor pago: </span><span class="infoEndereco">R$100,00	</span>
+							<span class="tituloEndereco">Valor pago: </span><span class="infoEndereco" id="valorTotal">	</span>
 						</div>
 						<div class="linha" style="margin-top: 8px;"></div>
 						<h3 class="tituloInformacoesCuidador" style="margin-top: 0px; margin-left: 49px;">Avaliação do Serviço</h3>
