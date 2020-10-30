@@ -355,7 +355,7 @@ insert into servico values(12,'2020-12-14','07:00:00','2020-10-14','10:00:00','1
 insert into servico values(13,'2020-12-14','12:00:00','2020-10-14','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
 insert into servico values(14,'2020-12-30','12:00:00','2020-10-30','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
 /*Serviços Cancelados*/
-insert into servico values(15,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São VicenteSão Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
+insert into servico values(15,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4);
 
 CREATE TABLE tipo_ocorrencia
 (

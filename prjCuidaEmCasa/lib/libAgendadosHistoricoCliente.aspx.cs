@@ -42,7 +42,7 @@ namespace prjCuidaEmCasa.lib
 
             for (int i = 0; i < classeHistoricoCliente.nm_paciente.Count; i++)
             {
-                listaHistorico += "<div class='areaDadosAgendados " + classeHistoricoCliente.cd_servico[i].ToString() +"'>";
+                listaHistorico += "<div class='areaDadosAgendadosHistorico " + classeHistoricoCliente.cd_servico[i].ToString() +"'>";
                 listaHistorico += "    <h3 class='dataServico'>" + classeHistoricoCliente.dt_inicio_servico[i].ToString() + " - " + classeHistoricoCliente.hr_inicio_servico[i].ToString() + " às " + classeHistoricoCliente.hr_fim_servico[i].ToString() + "</h3>";
                 listaHistorico += "    <div class='areaImagemCuidador' style='margin-top: 10px; margin-left: 16px;'></div>";
                 listaHistorico += "        <div class='areaInfoAgenda'>";

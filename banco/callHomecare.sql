@@ -27,10 +27,10 @@ call infoServicoAtual(24);
 
 
 call buscarPacienteServicoEmAndamento(6);
-call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
-call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
+call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
+call listarAgendaClienteJaFoi('flaviapriscilamarianasilveira@gmail.com');
 
-call listarAgendaClienteJaFoiSelecionado(1);
+call listarAgendaClienteJaFoiSelecionado(13);
 
 
 

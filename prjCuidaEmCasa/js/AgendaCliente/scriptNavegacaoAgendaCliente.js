@@ -57,7 +57,7 @@ $(document).ready(function(){
 
     });
 
-    $(document).on("click", ".areaDadosAgendados", function(){
+    $(document).on("click", ".areaDadosAgendadosHistorico", function(){
 
         $(".visivel").each(function (i, obj) {
            $(this).removeClass("visivel");
