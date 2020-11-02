@@ -73,7 +73,6 @@ $(document).ready(function(){
         $("#wrapper-areaDetalhesServico").addClass("visivel");
         $('#headerNav').addClass("visivel");
         
-
     });
 
 

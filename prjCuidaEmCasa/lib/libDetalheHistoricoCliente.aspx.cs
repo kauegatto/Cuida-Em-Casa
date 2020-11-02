@@ -102,12 +102,8 @@ namespace prjCuidaEmCasa.lib
             infoServico += "<div class='areaAvaliacao'>";
             infoServico += "<div class='areaEstrela'>";
             infoServico += "<span style='font-size: 16px; margin-left: 5px;'>Sua Avaliação: </span>";
-            infoServico += "<img src='../../img/icones/agenda/iconeEstrelaPreenchida.png'>";
-            infoServico += "<img src='../../img/icones/agenda/iconeEstrelaPreenchida.png'>";
-            infoServico += "<img src='../../img/icones/agenda/iconeEstrelaPreenchida.png'>";
-            infoServico += "<img src='../../img/icones/agenda/iconeEstrelaPreenchida.png'>";
-            infoServico += "<img src='../../img/icones/agenda/iconeEstrelaVazada.png'>";
-            infoServico += "<span>5.0/5.0</span>";
+            infoServico += "<div id='#rateYo'></div>";
+            infoServico += "<span id='valorAvaliacao'></span>";
             infoServico += "</div>";
             infoServico += "<span>Comentário: </span><span style='font-size: 14px; font-weight: normal;'>Muito bom  e atencioso!</span>";
             infoServico += "</div>";
