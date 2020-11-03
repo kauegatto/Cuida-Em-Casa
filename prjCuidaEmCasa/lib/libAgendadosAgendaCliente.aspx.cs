@@ -44,7 +44,13 @@ namespace prjCuidaEmCasa.lib
                 listaAgendaCliente += "   <div class='iconeRelogio'>";
                 listaAgendaCliente += "       <img src='../../img/icones/agenda/iconeRelogio.png' >";
                 listaAgendaCliente += "   </div>";
-                listaAgendaCliente += "   <h3 class='dataServico'>Serviço agendado para " + classeAgendaCliente.diferencaData[i].ToString() +" dias</h3>";
+                if (classeAgendaCliente.diferencaData[i].ToString() == "0")
+                {
+                    listaAgendaCliente += "   <h3 class='dataServico'>Serviço agendado para hoje</h3>";
+                }
+                else {
+                    listaAgendaCliente += "   <h3 class='dataServico'>Serviço agendado para " + classeAgendaCliente.diferencaData[i].ToString() + " dias</h3>";
+                }
                 listaAgendaCliente += "   <div class='areaImagemCuidador'); margin-top: 10px; margin-left: 16px;'></div>";
                 listaAgendaCliente += "       <div class='areaInfoAgenda'>";
                 listaAgendaCliente += "           <h3>"+ classeAgendaCliente.nm_cuidador[i].ToString() +"</h3>";

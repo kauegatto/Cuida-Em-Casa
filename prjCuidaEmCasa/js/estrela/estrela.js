@@ -1,48 +1,33 @@
 $(document).ready(function(){
 
-        var rating = 1.6;
+        var rating = 5;
 
-        $(".counter").text(rating);
-
-        $("#rateYo").on("rateyo.init", function () { console.log("rateyo.init"); });
+        $(".counter").text(rating); 
 
         $("#rateYo").rateYo({
-          rating: rating,
+          rating: 1,
           numStars: 5,
           precision: 2,
-          starWidth: "64px",
+          starWidth: "20px",
           spacing: "5px",
           halfStar: true,
-    rtl: true,
-          multiColor: {
-
-            startColor: "#000000",
-            endColor  : "#ffffff"
-          },
-          onInit: function () {
-
-            console.log("On Init");
-          },
-          onSet: function () {
-
-            console.log("On Set");
-          }
-        }).on("rateyo.set", function () { console.log("rateyo.set"); })
-          .on("rateyo.change", function () { console.log("rateyo.change"); });
-
-        $(".rateyo").rateYo();
-
-        $(".rateyo-readonly-widg").rateYo({
-
-          rating: rating,
-          numStars: 5,
-          precision: 2,
-          minValue: 1,
-          maxValue: 5
-        }).on("rateyo.change", function (e, data) {
-        
-          console.log(data.rating);
+          normalFill: "#646464",
+          ratedFill: "#00000"
         });
+
+       $("#rateYo").on("rateyo.init", function () { console.log("rateyo.init"); });
+
+      var $rateYo = $("#rateYo").rateYo();
+
+      $("#rateYo").click(function(){
+
+         var value = $rateYo.rateYo("rating");
+         console.log(value);
+      });
+
+       
+
+        
 
 
 });
