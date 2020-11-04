@@ -96,7 +96,6 @@ namespace prjCuidaEmCasa.lib
             listaAgenda += "</div>";
             listaAgenda += "</div>";
             listaAgenda += "</div>";
-            listaAgenda += "<button class='btnCancelar'>Cancelar</button>";
             listaAgenda += "</div>";
 
             Response.Write(listaAgenda);

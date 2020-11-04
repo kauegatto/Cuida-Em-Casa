@@ -12,6 +12,18 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request["codigoServico"] == null)
+            {
+                Response.Write("false");
+                return;
+            }
+
+            if (Request["codigoServico"].ToString() == "")
+            {
+                Response.Write("false");
+                return;
+            }
+
             string cdServico = Request["codigoServico"].ToString();
 
             clsServicoAgendado servico = new clsServicoAgendado();

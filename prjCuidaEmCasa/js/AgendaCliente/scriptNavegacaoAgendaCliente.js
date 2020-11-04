@@ -3,6 +3,7 @@ import scriptHistoricoClienteAgendado from './scriptHistoricoCliente.js';
 import scriptDetalheHistoricoCliente from './scriptDetalheHistoricoCliente.js';
 import scriptDenunciarCuidador from './scriptDenunciarCuidador.js';
 import scriptDetalheAgendadosCliente from './scriptDetalheAgendadosCliente.js';
+import scriptCancelarServicoAgendado from './scriptCancelarServicoAgendado.js';
 
 $(document).ready(function(){
 
@@ -72,7 +73,7 @@ $(document).ready(function(){
 
         scriptDetalheAgendadosCliente(classes[1]);
 
-        //localStorage.setItem('cdServico', classes[1]);
+        localStorage.setItem('cdServico', classes[1]);
         
         $("#wrapper-areaAgendadosAgendaCliente").css("display","none");
         $('#headerComum').css("display","none");
@@ -194,6 +195,12 @@ $(document).ready(function(){
     $('.btnEnviarDenuncia').click(function(){
 
         scriptDenunciarCuidador(localStorage.getItem('usuarioLogado'), $('.areaRelatarProblema').val(), localStorage.getItem('cdServico'), localStorage.getItem('cdTipoDenuncia'));
+
+    });
+
+    $('.btnCancelar').click(function(){
+
+        scriptCancelarServicoAgendado();
 
     });
 });

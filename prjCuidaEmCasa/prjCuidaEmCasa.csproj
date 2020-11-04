@@ -131,6 +131,7 @@
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
+    <Content Include="js\AgendaCliente\scriptCancelarServicoAgendado.js" />
     <Content Include="js\AgendaCliente\scriptDetalheAgendadosCliente.js" />
     <Content Include="js\AgendaCliente\scriptDenunciarCuidador.js" />
     <Content Include="js\AgendaCliente\scriptDetalheHistoricoCliente.js" />

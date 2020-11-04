@@ -1,5 +1,7 @@
 #wrapper-areaAgendadosAgendaCliente { display: block; }
 
+#wrapper-areaDetalhesServicoAgendado { display: none; }
+
 #wrapper-areaHistoricoAgendaCliente { display: none;}
 
 #wrapper-areaRelatarProblema { display: none; }
