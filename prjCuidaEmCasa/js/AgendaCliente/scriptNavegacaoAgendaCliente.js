@@ -2,6 +2,7 @@
 import scriptHistoricoClienteAgendado from './scriptHistoricoCliente.js';
 import scriptDetalheHistoricoCliente from './scriptDetalheHistoricoCliente.js';
 import scriptDenunciarCuidador from './scriptDenunciarCuidador.js';
+import scriptDetalheAgendadosCliente from './scriptDetalheAgendadosCliente.js';
 
 $(document).ready(function(){
 
@@ -59,6 +60,28 @@ $(document).ready(function(){
          scriptAgendaClienteAgendado();
          $('.tituloGeral').html("Agenda");
 
+    });
+
+    $(document).on("click", ".areaDadosAgendados", function(){
+
+        $(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+        });
+
+        var classes = $(this).attr("class").split(/\s+/);
+
+        scriptDetalheAgendadosCliente(classes[1]);
+
+        //localStorage.setItem('cdServico', classes[1]);
+        
+        $("#wrapper-areaAgendadosAgendaCliente").css("display","none");
+        $('#headerComum').css("display","none");
+ 
+        $("#wrapper-areaDetalhesServicoAgendado").addClass("visivel");
+        $('#headerNav').addClass("visivel");
+        $('.tituloGeral').html("Detalhes do Serviço");
+
+        console.log('navegacao ok');
     });
 
     $(document).on("click", ".areaDadosAgendadosHistorico", function(){

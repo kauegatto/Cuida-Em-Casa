@@ -1222,6 +1222,42 @@ BEGIN
 		s.dt_inicio_servico;
 END$$
 
+
+DROP PROCEDURE IF EXISTS listarAgendaClienteNaoFoiSelecionado$$
+
+CREATE PROCEDURE listarAgendaClienteNaoFoiSelecionado(vCodigoServico INT)
+BEGIN 
+	SELECT 
+		u.img_usuario, u.nm_usuario, u.cd_avaliacao, group_concat(te.nm_tipo_especializacao), tg.nm_genero, u.ds_usuario, 
+		s.nm_rua_servico, s.cd_num_servico ,s.cd_CEP_servico, s.nm_complemento_servico, 
+		s.nm_cidade_servico, s.nm_uf_servico, time_format(s.hr_inicio_servico, '%H:%i'), time_format(s.hr_fim_servico, '%H:%i'), 
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, tss.nm_status_servico
+	FROM 
+		usuario u
+	JOIN
+		servico s 
+	ON
+		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
+	JOIN
+		especializacao_usuario eu
+	ON
+		(s.nm_email_usuario_cuidador = eu.nm_email_usuario)
+	JOIN
+		tipo_especializacao te 
+	ON
+		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
+	JOIN
+		tipo_genero tg
+	ON
+		(tg.cd_genero = u.cd_genero)
+	JOIN
+		tipo_status_servico tss
+	ON
+		(tss.cd_status_servico = s.cd_status_servico)
+	WHERE 
+		s.cd_servico = vCodigoServico;
+END$$
+
 DROP PROCEDURE IF EXISTS proxCodigo$$
 
 CREATE PROCEDURE proxCodigo()
@@ -1321,52 +1357,11 @@ BEGIN
 		(vEspecializacao, vEmailCuidador);
 END$$
 
-/* Procedure será usada pra listar os serviços pendentes em ordem decrescente */
-
-DROP PROCEDURE IF EXISTS listarServicosFuturos$$
-
-CREATE PROCEDURE listarServicosFuturos(vEmailCuidador VARCHAR(200))
-BEGIN
-	SELECT 
-		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, group_concat(tnp.nm_tipo_necessidade_paciente),
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, 
-		tss.nm_status_servico, p.img_paciente,DATEDIFF(s.dt_inicio_servico, current_date()), 
-		u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), s.cd_servico
-	FROM 
-		servico s 
-	JOIN 
-		paciente p 
-	ON 
-		(s.cd_paciente = p.cd_paciente) 
-	JOIN 
-		necessidade_paciente np 
-	ON 
-		(p.cd_paciente = np.cd_paciente) 
-	JOIN 
-		tipo_necessidade_paciente tnp 
-	ON 
-		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
-	JOIN
-		tipo_status_servico tss
-	ON
-		(tss.cd_status_servico = s.cd_status_servico)
-	JOIN
-		usuario u 
-	ON
-		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
-	WHERE 
-		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 2
-	GROUP BY
-		s.cd_servico
-	ORDER BY 
-		s.dt_inicio_servico DESC, s.hr_inicio_servico; 
-END$$
-
 /* Procedure será usada pra listar os serviços pendentes em ordem crescente */
 
-DROP PROCEDURE IF EXISTS listarServicosProximos$$
+DROP PROCEDURE IF EXISTS listarServicosAgendados$$
 
-CREATE PROCEDURE listarServicosProximos(vEmailCuidador VARCHAR(200))
+CREATE PROCEDURE listarServicosAgendados(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, group_concat(tnp.nm_tipo_necessidade_paciente),
@@ -1401,6 +1396,20 @@ BEGIN
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
+
+/* Procedure criada para cancelar o servico agendado */
+
+DROP PROCEDURE IF EXISTS cancelarServicoAgendado$$
+
+CREATE PROCEDURE cancelarServicoAgendado(vCodigoServico INT)
+BEGIN
+	UPDATE
+		servico
+	SET
+		cd_status_servico = 4
+	WHERE
+		cd_servico = vCodigoServico;
+END$$ 
 
 /* Procedure usada para listar os serviços já fainalizados em order decrescente */
 
@@ -1466,6 +1475,42 @@ BEGIN
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
+	ORDER BY 
+		s.dt_inicio_servico, s.hr_inicio_servico; 
+END$$
+
+/* procedure criada para filtrar os servicos finalizados por data */
+
+DROP PROCEDURE IF EXISTS listarServicosFinalizadosData$$
+
+CREATE PROCEDURE listarServicosFinalizadosData(vEmailCuidador VARCHAR(200), vDataServico DATE)
+BEGIN
+	SELECT 
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
+		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
+	FROM 
+		servico s 
+	JOIN 
+		paciente p 
+	ON 
+		(s.cd_paciente = p.cd_paciente) 
+	JOIN 
+		necessidade_paciente np 
+	ON 
+		(p.cd_paciente = np.cd_paciente) 
+	JOIN 
+		tipo_necessidade_paciente tnp 
+	ON 
+		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
+	JOIN 
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	WHERE 
+		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
+	AND
+		s.dt_inicio_servico = vDataServico
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
