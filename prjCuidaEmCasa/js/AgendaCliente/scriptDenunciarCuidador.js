@@ -1,6 +1,6 @@
-export default function scriptDenunciarCuidador(emailCuidador, txtDenuncia) {
+export default function scriptDenunciarCuidador(emailCliente, txtDenuncia, cdServico, cdTipoDenuncia) {
 
-	$.post("../../lib/libDenunciarCuidador.aspx", { e: emailCuidador, d: txtDenuncia}, function(retorno) {
+	$.post("../../lib/libDenunciarCuidador.aspx", { e: emailCliente, d: txtDenuncia, c: cdServico, cd: cdTipoDenuncia}, function(retorno) {
 
 		if (retorno == "erro") 
 		{
@@ -8,7 +8,7 @@ export default function scriptDenunciarCuidador(emailCuidador, txtDenuncia) {
 		}
 		else
 		{
-			console.log("denunciado otario kkkkkkk");
+			console.log("denunciado");
 		}
 
 	});

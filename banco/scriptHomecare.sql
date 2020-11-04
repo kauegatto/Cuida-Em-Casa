@@ -364,9 +364,11 @@ CREATE TABLE tipo_ocorrencia
 	CONSTRAINT pk_tipo_ocorrencia PRIMARY KEY (cd_tipo_ocorrencia)
 );
 
-insert into tipo_ocorrencia values (1, 'Agressão');
-insert into tipo_ocorrencia values (2, 'Roubo');
-insert into tipo_ocorrencia values (3, 'Atraso Recorrente');
+insert into tipo_ocorrencia values (1, 'Falta de profissionalismo');
+insert into tipo_ocorrencia values (2, 'Conduta inadequada');
+insert into tipo_ocorrencia values (3, 'Abuso físico');
+insert into tipo_ocorrencia values (4, 'Agressão física');
+
 
 CREATE TABLE ocorrencia 
 (

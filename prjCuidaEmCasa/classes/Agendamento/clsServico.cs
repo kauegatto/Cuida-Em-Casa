@@ -361,5 +361,52 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion
 
+        #region Denunciar Serviço
+
+        public bool denunciarServico(string emailCliente, string txtDenuncia, string cdServico, string cdTipoDenuncia) 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[5, 2];
+
+            if (!Procedure("proxCodigoOcorrencia", false, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    string codigoOcorrencia = dados[0].ToString();
+                    valores[0, 1] = codigoOcorrencia;
+                }
+            }
+
+            valores[0, 0] = "vCodigo";
+            valores[1, 0] = "vDsOcorrencia";
+            valores[1, 1] = txtDenuncia;
+            valores[2, 0] = "vEmailUsuario";
+            valores[2, 1] = emailCliente;
+            valores[3, 0] = "vCodigoServico";
+            valores[3, 1] = cdServico;
+            valores[4, 0] = "vCodigoTipoOcorrencia";
+            valores[4, 1] = cdTipoDenuncia;
+
+            if (!Procedure("gerarOcorrencia", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+
+        }
+
+        #endregion
+
     }
 }

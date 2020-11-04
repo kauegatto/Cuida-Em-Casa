@@ -170,6 +170,7 @@
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
+    <Content Include="lib\libDenunciarCuidador.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
@@ -280,6 +281,13 @@
     </Compile>
     <Compile Include="lib\libDadosLogin.aspx.designer.cs">
       <DependentUpon>libDadosLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDenunciarCuidador.aspx.cs">
+      <DependentUpon>libDenunciarCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDenunciarCuidador.aspx.designer.cs">
+      <DependentUpon>libDenunciarCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDetalheHistoricoCliente.aspx.cs">
       <DependentUpon>libDetalheHistoricoCliente.aspx</DependentUpon>
