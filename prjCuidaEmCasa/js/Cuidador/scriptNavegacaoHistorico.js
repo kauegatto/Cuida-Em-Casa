@@ -85,10 +85,10 @@ $(document).ready(function () {
  
         $("#wrapper-areaRelatarProblema").addClass("visivel");
         $('#headerNav').addClass("visivel");
-        $('.tituloRelatarProblema').html('Falta de Profissionalismo');
+        $('.tituloRelatarProblema2').html('Roubo/furto de objetos');
 
         $('.relateProblema2').html('Relate o seu problema com o paciente ' + localStorage.getItem("nomePaciente") +', para que possamos ajudar da melhor forma ');
-        localStorage.setItem('cdTipoDenuncia', 1);
+        localStorage.setItem('cdTipoDenuncia', 5);
     });
 
     $(document).on("click", "#ci", function(){
@@ -102,7 +102,7 @@ $(document).ready(function () {
  
         $("#wrapper-areaRelatarProblema").addClass("visivel");
         $('#headerNav').addClass("visivel");
-        $('.tituloRelatarProblema').html('Conduta inadequada e/ou desespeitosa');
+        $('.tituloRelatarProblema2').html('Conduta inadequada e/ou desespeitosa');
 
         $('.relateProblema2').html('Relate o seu problema com o paciente ' + localStorage.getItem("nomePaciente") +', para que possamos ajudar da melhor forma ');
         localStorage.setItem('cdTipoDenuncia', 2);
@@ -119,7 +119,7 @@ $(document).ready(function () {
  
         $("#wrapper-areaRelatarProblema").addClass("visivel");
         $('#headerNav').addClass("visivel");
-        $('.tituloRelatarProblema').html('Abuso físico e/ou psicológico');
+        $('.tituloRelatarProblema2').html('Abuso físico e/ou psicológico');
 
         $('.relateProblema2').html('Relate o seu problema com o paciente ' + localStorage.getItem("nomePaciente") +', para que possamos ajudar da melhor forma ');
         localStorage.setItem('cdTipoDenuncia', 3);
@@ -136,7 +136,7 @@ $(document).ready(function () {
  
         $("#wrapper-areaRelatarProblema").addClass("visivel");
         $('#headerNav').addClass("visivel");
-        $('.tituloRelatarProblema').html('Agressão física e/ou verbal');
+        $('.tituloRelatarProblema2').html('Agressão física e/ou verbal');
 
         $('.relateProblema2').html('Relate o seu problema com o paciente ' + localStorage.getItem("nomePaciente") +', para que possamos ajudar da melhor forma ');
         localStorage.setItem('cdTipoDenuncia', 4);
