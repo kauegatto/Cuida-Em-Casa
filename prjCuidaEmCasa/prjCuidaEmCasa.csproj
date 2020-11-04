@@ -156,6 +156,8 @@
     <Content Include="js\Pacientes\scriptNavegacao.js" />
     <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
+    <Content Include="js\ServicoAgendado\scriptCancelarServicoAgendado.js" />
+    <Content Include="js\ServicoAgendado\scriptNavegacaoAgendados.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
@@ -168,6 +170,7 @@
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
+    <Content Include="lib\libCancelarServicoAgendado.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
@@ -266,6 +269,13 @@
     </Compile>
     <Compile Include="lib\libBuscarPaciente.aspx.designer.cs">
       <DependentUpon>libBuscarPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libCancelarServicoAgendado.aspx.cs">
+      <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCancelarServicoAgendado.aspx.designer.cs">
+      <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>

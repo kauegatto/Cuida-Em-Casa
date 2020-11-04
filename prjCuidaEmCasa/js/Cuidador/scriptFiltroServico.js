@@ -1,16 +1,17 @@
 ﻿export default function scriptFiltroServico(){
     
     var recente;
-    var filtroEspecializacao = $('.cbxEspecializacao').val();
+    var filtroEspecializacao = $('#filtroRecente').val();
+    var filtroData = $('#filtroData').val();
     
-    //console.log(filtroEspecializacao);
+    //console.log(filtroData + " essa é a data");
     
     if (filtroEspecializacao == "Selecione" || filtroEspecializacao == "Mais Recente") { recente = "true"; }
     else { recente = "false"; }
     
     //console.log(recente);
            
-    $.post("../../lib/libHistoricoServico.aspx", { filtro: recente, email: localStorage.getItem("usuarioLogado") }, function (retorno) {
+    $.post("../../lib/libHistoricoServico.aspx", { filtro: recente, email: localStorage.getItem("usuarioLogado"), data: filtroData }, function (retorno) {
             console.log(retorno);
 
             if (retorno == "" || retorno == null) {

@@ -20,23 +20,14 @@ call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarCudiadoresAgora(10.00);
-
-
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
 call infoServicoAtual(24);
-
-
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteJaFoi('flaviapriscilamarianasilveira@gmail.com');
-
 call listarAgendaClienteJaFoiSelecionado(13);
-
-
-
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
 call infoServicoAtual(24);
-
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
@@ -47,10 +38,11 @@ call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.
 'https://CurriculoDoRenan.com.br', '5 anos de trabalho de cuidadoria na Santa Casa de Santos', 
 'Me chamo Renan, estou nessa trabalho de cuidadoria a bastante tempo e faço isso com muita paixão', 2);
 call cadastrarEspecializacoes(1, 'reinaldosouza@gmail.com');
-call listarServicosFuturos('flaviabeneditamilenamelo@gmail.com');
-call listarServicosProximos('flaviabeneditamilenamelo@gmail.com');
+call listarServicosAgendados('flaviabeneditamilenamelo@gmail.com');
+call cancelarServicoAgendado(10);
 call listarServicosFinalizadosAntigos('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
+call listarServicosFinalizadosData('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call servicoSelecionado(2);
 call marcarCheckin(5);
 call marcarCheckout(5);
