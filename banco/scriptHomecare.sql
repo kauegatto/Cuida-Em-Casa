@@ -348,9 +348,7 @@ insert into servico values(8,'2020-08-20','12:00:00','2020-08-20','20:00:00','11
 insert into servico values(9,'2020-08-20','09:00:00','2020-08-20','16:00:00','11525-050','Cubatão','Vila Nova','Praça Francisco da Silva Cardoso','50','SP',null,'09:00:00','2020-08-20',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','brunastellaflaviadepaula@gmail.com',null,1,6);
 /*Serviços Pendentes*/
 insert into servico values(10,'2020-11-30','10:00:00','2020-08-30','22:00:00','11050-260','Santos','Encruzilhada','R. Dr. Leôncio Rezende Filho','789','SP',null,null,null,null,null,'-23.956151;-46.324515','raquelAurelia@gmail.com','flaviabeneditamilenamelo@gmail.com',null,2,7);
-
 insert into servico values(11,'2020-11-30','07:00:00','2020-08-30','17:00:00','11310-210','São Vicente','Centro','R. do Colégio','485','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','matheusraimundofarias@gmail.com',null,2,4);
-
 insert into servico values(12,'2020-12-14','07:00:00','2020-10-14','10:00:00','11533-040','Cubatão','Jardim Casqueiro','Av. Brasil','500','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
 insert into servico values(13,'2020-12-14','12:00:00','2020-10-14','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
 insert into servico values(14,'2020-12-30','12:00:00','2020-10-30','15:00:00','11333-040','Cubatão','Jardim Casqueiro','Av. Brasil','505','SP',null,null,null,null,null,'-23.970107;-46.392474','oosvaldocarlosdarosa@live.ie','flaviabeneditamilenamelo@gmail.com',null,2,4);
@@ -364,9 +362,12 @@ CREATE TABLE tipo_ocorrencia
 	CONSTRAINT pk_tipo_ocorrencia PRIMARY KEY (cd_tipo_ocorrencia)
 );
 
-insert into tipo_ocorrencia values (1, 'Agressão');
-insert into tipo_ocorrencia values (2, 'Roubo');
-insert into tipo_ocorrencia values (3, 'Atraso Recorrente');
+insert into tipo_ocorrencia values (1, 'Falta de profissionalismo');
+insert into tipo_ocorrencia values (2, 'Conduta inadequada');
+insert into tipo_ocorrencia values (3, 'Abuso físico');
+insert into tipo_ocorrencia values (4, 'Agressão física');
+insert into tipo_ocorrencia values (5, 'Roubo');
+
 
 CREATE TABLE ocorrencia 
 (

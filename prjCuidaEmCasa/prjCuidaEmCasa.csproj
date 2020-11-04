@@ -59,6 +59,7 @@
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
     <Content Include="css\cliente\agenda\estiloAgenda.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
+    <Content Include="css\cuidador\estiloDenuncia.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
     <Content Include="css\cliente\agendamento\estiloInfoCuidador.css" />
@@ -131,6 +132,9 @@
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
+    <Content Include="js\AgendaCliente\scriptCancelarServicoAgendado.js" />
+    <Content Include="js\AgendaCliente\scriptDetalheAgendadosCliente.js" />
+    <Content Include="js\AgendaCliente\scriptDenunciarCuidador.js" />
     <Content Include="js\AgendaCliente\scriptDetalheHistoricoCliente.js" />
     <Content Include="js\AgendaCliente\scriptHistoricoCliente.js" />
     <Content Include="js\AgendaCliente\scriptNavegacaoAgendaCliente.js" />
@@ -138,6 +142,7 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+    <Content Include="js\Cuidador\scriptDenunciarServico.js" />
     <Content Include="js\Cuidador\scriptDetalhesServico.js" />
     <Content Include="js\Cuidador\scriptFiltroServico.js" />
     <Content Include="js\Cuidador\scriptHistoricoServico.js" />
@@ -158,6 +163,9 @@
     <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
     <Content Include="js\Pagamento\scriptDadosPagamento.js" />
+    <Content Include="js\ServicoAgendado\scriptCancelarServicoAgendado.js" />
+    <Content Include="js\ServicoAgendado\scriptDenunciarServico.js" />
+    <Content Include="js\ServicoAgendado\scriptNavegacaoAgendados.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
@@ -170,8 +178,11 @@
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
+    <Content Include="lib\libCancelarServicoAgendado.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
+    <Content Include="lib\libDenunciarCuidador.aspx" />
+    <Content Include="lib\libDetalheAgendaCliente.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
@@ -270,6 +281,13 @@
     <Compile Include="lib\libBuscarPaciente.aspx.designer.cs">
       <DependentUpon>libBuscarPaciente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libCancelarServicoAgendado.aspx.cs">
+      <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCancelarServicoAgendado.aspx.designer.cs">
+      <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -283,6 +301,20 @@
     </Compile>
     <Compile Include="lib\libDadosLogin.aspx.designer.cs">
       <DependentUpon>libDadosLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDenunciarCuidador.aspx.cs">
+      <DependentUpon>libDenunciarCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDenunciarCuidador.aspx.designer.cs">
+      <DependentUpon>libDenunciarCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDetalheAgendaCliente.aspx.cs">
+      <DependentUpon>libDetalheAgendaCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDetalheAgendaCliente.aspx.designer.cs">
+      <DependentUpon>libDetalheAgendaCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDetalheHistoricoCliente.aspx.cs">
       <DependentUpon>libDetalheHistoricoCliente.aspx</DependentUpon>

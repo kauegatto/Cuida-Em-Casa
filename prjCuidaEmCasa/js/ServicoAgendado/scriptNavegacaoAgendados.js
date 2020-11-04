@@ -1,5 +1,6 @@
 import scriptServicoAgendado from "./scriptServicoAgendado.js";
 import scriptServicoAgendadoSelecionado from "./scriptServicoAgendadoSelecionado.js";
+import scriptCancelarServicoAgendado from "./scriptCancelarServicoAgendado.js";
 
 $(document).ready(function () {
 
@@ -7,7 +8,7 @@ $(document).ready(function () {
         alert("Você não tem acesso a essa página, realize o login novamente");
         localStorage.clear();
         window.location.href = "../../pages/index.html";
-    }
+    };
 
     scriptServicoAgendado();
 
@@ -27,14 +28,16 @@ $(document).ready(function () {
 
     });
 
+    var classes;
+
     $(document).on("click", ".areaAgendaConteudo", function(){
 
         $(".visivel").each(function (i, obj) {
            $(this).removeClass("visivel");
         });
 
-        var classes = $(this).attr("class").split(/\s+/);
-
+        classes = $(this).attr("class").split(/\s+/);
+       
         scriptServicoAgendadoSelecionado(classes[1]);
       
         $("#wrapper-ServicoAgendado").css("display","none");
@@ -47,4 +50,20 @@ $(document).ready(function () {
         $('#tituloGeral-Nav').html("Informações do serviço");
     });
 
+    $(document).on("click", ".btnCancelarServico", function(){
+        
+        scriptCancelarServicoAgendado(classes[1]);
+        
+        $(".visivel").each(function (i, obj) {
+            $(this).removeClass("visivel");
+        });
+
+        $("#wrapper-InfoServicoAgendado").css("display","none");
+
+
+        $("#wrapper-ServicoAgendado").addClass("visivel");
+        $('#headerComum').addClass("visivel");
+
+        scriptServicoAgendado();
+    });
 });

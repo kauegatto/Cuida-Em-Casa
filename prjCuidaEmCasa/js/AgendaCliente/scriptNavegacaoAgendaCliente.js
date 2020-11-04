@@ -1,6 +1,9 @@
 ﻿import scriptAgendaClienteAgendado from './scriptAgendaCliente.js';
 import scriptHistoricoClienteAgendado from './scriptHistoricoCliente.js';
 import scriptDetalheHistoricoCliente from './scriptDetalheHistoricoCliente.js';
+import scriptDenunciarCuidador from './scriptDenunciarCuidador.js';
+import scriptDetalheAgendadosCliente from './scriptDetalheAgendadosCliente.js';
+import scriptCancelarServicoAgendado from './scriptCancelarServicoAgendado.js';
 
 $(document).ready(function(){
 
@@ -12,13 +15,13 @@ $(document).ready(function(){
 	       $(this).removeClass("visivel");
 	});
 	    
-	    $("#wrapper-areaHistoricoAgendaCliente").css("display","none");
+	$("#wrapper-areaHistoricoAgendaCliente").css("display","none");
 
+	$("#wrapper-areaAgendadosAgendaCliente").addClass("visivel");
+	$('#headerComum').addClass("visivel");
 
-	    $("#wrapper-areaAgendadosAgendaCliente").addClass("visivel");
-	    $('#headerComum').addClass("visivel");
-
-	   scriptAgendaClienteAgendado();
+	scriptAgendaClienteAgendado();
+    $('.tituloGeral').html("Agenda");
 
 	});
 
@@ -37,6 +40,7 @@ $(document).ready(function(){
         $('#headerNav').addClass("visivel");
 
         scriptHistoricoClienteAgendado();
+        $('.tituloGeral').html("Histórico");
 
     });
 
@@ -54,7 +58,28 @@ $(document).ready(function(){
         $('#headerComum').addClass("visivel");
 
          scriptAgendaClienteAgendado();
+         $('.tituloGeral').html("Agenda");
 
+    });
+
+    $(document).on("click", ".areaDadosAgendados", function(){
+
+        $(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+        });
+
+        var classes = $(this).attr("class").split(/\s+/);
+
+        scriptDetalheAgendadosCliente(classes[1]);
+
+        localStorage.setItem('cdServico', classes[1]);
+        
+        $("#wrapper-areaAgendadosAgendaCliente").css("display","none");
+        $('#headerComum').css("display","none");
+ 
+        $("#wrapper-areaDetalhesServicoAgendado").addClass("visivel");
+        $('#headerNav').addClass("visivel");
+        $('.tituloGeral').html("Detalhes do Serviço");
     });
 
     $(document).on("click", ".areaDadosAgendadosHistorico", function(){
@@ -66,12 +91,15 @@ $(document).ready(function(){
         var classes = $(this).attr("class").split(/\s+/);
 
         scriptDetalheHistoricoCliente(classes[1]);
-      
+
+        localStorage.setItem('cdServico', classes[1]);
+        
         $("#wrapper-areaHistoricoAgendaCliente").css("display","none");
         $('#headerComum').css("display","none");
  
         $("#wrapper-areaDetalhesServico").addClass("visivel");
         $('#headerNav').addClass("visivel");
+        $('.tituloGeral').html("Detalhes do Serviço");
         
     });
 
@@ -87,7 +115,7 @@ $(document).ready(function(){
         $("#wrapper-areaDenunciaServico").addClass("visivel");
         $('#headerNav').addClass("visivel");
 
-        $('.tituloGeral').html("Denunciar Cuidador")
+        $('.tituloGeral').html("Denunciar Cuidador");
 
         localStorage.setItem("nomeCuidador", $('#nomeCuidador').html());
 
@@ -107,7 +135,7 @@ $(document).ready(function(){
         $('.tituloRelatarProblema').html('Falta de Profissionalismo');
 
         $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ');
-
+        localStorage.setItem('cdTipoDenuncia', 1);
     });
 
     $(document).on("click", "#ci", function(){
@@ -123,8 +151,8 @@ $(document).ready(function(){
         $('#headerNav').addClass("visivel");
         $('.tituloRelatarProblema').html('Conduta inadequada e/ou desespeitosa');
 
-        $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ')
-        
+        $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ');
+        localStorage.setItem('cdTipoDenuncia', 2);
     });
 
     $(document).on("click", "#af", function(){
@@ -141,7 +169,7 @@ $(document).ready(function(){
         $('.tituloRelatarProblema').html('Abuso físico e/ou psicológico');
 
         $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ')
-        
+        localStorage.setItem('cdTipoDenuncia', 3);
     });
 
     $(document).on("click", "#afv", function(){
@@ -158,6 +186,18 @@ $(document).ready(function(){
         $('.tituloRelatarProblema').html('Agressão física e/ou verbal');
 
         $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ')
+        localStorage.setItem('cdTipoDenuncia', 4);
+    });
+
+    $('.btnEnviarDenuncia').click(function(){
+
+        scriptDenunciarCuidador(localStorage.getItem('usuarioLogado'), $('.areaRelatarProblema').val(), localStorage.getItem('cdServico'), localStorage.getItem('cdTipoDenuncia'));
+
+    });
+
+    $('.btnCancelar').click(function(){
+
+        scriptCancelarServicoAgendado();
 
     });
 });

@@ -67,7 +67,7 @@ namespace prjCuidaEmCasa.lib
 			detalhesServico += "</div>";
 			detalhesServico += "</div>";
 			detalhesServico += "</div>";
-            detalhesServico += "<button type='submit' class='btnDenunciar'>Denunciar</button>";
+            detalhesServico += "<button class='btnDenunciar'>Denunciar</button>";
 
             Response.Write(detalhesServico);
         }

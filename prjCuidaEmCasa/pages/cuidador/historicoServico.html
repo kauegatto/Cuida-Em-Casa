@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="../../css/estiloGeral.css">
     <link rel="stylesheet" type="text/css" href="../../css/estiloCuidador.css" />
     <link rel="stylesheet" type="text/css" href="../../css/cuidador/estiloHistoricoServico.css" />
+    <link href="../../css/cuidador/estiloDenuncia.css" rel="stylesheet" type="text/css" />
 	
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -50,7 +51,7 @@
 			<div class="infoFiltro" style=" height: auto">
 				<div class="dadosFiltro" style="float: left;margin-left: 15px;">
 					<h3>Filtrar por: </h3>
-					<select class="cbxEspecializacao" style="width: 152px">
+					<select class="cbxEspecializacao" id="filtroRecente" style="width: 152px">
 						<option>Selecione</option>
 						<option>Mais Recente</option>
 						<option>Mais Antiga</option>
@@ -58,7 +59,7 @@
 				</div>
 				<div class="dadosFiltro" style="float: right;margin-right: 25px;" >
 					<h3>Data Serviço </h3>
-					<input type="date" name="dataServico" class="cbxEspecializacao" style="width: 152px">
+					<input type="date" name="dataServico" class="cbxEspecializacao" id="filtroData" style="width: 152px">
 				</div>
 				<button id="btnFiltroServico" style="margin: 0 auto" type="button">Buscar</button>
 			</div>
@@ -67,6 +68,31 @@
 			<div class="wrapper visivel" id="wrapper-historicoServico" style="display: none" ></div>
 
 			<div class="wrapper" id="wrapper-detalhesServico"></div>
+
+            <div class="wrapper" id="wrapper-areaDenunciaServico">
+				<div class="areaEmail2">
+					<span class="emailUsuario2">Qual o problema do paciente que você está denunciando?</span>
+				</div>
+				<div class="areaDadosConta2" id="fp">
+					<span class="areaConta2">Roubo</span>
+				</div>
+				<div class="areaDadosConta2" id="ci">
+					<span class="areaConta2">Conduta inadequada e/ou desespeitosa</span>
+				</div>
+				<div class="areaDadosConta2" id="af">
+					<span class="areaConta2">Abuso físico e/ou psicológico</span>
+				</div>
+				<div class="areaDadosConta2" style="border-radius: 0px 0px 10px 10px;" id="afv">
+					<span class="areaConta2">Agressão física e/ou verbal</span>
+				</div>
+			</div>
+			<div class="wrapper" id="wrapper-areaRelatarProblema">
+				<h3 class="tituloRelatarProblema2">Falta de Profissionalismo</h3>
+				<p class="relateProblema2"></p>
+				<textarea class="areaRelatarProblema2"></textarea>
+				<button class="btnEnviarDenuncia2">Enviar Denúncia</button>
+			</div>
+
 		</main>
 		<footer class="footer">
 			<nav>
