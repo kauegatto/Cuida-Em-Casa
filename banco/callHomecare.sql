@@ -24,6 +24,7 @@ call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br'
 call infoServicoAtual(24);
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
+call listarAgendaClienteNaoFoiSelecionado(10);
 call listarAgendaClienteJaFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteJaFoiSelecionado(13);
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');

@@ -15,14 +15,13 @@ $(document).ready(function(){
 	       $(this).removeClass("visivel");
 	});
 	    
-	    $("#wrapper-areaHistoricoAgendaCliente").css("display","none");
+	$("#wrapper-areaHistoricoAgendaCliente").css("display","none");
 
+	$("#wrapper-areaAgendadosAgendaCliente").addClass("visivel");
+	$('#headerComum').addClass("visivel");
 
-	    $("#wrapper-areaAgendadosAgendaCliente").addClass("visivel");
-	    $('#headerComum').addClass("visivel");
-
-	   scriptAgendaClienteAgendado();
-       $('.tituloGeral').html("Agenda");
+	scriptAgendaClienteAgendado();
+    $('.tituloGeral').html("Agenda");
 
 	});
 
@@ -81,8 +80,6 @@ $(document).ready(function(){
         $("#wrapper-areaDetalhesServicoAgendado").addClass("visivel");
         $('#headerNav').addClass("visivel");
         $('.tituloGeral').html("Detalhes do Serviço");
-
-        console.log('navegacao ok');
     });
 
     $(document).on("click", ".areaDadosAgendadosHistorico", function(){
@@ -154,7 +151,7 @@ $(document).ready(function(){
         $('#headerNav').addClass("visivel");
         $('.tituloRelatarProblema').html('Conduta inadequada e/ou desespeitosa');
 
-        $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ')
+        $('.relateProblema').html('Relate o seu problema com o cuidador ' + localStorage.getItem("nomeCuidador") +', para que possamos ajudar da melhor forma ');
         localStorage.setItem('cdTipoDenuncia', 2);
     });
 
