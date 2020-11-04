@@ -59,6 +59,7 @@
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
     <Content Include="css\cliente\agenda\estiloAgenda.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
+    <Content Include="css\cuidador\estiloDenuncia.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
     <Content Include="css\cliente\agendamento\estiloInfoCuidador.css" />
@@ -131,6 +132,7 @@
     <Content Include="img\mapa.png" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
     <Content Include="js\AgendaCliente\scriptDetalheAgendadosCliente.js" />
+    <Content Include="js\AgendaCliente\scriptDenunciarCuidador.js" />
     <Content Include="js\AgendaCliente\scriptDetalheHistoricoCliente.js" />
     <Content Include="js\AgendaCliente\scriptHistoricoCliente.js" />
     <Content Include="js\AgendaCliente\scriptNavegacaoAgendaCliente.js" />
@@ -158,6 +160,7 @@
     <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
     <Content Include="js\ServicoAgendado\scriptCancelarServicoAgendado.js" />
+    <Content Include="js\ServicoAgendado\scriptDenunciarServico.js" />
     <Content Include="js\ServicoAgendado\scriptNavegacaoAgendados.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="js\Pacientes\scriptPacientes.js" />

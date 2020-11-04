@@ -26,13 +26,6 @@ call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteJaFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteJaFoiSelecionado(13);
-<<<<<<< HEAD
-call listarAgendaClienteNaoFoiSelecionado(1);
-
-
-
-=======
->>>>>>> 3415506e5e0fd448bb767a4adc4d6148fd690058
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
 call infoServicoAtual(24);
 call buscarPacienteServicoEmAndamento(6);
