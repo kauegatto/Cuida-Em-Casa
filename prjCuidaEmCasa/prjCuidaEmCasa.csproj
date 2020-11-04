@@ -131,6 +131,8 @@
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
+    <Content Include="js\AgendaCliente\scriptCancelarServicoAgendado.js" />
+    <Content Include="js\AgendaCliente\scriptDetalheAgendadosCliente.js" />
     <Content Include="js\AgendaCliente\scriptDenunciarCuidador.js" />
     <Content Include="js\AgendaCliente\scriptDetalheHistoricoCliente.js" />
     <Content Include="js\AgendaCliente\scriptHistoricoCliente.js" />
@@ -178,6 +180,7 @@
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
+    <Content Include="lib\libDetalheAgendaCliente.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
@@ -302,6 +305,13 @@
     </Compile>
     <Compile Include="lib\libDenunciarCuidador.aspx.designer.cs">
       <DependentUpon>libDenunciarCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDetalheAgendaCliente.aspx.cs">
+      <DependentUpon>libDetalheAgendaCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDetalheAgendaCliente.aspx.designer.cs">
+      <DependentUpon>libDetalheAgendaCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDetalheHistoricoCliente.aspx.cs">
       <DependentUpon>libDetalheHistoricoCliente.aspx</DependentUpon>

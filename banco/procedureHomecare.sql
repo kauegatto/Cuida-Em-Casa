@@ -1222,6 +1222,42 @@ BEGIN
 		s.dt_inicio_servico;
 END$$
 
+
+DROP PROCEDURE IF EXISTS listarAgendaClienteNaoFoiSelecionado$$
+
+CREATE PROCEDURE listarAgendaClienteNaoFoiSelecionado(vCodigoServico INT)
+BEGIN 
+	SELECT 
+		u.img_usuario, u.nm_usuario, u.cd_avaliacao, group_concat(te.nm_tipo_especializacao), tg.nm_genero, u.ds_usuario, 
+		s.nm_rua_servico, s.cd_num_servico ,s.cd_CEP_servico, s.nm_complemento_servico, 
+		s.nm_cidade_servico, s.nm_uf_servico, time_format(s.hr_inicio_servico, '%H:%i'), time_format(s.hr_fim_servico, '%H:%i'), 
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, tss.nm_status_servico
+	FROM 
+		usuario u
+	JOIN
+		servico s 
+	ON
+		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
+	JOIN
+		especializacao_usuario eu
+	ON
+		(s.nm_email_usuario_cuidador = eu.nm_email_usuario)
+	JOIN
+		tipo_especializacao te 
+	ON
+		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
+	JOIN
+		tipo_genero tg
+	ON
+		(tg.cd_genero = u.cd_genero)
+	JOIN
+		tipo_status_servico tss
+	ON
+		(tss.cd_status_servico = s.cd_status_servico)
+	WHERE 
+		s.cd_servico = vCodigoServico;
+END$$
+
 DROP PROCEDURE IF EXISTS proxCodigo$$
 
 CREATE PROCEDURE proxCodigo()
