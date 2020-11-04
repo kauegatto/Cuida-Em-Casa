@@ -1,4 +1,4 @@
-﻿export default function scriptDenunciarServico(emailCliente, txtDenuncia, cdServico, cdTipoDenuncia) {
+export default function scriptDenunciarServico(emailCliente, txtDenuncia, cdServico, cdTipoDenuncia) {
 
 	$.post("../../lib/libDenunciarCuidador.aspx", { e: emailCliente, d: txtDenuncia, c: cdServico, cd: cdTipoDenuncia}, function(retorno) {
 
@@ -13,4 +13,4 @@
 
 	});
 
-}
+};
