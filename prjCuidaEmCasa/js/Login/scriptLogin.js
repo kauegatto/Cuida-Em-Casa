@@ -19,6 +19,8 @@ $(document).on("click", "#btnLogin", function () {
 
                 localStorage.setItem("tipoUsuario", retornoLogin[1]);
 
+                localStorage.setItem('telefoneUsuario', retornoLogin[2]);
+
                 if (retornoLogin[1] == "1") {
                     console.log("adm");
                 }

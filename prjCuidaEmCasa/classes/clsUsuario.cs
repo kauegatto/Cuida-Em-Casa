@@ -11,6 +11,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string emailUsuarioBusca { get; set; }
         public string tipoUsuario { get; set; }
         public string codigoOcrrencia { get; set; }
+        public string telefoneUsuario { get; set; }
 
         public clsUsuario(): base()
         {
@@ -41,6 +42,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 {
                     emailUsuarioBusca = dados[0].ToString();
                     tipoUsuario = dados[1].ToString();
+                    telefoneUsuario = dados[2].ToString();
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

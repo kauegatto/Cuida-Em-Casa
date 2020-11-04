@@ -9,7 +9,7 @@ DROP PROCEDURE IF EXISTS verificarLogin$$
 CREATE PROCEDURE verificarLogin(vEmailUsuario VARCHAR(200), vSenha VARCHAR(128))
 BEGIN 
 	SELECT 
-		nm_email_usuario, cd_tipo_usuario
+		nm_email_usuario, cd_tipo_usuario, cd_telefone
 	FROM
 		usuario
 	WHERE

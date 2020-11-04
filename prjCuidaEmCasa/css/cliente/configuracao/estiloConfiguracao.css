@@ -1,0 +1,51 @@
+#wrapper-ConfiguracaoInicial { display: block; } 
+
+#wrapper-LoginSeguranca { display: none; } 
+
+#wrapper-AtualizarSenha { display: none; }
+
+#wrapper-EsqueceuSenha { display: none; }
+
+.areaEmail { width: 100%; height: 55px; background: #285593; }
+
+.emailUsuario { float: left; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; color: #FFFFFF; margin-left: 17px; margin-top: 15px; }
+
+.areaDadosConta { margin-top: 2px; width: 100%; height: 55px; background: #FFFFFF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 0px; }
+
+.areaConta {  float: left; margin-top: 17px; margin-left: 18px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; }
+
+.emailDadosConta { margin-top: 3px; font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; width: 90%; float: left; margin-left: 17px; }
+
+.areaSenha { margin-top: 46px; width: 100%; height: auto; }
+
+.areaEsqueceuSenha { margin-top: 4px; margin-left: 114px; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 14px; line-height: 17px; color: #04346D; }
+
+.areaSenha h3 { margin-left: 21px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
+
+.areaSenha input { margin-left: 21px;  margin-top: 9px; border-style: none; width: 315px; height: 41px; background: rgba(240, 240, 247, 0.65); border: 1px solid #646464; box-sizing: border-box; border-radius: 6px; }
+
+.areaText { margin-top: 17px; }
+
+.btnAtualizarSenha { margin-left: 80px; border-style: none; width: 196px; height: 34px; background: #27AE60; border-radius: 10px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #DDDDDD;}
+
+.esqueceuSenha { width: 100%; height: auto; }
+
+.esqueceuSenha h3 { margin-top: 37px; margin-left: 85px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464;}
+
+.areaEmailCodigo { width: 100%; height: auto; margin-top: 68px; }
+
+.areaRadio { width: 50px; height: 35px; float: left; }
+
+.radioCodigo { background: #646464; width: 20px; height: 20px; margin-left: 21px;}
+
+.spanEnviar { width: 290px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; color: #646464; }
+
+.spanEmail { font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 16px; }
+
+.areaEnviarCodigo { width: 100%; height: auto; margin-top: 37px; }
+
+.areaEnviarCodigo h2 { margin-left: 21px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
+
+.areaEnviarCodigo input { text-align: center; margin-left: 21px;  margin-top: 10px; border-style: none; width: 315px; height: 41px; background: rgba(240, 240, 247, 0.65); border: 1px solid #646464; box-sizing: border-box; border-radius: 6px; }
+
+.btnEnviarCodigo { margin-top: 20px; margin-left: 82px; border-style: none; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #DDDDDD; width: 196px; height: 34px; background: #27AE60; border-radius: 10px; }
