@@ -167,6 +167,73 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         #endregion
 
+        #region Finalizar serviço agora
+        public bool finalizarServicoAgora(string cdServico, string dataServico, string horaInicio, string horaFim, string CEP, string cidade, string bairro, string rua, string num, string UF, string comp, string emailCliente, string cdPaciente, bool virarDia)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[14, 2];
+            valores[0, 0] = "vCodigo";
+            valores[0, 1] = cdServico;
+            valores[1, 0] = "vDataServico";
+            valores[1, 1] = dataServico;
+            valores[2, 0] = "vHoraInicioServico";
+            valores[2, 1] = horaInicio;
+            valores[3, 0] = "vHoraFimServico";
+            valores[3, 1] = horaFim;
+            valores[4, 0] = "vCEP";
+            valores[4, 1] = CEP;
+            valores[5, 0] = "vCidade";
+            valores[5, 1] = cidade;
+            valores[6, 0] = "vBairro";
+            valores[6, 1] = bairro;
+            valores[7, 0] = "vRua";
+            valores[7, 1] = rua;
+            valores[8, 0] = "vNum";
+            valores[8, 1] = num;
+            valores[9, 0] = "vUF";
+            valores[9, 1] = UF;
+            valores[10, 0] = "vComp";
+            valores[10, 1] = comp;
+            valores[11, 0] = "vEmailCliente";
+            valores[11, 1] = emailCliente;
+            valores[12, 0] = "vCodigoPaciente";
+            valores[12, 1] = cdPaciente;
+
+            //Não vira dia 
+
+            if (!virarDia)
+            {
+                if (!Procedure("agendarServicoAgora", true, valores, ref dados))
+                {
+                    Desconectar();
+                    return false;
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+
+
+                return true;
+            }
+
+            //Vira dia 
+            else
+            {
+                if (!Procedure("agendarServicoAgoraVirarDia", true, valores, ref dados))
+                {
+                    Desconectar();
+                    return false;
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+
+                return true;
+            }
+
+        }
+        #endregion
+
         #region Detalhes serviço
         public bool detalhesServicoHistoricoCuidador(string cdServico)
         {
