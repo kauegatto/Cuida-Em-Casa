@@ -12,12 +12,14 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string tipoUsuario { get; set; }
         public string codigoOcrrencia { get; set; }
         public string telefoneUsuario { get; set; }
+        public string senhaVerificada { get; set; }
 
         public clsUsuario(): base()
         {
             emailUsuarioBusca = "";
             tipoUsuario = "";
             codigoOcrrencia = "";
+            senhaVerificada = "";
         }
 
         #region Verificar login usuario
@@ -72,6 +74,37 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true; 
         }
+        #endregion
+
+        #region Verificar Senha 
+
+        public bool verificarSenha(string emailUsuario, string senhaAtual) 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+            valores[1, 0] = "vSenhaAtual";
+            valores[1, 1] = senhaAtual;
+            
+            if (!Procedure("verificarSenha", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.HasRows)
+            {
+                Desconectar();
+                return false; 
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
+        }
+
         #endregion
 
         #region Próximo código ocorrência
