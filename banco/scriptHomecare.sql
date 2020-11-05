@@ -311,6 +311,7 @@ CREATE TABLE servico
 	cd_geolocalizacao_entrada VARCHAR(200),
 	nm_email_usuario VARCHAR(100),
 	nm_email_usuario_cuidador VARCHAR(100),
+	cd_pagamento_servico VARCHAR (100),
 	cd_avaliacao INT,
 	cd_status_servico INT,
 	cd_paciente INT,
