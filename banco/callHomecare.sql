@@ -3,6 +3,7 @@
 call verificarLogin('flaviapriscilamarianasilveira@gmail.com', '123');
 call alterarSenha('123', 'renanStopa@gmail.com');
 call gerarOcorrencia(3, 'O cuidador agrediu o paciente', 'reinaldosouza@gmail.com', 5, 2);
+call verificarSenha('mauriciorodolfo@gamil.com','123');
 
 /* PROCEDURES DO CLIENTE */
 

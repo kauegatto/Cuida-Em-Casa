@@ -54,17 +54,41 @@ namespace prjCuidaEmCasa.lib
 
             string confirmarSenha = Request["cs"].ToString();
 
-            clsUsuario classeAtualizarSenha = new clsUsuario();
-
-
-            if (!classeAtualizarSenha(novaSenha, emailCliente))
+            if (Request["eu"] == null)
             {
                 Response.Write("erro");
                 return;
             }
 
+            if (Request["eu"].ToString() == "")
+            {
+                Response.Write("erro");
+                return;
+            }
 
+            string emailCliente = Request["eu"].ToString();
 
+            clsUsuario classeAtualizarSenha = new clsUsuario();
+
+            if (!classeAtualizarSenha.verificarSenha(emailCliente, senhaAtual))
+            {
+                Response.Write("senhaAtualDiferente");
+                return;
+            }
+
+            if (confirmarSenha == novaSenha)
+            {
+                if (!classeAtualizarSenha.alterarSenha(confirmarSenha, emailCliente))
+                {
+                    Response.Write("erro");
+                    return;
+                }
+            }
+            else
+            {
+                Response.Write("senhaDiferente");
+                return;
+            }
             
         }
     }

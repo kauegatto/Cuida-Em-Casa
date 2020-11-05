@@ -32,6 +32,21 @@ BEGIN
 		nm_email_usuario = vEmailUsuario;
 END$$
 
+
+DROP PROCEDURE IF EXISTS verificarSenha$$
+
+CREATE PROCEDURE verificarSenha(vEmailUsuario VARCHAR(200), vSenhaAtual VARCHAR(128))
+BEGIN
+	SELECT 
+		md5(nm_senha) 
+	FROM 
+		usuario 
+	WHERE 
+		nm_email_usuario = vEmailUsuario
+	AND
+		nm_senha = md5(vSenhaAtual);
+END$$
+
 /* Procedure criada para gerar ocorrência */
 
 DROP PROCEDURE IF EXISTS gerarOcorrencia$$

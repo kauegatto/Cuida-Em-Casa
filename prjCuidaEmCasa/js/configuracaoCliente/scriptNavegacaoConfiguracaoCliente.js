@@ -5,6 +5,8 @@ $(document).ready(function () {
     $(".visivel").each(function (i, obj) {
            $(this).removeClass("visivel");
     });
+    
+	$('#headerComum').addClass("visivel");
 
 	$('.emailUsuario').html(localStorage.getItem('usuarioLogado'));        
 
@@ -28,7 +30,6 @@ $(document).ready(function () {
 
 	$(document).on("click", "#alterarSenha", function(){
 
-
 	    $(".visivel").each(function (i, obj) {
 	           $(this).removeClass("visivel");
 	    });
@@ -44,7 +45,7 @@ $(document).ready(function () {
 
 	$('.btnAtualizarSenha').click(function(){
 
-		scriptAtualizarSenha($('#txtSenhaAtual').val(),$('#txtNovaSenha').val(),$('#txtConfirmarSenha').val());
+		scriptAtualizarSenha($('#txtSenhaAtual').val(),$('#txtNovaSenha').val(),$('#txtConfirmarSenha').val(), localStorage.getItem('usuarioLogado'));
 
 	});
 
