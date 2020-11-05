@@ -311,10 +311,10 @@ CREATE TABLE servico
 	cd_geolocalizacao_entrada VARCHAR(200),
 	nm_email_usuario VARCHAR(100),
 	nm_email_usuario_cuidador VARCHAR(100),
-	cd_pagamento_servico VARCHAR (100),
 	cd_avaliacao INT,
 	cd_status_servico INT,
 	cd_paciente INT,
+    cd_pagamento_servico VARCHAR (100),
 	CONSTRAINT pk_servico PRIMARY KEY (cd_servico),
 	CONSTRAINT fk_servico_usuario FOREIGN KEY (nm_email_usuario)
 	REFERENCES usuario (nm_email_usuario),
