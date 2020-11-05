@@ -284,11 +284,11 @@ CREATE TABLE avaliacao
 	CONSTRAINT pk_avaliacao PRIMARY KEY (cd_avaliacao)
 );
 
-insert into avaliacao values(1,'Excelente');
-insert into avaliacao values(2,'Bom');
+insert into avaliacao values(1,'Pessimo');
+insert into avaliacao values(2,'Ruim');
 insert into avaliacao values(3,'Regular');
-insert into avaliacao values(4,'Ruim');
-insert into avaliacao values(5,'Pessimo');
+insert into avaliacao values(4,'Bom');
+insert into avaliacao values(5,'Excelente');
 
 CREATE TABLE servico
 (
