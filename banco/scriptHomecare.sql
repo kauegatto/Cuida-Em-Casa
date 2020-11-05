@@ -285,11 +285,11 @@ CREATE TABLE avaliacao
 	CONSTRAINT pk_avaliacao PRIMARY KEY (cd_avaliacao)
 );
 
-insert into avaliacao values(1,'Excelente');
-insert into avaliacao values(2,'Bom');
+insert into avaliacao values(1,'Pessimo');
+insert into avaliacao values(2,'Ruim');
 insert into avaliacao values(3,'Regular');
-insert into avaliacao values(4,'Ruim');
-insert into avaliacao values(5,'Pessimo');
+insert into avaliacao values(4,'Bom');
+insert into avaliacao values(5,'Excelente');
 
 CREATE TABLE servico
 (
@@ -315,6 +315,7 @@ CREATE TABLE servico
 	cd_avaliacao INT,
 	cd_status_servico INT,
 	cd_paciente INT,
+    cd_pagamento_servico VARCHAR (100),
 	CONSTRAINT pk_servico PRIMARY KEY (cd_servico),
 	CONSTRAINT fk_servico_usuario FOREIGN KEY (nm_email_usuario)
 	REFERENCES usuario (nm_email_usuario),

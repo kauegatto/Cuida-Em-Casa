@@ -38,6 +38,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> cd_avaliacao { get; set; }
         public List<string> nm_genero { get; set; }
         public List<string> ds_cuidador { get; set; }
+        public List<string> emailCuidador { get; set; }
         public clsServico(): base() 
         {
             codigo = "";
@@ -70,6 +71,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             cd_avaliacao = new List<string>();
             nm_genero = new List<string>();
             ds_cuidador = new List<string>();
+            emailCuidador = new List<string>();
         }
 
         #region Próximo código
@@ -415,6 +417,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     hr_fim_servico.Add(dados[13].ToString());
                     duracaoServico.Add(dados[14].ToString());
                     vl_cuidador.Add(dados[15].ToString());
+                    emailCuidador.Add(dados[16].ToString());
                 }
             }
 
@@ -527,6 +530,33 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
 
         }
+        #endregion
+
+        #region Avaliar o Serviço
+
+        public bool avaliarServico(string emailUsuario, string codigoAvaliacao)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+            valores[1, 0] = "vCdAvaliacao";
+            valores[1, 1] = codigoAvaliacao;
+
+            if (!Procedure("avaliarServico",true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+
+        }
+
+
         #endregion
 
     }

@@ -140,6 +140,7 @@
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
+    <Content Include="js\AgendaCliente\scriptAvaliacaoCuidador.js" />
     <Content Include="js\AgendaCliente\scriptCancelarServicoAgendado.js" />
     <Content Include="js\AgendaCliente\scriptDetalheAgendadosCliente.js" />
     <Content Include="js\AgendaCliente\scriptDenunciarCuidador.js" />
@@ -193,6 +194,7 @@
     <Content Include="lib\libAgendadosHistoricoCliente.aspx" />
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libAtualizarSenha.aspx" />
+    <Content Include="lib\libAvaliacaoCuidador.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
@@ -288,6 +290,13 @@
     </Compile>
     <Compile Include="lib\libAtualizarSenha.aspx.designer.cs">
       <DependentUpon>libAtualizarSenha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAvaliacaoCuidador.aspx.cs">
+      <DependentUpon>libAvaliacaoCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAvaliacaoCuidador.aspx.designer.cs">
+      <DependentUpon>libAvaliacaoCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarCuidador.aspx.cs">
       <DependentUpon>libBuscarCuidador.aspx</DependentUpon>
