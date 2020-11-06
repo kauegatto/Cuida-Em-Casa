@@ -1,12 +1,12 @@
-.tituloServico { width: 80%; height: 43px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; margin-top: 14px; margin-left: auto;margin-right: auto; }
+.tituloServico { width: 80%; height: 43px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; margin-top: 14px; margin-left: 40px; }
 
 .areaData {width: 100%;margin: 20px auto;margin-bottom: 20px;}
 
-.areaInfo { width: 80%; height: 48px; margin: 0 auto; }
+.areaInfo { width: 80%; height: 48px; margin-left: 40px; }
 
 .areaInfo img {position: relative; float: left}
 
-.dataServico { text-align: center; width: 180px; height: 41px; border-radius: 6px; background-color: #F0F0F7;  position: relative;float: right;margin-right: 15%; }
+.dataServico { text-align: center; width: 200px; height: 41px; border-radius: 6px; background-color: #F0F0F7; margin-left: 15px; }
 
 .valorServico { text-align: center; width: 180px; height: 41px; border-radius: 6px; background-color: #F0F0F7;  position: relative;float: right;margin-right: 15%; }
 
