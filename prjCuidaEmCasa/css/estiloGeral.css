@@ -7,7 +7,7 @@ a { text-decoration: none; color: White;}
 
 .estruturaGeral {     position: relative; display: grid; grid-template-columns: repeat(4, 25%); grid-template-areas: "header header header header" "conteudo conteudo conteudo conteudo" "footer footer footer footer"; }
 
-.header { grid-area: header; min-height: 107px; background: #2980B9; backdrop-filter: blur(4px);}
+.header { position: fixed; width: 100%; z-index: 1; grid-area: header; min-height: 107px; background: #2980B9; backdrop-filter: blur(4px);}
 
 .areaLogo { width: 25%; float: left; } 
 
@@ -17,7 +17,7 @@ a { text-decoration: none; color: White;}
 
 .logo { margin-left: 35px; margin-top: 11px; }
 
-.tituloGeral {color: white; font-size: 20px; font-family: 'Rubik', sans-serif; line-height: 24px; margin-top: 40px;text-align: left; width: 158px;
+.tituloGeral {color: white; font-size: 20px; font-family: 'Rubik', sans-serif; line-height: 24px; margin-top: 43px;text-align: center; width: 158px;
 height: 47px;}
 
 .conteudoGeral { grid-area: conteudo; margin-bottom: 150px;}

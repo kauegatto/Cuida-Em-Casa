@@ -1115,6 +1115,34 @@ BEGIN
 		vComp, vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
 END$$
 
+/* Porocedure criada para buscar um servico para agora */
+
+DROP PROCEDURE IF EXISTS agendarServicoAgora$$
+
+CREATE PROCEDURE agendarServicoAgora(vCodigo INT, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vCodigoPaciente INT)
+BEGIN
+	INSERT INTO servico
+		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
+		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, cd_status_servico, cd_paciente)
+	VALUES
+		(vCodigo, CURRENT_DATE(), CURRENT_TIME(), CURRENT_DATE(), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
+		vEmailCliente, 6, vCodigoPaciente);
+END$$
+
+/* Porocedure criada para buscar um servico para agora e virar o dia */
+
+DROP PROCEDURE IF EXISTS agendarServicoAgoraVirarDia$$
+
+CREATE PROCEDURE agendarServicoAgoraVirarDia(vCodigo INT, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vCodigoPaciente INT)
+BEGIN
+	INSERT INTO servico
+		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
+		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, cd_status_servico, cd_paciente)
+	VALUES
+		(vCodigo, CURRENT_DATE(), CURRENT_TIME(), DATE_ADD(CURRENT_DATE(), INTERVAL 1 DAY), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
+		vEmailCliente, 6, vCodigoPaciente);
+END$$
+
 /* Procedure listarServicos será usada para listar todos os servicos agendados pelo cliente e ordenados de forma decrescente, podendo ser: em andamento, pendentes, finalizados e cancelados */
 
 DROP PROCEDURE IF EXISTS listarAgendaClienteJaFoi$$
@@ -1169,7 +1197,7 @@ BEGIN
 		u.img_usuario, u.nm_usuario, u.cd_avaliacao, group_concat(te.nm_tipo_especializacao), tg.nm_genero, u.ds_usuario, 
 		s.nm_rua_servico, s.cd_num_servico ,s.cd_CEP_servico, s.nm_complemento_servico, 
 		s.nm_cidade_servico, s.nm_uf_servico, time_format(s.hr_inicio_servico, '%H:%i'), time_format(s.hr_fim_servico, '%H:%i'), 
-		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho 
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, s.nm_email_usuario_cuidador 
 	FROM 
 		usuario u
 	JOIN
@@ -1893,8 +1921,19 @@ BEGIN
 	Values (@maxCD,vNmPaciente,vDsPaciente,vCepPaciente,vCidadePaciente ,vBairroPaciente,vRuaPaciente,vNumPaciente ,vUFPaciente ,vComplementoPaciente,vUsuarioLogado);
 END$$
 
+DROP PROCEDURE IF EXISTS avaliarCuidador$$
 
+CREATE PROCEDURE avaliarServico(vEmailUsuario VARCHAR(200), vCdAvaliacao INT)
+BEGIN
 
+	UPDATE 
+		servico 
+	SET
+		cd_avaliacao = vCdAvaliacao
+	WHERE
+		nm_email_usuario_cuidador = vEmailUsuario;
+
+END$$
 
 
 DELIMITER ;

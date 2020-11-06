@@ -1,6 +1,6 @@
 ﻿
 
-#btnSalvarPaciente {background: #27AE60; border-radius: 10px; width: 143px; min-height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:relative; margin-bottom:30px;left: 27%;}
+#btnSalvarPaciente {background: #27AE60; border-radius: 10px; width: 143px; min-height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:relative; margin-bottom:30px;left: 29%;}
 
 #wrapper-AreaDadosPaciente, #wrapper-areaAdicionarPaciente { display: none; }
 
@@ -18,9 +18,9 @@
 
 .imgEditar { float: right; margin-right: 9px; margin-top: -5px; }
 
-.btnAdicionar {background: #27AE60; border-radius: 10px; width: 143px; height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:fixed;    bottom: 90px;  left: 27%;}
+.btnAdicionar {background: #27AE60; border-radius: 10px; width: 143px; height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:fixed;    bottom: 90px;  left: 31%;}
 
-.areaInfoDadosPaciente { width: 92%; min-height: 458px; border-radius: 10px; margin-left: 14px; margin-top: 12px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}
+.areaInfoDadosPaciente { width: 92%; min-height: 458px; border-radius: 10px; margin-left: 14px; margin-top: 33%; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}
 
 .areaNomePaciente { width: 68%; height: 77px; float: right; }
 
@@ -40,4 +40,6 @@
 
 .btnExcluir { float:right;margin-right: 15px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF;  width: 142px; height: 34px; border-style: none; background: #9D2F42; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; }
 
-#areaBotoes {width: 100%;min-height: 40px;margin-top:15px;}
+#areaBotoes {width: 100%; min-height: 50px;margin-top: 20px;}
+
+#listaPacientes { margin-top: 35%; }

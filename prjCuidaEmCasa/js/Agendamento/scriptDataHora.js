@@ -21,6 +21,7 @@
             minutosTotal = "0" + minutosTotal;
         }
         var horaFinal = horasTotal + ":" + minutosTotal;
+
         console.log(horaFinal);
         localStorage.setItem("data", txt_data);
         localStorage.setItem("horaInicio", txt_horaInicio);
