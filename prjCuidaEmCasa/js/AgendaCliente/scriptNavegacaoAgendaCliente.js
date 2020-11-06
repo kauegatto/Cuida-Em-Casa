@@ -199,14 +199,5 @@ $(document).ready(function(){
 
         scriptCancelarServicoAgendado();
 
-        $("#wrapper-areaDetalhesServico").css("display","none");
-        $('#headerComum').css("display","none");
- 
-        $("#wrapper-areaAgendadosAgendaCliente").addClass("visivel");
-        $('#headerNav').addClass("visivel");
-
-        scriptAgendaClienteAgendado();
     });
-
-
 });

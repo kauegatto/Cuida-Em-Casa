@@ -28,9 +28,6 @@ $(document).ready(function () {
     	$('#wrapper-areaAdicionarPaciente').addClass("visivel");
     	$('#headerNav').addClass("visivel");
         $('#tituloGeral-Nav').html("Adicionar Paciente");
-        $('#tituloGeral-Nav').css("margin-right","56px");
-        $('#tituloGeral-Nav').css("margin-left","0");
-        $('#tituloGeral-Nav').css("width","204");
     });
 
  	$(".iconeVoltar").click(function () {
@@ -54,9 +51,7 @@ $(document).ready(function () {
         $('#headerNav').addClass("visivel");
         var classes = $(this).parent().attr("class").split(/\s+/);
         localStorage.setItem("cdPaciente", classes[1]);
-        $('#tituloGeral-Nav').html("Editar Paciente");
-        $('#tituloGeral-Nav').css("margin-top","45px");
-        $('#tituloGeral-Nav').css("margin-left","23px");
+        $('#tituloGeral-Nav').html("Editar Paciente;");
         scriptBuscarDadosPaciente();
     });
 

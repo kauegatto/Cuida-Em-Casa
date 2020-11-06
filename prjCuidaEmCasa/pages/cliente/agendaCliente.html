@@ -17,7 +17,9 @@
 
     <!-- JS PÁGINA -->
 	<script src="../../js/AgendaCliente/scriptNavegacaoAgendaCliente.js" type="module"></script>
-	<script type="module" src="../../js/estrela/estrela.js"></script>
+	<script type="text/javascript" src="../../js/estrela/estrela.js"></script>
+
+
     <script type="text/javascript" src="../../js/estrela/jquery.rateyo.js"></script>
 
 </head>
@@ -29,7 +31,7 @@
 					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
 				</div>
 				<div class="areaTituloGeral">
-					<h1 class="tituloGeral" style="margin-left: 23px; margin-top: 42px">Agenda</h1>
+					<h1 class="tituloGeral" style="margin-left: 45px;">Agenda</h1>
 				</div>
 			</div>
 			<div id="headerNav" style="display:none;">
@@ -37,7 +39,7 @@
 					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
 				</div>
 				<div class="areaTituloGeral">
-					<h1 class="tituloGeral" id="tituloGeral-Nav" style="margin-left: 18px; margin-top: 43px;">Detalhes  do serviço</h1>
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 18px;">Detalhes  do serviço</h1>
 				</div>
 			</div>
 		</header>
@@ -69,53 +71,7 @@
 				<div id="listaHistorico"></div>
 			</div>
 			<div class="wrapper" id="wrapper-areaDetalhesServico">
-				<div class="areaInformacoesCuidador">
-					<h3 class="tituloInformacoesCuidador">Informações do Cuidador</h3>
-					<div class="areaImagemCuidador" style="margin-top: 10px; margin-left: 16px;"></div>
-					<div class="invi"></div>
-					<div class="areaDadosCuidador">
-						<h3 id="nomeCuidador"></h3>
-						<div class="areaEstrela" id="estrela">
-							<span id="avaliacaoCuidador"></span>
-						</div>
-						<div>
-							<img src="../../img/icones/agenda/iconeMaleta.png">
-							<span id="especializacao"></span>
-						</div>
-						<div>
-							<span>Gênero: </span><span style="font-weight: normal" id="generoCuidador"></span>
-						</div>
-					</div>
-					<div class="areaDescricao">
-						<h3>Descrição:</h3>
-						<p id="descricaoCuidador"></p>
-					</div>
-					<div class="linha"></div>
-					<h3 class="tituloInformacoesCuidador" style="margin-top: 0px;">Informações do Serviço</h3>
-					<div class="areaEndereco">
-						<div class="endereco">
-							<span class="tituloEndereco">Endereço: </span> <span class="infoEndereco" id="enderecoServico"></span>
-						</div>
-						<div class="endereco">
-							<span class="tituloEndereco">Horário: </span><span class="infoEndereco" id="horarioServico"></span>
-						</div>
-						<div class="endereco">
-							<span class="tituloEndereco">Valor pago: </span><span class="infoEndereco" id="valorTotal"></span>
-						</div>
-						<div class="linha" style="margin-top: 8px;"></div>
-						<h3 class="tituloInformacoesCuidador" style="margin-top: 0px; margin-left: 49px;">Avaliação do Serviço</h3>
-						<div class="areaAvaliacao">
-							<div class="areaEstrela">
-								<span style="font-size: 16px; margin-left: 5px; margin-top: 5px;">Sua Avaliação: </span>
-								<div id="rateYo"></div>
-								<div style="float: left; margin-top: 5px;">
-									<span>Nota:</span>
-									<span id="notaAvaliacaoEstrela">1 - Pessimo</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div id="infoServicoHistorico"></div>
 				<button class="btnDenunciar">Denunciar</button>
 			</div>
 			<div class="wrapper" id="wrapper-areaDenunciaServico">

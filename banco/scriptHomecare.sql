@@ -276,7 +276,6 @@ insert into tipo_status_servico values(2,'Pendente');
 insert into tipo_status_servico values(3,'Finalizado');
 insert into tipo_status_servico values(4,'Cancelado');
 insert into tipo_status_servico values(5,'Confirmado');
-insert into tipo_status_servico values(6,'Buscando Cuidador');
 
 CREATE TABLE avaliacao
 (
@@ -285,11 +284,11 @@ CREATE TABLE avaliacao
 	CONSTRAINT pk_avaliacao PRIMARY KEY (cd_avaliacao)
 );
 
-insert into avaliacao values(1,'Pessimo');
-insert into avaliacao values(2,'Ruim');
+insert into avaliacao values(1,'Excelente');
+insert into avaliacao values(2,'Bom');
 insert into avaliacao values(3,'Regular');
-insert into avaliacao values(4,'Bom');
-insert into avaliacao values(5,'Excelente');
+insert into avaliacao values(4,'Ruim');
+insert into avaliacao values(5,'Pessimo');
 
 CREATE TABLE servico
 (
