@@ -99,9 +99,10 @@ function getCardToken(event){
    }
 };
 
+let form = document.getElementById('paymentForm');
+
 function setCardTokenAndPay(status, response) {
    if (status == 200 || status == 201) {
-       let form = document.getElementById('paymentForm');
        let card = document.createElement('input');
        //card.setAttribute('name', 'token');
        //card.setAttribute('type', 'hidden');
@@ -110,17 +111,29 @@ function setCardTokenAndPay(status, response) {
        //doSubmit=true;form.submit();
        realizarPagamento(response.id);
    } else {
-       alert("Verify filled data!\n"+JSON.stringify(response, null, 4));
+       alert("Cartão de crédito inválido");
    }
 };
 
 function realizarPagamento(cardToken) {
       
       let urlApi = 'https://api.mercadopago.com/v1/payments';
+      
       let apiKey = 'Bearer TEST-5442897075228208-110414-2b1d83c67516b8ae0b214f4fa3e57298-141153426';
-      alert(cardToken);
-      const data = { "token":cardToken, "installments":2, "transaction_amount":99.80,"description":"Point Mini a maquininha que dá o dinheiro de suas vendas na hora","payment_method_id":"visa","payer":{ "email":"kauegatto@gmail.com","identification": {"number": "33580494856","type": "CPF"}}};
+
+      var installments = parseInt($('select[name="installments"] option').filter(':selected').val());/**/console.log(installments);
+      
+      var transactionAmount = parseFloat($('input[name ="transactionAmount"]').val());/**/console.log(transactionAmount);
+      
+      var email = "kauegatto123@gmail.com";/**/console.log(email);
+      
+      var docNumber = parseInt($('input[name ="docNumber"]').val());/**/console.log(docNumber);
+      
+      var docType = $('select[name="docType"] option').filter(':selected').val();/**/console.log(docType);
+
+      const data = { "token":cardToken, "installments":installments, "transaction_amount":transactionAmount,"description":"Servico de cuidadoria - Cuida Em Casa","payment_method_id":"visa","payer":{ "email":email,"identification": {"number": docNumber ,"type": docType }}};
       const dataJSON = JSON.stringify(data);
+
       $.ajax({
         url: urlApi,
         type: 'POST',
@@ -129,12 +142,56 @@ function realizarPagamento(cardToken) {
         dataType: 'json',
         processData: false,
         data: dataJSON,
-        success: function (resultado) {
-          alert(JSON.stringify(resultado));doSubmit=true;form.submit();
-        },
-        error: function(){
-          alert("Erro no post - ajax");doSubmit=true;form.submit();
-        }
+      }).done(function(result){
+          console.log(JSON.stringify(result));
+          doSubmit=true;form.submit();
+      }).fail(function (jqxhr, textStatus, error) {    
+          var customErrorCode = jqxhr.responseJSON.cause[0].code;
+          console.log(customErrorCode);
+          switch (customErrorCode) {
+            case 2067:
+              alert("Erro no número do documento");
+              break;
+            case 2006:
+              alert("Cartão de crédito inválido");
+              break;
+            case 2007:
+              alert("Erro na conexão da api de tokenização do cartão");
+              break;
+            case 2009:
+              alert("A empresa emissora do cartão não deve estar nula");
+              break;
+            case 2060:
+              alert("Você não pode comprar um produto de si mesmo!");
+              break;
+            case 3000:
+              alert("Digite o nome do dono do cartão de crédito");
+              break;
+            case 3020:
+              alert("Digite o nome do dono do cartão de crédito");
+              break;
+            case 3021:
+              alert("Digite o número do documento do comprador");
+              break;
+            case 3022:
+              alert("Selecione o tipo do documento;");
+              break;
+            case 3029:
+              alert("Mês de vencimento do cartão está incorreto;");
+              break;
+            case 3030:
+              alert("Ano de vencimento do cartão está incorreto;");
+              break;
+            case 4003:
+              alert("Valor do pedido deve ser numérico");
+              break;
+            case 1:
+              alert("Erro nos parâmetros;");
+              break;
+            default:
+              alert("Desculpe, um erro inesperado aconteceu. O código de debug é: " +jqxhr);
+              doSubmit = true; form.submit();
+          }
       });
 }
     

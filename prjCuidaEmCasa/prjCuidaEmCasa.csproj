@@ -72,7 +72,6 @@
     <Content Include="css\cuidador\estiloServicoAgendado.css" />
     <Content Include="css\estiloGeral.css" />
     <Content Include="css\estiloIndex.css" />
-    <Content Include="dllMercadoPago\MercadoPago.dll" />
     <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
     <Content Include="img\icones\agendamento\iconeAmpulheta.png" />
     <Content Include="img\icones\agendamento\iconeBuscarAtendimento.png" />
@@ -171,6 +170,7 @@
     <Content Include="js\Pacientes\scriptNavegacao.js" />
     <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
+    <Content Include="js\Pagamento\scriptBuscarPagamento.js" />
     <Content Include="js\Pagamento\scriptDadosPagamento.js" />
     <Content Include="js\ServicoAgendado\scriptCancelarServicoAgendado.js" />
     <Content Include="js\ServicoAgendado\scriptDenunciarServico.js" />
