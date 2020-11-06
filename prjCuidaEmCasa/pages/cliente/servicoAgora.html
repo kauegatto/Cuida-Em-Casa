@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Cuida em Casa</title>
+    <title>Cuida em Casa</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,11 +15,9 @@
 	<link rel="stylesheet" type="text/css" href="../../css/estiloGeral.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloAgendamento.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloConfirmacaoEndereco.css"/>
-	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloConfirmacaoCuidador.css"/>
-	<link rel="stylesheet" type="text/css" href="../../css/estiloCuidador.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloEndereco.css"/>
 	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloPaciente.css"/>
-	<link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloInfoCuidador.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/cliente/agendamento/estiloBuscandoCuidadores.css"/>
 
 	<!-- MAP API -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
@@ -35,14 +33,9 @@
  	 crossorigin="anonymous"></script>
 
     <!-- JS PÁGINA -->
-	<script src="../../js/Agendamento/scriptNavegacao.js" type="module"></script>
-     
-     
-     
-    
+    <script src="../../js/ServicoAgora/scriptNavegacaoServicoAgora.js" type="module"></script>
 </head>
 <body>
-   
     <div class="estruturaGeral">
 		<header class="header">
 			<div class="areaLogo">
@@ -51,11 +44,11 @@
 			<div class="areaTituloGeral">
 				<h1 class="tituloGeral" style="text-align: center; margin-left: 0px;">Agendamento</h1>
 			</div>
-			<div class="areaFiltro">
+			<div class="areaFiltro" style="display:none;">
 					<img src="../../img/icones/agendamento/iconeFunil.png" class="iconeFunil">
 					<span>Filtrar por preço, especilização, gênero e avaliação</span>
 			</div>
-			<div class="infoFiltro">
+			<div class="infoFiltro" style="display:none;" ">
 					<div class="dadosFiltro">
 						<h3>Especialização</h3>
 						<select class="cbxEspecializacao opcaoFiltro">
@@ -93,7 +86,7 @@
 
 		<main class="conteudoGeral">
 			<div id="wrapper-paciente" class="wrapper visivel">	
-				<h3 class="tituloConteudo" style="margin-top: 35%">Para qual paciente será esse serviço?</h3>
+				<h3 class="tituloConteudo">Para qual paciente será esse serviço?</h3>
 				<div id="listaPacientes"></div>
 				<button class='btnProximo navBtn' id='btnPaciente' type='button'>Próximo</button>
 			</div>
@@ -113,7 +106,7 @@
 
 			<div id="wrapper-alterarEndereco" class="wrapper">
 
-				<div class="areaIconeCasa" style="margin-top: 30%;">
+				<div class="areaIconeCasa">
 					<img src="../../img/icones/endereco/iconeCasa.png" alt="Icone de Casa" class="iconeCasa">
 				</div>
 				<form class="areaFormulario">
@@ -148,103 +141,31 @@
 						<input type="text" name="Cidade" id="cidade" class="txtDados required" style="margin-left: 0px;" required>
 					</div>
 					
-					<button type="button" class="btnConfirmar navBtn" id="btnAlterarEndereco" style="margin-left: 95px; margin-top: 25px;">Confirmar</button>
+					<button type="button" class="btnConfirmar navBtn" id="btnAlterarEndereco">Confirmar</button>
 				
 				</form>
 			</div>
-	
-			<div id="wrapper-escolherDataServico" class="wrapper">
-				<h3 class="tituloServico" style="margin-top: 35%;">Qual o dia de início do serviço?</h3>
-				<div class="areaInfo">
-					<img src="../../img/icones/agendamento/iconeCalendario.png" class="imgIcone">
-					<input type="date" name="DATA" class="dataServico" id="data" required>
-				</div>
-				<h3 class="tituloServico">Qual a hora de início do serviço?</h3>
-				<div class="areaInfo">
-					<img src="../../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaInicio" required>
-				</div>
+
+            <div id="wrapper-escolherDataServico" class="wrapper">
 				<h3 class="tituloServico">Quantas horas o serviço durará?</h3>
 				<div class="areaInfo">
 					<img src="../../img/icones/agendamento/iconeTempo.png" class="imgIcone">
-					<input type="time" name="DATA" class="dataServico" id="horaFim" required>
+					<input type="time" name="DATA" class="dataServico" id="duracao" required>
 				</div>
-	        	<button class="btnProximo navBtn" id="btnDataHora" style="left: 28.5%">Próximo</button>			
+                <h3 class="tituloServico">Qual valor máximo quer pagar por hora?</h3>
+				<div class="areaInfo">
+					<img src="../../img/icones/agendamento/iconeRelogio.png" class="imgIcone">
+					<input type="number" min="0.00" max="1000.00" name="MONEY" class="valorServico" id="valorHora" required>
+				</div>
+	        	<button class="btnProximo navBtn" id="btnDataHora">Buscar</button>			
+			</div>
+            <div class="wrapper" id="wrapper-BuscandoCuidadores">
+				<div class="areaSatelite">
+					<img src="../../img/icones/satelite.png">
+				</div>
+				<h3 class="tituloBuscandoCuidadores">Estamos procurando um cuidador que atenda suas especificações</h3>
 			</div> 
-
-			<div id="wrapper-cuidador" class="wrapper" style="margin-top:42%;">
-	
-				<button class='btnProximo navBtn' id='btnCuidador' type='button' >Próximo</button>	
-			</div>
-
-			<div id="wrapper-infoCuidador" class="wrapper">
-				<h3 class="tituloConteudo" style="width: 231px; margin-left: 80px; margin-top: 35%;">Informações do Cuidador</h3>
-				<div class="areaCuidador">
-					<div class="areaImagemCuidador" style="background-image: url('../../img/imgCuidador1.jfif');"></div>
-					<div class="areaInfoCuidador">
-						<h3 id="nm_cuidador"></h3>
-						<div class="hora">
-							<img src="../../img/icones/cuidador/iconeCifrao.png" style="margin-left: 0px;" class="iconeCifrao">
-							<span style="margin-left: 9px;" id="vl_hora_cuidador">70 / Hora</span>
-						</div>
-						<div class="especializacao">
-							<img src="../../img/icones/cuidador/iconeMaleta.png" class="iconeMaleta">
-							<span id="nm_tipo_especializacao_cuidador">Fisioterapeuta</span>
-						</div>
-					</div>
-	                <div class="invi"></div>
-				</div>
-				<div class="areaInfoDados">
-					<div class="areaInfoDetalhes">
-						<div class="tituloInformacao">Experiência</div><div class="btnExpandir">-</div>
-						<div class="detalheInformacao"  id="nm_experiencia_cuidador"></div>
-					</div>
-				</div>
-				<div class="areaInfoDados">
-					<div class="areaInfoDetalhes">
-						<div class="tituloInformacao">Gênero</div><div class="btnExpandir">-</div>
-						<div class="detalheInformacao" id="nm_genero_cuidador"></div>
-					</div>
-				</div>
-				<div class="areaInfoDados">
-					<div class="areaInfoDetalhes">
-						<div class="tituloInformacao">Sobre mim</div><div class="btnExpandir">-</div>
-						<div class="detalheInformacao" id="ds_cuidador"></div>
-					</div>
-				</div>
-				<button class="btnProximo navBtn" id="btnInfoCuidador">Próximo</button>
-			</div>	
-
-			<div id="wrapper-finalizarServico" class="wrapper">
-				<h3 class="tituloConteudo" style="width: 72px; margin-left: 150px;">Resumo</h3>
-				<div class="areaResumo">
-				<div class="areaDadosServico">
-					<div class="areaImagemCuidador"></div>
-					<h3 class="nomeCuidador" id="nomeCuidador"></h3>
-                    <div class="invi"></div>
-				</div>
-				<div class="areaDadosServico" style="height: 60px;">
-					<img src="../../img/icones/agendamento/iconeCalendario.png" class="iconeCalendario">
-					<span style="float:right;" id="dataFinal"></span>
-				</div>
-				<div class="areaDadosServico" style="height: 50px;">
-					<img src="../../img/icones/agendamento/iconeRelogio.png" class="iconeRelogio">
-					<span class="horaServico" id="horaFinal"></span>
-				</div>
-				<div class="areaDadosServico" style="height: 40px;">
-					<img src="../../img/icones/cuidador/iconeCrifaoPequeno.png" class="iconeCifrao" >
-					<span class="valorServico1" id="valorFinal"></span>
-				</div>
-				<div class="areaDadosServico" style="height: 70px;">
-					<img src="../../img/icones/endereco/iconeCasa.png" class="iconeCasa1" >
-					<h3 class="enderecoServico" id="endereco"></h3>
-				</div>
-				
-				</div>
-				<button class="btnProximo" id="btnFinalizarServico" style="position: relative;margin-top: 10px; bottom: 0; z-index: 0;">Finalizar</button>
-			</div>
-
-		</main>
+        </main>
 
 
 
@@ -286,6 +207,5 @@
 			</nav>
 		</footer>
 	</div>
-
 </body>
 </html>
