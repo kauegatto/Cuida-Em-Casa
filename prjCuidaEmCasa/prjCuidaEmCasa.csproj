@@ -61,6 +61,7 @@
     <Content Include="css\cliente\agenda\estiloAgenda.css" />
     <Content Include="css\cliente\configuracao\estiloConfiguracao.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
+    <Content Include="css\cuidador\estiloBuscarServico.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
@@ -88,6 +89,11 @@
     <Content Include="img\icones\agenda\iconeMaleta.png" />
     <Content Include="img\icones\agenda\iconePaciente.png" />
     <Content Include="img\icones\agenda\iconeRelogio.png" />
+    <Content Include="img\icones\buscarServico\iconeAgenda.png" />
+    <Content Include="img\icones\buscarServico\iconeAtendimento.png" />
+    <Content Include="img\icones\buscarServico\iconeConfiguracao.png" />
+    <Content Include="img\icones\buscarServico\iconeDisponibilidade.png" />
+    <Content Include="img\icones\buscarServico\iconeHistorico.png" />
     <Content Include="img\icones\configuracao\iconeAgenda.png" />
     <Content Include="img\icones\configuracao\iconeAtendimento.png" />
     <Content Include="img\icones\configuracao\iconeConfiguracao.png" />
@@ -150,6 +156,7 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+    <Content Include="js\BuscaServicoAgora\navegacaoBuscaServicoAgora.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
@@ -182,6 +189,7 @@
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
     <Content Include="js\ServicoAgora\scriptAlterarEnderecoAgora.js" />
+    <Content Include="js\BuscaServicoAgora\scriptBuscandoCuidador.js" />
     <Content Include="js\ServicoAgora\scriptConfirmarEnderecoAgora.js" />
     <Content Include="js\ServicoAgora\scriptFinalizarServicoAgora.js" />
     <Content Include="js\ServicoAgora\scriptHoraValorAgora.js" />
@@ -196,6 +204,7 @@
     <Content Include="lib\libAtualizarSenha.aspx" />
     <Content Include="lib\libAvaliacaoCuidador.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
+    <Content Include="lib\libBuscarCuidadorAgora.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
@@ -217,6 +226,7 @@
     <Content Include="pages\cliente\configuracaoCliente.html" />
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
+    <Content Include="pages\cuidador\atendimento.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\atendimento.html" />
@@ -304,6 +314,13 @@
     </Compile>
     <Compile Include="lib\libBuscarCuidador.aspx.designer.cs">
       <DependentUpon>libBuscarCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarCuidadorAgora.aspx.cs">
+      <DependentUpon>libBuscarCuidadorAgora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarCuidadorAgora.aspx.designer.cs">
+      <DependentUpon>libBuscarCuidadorAgora.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarDadosPaciente.aspx.cs">
       <DependentUpon>libBuscarDadosPaciente.aspx</DependentUpon>

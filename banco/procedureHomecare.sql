@@ -1330,25 +1330,15 @@ DROP PROCEDURE IF EXISTS buscarCuidadoresAgora$$
 CREATE PROCEDURE buscarCuidadoresAgora(vValorHora DECIMAL(10, 2))
 BEGIN
 	SELECT 
-		u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-		u.vl_hora_trabalho, u.cd_avaliacao, 
-		GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+		u.nm_email_usuario
 	FROM 
 		usuario u 
-	JOIN
-		especializacao_usuario eu
-	ON	
-		(u.nm_email_usuario = eu.nm_email_usuario)
-	JOIN 
-		tipo_especializacao te
-	ON
-		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 	WHERE 
-		u.ic_ativo = true
+		ic_ativo = true
 	AND
-		u.vl_hora_trabalho <= vValorHora
+		vl_hora_trabalho <= vValorHora
 	GROUP BY
-		u.nm_email_usuario;
+		nm_email_usuario;
 END$$
 
 /* Procedure criada para buscar os pacientes que estão em serviço no momento da busca */
@@ -1921,7 +1911,7 @@ BEGIN
 	Values (@maxCD,vNmPaciente,vDsPaciente,vCepPaciente,vCidadePaciente ,vBairroPaciente,vRuaPaciente,vNumPaciente ,vUFPaciente ,vComplementoPaciente,vUsuarioLogado);
 END$$
 
-DROP PROCEDURE IF EXISTS avaliarCuidador$$
+DROP PROCEDURE IF EXISTS avaliarServico$$
 
 CREATE PROCEDURE avaliarServico(vEmailUsuario VARCHAR(200), vCdAvaliacao INT)
 BEGIN

@@ -236,6 +236,28 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         #endregion
 
+        #region Buscar cuidador agora
+        public bool buscarCuidadorAgora(string valorMaximo)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vValorHora";
+            valores[0, 1] = valorMaximo;
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    emailCuidador.Add(dados[0].ToString());
+                }
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
         #region Detalhes serviço
         public bool detalhesServicoHistoricoCuidador(string cdServico)
         {

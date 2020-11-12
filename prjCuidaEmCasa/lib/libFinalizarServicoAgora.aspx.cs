@@ -38,7 +38,7 @@ namespace prjCuidaEmCasa.lib
                 Response.Write("false");
             }
 
-            Response.Write("true");
+            Response.Write("true|" + proxCodigo);
         }
     }
 }
