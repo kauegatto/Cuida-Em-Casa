@@ -27,7 +27,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string nm_bairro_servico { get; set; }
         public string nm_num_servico { get; set; }
         public string nm_comp_servico { get; set; }
-        /**/
+
+        /* Propriedades para o servico de agora */
+
         public List<string> nm_cuidador { get; set; }
         public List<string> vl_cuidador { get; set; }
         public List<string> base64String { get; set; }
@@ -39,6 +41,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> nm_genero { get; set; }
         public List<string> ds_cuidador { get; set; }
         public List<string> emailCuidador { get; set; }
+        public List<string> vl_maximo { get; set; }
+        public List<string> codigoAgora { get; set; }
+
         public clsServico(): base() 
         {
             codigo = "";
@@ -60,7 +65,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_num_servico = "";
             nm_comp_servico = "";
 
-           /* */
+           /* Propriedades para o servico de agora */
+
             base64String = new List<string>();
             base64standard = "";
             vl_cuidador = new List<string>();
@@ -72,6 +78,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_genero = new List<string>();
             ds_cuidador = new List<string>();
             emailCuidador = new List<string>();
+            vl_maximo = new List<string>();
+            codigoAgora = new List<string>();
         }
 
         #region Próximo código
@@ -170,7 +178,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         #endregion
 
         #region Finalizar serviço agora
-        public bool finalizarServicoAgora(string cdServico, string dataServico, string horaInicio, string horaFim, string CEP, string cidade, string bairro, string rua, string num, string UF, string comp, string emailCliente, string cdPaciente, bool virarDia)
+        public bool finalizarServicoAgora(string cdServico, string dataServico, string horaInicio, string horaFim, string CEP, string cidade, string bairro, string rua, string num, string UF, string comp, string emailCliente, string cdPaciente, string vlMaximo, bool virarDia)
         {
             MySqlDataReader dados = null;
             string[,] valores = new string[14, 2];
@@ -200,6 +208,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             valores[11, 1] = emailCliente;
             valores[12, 0] = "vCodigoPaciente";
             valores[12, 1] = cdPaciente;
+            valores[13, 0] = "vValorMaximo";
+            valores[13, 1] = vlMaximo;
 
             //Não vira dia 
 
@@ -244,6 +254,12 @@ namespace prjCuidaEmCasa.classes.Agendamento
             valores[0, 0] = "vValorHora";
             valores[0, 1] = valorMaximo;
 
+            if (!Procedure("buscarCuidadoresAgora", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
             if (dados.HasRows)
             {
                 while (dados.Read())
@@ -255,6 +271,33 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 return true;
             }
             return false;
+        }
+        #endregion
+
+        #region Código do servico para agora
+        public bool codigoServicoAgora()
+        {
+            MySqlDataReader dados = null;
+
+            if (!Procedure("servicoParaAgora", false, null, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    codigoAgora.Add(dados[0].ToString());
+                    vl_maximo.Add(dados[1].ToString());
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+            }
+
+            return true;
         }
         #endregion
 
@@ -302,6 +345,35 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     dt_inicio_servico.Add(dados[13].ToString());
                     vl_cuidador.Add(dados[14].ToString());
                     duracaoServico.Add(dados[15].ToString());
+                }
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
+        #region Detalhes serviço agora
+        public bool detalhesServicoAgora(string cdServico)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vCodigoServico";
+            valores[0, 1] = cdServico;
+            
+            if (!Procedure("servicoSelecionadoAgora", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    nm_paciente.Add(dados[0].ToString());
+                    duracaoServico.Add(dados[1].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();

@@ -13,16 +13,6 @@ namespace prjCuidaEmCasa.lib
         protected void Page_Load(object sender, EventArgs e)
         {
             #region Validação
-            if (Request["vl"] == null)
-            {
-                Response.Write("erro");
-            }
-
-            if (Request["vl"].ToString() == "")
-            {
-                Response.Write("erro");
-            }
-
             if (Request["usuario"] == null)
             {
                 Response.Write("erro");
@@ -33,42 +23,65 @@ namespace prjCuidaEmCasa.lib
                 Response.Write("erro");
             }
 
-            if (Request["cd"] == null)
+            if (Request["cdUsado"] == null)
             {
                 Response.Write("erro");
             }
 
-            if (Request["cd"].ToString() == "")
+            if (Request["cdUsado"].ToString() == "")
             {
                 Response.Write("erro");
             }
             #endregion
 
-            string valorMaximo = Request["vl"].ToString();
             string usuario = Request["usuario"].ToString();
-            string cdServico = Request["cd"].ToString();
-
+            
             clsServico servico = new clsServico();
 
-            if (!(servico.buscarCuidadorAgora(valorMaximo)))
+            if (!(servico.codigoServicoAgora()))
+            {
+                Response.Write("false");
+            }
+
+            List<string> codigosQueJaForam = new List<string>();
+            List<string> cdServico = new List<string>();
+            List<string> valorMaximo = new List<string>();
+            codigosQueJaForam.Add(Request["cdUsado"].ToString());
+            for (int i = 0; i < servico.codigoAgora.Count; i++)
+            {
+                cdServico.Add(servico.codigoAgora[i].ToString());
+                valorMaximo.Add(servico.vl_maximo[i].ToString());
+                valorMaximo[i] = valorMaximo[i].Replace(",", ".");
+            
+            servico.detalhesServicoAgora(cdServico[i]);
+
+            if (!(servico.buscarCuidadorAgora(valorMaximo[i])))
             {
                 Response.Write("false");
                 return;
             }
 
-            servico.detalhesServicoHistoricoCuidador(cdServico);
             string dadosCuidadorAgora = "";
-            for (int i = 0; i < servico.emailCuidador.Count; i++)
+            for (int h = 0; h < codigosQueJaForam.Count; h++)
             {
-                if (servico.emailCuidador[i] == usuario)
+                if (codigosQueJaForam[h] != cdServico[i])
                 {
-                    dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
-				    dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
-				    dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
-                    dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                    codigosQueJaForam.Add(cdServico[i]);
+                    for (int j = 0; i < servico.emailCuidador.Count; j++)
+                    {
+                        if (servico.emailCuidador[j] == usuario)
+                        {
+                            dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
+                            dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
+                            dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
+                            dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                        }
+                    }
                 }
             }
-            Response.Write(dadosCuidadorAgora);
+            
+            Response.Write(dadosCuidadorAgora + "|" + cdServico);
+            }
         }
     }
 }

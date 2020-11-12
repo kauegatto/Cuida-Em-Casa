@@ -1119,28 +1119,28 @@ END$$
 
 DROP PROCEDURE IF EXISTS agendarServicoAgora$$
 
-CREATE PROCEDURE agendarServicoAgora(vCodigo INT, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vCodigoPaciente INT)
+CREATE PROCEDURE agendarServicoAgora(vCodigo INT, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vCodigoPaciente INT, vValorMaximo DECIMAL(10, 2))
 BEGIN
 	INSERT INTO servico
 		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
-		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, cd_status_servico, cd_paciente)
+		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, cd_status_servico, cd_paciente, vl_maximo)
 	VALUES
 		(vCodigo, CURRENT_DATE(), CURRENT_TIME(), CURRENT_DATE(), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
-		vEmailCliente, 6, vCodigoPaciente);
+		vEmailCliente, 6, vCodigoPaciente, vValorMaximo);
 END$$
 
 /* Porocedure criada para buscar um servico para agora e virar o dia */
 
 DROP PROCEDURE IF EXISTS agendarServicoAgoraVirarDia$$
 
-CREATE PROCEDURE agendarServicoAgoraVirarDia(vCodigo INT, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vCodigoPaciente INT)
+CREATE PROCEDURE agendarServicoAgoraVirarDia(vCodigo INT, vHoraFimServico TIME, vCEP VARCHAR(12), vCidade VARCHAR(200), vBairro VARCHAR(200), vRua VARCHAR(200), vNum INT, vUF VARCHAR(200), vComp VARCHAR(100), vEmailCliente VARCHAR(200), vCodigoPaciente INT, vValorMaximo DECIMAL(10, 2))
 BEGIN
 	INSERT INTO servico
 		(cd_servico, dt_inicio_servico, hr_inicio_servico, dt_fim_servico, hr_fim_servico, cd_CEP_servico, nm_cidade_servico, nm_bairro_servico,
-		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, cd_status_servico, cd_paciente)
+		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, cd_status_servico, cd_paciente, vl_maximo)
 	VALUES
 		(vCodigo, CURRENT_DATE(), CURRENT_TIME(), DATE_ADD(CURRENT_DATE(), INTERVAL 1 DAY), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
-		vEmailCliente, 6, vCodigoPaciente);
+		vEmailCliente, 6, vCodigoPaciente, vValorMaximo);
 END$$
 
 /* Procedure listarServicos será usada para listar todos os servicos agendados pelo cliente e ordenados de forma decrescente, podendo ser: em andamento, pendentes, finalizados e cancelados */
@@ -1341,11 +1341,27 @@ BEGIN
 		nm_email_usuario;
 END$$
 
+/* Procedure criada para buscar os servicos que estão com o cidog 6 */
+
+DROP PROCEDURE IF EXISTS servicoParaAgora$$
+
+CREATE PROCEDURE servicoParaAgora()
+BEGIN
+	SELECT
+		cd_servico, vl_maximo
+	FROM
+		servico
+	WHERE
+		cd_status_servico = 6
+	AND
+		dt_inicio_servico = CURRENT_DATE();
+END$$
+
 /* Procedure criada para buscar os pacientes que estão em serviço no momento da busca */
 
 DROP PROCEDURE IF EXISTS buscarPacienteServicoEmAndamento$$
 
-CREATE PROCEDURE buscarPacienteServicoEmAndamento(vEmailUsuario VARCHAR(200	))
+CREATE PROCEDURE buscarPacienteServicoEmAndamento(vEmailUsuario VARCHAR(200))
 BEGIN
 	SELECT 
 		p.img_paciente, p.nm_paciente, p.nm_cidade_paciente, 
@@ -1580,6 +1596,24 @@ BEGIN
 	JOIN
 		tipo_status_servico tsp
 	ON  (tsp.cd_status_servico = s.cd_status_servico)
+	WHERE 
+		s.cd_servico = vCodigoServico;
+END$$
+
+/* Procedure será usada para mostrar as informações completas do serviço de agora */
+
+DROP PROCEDURE IF EXISTS servicoSelecionadoAgora$$
+
+CREATE PROCEDURE servicoSelecionadoAgora(vCodigoServico INT)
+BEGIN
+	SELECT 
+		p.nm_paciente, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+	FROM 
+		servico s 
+	JOIN
+		paciente p 
+	ON 
+		(s.cd_paciente = p.cd_paciente) 
 	WHERE 
 		s.cd_servico = vCodigoServico;
 END$$

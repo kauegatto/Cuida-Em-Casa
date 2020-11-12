@@ -30,15 +30,16 @@ namespace prjCuidaEmCasa.lib
             string comp = Request["comp"].ToString();
             string emailCliente = Request["cliente"].ToString();
             string cdPaciente = Request["cdPaciente"].ToString();
+            string vlMaximo = Request["valorMaximo"].ToString();
             #endregion
 
             bool viraDia = Convert.ToBoolean(Session["viraDia"]);
-            if (!(servico.finalizarServicoAgora(proxCodigo, dtInicio, hrInicio, hrFim, cep, cidade, bairro, rua, num, uf, comp, emailCliente, cdPaciente, viraDia)))
+            if (!(servico.finalizarServicoAgora(proxCodigo, dtInicio, hrInicio, hrFim, cep, cidade, bairro, rua, num, uf, comp, emailCliente, cdPaciente, vlMaximo, viraDia)))
             {
                 Response.Write("false");
             }
 
-            Response.Write("true|" + proxCodigo);
+            Response.Write("true");
         }
     }
 }

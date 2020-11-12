@@ -156,7 +156,7 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
-    <Content Include="js\BuscaServicoAgora\navegacaoBuscaServicoAgora.js" />
+    <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
@@ -189,7 +189,7 @@
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
     <Content Include="js\ServicoAgora\scriptAlterarEnderecoAgora.js" />
-    <Content Include="js\BuscaServicoAgora\scriptBuscandoCuidador.js" />
+    <Content Include="js\BuscaServicoAgora\scriptBuscarCuidadorAgora.js" />
     <Content Include="js\ServicoAgora\scriptConfirmarEnderecoAgora.js" />
     <Content Include="js\ServicoAgora\scriptFinalizarServicoAgora.js" />
     <Content Include="js\ServicoAgora\scriptHoraValorAgora.js" />
