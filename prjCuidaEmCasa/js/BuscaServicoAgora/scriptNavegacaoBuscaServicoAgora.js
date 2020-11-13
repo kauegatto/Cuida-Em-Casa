@@ -12,5 +12,6 @@ $(document).ready(function () {
 
     scriptBuscarCuidadorAgora();
 
-    setInterval(scriptBuscarCuidadorAgora, 5000);
+    setInterval(scriptBuscarCuidadorAgora, 2000);
+    
 });

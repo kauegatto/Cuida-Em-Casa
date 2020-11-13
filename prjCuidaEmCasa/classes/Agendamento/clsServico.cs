@@ -43,6 +43,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> emailCuidador { get; set; }
         public List<string> vl_maximo { get; set; }
         public List<string> codigoAgora { get; set; }
+        public List<string> emailCuidadorAgora { get; set; }
 
         public clsServico(): base() 
         {
@@ -64,6 +65,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_bairro_servico = "";
             nm_num_servico = "";
             nm_comp_servico = "";
+            emailCuidadorAgora = new List<string>();
 
            /* Propriedades para o servico de agora */
 
@@ -264,7 +266,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             {
                 while (dados.Read())
                 {
-                    emailCuidador.Add(dados[0].ToString());
+                    emailCuidadorAgora.Add(dados[0].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();

@@ -10,6 +10,8 @@ namespace prjCuidaEmCasa.lib
 {
     public partial class libBuscarCuidadorAgora : System.Web.UI.Page
     {
+        List<string> codigosQueJaForam = new List<string>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             #region Validação
@@ -43,7 +45,6 @@ namespace prjCuidaEmCasa.lib
                 Response.Write("false");
             }
 
-            List<string> codigosQueJaForam = new List<string>();
             List<string> cdServico = new List<string>();
             List<string> valorMaximo = new List<string>();
             codigosQueJaForam.Add(Request["cdUsado"].ToString());
@@ -67,9 +68,9 @@ namespace prjCuidaEmCasa.lib
                 if (codigosQueJaForam[h] != cdServico[i])
                 {
                     codigosQueJaForam.Add(cdServico[i]);
-                    for (int j = 0; i < servico.emailCuidador.Count; j++)
+                    for (int j = 0; j < servico.emailCuidadorAgora.Count; j++)
                     {
-                        if (servico.emailCuidador[j] == usuario)
+                        if (servico.emailCuidadorAgora[j] == usuario)
                         {
                             dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
                             dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
@@ -79,8 +80,7 @@ namespace prjCuidaEmCasa.lib
                     }
                 }
             }
-            
-            Response.Write(dadosCuidadorAgora + "|" + cdServico);
+            Response.Write(dadosCuidadorAgora + "|" + cdServico[i]);
             }
         }
     }
