@@ -251,6 +251,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         #region Buscar cuidador agora
         public bool buscarCuidadorAgora(string valorMaximo)
         {
+            valorMaximo = valorMaximo.Replace(",", ".");
             MySqlDataReader dados = null;
             string[,] valores = new string[1, 2];
             valores[0, 0] = "vValorHora";

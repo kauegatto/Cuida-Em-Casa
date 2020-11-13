@@ -10,8 +10,6 @@ namespace prjCuidaEmCasa.lib
 {
     public partial class libBuscarCuidadorAgora : System.Web.UI.Page
     {
-        List<string> codigosQueJaForam = new List<string>();
-
         protected void Page_Load(object sender, EventArgs e)
         {
             #region Validação
@@ -34,10 +32,22 @@ namespace prjCuidaEmCasa.lib
             {
                 Response.Write("erro");
             }
+
+            if (Request["indice"] == null)
+            {
+                Response.Write("erro");
+            }
+
+            if (Request["indice"].ToString() == "")
+            {
+                Response.Write("erro");
+            }
             #endregion
 
             string usuario = Request["usuario"].ToString();
-            
+            string indice = Request["indice"].ToString();
+            int indiceFor = int.Parse(indice);
+
             clsServico servico = new clsServico();
 
             if (!(servico.codigoServicoAgora()))
@@ -46,42 +56,44 @@ namespace prjCuidaEmCasa.lib
             }
 
             List<string> cdServico = new List<string>();
+            string codigosQueJaForam = Request["cdUsado"].ToString();
             List<string> valorMaximo = new List<string>();
-            codigosQueJaForam.Add(Request["cdUsado"].ToString());
-            for (int i = 0; i < servico.codigoAgora.Count; i++)
-            {
-                cdServico.Add(servico.codigoAgora[i].ToString());
-                valorMaximo.Add(servico.vl_maximo[i].ToString());
-                valorMaximo[i] = valorMaximo[i].Replace(",", ".");
-            
-            servico.detalhesServicoAgora(cdServico[i]);
 
-            if (!(servico.buscarCuidadorAgora(valorMaximo[i])))
+            cdServico.Add(servico.codigoAgora[indiceFor].ToString());
+            valorMaximo.Add(servico.vl_maximo[indiceFor].ToString());
+            //valorMaximo[indiceFor] = valorMaximo[indiceFor].Replace(",", ".");
+
+            servico.detalhesServicoAgora(cdServico[indiceFor]);
+
+            if (!(servico.buscarCuidadorAgora(valorMaximo[indiceFor])))
             {
                 Response.Write("false");
                 return;
             }
 
             string dadosCuidadorAgora = "";
-            for (int h = 0; h < codigosQueJaForam.Count; h++)
+
+            if (codigosQueJaForam != cdServico[indiceFor])
             {
-                if (codigosQueJaForam[h] != cdServico[i])
+                for (int j = 0; j < servico.emailCuidadorAgora.Count; j++)
                 {
-                    codigosQueJaForam.Add(cdServico[i]);
-                    for (int j = 0; j < servico.emailCuidadorAgora.Count; j++)
+                    if (servico.emailCuidadorAgora[j] == usuario)
                     {
-                        if (servico.emailCuidadorAgora[j] == usuario)
-                        {
-                            dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
-                            dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
-                            dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
-                            dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
-                        }
+                        dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
+                        dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
+                        dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
+                        dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                        break;
                     }
                 }
             }
-            Response.Write(dadosCuidadorAgora + "|" + cdServico[i]);
+                
+            if (dadosCuidadorAgora == "")
+            {
+                Response.Write(dadosCuidadorAgora + "|" + cdServico[indiceFor]);
             }
+
+            Response.Write(dadosCuidadorAgora + "|" + cdServico[indiceFor]);
         }
     }
 }
