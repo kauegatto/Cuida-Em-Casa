@@ -33,7 +33,7 @@ namespace prjCuidaEmCasa.lib
 
             if (!(servico.codigoServicoAgora()))
             {
-                Response.Write("false");
+                Response.Write(dadosCuidadorAgora);
             }
 
             for (int i = 0; i < servico.codigoAgora.Count; i++)
@@ -44,7 +44,6 @@ namespace prjCuidaEmCasa.lib
 
                 cdServico.Add(servico.codigoAgora[i].ToString());
                 valorMaximo.Add(servico.vl_maximo[i].ToString());
-                //valorMaximo[i] = valorMaximo[i].Replace(",", ".");
 
                 servico.detalhesServicoAgora(cdServico[i]);
 
@@ -65,6 +64,7 @@ namespace prjCuidaEmCasa.lib
                             dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
                             dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
                             dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                            i = servico.codigoAgora.Count;
                             break;
                         }
                     }
@@ -84,6 +84,7 @@ namespace prjCuidaEmCasa.lib
                                 dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
                                 dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
                                 dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                                i = servico.codigoAgora.Count;
                                 break;
                             }
                         }
