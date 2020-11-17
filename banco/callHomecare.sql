@@ -6,7 +6,7 @@ call gerarOcorrencia(3, 'O cuidador agrediu o paciente', 'reinaldosouza@gmail.co
 call verificarSenha('mauriciorodolfo@gamil.com','123');
 
 /* PROCEDURES DO CLIENTE */
-
+select * from servico;
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);

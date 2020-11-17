@@ -8,6 +8,8 @@ $(document).ready(function () {
         window.location.href = "../../pages/index.html";
     }
 
+    localStorage.setItem("indice", "0");
+
     scriptBuscarCuidadorAgora();
 
     setInterval(scriptBuscarCuidadorAgora, 10000);

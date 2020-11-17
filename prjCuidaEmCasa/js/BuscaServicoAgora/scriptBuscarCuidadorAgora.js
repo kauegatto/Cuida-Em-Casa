@@ -1,6 +1,6 @@
 ﻿export default function scriptBuscarCuidadorAgora() {
 
-    $.post("../../lib/libBuscarCuidadorAgora.aspx", { usuario: localStorage.getItem("usuarioLogado") }, function(retorno){
+    $.post("../../lib/libBuscarCuidadorAgora.aspx", { usuario: localStorage.getItem("usuarioLogado"), indice: localStorage.getItem("indice") }, function(retorno){
             
 
         if (retorno == "erro") {
@@ -12,6 +12,7 @@
         }  
         else {
             $(".areaServicoEncontrado").html(retorno);
+            localStorage.setItem("indice", "1");
             console.log("tá contando");
             console.log(retorno);
         }

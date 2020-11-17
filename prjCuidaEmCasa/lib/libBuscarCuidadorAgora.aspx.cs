@@ -38,31 +38,30 @@ namespace prjCuidaEmCasa.lib
 
             for (int i = 0; i < servico.codigoAgora.Count; i++)
             {
-                List<string> cdServico = new List<string>();
-                Session["inicio"] = "0";
-                List<string> valorMaximo = new List<string>();
+                string cdServico = "";
+                string inicio = Request["indice"].ToString() ;
+                string valorMaximo = "";
 
-                cdServico.Add(servico.codigoAgora[i].ToString());
-                valorMaximo.Add(servico.vl_maximo[i].ToString());
+                cdServico = servico.codigoAgora[i].ToString();
+                valorMaximo = servico.vl_maximo[i].ToString();
+                servico.detalhesServicoAgora(cdServico);
 
-                servico.detalhesServicoAgora(cdServico[i]);
-
-                if (!(servico.buscarCuidadorAgora(valorMaximo[i])))
+                if (!(servico.buscarCuidadorAgora(valorMaximo)))
                 {
                     Response.Write("false");
                     return;
                 }
 
-                if (Session["inicio"].ToString() == "0")
+                if (inicio == "0")
                 {
-                    Session["codigosQueJaForam"] = cdServico[i];
+                    Session["codigosQueJaForam"] = cdServico;
                     for (int j = 0; j < servico.emailCuidadorAgora.Count; j++)
                     {
                         if (servico.emailCuidadorAgora[j] == usuario)
                         {
                             dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
-                            dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
-                            dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
+                            dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[i] + "</h3>";
+                            dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[i] + "  de serviço</h3>";
                             dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
                             i = servico.codigoAgora.Count;
                             break;
@@ -72,29 +71,29 @@ namespace prjCuidaEmCasa.lib
                 else
                 {
                     int codigo = int.Parse(Session["codigosQueJaForam"].ToString());
-                    int codigoServico = int.Parse(cdServico[i].ToString());
+                    int codigoServico = int.Parse(cdServico.ToString());
 
-                    if (Session["codigosQueJaForam"].ToString() != cdServico[i] && codigo > codigoServico )
+                    if (Session["codigosQueJaForam"].ToString() != cdServico && codigoServico > codigo)
                     {
                         for (int j = 0; j < servico.emailCuidadorAgora.Count; j++)
                         {
                             if (servico.emailCuidadorAgora[j] == usuario)
                             {
                                 dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
-                                dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[0] + "</h3>";
-                                dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
+                                dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[i] + "</h3>";
+                                dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[i] + "  de serviço</h3>";
                                 dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
                                 i = servico.codigoAgora.Count;
+                                Session["codigosQueJaForam"] = cdServico;
                                 break;
                             }
                         }
                     }
+                    else
+                    {
+                        dadosCuidadorAgora = "";
+                    }
                 }   
-            }
-
-            if (dadosCuidadorAgora == "")
-            {
-                Response.Write(dadosCuidadorAgora);
             }
 
             Response.Write(dadosCuidadorAgora);
