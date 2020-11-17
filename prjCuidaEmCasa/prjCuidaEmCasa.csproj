@@ -156,6 +156,7 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+    <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
@@ -215,6 +216,7 @@
     <Content Include="lib\libDetalheAgendaCliente.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
+    <Content Include="lib\libDisponibilidadeCuidador.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -391,6 +393,13 @@
     </Compile>
     <Compile Include="lib\libDetalhesServico.aspx.designer.cs">
       <DependentUpon>libDetalhesServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDisponibilidadeCuidador.aspx.cs">
+      <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDisponibilidadeCuidador.aspx.designer.cs">
+      <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>

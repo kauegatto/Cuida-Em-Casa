@@ -39,6 +39,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string nm_num_servico { get; set; }
         public string nm_comp_servico { get; set; }
         public List<string> cd_paciente { get; set; }
+        public string disponibilidadeCuidador { get; set; }
 
         public clsCuidador(): base()
         {
@@ -494,5 +495,45 @@ namespace prjCuidaEmCasa.classes.Agendamento
             return false;
         }
         #endregion 
+
+        #region Tornar Disponivel
+
+        public bool tornarDisponivel(string email)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1]= email;
+
+            if (!Procedure("tornarDisponivel", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
+        #region Tornar indisponivel
+
+        public bool tornarIndisponivel(string email)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = email;
+
+            if (!Procedure("tornarIndisponivel", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
     }
 }

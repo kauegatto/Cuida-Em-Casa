@@ -1688,6 +1688,7 @@ BEGIN
 		s.cd_servico = vServico;
 END$$	
 
+
 /* Procedure criada para tornar o cuidador disponível para serviços sem agendamento */
 
 DROP PROCEDURE IF EXISTS tornarDisponivel$$

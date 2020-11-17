@@ -1,4 +1,5 @@
 ﻿import scriptBuscarCuidadorAgora from "./scriptBuscarCuidadorAgora.js";
+import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
 
 $(document).ready(function () {
 
@@ -13,5 +14,14 @@ $(document).ready(function () {
     scriptBuscarCuidadorAgora();
 
     setInterval(scriptBuscarCuidadorAgora, 10000);
+
+
+    $(document).on("click", ".areaDisponibilidade", function(){
+
+    	var classes = $(this).attr("class").split(/\s+/);
+
+        scriptDisponibilidadeCuidador(classes[1]);
+    	
+    });
     
 });
