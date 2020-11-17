@@ -49,7 +49,7 @@ call listarServicosFinalizadosAntigos('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosData('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call servicoSelecionado(24);
-call servicoSelecionadoAgora(23);
+call servicoSelecionadoAgora(27);
 call marcarCheckin(5);
 call marcarCheckout(5);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
