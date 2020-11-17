@@ -156,8 +156,12 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+<<<<<<< HEAD
     <Content Include="js\BuscaServicoAgora\scriptAceitarServico.js" />
     <Content Include="js\BuscaServicoAgora\scriptDetalhesServicoAgora.js" />
+=======
+    <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
+>>>>>>> ba2c0b055d985659b1695f1859cdacdb4926dc86
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
@@ -218,7 +222,11 @@
     <Content Include="lib\libDetalheAgendaCliente.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
+<<<<<<< HEAD
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
+=======
+    <Content Include="lib\libDisponibilidadeCuidador.aspx" />
+>>>>>>> ba2c0b055d985659b1695f1859cdacdb4926dc86
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -403,12 +411,21 @@
     <Compile Include="lib\libDetalhesServico.aspx.designer.cs">
       <DependentUpon>libDetalhesServico.aspx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="lib\libDetalhesServicoAgora.aspx.cs">
       <DependentUpon>libDetalhesServicoAgora.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="lib\libDetalhesServicoAgora.aspx.designer.cs">
       <DependentUpon>libDetalhesServicoAgora.aspx</DependentUpon>
+=======
+    <Compile Include="lib\libDisponibilidadeCuidador.aspx.cs">
+      <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDisponibilidadeCuidador.aspx.designer.cs">
+      <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
+>>>>>>> ba2c0b055d985659b1695f1859cdacdb4926dc86
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
