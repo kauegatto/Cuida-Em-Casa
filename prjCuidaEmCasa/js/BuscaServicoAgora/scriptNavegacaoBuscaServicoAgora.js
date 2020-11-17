@@ -6,6 +6,8 @@ import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
 
 $(document).ready(function () {
 
+    var interval;
+
     if(!localStorage.getItem("tipoUsuario") == 3){
         alert("Você não tem acesso a essa página, realize o login novamente");
         localStorage.clear();
@@ -34,6 +36,8 @@ $(document).ready(function () {
         $('#headerNav').addClass("visivel");
         $('#tituloGeral-Nav').html("Informações do serviço");
 
+        clearInterval(interval);
+
     });
 
     $(document).on("click", ".btnConfirmar", function(){
@@ -50,11 +54,13 @@ $(document).ready(function () {
 
         $("#wrapper-detalhesServico").css("display","none");
 
-        $(".areaServicoEncontrado").addClass("visivel");
+        $(".areaServicoEncontrado").css("display", "block");
         $(".areaDisponibilidade").addClass("visivel");
         $('#tituloGeral-Nav').html("Buscar Serviço");
 
         scriptBuscarCuidadorAgora();
+
+        interval = setInterval(scriptBuscarCuidadorAgora, 10000);
 
     });
 
@@ -66,7 +72,7 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
 
-        setInterval(scriptBuscarCuidadorAgora, 10000);
+        interval = setInterval(scriptBuscarCuidadorAgora, 10000);
     	
     });
     
