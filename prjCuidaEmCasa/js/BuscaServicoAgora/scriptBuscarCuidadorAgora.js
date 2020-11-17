@@ -13,8 +13,6 @@
         else {
             $(".areaServicoEncontrado").html(retorno);
             localStorage.setItem("indice", "1");
-            console.log("tá contando");
-            console.log(retorno);
         }
     });
 };

@@ -156,6 +156,8 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+    <Content Include="js\BuscaServicoAgora\scriptAceitarServico.js" />
+    <Content Include="js\BuscaServicoAgora\scriptDetalhesServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
@@ -197,6 +199,7 @@
     <Content Include="js\ServicoAgora\scriptPacienteAgora.js" />
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
+    <Content Include="lib\libAceitarServicoAgora.aspx" />
     <Content Include="lib\libAdicionarPaciente.aspx" />
     <Content Include="lib\libAgendadosAgendaCliente.aspx" />
     <Content Include="lib\libAgendadosHistoricoCliente.aspx" />
@@ -215,6 +218,7 @@
     <Content Include="lib\libDetalheAgendaCliente.aspx" />
     <Content Include="lib\libDetalheHistoricoCliente.aspx" />
     <Content Include="lib\libDetalhesServico.aspx" />
+    <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -265,6 +269,13 @@
     </Compile>
     <Compile Include="lib\dadosEndereco.aspx.designer.cs">
       <DependentUpon>dadosEndereco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAceitarServicoAgora.aspx.cs">
+      <DependentUpon>libAceitarServicoAgora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAceitarServicoAgora.aspx.designer.cs">
+      <DependentUpon>libAceitarServicoAgora.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libAdicionarPaciente.aspx.cs">
       <DependentUpon>libAdicionarPaciente.aspx</DependentUpon>
@@ -391,6 +402,13 @@
     </Compile>
     <Compile Include="lib\libDetalhesServico.aspx.designer.cs">
       <DependentUpon>libDetalhesServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libDetalhesServicoAgora.aspx.cs">
+      <DependentUpon>libDetalhesServicoAgora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libDetalhesServicoAgora.aspx.designer.cs">
+      <DependentUpon>libDetalhesServicoAgora.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>

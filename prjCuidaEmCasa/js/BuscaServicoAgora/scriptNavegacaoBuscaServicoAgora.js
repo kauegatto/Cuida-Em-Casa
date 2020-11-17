@@ -1,4 +1,6 @@
 ﻿import scriptBuscarCuidadorAgora from "./scriptBuscarCuidadorAgora.js";
+import scriptDetalhesServicoAgora from "./scriptDetalhesServicoAgora.js";
+import scriptAceitarServico from "./scriptAceitarServico.js";
 
 $(document).ready(function () {
 
@@ -13,5 +15,49 @@ $(document).ready(function () {
     scriptBuscarCuidadorAgora();
 
     setInterval(scriptBuscarCuidadorAgora, 10000);
+
+    $(document).on("click", ".btnVerMaisServicoEncontrado", function(){
+        
+        $(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+        });
+
+        var classes = $(this).attr("class").split(/\s+/);
+
+        scriptDetalhesServicoAgora(classes[1]);
+        localStorage.setItem('cdServico', classes[1]);
+
+        $(".areaServicoEncontrado").css("display","none");
+        $(".areaDisponibilidade").css("display","none");
+        $('#headerComum').css("display","none");
+
+
+        $("#wrapper-detalhesServico").addClass("visivel");
+        $('#headerNav').addClass("visivel");
+        $('#tituloGeral-Nav').html("Informações do serviço");
+
+    });
+
+    $(document).on("click", ".btnConfirmar", function(){
+
+        scriptAceitarServico();
+
+    });
+
+    $(document).on("click", ".btnRecusar", function(){
+        
+        $(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+        });
+
+        $("#wrapper-detalhesServico").css("display","none");
+
+        $(".areaServicoEncontrado").addClass("visivel");
+        $(".areaDisponibilidade").addClass("visivel");
+        $('#tituloGeral-Nav').html("Buscar Serviço");
+
+        scriptBuscarCuidadorAgora();
+
+    });
     
 });

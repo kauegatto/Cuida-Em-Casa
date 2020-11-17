@@ -375,14 +375,59 @@ namespace prjCuidaEmCasa.classes.Agendamento
             {
                 while (dados.Read())
                 {
-                    nm_paciente.Add(dados[0].ToString());
-                    duracaoServico.Add(dados[1].ToString());
+                    if (!Convert.IsDBNull(dados[0]))
+                    {
+                        byte[] imagem = (byte[])dados[0];
+
+                        base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
+                    }
+                    else { base64String.Add(base64standard); }
+                    nm_paciente.Add(dados[1].ToString());
+                    nm_necessidade = dados[2].ToString();
+                    ds_paciente = dados[3].ToString();
+                    cd_CEP_servico = dados[4].ToString();
+                    nm_cidade_servico = dados[5].ToString();
+                    nm_uf_servico = dados[6].ToString();
+                    nm_bairro_servico = dados[7].ToString();
+                    nm_rua_servico.Add(dados[8].ToString());
+                    nm_num_servico = dados[9].ToString();
+                    if (dados[10].ToString() != null)
+                    {
+                        nm_comp_servico = dados[10].ToString();
+                    }
+                    hr_inicio_servico.Add(dados[11].ToString());
+                    hr_fim_servico.Add(dados[12].ToString());
+                    dt_inicio_servico.Add(dados[13].ToString());
+                    duracaoServico.Add(dados[14].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
                 return true;
             }
             return false;
+        }
+        #endregion
+
+        #region Aceitar servico agora
+        public bool aceitarServico(string cdServico, string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vCodigo";
+            valores[0, 1] = cdServico;
+            valores[1, 0] = "vEmailCuidador";
+            valores[1, 1] = emailCuidador;
+
+            if (!Procedure("aceitarServicoAgora", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
         }
         #endregion
 

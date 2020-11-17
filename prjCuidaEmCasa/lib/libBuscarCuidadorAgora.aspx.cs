@@ -62,7 +62,7 @@ namespace prjCuidaEmCasa.lib
                             dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
                             dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[i] + "</h3>";
                             dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[i] + "  de serviço</h3>";
-                            dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                            dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado " + cdServico + "' type='button'>Ver Mais</button>";
                             i = servico.codigoAgora.Count;
                             break;
                         }
@@ -79,10 +79,10 @@ namespace prjCuidaEmCasa.lib
                         {
                             if (servico.emailCuidadorAgora[j] == usuario)
                             {
-                                dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
+                                dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado' >Serviço Encontrado</h3>";
                                 dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[i] + "</h3>";
                                 dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[i] + "  de serviço</h3>";
-                                dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado' type='button'>Ver Mais</button>";
+                                dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado " + cdServico + "' type='button'>Ver Mais</button>";
                                 i = servico.codigoAgora.Count;
                                 Session["codigosQueJaForam"] = cdServico;
                                 break;

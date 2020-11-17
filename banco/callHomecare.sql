@@ -6,7 +6,7 @@ call gerarOcorrencia(3, 'O cuidador agrediu o paciente', 'reinaldosouza@gmail.co
 call verificarSenha('mauriciorodolfo@gamil.com','123');
 
 /* PROCEDURES DO CLIENTE */
-select * from servico;
+
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
@@ -21,6 +21,7 @@ call agendarServicoAgora(23,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueir
 call agendarServicoAgoraVirarDia(23,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
+call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');
 call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
