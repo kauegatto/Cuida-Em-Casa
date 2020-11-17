@@ -1,7 +1,6 @@
 ﻿import scriptBuscarCuidadorAgora from "./scriptBuscarCuidadorAgora.js";
 import scriptDetalhesServicoAgora from "./scriptDetalhesServicoAgora.js";
 import scriptAceitarServico from "./scriptAceitarServico.js";
-
 import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
 
 
@@ -14,11 +13,6 @@ $(document).ready(function () {
     }
 
     localStorage.setItem("indice", "0");
-
-    scriptBuscarCuidadorAgora();
-
-    setInterval(scriptBuscarCuidadorAgora, 10000);
-
 
     $(document).on("click", ".btnVerMaisServicoEncontrado", function(){
         
@@ -69,6 +63,10 @@ $(document).ready(function () {
     	var classes = $(this).attr("class").split(/\s+/);
 
         scriptDisponibilidadeCuidador(classes[1]);
+
+        scriptBuscarCuidadorAgora();
+
+        setInterval(scriptBuscarCuidadorAgora, 10000);
     	
     });
     

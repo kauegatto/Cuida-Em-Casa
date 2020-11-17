@@ -12,6 +12,7 @@
         }  
         else {
             $(".areaServicoEncontrado").html(retorno);
+            $(".areaServicoEncontrado").css("display", "block");
             localStorage.setItem("indice", "1");
         }
     });
