@@ -1,10 +1,9 @@
 ﻿import scriptBuscarCuidadorAgora from "./scriptBuscarCuidadorAgora.js";
-<<<<<<< HEAD
 import scriptDetalhesServicoAgora from "./scriptDetalhesServicoAgora.js";
 import scriptAceitarServico from "./scriptAceitarServico.js";
-=======
+
 import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
->>>>>>> ba2c0b055d985659b1695f1859cdacdb4926dc86
+
 
 $(document).ready(function () {
 
@@ -20,7 +19,7 @@ $(document).ready(function () {
 
     setInterval(scriptBuscarCuidadorAgora, 10000);
 
-<<<<<<< HEAD
+
     $(document).on("click", ".btnVerMaisServicoEncontrado", function(){
         
         $(".visivel").each(function (i, obj) {
@@ -63,7 +62,8 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
 
-=======
+    	
+    });
 
     $(document).on("click", ".areaDisponibilidade", function(){
 
@@ -71,7 +71,6 @@ $(document).ready(function () {
 
         scriptDisponibilidadeCuidador(classes[1]);
     	
->>>>>>> ba2c0b055d985659b1695f1859cdacdb4926dc86
     });
     
 });
