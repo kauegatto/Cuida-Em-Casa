@@ -16,7 +16,7 @@
 						$("#txtDisponibilidade").html("Torna-se Indisponível");
 						$('.areaDisponibilidade').css("background", "#9D2F42");
 					}
-
+					
 				});
 		}
 		else
