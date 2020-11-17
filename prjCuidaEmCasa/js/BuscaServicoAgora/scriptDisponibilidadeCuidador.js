@@ -14,7 +14,7 @@
 						$("#btnDisponivel").removeClass("0");
 						$("#btnDisponivel").addClass("1");
 						$("#txtDisponibilidade").html("Torna-se Indisponível");
-						$('.areaDisponibilidade').css("background", "#9D2F42");
+						$('.areaDisponibilidade').css("background", "#27AE60");
 					}
 					
 				});
@@ -33,7 +33,7 @@
 						$("#btnDisponivel").removeClass("1");
 						$("#btnDisponivel").addClass("0");
 						$("#txtDisponibilidade").html("Torna-se Disponível");
-						$('.areaDisponibilidade').css("background", "#27AE60");
+						$('.areaDisponibilidade').css("background", "#9D2F42");
 					}
 
 				});

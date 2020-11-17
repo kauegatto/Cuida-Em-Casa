@@ -62,7 +62,6 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
 
-    	
     });
 
     $(document).on("click", ".areaDisponibilidade", function(){
