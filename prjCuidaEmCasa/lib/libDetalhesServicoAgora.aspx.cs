@@ -28,6 +28,7 @@ namespace prjCuidaEmCasa.lib
             detalhesServico += "<div class='areaDetalhesInformacaoPaciente'>";
             detalhesServico += "<h3 class='tituloInfoPaciente'>Informações do Paciente</h3>";
             detalhesServico += "<div class='areaImagemPaciente' id='areaImagemDetalhes'></div>";
+            detalhesServico += "<div class='invi'>" + servico.base64String[0] + "</div>";
             detalhesServico += "<div class='areaDadosDetalhe'>";
             detalhesServico += "<h3 class='nomePacienteDetalhes'>" + servico.nm_paciente[0] + "</h3>";
             detalhesServico += "<span class='necessidadePacienteDetalhes'>Necessidade: </span><span class='necessidadePaciente'>" + servico.nm_necessidade + "</span>";

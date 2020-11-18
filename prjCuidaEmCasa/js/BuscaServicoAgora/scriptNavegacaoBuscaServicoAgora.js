@@ -36,7 +36,7 @@ $(document).ready(function () {
         $("#wrapper-detalhesServico").addClass("visivel");
         $('#headerNav').addClass("visivel");
         $('#tituloGeral-Nav').html("Informações do serviço");
-
+        $('#body').css("background", "#f3f3f3");
         clearInterval(interval);
 
     });
