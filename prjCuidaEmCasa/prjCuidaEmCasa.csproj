@@ -63,6 +63,7 @@
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\cuidador\estiloBuscarServico.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
+    <Content Include="css\cuidador\estiloServicoAtual.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
     <Content Include="css\cliente\agendamento\estiloInfoCuidador.css" />
@@ -160,6 +161,7 @@
     <Content Include="js\BuscaServicoAgora\scriptDetalhesServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
+    <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
@@ -228,6 +230,7 @@
     <Content Include="lib\libHistoricoServico.aspx" />
     <Content Include="lib\libPacientesEmServico.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
+    <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
     <Content Include="pages\cliente\servicoAgora.html" />
@@ -467,6 +470,13 @@
     </Compile>
     <Compile Include="lib\libServicoAgendadoSelecionado.aspx.designer.cs">
       <DependentUpon>libServicoAgendadoSelecionado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libServicoAtual.aspx.cs">
+      <DependentUpon>libServicoAtual.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libServicoAtual.aspx.designer.cs">
+      <DependentUpon>libServicoAtual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

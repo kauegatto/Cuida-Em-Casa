@@ -4,8 +4,6 @@
         if (!retorno) {
             console.log("deu errado");
         }
-
-        console.log("deu certo");
     });
 
 };

@@ -1372,6 +1372,50 @@ BEGIN
 		cd_servico = vCodigo;
 END$$
 
+/* Procedure criada para buscar informações do serviço de agora com dia da semana */
+
+DROP PROCEDURE IF EXISTS infoServicoAtualCuidador$$
+
+CREATE PROCEDURE infoServicoAtualCuidador(vCodigoServico INT)
+BEGIN
+	SELECT
+		p.img_paciente, p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente), s.nm_rua_servico, s.cd_num_servico, 
+		s.nm_complemento_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m'),
+		CASE WEEKDAY(s.dt_inicio_servico) 
+                       when 0 then 'Segunda-feira'
+                       when 1 then 'Terça-feira'
+                       when 2 then 'Quarta-feira'
+                       when 3 then 'Quinta-feira'
+                       when 4 then 'Sexta-feira'
+                       when 5 then 'Sábado'
+                       when 6 then 'Domingo'                 
+                       END AS DiaDaSemana,
+		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+	FROM
+		servico s
+	JOIN
+		paciente p
+	ON
+		(s.cd_paciente = p.cd_paciente)
+	JOIN
+		necessidade_paciente np
+	ON
+		(p.cd_paciente = np.cd_paciente)
+	JOIN
+		tipo_necessidade_paciente tnp
+	ON
+		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
+	JOIN
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	WHERE
+		s.cd_servico = vCodigoServico
+	GROUP BY
+		s.cd_servico;
+END$$
+
 /* Procedure criada para buscar os pacientes que estão em serviço no momento da busca */
 
 DROP PROCEDURE IF EXISTS buscarPacienteServicoEmAndamento$$

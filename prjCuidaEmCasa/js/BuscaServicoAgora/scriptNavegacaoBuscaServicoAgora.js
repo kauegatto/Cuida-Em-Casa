@@ -2,6 +2,7 @@
 import scriptDetalhesServicoAgora from "./scriptDetalhesServicoAgora.js";
 import scriptAceitarServico from "./scriptAceitarServico.js";
 import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
+import scriptServicoAgora from "./scriptServicoAgora.js";
 
 
 $(document).ready(function () {
@@ -44,6 +45,15 @@ $(document).ready(function () {
 
         scriptAceitarServico();
 
+        $(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+        });
+        $("#wrapper-detalhesServico").css("display","none");
+
+        scriptServicoAgora();
+
+        $("#wrapper-infoServico").addClass("visivel");
+
     });
 
     $(document).on("click", ".btnRecusar", function(){
@@ -75,5 +85,4 @@ $(document).ready(function () {
         interval = setInterval(scriptBuscarCuidadorAgora, 10000);
     	
     });
-    
 });

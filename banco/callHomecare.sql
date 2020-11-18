@@ -22,6 +22,7 @@ call agendarServicoAgoraVirarDia(23,'02:00:00', '11533-040','Cubatão', 'Jardim 
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
 call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');
+call infoServicoAtualCuidador(27);
 call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
