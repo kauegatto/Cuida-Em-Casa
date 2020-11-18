@@ -37,8 +37,9 @@ namespace prjCuidaEmCasa.lib
             string dadosServicoAtual = "";
 
             dadosServicoAtual += "<h3 class='tituloServicoAtual'>Serviço Atual</h3>";
-			dadosServicoAtual += "<div class='areaInfoPaciente'>";
-			dadosServicoAtual += "<div class='areaImagemPaciente' style='background-image: url('img/imgIdoso1.jfif');'></div>";
+			dadosServicoAtual += "<div class='areaInfoPaciente' style='height: 131px'>";
+			dadosServicoAtual += "<div class='areaImagemPaciente'></div>";
+            dadosServicoAtual += "<div class='invi'>" + servico.base64String[0] + "</div>";
 			dadosServicoAtual += "<div class='areaDadosPaciente'>";
 			dadosServicoAtual += "<h3 class='nomePaciente'>" + servico.nm_paciente[0] + "</h3>";
 			dadosServicoAtual += "<h3 class='necessidadePaciente'>" + servico.nm_necessidade + "</h3>";

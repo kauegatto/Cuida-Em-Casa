@@ -6,6 +6,12 @@
         }
 
         $('#wrapper-infoServico').html(retorno);
+
+        $(".areaInfoPaciente").each(function (i, obj) {
+			var url = "data:image/png;base64," + $(this).children('.invi').html();
+            $(this).children(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+        });
+
     });
 
 };

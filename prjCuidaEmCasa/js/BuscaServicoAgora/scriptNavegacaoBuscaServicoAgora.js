@@ -43,6 +43,7 @@ $(document).ready(function () {
 
     $(document).on("click", ".btnConfirmar", function(){
 
+        clearInterval(interval);
         scriptAceitarServico();
 
         $(".visivel").each(function (i, obj) {
@@ -69,7 +70,7 @@ $(document).ready(function () {
         $('#tituloGeral-Nav').html("Buscar Serviço");
 
         scriptBuscarCuidadorAgora();
-
+        $('#body').css("background", "rgba(41, 128, 185, 0.8)");
         interval = setInterval(scriptBuscarCuidadorAgora, 10000);
 
     });
