@@ -224,15 +224,8 @@
 
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
-<<<<<<< HEAD
-<<<<<<< HEAD
     <Content Include="lib\libCriarContaCliente.aspx" />
-=======
 
->>>>>>> 87ac46729dfa9429f4543a84b4efa69edde99d33
-=======
-
->>>>>>> 87ac46729dfa9429f4543a84b4efa69edde99d33
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -394,7 +387,7 @@
     </Compile>
     <Compile Include="lib\libConfirmarPagamento.aspx.designer.cs">
       <DependentUpon>libConfirmarPagamento.aspx</DependentUpon>
-
+    </Compile>
     <Compile Include="lib\libCancelarServicoAgora.aspx.cs">
       <DependentUpon>libCancelarServicoAgora.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -408,8 +401,6 @@
     </Compile>
     <Compile Include="lib\libCheckinCheckout.aspx.designer.cs">
       <DependentUpon>libCheckinCheckout.aspx</DependentUpon>
-
-<<<<<<< HEAD
     </Compile>
     <Compile Include="lib\libCriarContaCliente.aspx.cs">
       <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
@@ -417,8 +408,6 @@
     </Compile>
     <Compile Include="lib\libCriarContaCliente.aspx.designer.cs">
       <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
-=======
->>>>>>> 87ac46729dfa9429f4543a84b4efa69edde99d33
     </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
@@ -540,8 +529,7 @@
       <DependentUpon>libServicoAtual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
+      </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
