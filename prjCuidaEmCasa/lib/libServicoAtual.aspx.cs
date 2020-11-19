@@ -53,7 +53,8 @@ namespace prjCuidaEmCasa.lib
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "<div class='areaMapa'>";
 			dadosServicoAtual += "</div>";
-			dadosServicoAtual += "<button class='btnCheckin'>Fazer Check-In</button>";
+			dadosServicoAtual += "<button class='btnCheckin 0'>Fazer Check-In</button>";
+            dadosServicoAtual += "<button class='btnCheckout 1' style='display:none'>Fazer Checkout</button>";
 
             Response.Write(dadosServicoAtual);
         }

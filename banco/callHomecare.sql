@@ -17,8 +17,8 @@ call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', true, false, 
 call cuidadorEscolhido('matheusraimundofarias@gmail.com');
 call agendarServico(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie',4);
 call agendarServicoVirarDia(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',4);
-call agendarServicoAgora(24,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
-call agendarServicoAgoraVirarDia(23,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
+call agendarServicoAgora(28,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
+call agendarServicoAgoraVirarDia(28,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
 call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');
@@ -47,13 +47,13 @@ call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.
 call cadastrarEspecializacoes(1, 'reinaldosouza@gmail.com');
 call listarServicosAgendados('flaviabeneditamilenamelo@gmail.com');
 call cancelarServicoAgendado(10);
-call listarServicosFinalizadosAntigos('flaviabeneditamilenamelo@gmail.com');
+call listarServicosFinalizadosAntigos('brunastellaflaviadepaula@gmail.com');
 call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosData('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call servicoSelecionado(24);
-call servicoSelecionadoAgora(27);
+call servicoSelecionadoAgora(26);
 call marcarCheckin(5);
-call marcarCheckout(5);
+call marcarCheckout(26);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 
