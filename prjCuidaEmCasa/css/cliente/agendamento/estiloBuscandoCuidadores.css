@@ -21,3 +21,5 @@
 .areaLocalizacaoCuidador img { width: 100%; }
 
 .btnCancelar { margin-left: 84px; width: 187px; height: 40px; background: #9D2F42; border-radius: 10px; border-style: none; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF;}
+
+.btnCancelarBusca { margin-left: 84px; width: 187px; height: 40px; background: #9D2F42; border-radius: 10px; border-style: none; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF; margin-top: 80px; position: absolute;}

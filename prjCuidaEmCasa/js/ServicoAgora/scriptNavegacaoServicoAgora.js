@@ -3,6 +3,7 @@ import scriptConfirmarEnderecoAgora from "./scriptConfirmarEnderecoAgora.js";
 import scriptAlterarEnderecoAgora from "./scriptAlterarEnderecoAgora.js";
 import scriptHoraValorAgora from "./scriptHoraValorAgora.js";
 import scriptFinalizarServicoAgora from "./scriptFinalizarServicoAgora.js";
+import scriptCancelarServicoAgora from "./scriptCancelarServicoAgora.js"
 
 var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
 
@@ -107,6 +108,10 @@ $("#btnDataHora").click(function () {
     passarPagina($(this),1);
     scriptHoraValorAgora();
     scriptFinalizarServicoAgora();
+});
+
+$(".btnCancelarBusca").click(function () {
+    scriptCancelarServicoAgora();
 });
 
  });

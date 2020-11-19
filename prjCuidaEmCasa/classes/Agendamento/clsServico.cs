@@ -799,5 +799,27 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion
 
+        #region confirmarPagamento
+        public bool confirmarPagamento (string cdPedido) {
+
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vCdServico";
+            valores[0, 1] =  cdPedido;
+            if (!Procedure("confirmarPedido", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        
+        }
+
+        #endregion 
+
     }
 }

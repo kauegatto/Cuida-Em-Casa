@@ -169,7 +169,6 @@
     <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
-    <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
     <Content Include="js\Cuidador\scriptDenunciarServico.js" />
     <Content Include="js\Cuidador\scriptDetalhesServico.js" />
@@ -189,18 +188,17 @@
     <Content Include="js\Pacientes\scriptEditarDadosPaciente.js" />
     <Content Include="js\Pacientes\scriptInfoServicoAtual.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
-    <Content Include="js\Pacientes\scriptPaciente.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
     <Content Include="js\Pagamento\scriptBuscarPagamento.js" />
     <Content Include="js\Pagamento\scriptDadosPagamento.js" />
     <Content Include="js\ServicoAgendado\scriptCancelarServicoAgendado.js" />
-    <Content Include="js\ServicoAgendado\scriptDenunciarServico.js" />
     <Content Include="js\ServicoAgendado\scriptNavegacaoAgendados.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendado.js" />
     <Content Include="js\Pacientes\scriptPacientes.js" />
     <Content Include="js\ServicoAgendado\scriptServicoAgendadoSelecionado.js" />
     <Content Include="js\ServicoAgora\scriptAlterarEnderecoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptBuscarCuidadorAgora.js" />
+    <Content Include="js\ServicoAgora\scriptCancelarServicoAgora.js" />
     <Content Include="js\ServicoAgora\scriptConfirmarEnderecoAgora.js" />
     <Content Include="js\ServicoAgora\scriptFinalizarServicoAgora.js" />
     <Content Include="js\ServicoAgora\scriptHoraValorAgora.js" />
@@ -221,7 +219,20 @@
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
     <Content Include="lib\libCancelarServicoAgendado.aspx" />
+
+    <Content Include="lib\libConfirmarPagamento.aspx" />
+
+    <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <Content Include="lib\libCriarContaCliente.aspx" />
+=======
+
+>>>>>>> 87ac46729dfa9429f4543a84b4efa69edde99d33
+=======
+
+>>>>>>> 87ac46729dfa9429f4543a84b4efa69edde99d33
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -235,6 +246,7 @@
     <Content Include="lib\libInfoServicoAtual.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
+    <Content Include="lib\libMudarStatusPagamento.aspx" />
     <Content Include="lib\libPacientesEmServico.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
@@ -375,12 +387,38 @@
     <Compile Include="lib\libCancelarServicoAgendado.aspx.designer.cs">
       <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
     </Compile>
+
+    <Compile Include="lib\libConfirmarPagamento.aspx.cs">
+      <DependentUpon>libConfirmarPagamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libConfirmarPagamento.aspx.designer.cs">
+      <DependentUpon>libConfirmarPagamento.aspx</DependentUpon>
+
+    <Compile Include="lib\libCancelarServicoAgora.aspx.cs">
+      <DependentUpon>libCancelarServicoAgora.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCancelarServicoAgora.aspx.designer.cs">
+      <DependentUpon>libCancelarServicoAgora.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libCheckinCheckout.aspx.cs">
       <DependentUpon>libCheckinCheckout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="lib\libCheckinCheckout.aspx.designer.cs">
       <DependentUpon>libCheckinCheckout.aspx</DependentUpon>
+
+<<<<<<< HEAD
+    </Compile>
+    <Compile Include="lib\libCriarContaCliente.aspx.cs">
+      <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCriarContaCliente.aspx.designer.cs">
+      <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
+=======
+>>>>>>> 87ac46729dfa9429f4543a84b4efa69edde99d33
     </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
@@ -472,6 +510,13 @@
     </Compile>
     <Compile Include="lib\libHistoricoServico.aspx.designer.cs">
       <DependentUpon>libHistoricoServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libMudarStatusPagamento.aspx.cs">
+      <DependentUpon>libMudarStatusPagamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libMudarStatusPagamento.aspx.designer.cs">
+      <DependentUpon>libMudarStatusPagamento.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libPacientesEmServico.aspx.cs">
       <DependentUpon>libPacientesEmServico.aspx</DependentUpon>
