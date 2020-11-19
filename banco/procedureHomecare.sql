@@ -11,9 +11,9 @@ CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHA
 BEGIN
 
 	insert into 
-		usuario (nm_email_usuario, nm_usuario, cd_telefone, cd_CPF, nm_senha) 
+		usuario (nm_email_usuario, nm_usuario, cd_telefone, cd_CPF, nm_senha, cd_tipo_usuario) 
 	values 
-		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, vSenhaUsuario);
+		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, md5(vSenhaUsuario));
 
 END$$
 
@@ -208,9 +208,25 @@ BEGIN
 		u.nm_email_usuario;
 END$$
 
+
+/*Procedure confirmarPedido*/
+
+DROP PROCEDURE IF EXISTS confirmarPedido$$
+CREATE PROCEDURE confirmarPedido(vCdServico VARCHAR(200))
+BEGIN
+
+	UPDATE 
+		servico 
+	SET
+		cd_status_servico = 5
+	WHERE
+		cd_servico = vCdServico;
+
+END$$
 /* Procedure filtrarCuidadores será usada caso o cliente queira buscar o cuidador pelas opções do filtro */
 
 DROP PROCEDURE IF EXISTS filtrarCuidadores$$
+
 CREATE PROCEDURE filtrarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao VARCHAR(100), vPreco DECIMAL(10, 2), vAvaliacao VARCHAR(100), vGenero VARCHAR(100))
 BEGIN 
 	SET @decimalVPreco := cast(vPreco as decimal(10,2));
@@ -1190,8 +1206,17 @@ BEGIN
 		tipo_status_servico tss
 	ON
 		(s.cd_status_servico = tss.cd_status_servico)
+<<<<<<< HEAD
 	WHERE 
 		s.nm_email_usuario = vEmailCliente
+=======
+	WHERE
+		s.nm_email_usuario = vEmailCliente
+	AND
+		s.cd_status_servico = 3
+	OR
+		(s.cd_status_servico = 4 AND s.nm_email_usuario = vEmailCliente)
+>>>>>>> 9f6f8e9d3c3da093668d0bf2f04a366e694ffe16
     GROUP BY
 		s.cd_servico
 	ORDER BY 
@@ -1264,13 +1289,13 @@ BEGIN
 	ON
 		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
 	WHERE 
-		u.nm_email_usuario = vEmailCliente
+		s.nm_email_usuario = vEmailCliente
     AND 
 		s.cd_status_servico = 1
 	OR  
-		s.cd_status_servico = 2
+		(s.nm_email_usuario = vEmailCliente AND s.cd_status_servico = 2)
 	OR
-		s.cd_status_servico = 5
+		(s.cd_status_servico = 5 AND s.nm_email_usuario = vEmailCliente)
 	GROUP BY s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico;

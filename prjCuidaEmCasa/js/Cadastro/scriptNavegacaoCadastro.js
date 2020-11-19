@@ -1,29 +1,79 @@
-﻿import scriptCriarContaClinte from './scriptCriarContaClinte.js';
+﻿import scriptCriarContaCliente from './scriptCriarContaCliente.js';
 
 $(document).ready(function(){
 
 	$(document).on("click", "#btnProximo", function(){
 
-		// criar validacao
+		if ($('#txtNomeCliente').val() == "") 
+		{
+			alert('digite o seu nome');
+		}
+		else
+		{
+			localStorage.setItem("nomeCliente", $("#txtNomeCliente").val());
+		}
 
-		localStorage.setItem("nomeCliente", $("#txtNomeCliente").val());
-		localStorage.setItem("emailCliente", $("#txtEmailCliente").val());
-		localStorage.setItem("telefoneCliente", $("#txtTelefoneCliente").val());
+		if ($('#txtEmailCliente').val() == "")
+		{
+			alert('digite o seu email');
+		}
+		else
+		{
+			localStorage.setItem("emailCliente", $("#txtEmailCliente").val());
+		}
+		
+		if ($("#txtTelefoneCliente").val() == "") 
+		{
+			alert('digite o seu telefone');
+		}
+		else
+		{
+			localStorage.setItem("telefoneCliente", $("#txtTelefoneCliente").val());
+		}
 
 		$("#wrapper-CadastroPrimeiro").css("display","none");
 
         $("#wrapper-CadastroSegundo").addClass("visivel");
+
 	});
 
 	$(document).on("click", "#btnCadastrar", function(){
 
-		localStorage.setItem("cpfCliente", $("#txtCPF").val());
-		localStorage.setItem("senhaCliente", $("#txtSenha").val());
-		localStorage.setItem("confirmarSenhaCliente", $("#txtConfirmarSenha").val());
+
+		if ($("#txtCPF").val() == "") 
+		{
+			alert('Digite o seu cpf');
+		}
+		else
+		{
+			localStorage.setItem("cpfCliente", $("#txtCPF").val());
+		}
+
+		if ($("#txtSenha").val() == "") 
+		{
+			alert('Digite a sua senha');
+		}
+		else
+		{
+			if ($('#txtConfirmarSenha').val() == "") 
+			{
+				alert('digite o algo no confirmar senha');
+			}
+			else
+			{
+				if ($('#txtSenha').val() == $('#txtConfirmarSenha').val()) 
+				{
+					localStorage.setItem("senhaCliente", $("#txtSenha").val());
+				}
+				else
+				{
+					alert('as senhas estao diferentes');
+				}
+			}
+		}
 
 		scriptCriarContaCliente();
-
-		window.location.href = "../../pages/cliente/atendimento.html";
+		localStorage.setItem('usuarioLogado', $('#txtEmailCliente').val());
 
 	});
 

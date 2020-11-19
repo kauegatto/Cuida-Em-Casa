@@ -180,18 +180,10 @@ namespace prjCuidaEmCasa.classes.Agendamento
             valores[4, 0] = "vSenhaUsuario";
             valores[4, 1] = senhaCliente;
 
-            if (!Procedure("cadastroCliente",true, valores, ref dados))
+            if (!Procedure("cadastroCliente", true, valores, ref dados))
             {
                 Desconectar();
                 return false;
-            }
-
-            if (dados.HasRows)
-            {
-                while (dados.Read())
-                {
-                    // termianr 
-                }
             }
 
             return true;

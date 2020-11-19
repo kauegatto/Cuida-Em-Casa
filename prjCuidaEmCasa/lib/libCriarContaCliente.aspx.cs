@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using prjCuidaEmCasa.classes.Agendamento;
 
 namespace prjCuidaEmCasa.lib
 {
@@ -82,7 +83,13 @@ namespace prjCuidaEmCasa.lib
 
             string senhaCliente = Request["senhaCliente"].ToString();
 
-    
+            clsUsuario classeUsuario = new clsUsuario();
+
+            if (!classeUsuario.cadastroCliente(emailCliente,nomeCliente,telefoneCliente,cpfCliente,senhaCliente))
+            {
+                Response.Write("erro");
+                return;
+            }
 
         }
     }
