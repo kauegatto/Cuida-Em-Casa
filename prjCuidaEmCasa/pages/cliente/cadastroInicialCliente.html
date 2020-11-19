@@ -12,7 +12,7 @@
   	 src="https://code.jquery.com/jquery-3.5.1.js"
  	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
  	 crossorigin="anonymous"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
     <!-- JS PÁGINA -->
     <script src="../../js/Cadastro/scriptNavegacaoCadastro.js" type="module"></script>
 </head>
@@ -32,7 +32,7 @@
 				<p>Nome:</p>
 				<input type="text" name="txtNome" required id="txtNomeCliente">
 				<p>Email:</p>
-				<input type="text" name="txtEmail" required id="txtEmailCliente">
+				<input type="email" name="txtEmail" required id="txtEmailCliente">
 				<p>Telefone:</p>
 				<input type="text" name="txtTelefone" required id="txtTelefoneCliente">
 				<button type="button" id="btnProximo">Próximo</button>
@@ -44,9 +44,9 @@
 				<p>CPF:</p>
 				<input type="text" name="txtCPF" required id="txtCPF">
 				<p>Senha:</p>
-				<input type="text" name="txtSenha" required id="txtSenha">
+				<input type="password" name="txtSenha" required id="txtSenha">
 				<p>Confirmar Senha:</p>
-				<input type="text" name="txtConfirmarSenha" required id="txtConfirmarSenha">
+				<input type="password" name="txtConfirmarSenha" required id="txtConfirmarSenha">
 				<button type="button" id="btnCadastrar">Cadastrar</button>
 			</div>
 		</div>

@@ -2,6 +2,10 @@
 
 $(document).ready(function(){
 
+
+	$('#txtTelefoneCliente').mask('(00) 0000-0000');
+	$('#txtCPF').mask('000.000.000-00');
+
 	$(document).on("click", "#btnProximo", function(){
 
 		if ($('#txtNomeCliente').val() == "") 
