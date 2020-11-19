@@ -162,5 +162,43 @@ namespace prjCuidaEmCasa.classes.Agendamento
             return true; 
         }
         #endregion
+
+        #region Criar Conta Cliente
+
+        public bool cadastroCliente(string emailCliente, string nomeCliente, string telefoneCliente, string cpfCliente, string senhaCliente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[5, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailCliente;
+            valores[1, 0] = "vNomeUsuario";
+            valores[1, 1] = nomeCliente;
+            valores[2, 0] = "vTelefoneUsuario";
+            valores[2, 1] = telefoneCliente;
+            valores[3, 0] = "vCpfUsuario";
+            valores[3, 1] = cpfCliente;
+            valores[4, 0] = "vSenhaUsuario";
+            valores[4, 1] = senhaCliente;
+
+            if (!Procedure("cadastroCliente",true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    // termianr 
+                }
+            }
+
+            return true;
+
+        }
+
+
+        #endregion
     }
 }

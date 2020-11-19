@@ -4,6 +4,19 @@ DELIMITER $$
 
 /* Procedure criada para verificar login */
 
+
+DROP PROCEDURE IF EXISTS cadastroCliente$$
+
+CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15), vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128))
+BEGIN
+
+	insert into 
+		usuario (nm_email_usuario, nm_usuario, cd_telefone, cd_CPF, nm_senha) 
+	values 
+		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, vSenhaUsuario);
+
+END$$
+
 DROP PROCEDURE IF EXISTS verificarLogin$$
 
 CREATE PROCEDURE verificarLogin(vEmailUsuario VARCHAR(200), vSenha VARCHAR(128))
@@ -1526,7 +1539,7 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosAntigos$$
 CREATE PROCEDURE listarServicosFinalizadosAntigos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
 		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
 	FROM 
@@ -1549,8 +1562,6 @@ BEGIN
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
-	GROUP BY
-		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico DESC, s.hr_inicio_servico; 
 END$$
@@ -1562,7 +1573,7 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosRecentes$$
 CREATE PROCEDURE listarServicosFinalizadosRecentes(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
 		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
 	FROM 
@@ -1585,8 +1596,6 @@ BEGIN
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
 		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
-	GROUP BY
-		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
@@ -1724,7 +1733,7 @@ BEGIN
 	UPDATE
 		servico
 	SET
-		hr_checkout_servico = CURRENT_TIME(), dt_checkout_servico = CURRENT_DATE(), cd_status_servico = 3
+		hr_checkout_servico = CURRENT_TIME(), dt_checkiout_servico = CURRENT_DATE()
 	WHERE
 		cd_servico = vServico;
 END$$
