@@ -60,6 +60,7 @@
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
     <Content Include="css\cliente\agenda\estiloAgenda.css" />
     <Content Include="css\cliente\configuracao\estiloConfiguracao.css" />
+    <Content Include="css\cliente\estiloCadastroInicial.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\cuidador\estiloBuscarServico.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
@@ -75,6 +76,7 @@
     <Content Include="css\cuidador\estiloServicoAgendado.css" />
     <Content Include="css\estiloGeral.css" />
     <Content Include="css\estiloIndex.css" />
+    <Content Include="css\estiloPagamento.css" />
     <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
     <Content Include="img\icones\agendamento\iconeAmpulheta.png" />
     <Content Include="img\icones\agendamento\iconeBuscarAtendimento.png" />
@@ -234,6 +236,7 @@
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="pages\cliente\agendaCliente.html" />
+    <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
@@ -246,7 +249,7 @@
     <Content Include="pages\cuidador\historicoServico.html" />
     <Content Include="pages\cuidador\servicoAgendado.html" />
     <Content Include="pages\index.html" />
-    <Content Include="pages\pagamentoTeste.html" />
+    <Content Include="pages\pagamento.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

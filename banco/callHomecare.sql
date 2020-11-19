@@ -17,8 +17,13 @@ call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', true, false, 
 call cuidadorEscolhido('matheusraimundofarias@gmail.com');
 call agendarServico(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie',4);
 call agendarServicoVirarDia(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',4);
+<<<<<<< HEAD
 call agendarServicoAgora(28,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
 call agendarServicoAgoraVirarDia(28,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
+=======
+call agendarServicoAgora(39,'20:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
+call agendarServicoAgoraVirarDia(23,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
+>>>>>>> a41893c38d2629019fe7c21804f80d0a8a899fc4
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
 call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');

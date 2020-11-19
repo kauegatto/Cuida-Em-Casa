@@ -2,6 +2,8 @@
 
 body { background: #2980B9; }
 
+a { text-decoration: none; } 
+
 .areaLogo { width: 75%;max-width:500px;margin:0 auto; }
 
 .areaLogo img { width: 100%; margin:0 auto;}
@@ -18,4 +20,4 @@ body { background: #2980B9; }
 
 .areaForm button { display:block;background: #285593; border-radius: 10px; border-style: none; width: 80%; height: 48px; font-family: Rubik;font-weight:bold; font-size: 20px; color: #F1F1F1;margin:0 auto;margin-top: 25px;}
     
-#crieAgora{color: #285593; font-family: Rubik;}
+#crieAgora{color: #285593; font-family: Rubik; }
