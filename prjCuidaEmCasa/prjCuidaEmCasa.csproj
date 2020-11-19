@@ -161,6 +161,7 @@
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
     <Content Include="js\BuscaServicoAgora\scriptAceitarServico.js" />
+    <Content Include="js\BuscaServicoAgora\scriptCheckinCheckout.js" />
     <Content Include="js\BuscaServicoAgora\scriptDetalhesServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
@@ -220,6 +221,7 @@
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
     <Content Include="lib\libCancelarServicoAgendado.aspx" />
+    <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -372,6 +374,13 @@
     </Compile>
     <Compile Include="lib\libCancelarServicoAgendado.aspx.designer.cs">
       <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libCheckinCheckout.aspx.cs">
+      <DependentUpon>libCheckinCheckout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCheckinCheckout.aspx.designer.cs">
+      <DependentUpon>libCheckinCheckout.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
