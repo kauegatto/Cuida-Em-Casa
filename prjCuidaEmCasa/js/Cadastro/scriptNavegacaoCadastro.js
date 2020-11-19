@@ -21,6 +21,8 @@ $(document).ready(function(){
 		localStorage.setItem("senhaCliente", $("#txtSenha").val());
 		localStorage.setItem("confirmarSenhaCliente", $("#txtConfirmarSenha").val());
 
+		scriptCriarContaCliente();
+
 		window.location.href = "../../pages/cliente/atendimento.html";
 
 	});
