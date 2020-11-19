@@ -60,6 +60,7 @@
     <Content Include="css\cliente\agendamento\estiloConfirmacaoEndereco.css" />
     <Content Include="css\cliente\agenda\estiloAgenda.css" />
     <Content Include="css\cliente\configuracao\estiloConfiguracao.css" />
+    <Content Include="css\cliente\estiloCadastroInicial.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\cuidador\estiloBuscarServico.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
@@ -232,6 +233,7 @@
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="pages\cliente\agendaCliente.html" />
+    <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
