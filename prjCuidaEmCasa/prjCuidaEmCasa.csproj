@@ -74,6 +74,7 @@
     <Content Include="css\cuidador\estiloHistoricoServico.css" />
     <Content Include="css\cuidador\estiloInfoPaciente.css" />
     <Content Include="css\cuidador\estiloServicoAgendado.css" />
+    <Content Include="css\estiloEscolhas.css" />
     <Content Include="css\estiloGeral.css" />
     <Content Include="css\estiloIndex.css" />
     <Content Include="css\estiloPagamento.css" />
@@ -164,6 +165,8 @@
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
+    <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
+    <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptConfiguracao.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
@@ -239,6 +242,7 @@
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
     <Content Include="pages\cuidador\atendimento.html" />
+    <Content Include="pages\escolhaCadastro.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\atendimento.html" />
