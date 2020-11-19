@@ -64,13 +64,14 @@ function setIssuers(status, response) {
        alert(`issuers method info error: ${response}`);
    }
 }
-
+var payment_method_id;
 function getInstallments(paymentMethodId, transactionAmount, issuerId){
    window.Mercadopago.getInstallments({
        "payment_method_id": paymentMethodId,
        "amount": parseFloat("20"),
        "issuer_id": issuerId ? parseInt(issuerId) : undefined
    }, setInstallments);
+   payment_method_id = paymentMethodId;
 }
 
 function setInstallments(status, response){
@@ -125,13 +126,13 @@ function realizarPagamento(cardToken) {
       
       var transactionAmount = parseFloat($('input[name ="transactionAmount"]').val());/**/console.log(transactionAmount);
       
-      var email = "kauegatto123@gmail.com";/**/console.log(email);
+      var email = "kauegatto123@gmail.com";/* localstorage.getItem("usuarioLogado") */console.log(email);
       
       var docNumber = parseInt($('input[name ="docNumber"]').val());/**/console.log(docNumber);
       
       var docType = $('select[name="docType"] option').filter(':selected').val();/**/console.log(docType);
 
-      const data = { "token":cardToken, "installments":installments, "transaction_amount":transactionAmount,"description":"Servico de cuidadoria - Cuida Em Casa","payment_method_id":"visa","payer":{ "email":email,"identification": {"number": docNumber ,"type": docType }}};
+      const data = { "token":cardToken, "installments":installments, "transaction_amount":transactionAmount,"description":"Servico de cuidadoria - Cuida Em Casa","payment_method_id":payment_method_id,"payer":{ "email":email,"identification": {"number": docNumber ,"type": docType }}};
       const dataJSON = JSON.stringify(data);
 
       $.ajax({
@@ -144,7 +145,7 @@ function realizarPagamento(cardToken) {
         data: dataJSON,
       }).done(function(result){
           console.log(JSON.stringify(result));
-          doSubmit=true;form.submit();
+          //doSubmit=true;form.submit();
       }).fail(function (jqxhr, textStatus, error) {    
           var customErrorCode = jqxhr.responseJSON.cause[0].code;
           console.log(customErrorCode);
@@ -190,7 +191,6 @@ function realizarPagamento(cardToken) {
               break;
             default:
               alert("Desculpe, um erro inesperado aconteceu. O código de debug é: " +jqxhr);
-              doSubmit = true; form.submit();
           }
       });
 }

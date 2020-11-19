@@ -1,0 +1,49 @@
+﻿body {
+    color #2980B9;
+    background: #2980B9;
+    max-width: 100vw;
+    font-family: Archivo ;
+}
+form
+{
+    background: #f4f4f4;
+    width: 95%;
+    max-width:100vw;    
+    border-radius: 10px;
+    display:block;
+    margin: 0 auto;
+}
+form input , form select
+{
+    background: rgba(40, 85, 147, 0.35);
+    border: 0px line rgba(40, 85, 147, 0.35);
+    border-radius: 8px;
+    width: 70%;
+    height: 25px;
+    color: #000;
+    margin: 0 auto;
+    display: block;
+}
+form label
+{
+    margin: 0 auto;
+    display: block;    
+}
+label, h3{
+    text-align: center;
+}
+h3{
+    color:#285593;
+}
+button{
+
+    margin: 0 auto;
+    display: block;
+    width: 70%;
+    height: 35px;
+    border-radius: 10px;
+    background-color: #285593;
+    color:#F8F8F8;
+    font-style: Rubik;
+    font-weight: 800;
+}

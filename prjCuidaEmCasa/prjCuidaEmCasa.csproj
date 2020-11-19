@@ -74,6 +74,7 @@
     <Content Include="css\cuidador\estiloServicoAgendado.css" />
     <Content Include="css\estiloGeral.css" />
     <Content Include="css\estiloIndex.css" />
+    <Content Include="css\estiloPagamento.css" />
     <Content Include="img\icones\agendamento\iconeAgendarAtendimento.png" />
     <Content Include="img\icones\agendamento\iconeAmpulheta.png" />
     <Content Include="img\icones\agendamento\iconeBuscarAtendimento.png" />
@@ -241,7 +242,7 @@
     <Content Include="pages\cuidador\historicoServico.html" />
     <Content Include="pages\cuidador\servicoAgendado.html" />
     <Content Include="pages\index.html" />
-    <Content Include="pages\pagamentoTeste.html" />
+    <Content Include="pages\pagamento.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
