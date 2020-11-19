@@ -195,9 +195,25 @@ BEGIN
 		u.nm_email_usuario;
 END$$
 
+
+/*Procedure confirmarPedido*/
+
+DROP PROCEDURE IF EXISTS confirmarPedido$$
+CREATE PROCEDURE confirmarPedido(vCdServico VARCHAR(200))
+BEGIN
+
+	UPDATE 
+		servico 
+	SET
+		cd_status_servico = 5
+	WHERE
+		cd_servico = vCdServico;
+
+END$$
 /* Procedure filtrarCuidadores será usada caso o cliente queira buscar o cuidador pelas opções do filtro */
 
 DROP PROCEDURE IF EXISTS filtrarCuidadores$$
+
 CREATE PROCEDURE filtrarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao VARCHAR(100), vPreco DECIMAL(10, 2), vAvaliacao VARCHAR(100), vGenero VARCHAR(100))
 BEGIN 
 	SET @decimalVPreco := cast(vPreco as decimal(10,2));

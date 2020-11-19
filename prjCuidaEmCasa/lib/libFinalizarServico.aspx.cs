@@ -16,6 +16,7 @@ namespace prjCuidaEmCasa.lib
             clsServico servico = new clsServico();
 
             #region Variáveis com dados para realização do agendamento
+
             servico.proxCodigo();
             string proxCodigo = servico.codigo; 
             
@@ -36,10 +37,10 @@ namespace prjCuidaEmCasa.lib
             bool viraDia = Convert.ToBoolean(Session["viraDia"]);
             if (!(servico.finalizarServico(proxCodigo, dtInicio, hrInicio, hrFim, cep, cidade, bairro, rua, num, uf, comp, emailCliente, emailCuidador, cdPaciente, viraDia)))
             {
-                Response.Write("false");
+                Response.Write("false|"+proxCodigo);
             }
 
-            Response.Write("true");
+            Response.Write("true|"+proxCodigo);
         }
     }
 }
