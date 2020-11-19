@@ -36,10 +36,10 @@ namespace prjCuidaEmCasa.lib
             bool viraDia = Convert.ToBoolean(Session["viraDia"]);
             if (!(servico.finalizarServicoAgora(proxCodigo, dtInicio, hrInicio, hrFim, cep, cidade, bairro, rua, num, uf, comp, emailCliente, cdPaciente, vlMaximo, viraDia)))
             {
-                Response.Write("false");
+                Response.Write("false | " + proxCodigo);
             }
 
-            Response.Write("true");
+            Response.Write("true | " + proxCodigo);
         }
     }
 }
