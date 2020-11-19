@@ -45,7 +45,14 @@ namespace prjCuidaEmCasa.lib
                     double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
                     double valorTotal = horaFinal * double.Parse(cuidador.vl_cuidador[i]);
                     listaServicos += "<h3 class='detalheHistorico'>Serviço realizado no dia " + cuidador.dt_inicio_servico[i] + ", duração de " + cuidador.duracaoServico[i] + " horas.</h3>";
-                    listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
+                    if (cuidador.situacaoServico[i] == "3")
+                    {
+                        listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
+                    }
+                    else
+                    {
+                        listaServicos += "<span class='valorRecebido'>Servico Cancelado</span>";
+                    }
                     listaServicos += "</div>";
                     listaServicos += "<div class='clear'></div>";
                     listaServicos += "</div>";
@@ -90,7 +97,14 @@ namespace prjCuidaEmCasa.lib
                     double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
                     double valorTotal = horaFinal * double.Parse(cuidador.vl_cuidador[i]);
                     listaServicos += "<h3 class='detalheHistorico'>Serviço realizado no dia " + cuidador.dt_inicio_servico[i] + ", duração de " + cuidador.duracaoServico[i] + " horas.</h3>";
-                    listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
+                    if (cuidador.situacaoServico[i] == "3")
+                    {
+                        listaServicos += "<span class='valorRecebido'>Valor Recebido: </span><span class='valor'>" + valorTotal.ToString("C") + "</span>";
+                    }
+                    else
+                    {
+                        listaServicos += "<span class='valorRecebido'>Servico Cancelado</span>";
+                    }
                     listaServicos += "</div>";
                     listaServicos += "<div class='clear'></div>";
                     listaServicos += "</div>";
