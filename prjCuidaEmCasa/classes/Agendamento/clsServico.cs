@@ -487,6 +487,48 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         #endregion
 
+        #region Marcar check-in
+        public bool checkin(string cdServico)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vServico";
+            valores[0, 1] = cdServico;
+
+            if (!Procedure("marcarCheckin", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
+        }
+        #endregion
+
+        #region Marcar checkout
+        public bool checkout(string cdServico)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vServico";
+            valores[0, 1] = cdServico;
+
+            if (!Procedure("marcarCheckout", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+        #endregion
+
         #region Agenda do cliente
         public bool listarAgendaCliente(string emailCliente, bool jaFoi)
         {

@@ -4,6 +4,19 @@ DELIMITER $$
 
 /* Procedure criada para verificar login */
 
+
+DROP PROCEDURE IF EXISTS cadastroCliente$$
+
+CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15), vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128))
+BEGIN
+
+	insert into 
+		usuario (nm_email_usuario, nm_usuario, cd_telefone, cd_CPF, nm_senha) 
+	values 
+		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, vSenhaUsuario);
+
+END$$
+
 DROP PROCEDURE IF EXISTS verificarLogin$$
 
 CREATE PROCEDURE verificarLogin(vEmailUsuario VARCHAR(200), vSenha VARCHAR(128))
