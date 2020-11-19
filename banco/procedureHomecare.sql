@@ -1163,9 +1163,11 @@ DROP PROCEDURE IF EXISTS listarAgendaClienteJaFoi$$
 CREATE PROCEDURE listarAgendaClienteJaFoi(vEmailCliente VARCHAR(200))
 BEGIN 
 	SELECT 
-		date_format(s.dt_inicio_servico, '%d/%m/%Y') AS DtInicioServico, time_format(s.hr_inicio_servico,'%H:%i') as Hora_Inicio, time_format(s.hr_fim_servico, '%H:%i') as Hora_Fim, u.img_usuario AS ImagemCuidador,u.nm_usuario 
-	AS Nome_Cuidador, group_concat(te.nm_tipo_especializacao) AS NomeEspecializacao, time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i') AS DuracaoServico, p.nm_paciente AS nomePaciente,
-	tss.nm_status_servico AS StatusServico, u.vl_hora_trabalho AS valorHora, s.cd_servico as cdServico
+		date_format(s.dt_inicio_servico, '%d/%m/%Y') AS DtInicioServico, time_format(s.hr_inicio_servico,'%H:%i') as Hora_Inicio, 
+		time_format(s.hr_fim_servico, '%H:%i') as Hora_Fim, u.img_usuario AS ImagemCuidador,u.nm_usuario AS Nome_Cuidador, 
+		group_concat(te.nm_tipo_especializacao) AS NomeEspecializacao, 
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i') AS DuracaoServico, p.nm_paciente AS nomePaciente,
+		tss.nm_status_servico AS StatusServico, u.vl_hora_trabalho AS valorHora, s.cd_servico as cdServico
 	FROM 
 		servico s 
 	JOIN 
@@ -1183,17 +1185,13 @@ BEGIN
 	JOIN
 		tipo_especializacao te
 	ON
-		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
+		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 	JOIN
 		tipo_status_servico tss
 	ON
 		(s.cd_status_servico = tss.cd_status_servico)
 	WHERE 
-		u.nm_email_usuario = vEmailCliente
-    AND 
-		s.cd_status_servico = 3
-	OR  
-		s.cd_status_servico = 4
+		s.nm_email_usuario = vEmailCliente
     GROUP BY
 		s.cd_servico
 	ORDER BY 
@@ -1539,9 +1537,9 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosAntigos$$
 CREATE PROCEDURE listarServicosFinalizadosAntigos(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente, s.cd_status_servico
 	FROM 
 		servico s 
 	JOIN 
@@ -1561,7 +1559,11 @@ BEGIN
 	ON
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
-		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3)
+	OR
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 4)
+	GROUP BY
+		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico DESC, s.hr_inicio_servico; 
 END$$
@@ -1573,9 +1575,9 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosRecentes$$
 CREATE PROCEDURE listarServicosFinalizadosRecentes(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente, s.cd_status_servico
 	FROM 
 		servico s 
 	JOIN 
@@ -1595,7 +1597,11 @@ BEGIN
 	ON
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
-		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3)
+	OR
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 4)
+	GROUP BY
+		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
@@ -1607,9 +1613,9 @@ DROP PROCEDURE IF EXISTS listarServicosFinalizadosData$$
 CREATE PROCEDURE listarServicosFinalizadosData(vEmailCuidador VARCHAR(200), vDataServico DATE)
 BEGIN
 	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, tnp.nm_tipo_necessidade_paciente,
+		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
 		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente, s.cd_status_servico
 	FROM 
 		servico s 
 	JOIN 
@@ -1629,9 +1635,13 @@ BEGIN
 	ON
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
-		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3)
+	OR
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 4)
 	AND
 		s.dt_inicio_servico = vDataServico
+	GROUP BY
+		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$

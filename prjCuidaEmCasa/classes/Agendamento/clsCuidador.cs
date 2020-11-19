@@ -40,6 +40,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string nm_comp_servico { get; set; }
         public List<string> cd_paciente { get; set; }
         public string disponibilidadeCuidador { get; set; }
+        public List<string> situacaoServico { get; set; }
 
         public clsCuidador(): base()
         {
@@ -74,6 +75,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_num_servico = "";
             nm_comp_servico = "";
             cd_paciente = new List<string>();
+            situacaoServico = new List<string>();
 
         }
 
@@ -395,6 +397,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     hr_fim_servico.Add(dados[7].ToString());
                     vl_cuidador.Add(dados[8].ToString());
                     duracaoServico.Add(dados[9].ToString());
+                    cd_paciente.Add(dados[10].ToString());
+                    situacaoServico.Add(dados[11].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
@@ -440,6 +444,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     vl_cuidador.Add(dados[8].ToString());
                     duracaoServico.Add(dados[9].ToString());
                     cd_paciente.Add(dados[10].ToString());
+                    situacaoServico.Add(dados[11].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
@@ -487,6 +492,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     vl_cuidador.Add(dados[8].ToString());
                     duracaoServico.Add(dados[9].ToString());
                     cd_paciente.Add(dados[10].ToString());
+                    situacaoServico.Add(dados[11].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();

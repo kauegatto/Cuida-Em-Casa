@@ -60,10 +60,20 @@ namespace prjCuidaEmCasa.lib
             string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
             double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
             double valorTotal = horaFinal * double.Parse(servico.vl_cuidador[0]);
-			detalhesServico += "<span class='dadosDetalhe'>Valor pago: </span><span class='dadosServicoDetalhe'>" + valorTotal.ToString("C") + "</span>";
-			detalhesServico += "</div>";
-			detalhesServico += "<div class='areaDetalhe'>";
-            detalhesServico += "<span class='dadosDetalhe'>Valor hora: </span><span class='dadosServicoDetalhe'>R$" + servico.vl_cuidador[0] + "</span>";
+            if (servico.situacaoServico[0] == "Finalizado")
+            {
+                detalhesServico += "<span class='dadosDetalhe'>Valor hora: </span><span class='dadosServicoDetalhe'>R$" + servico.vl_cuidador[0] + "</span>";
+                detalhesServico += "</div>";
+                detalhesServico += "<div class='areaDetalhe'>";
+                detalhesServico += "<span class='dadosDetalhe'>Valor pago: </span><span class='dadosServicoDetalhe'>" + valorTotal.ToString("C") + "</span>";
+            }
+            else
+            {
+                detalhesServico += "<span class='dadosDetalhe'>Valor hora: </span><span class='dadosServicoDetalhe'>R$" + servico.vl_cuidador[0] + "</span>";
+                detalhesServico += "</div>";
+                detalhesServico += "<div class='areaDetalhe'>";
+                detalhesServico += "<span class='dadosDetalhe'>Serviço Cancelado </span><span class='dadosServicoDetalhe'></span>";
+            }
 			detalhesServico += "</div>";
 			detalhesServico += "</div>";
 			detalhesServico += "</div>";

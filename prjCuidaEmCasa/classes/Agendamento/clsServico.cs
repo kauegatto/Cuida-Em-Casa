@@ -352,6 +352,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     dt_inicio_servico.Add(dados[13].ToString());
                     vl_cuidador.Add(dados[14].ToString());
                     duracaoServico.Add(dados[15].ToString());
+                    situacaoServico.Add(dados[16].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
