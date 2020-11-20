@@ -52,8 +52,9 @@ $(document).ready(function () {
 
     });
 
-    $("#btnFiltroServico").click(function () {
+    $(document).on("click", "#btnFiltroServico", function(){
         scriptFiltroServico();
+        $('.infoFiltro').removeClass("visivel");
     });
 
     $(document).on("click", ".btnDenunciar", function(){

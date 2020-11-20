@@ -23,10 +23,23 @@ namespace prjCuidaEmCasa.lib
 
             if (filtroData != null && filtroData != "")
             {
-                if (!(cuidador.historicoData(emailCuidador, filtroData)))
+                if (filtro == "true")
                 {
-                    Response.Write("false");
-                    return;
+                    if (!(cuidador.historicoDataRecente(emailCuidador, filtroData)))
+                    {
+                        Response.Write("false");
+                        return;
+                    }
+
+                }
+                else
+                {
+                    if (!(cuidador.historicoDataAntigo(emailCuidador, filtroData)))
+                    {
+                        Response.Write("false");
+                        return;
+                    }
+
                 }
 
                 for (int i = 0; i < cuidador.nm_paciente.Count; i++)
@@ -81,6 +94,7 @@ namespace prjCuidaEmCasa.lib
                     }
 
                 }
+
                 for (int i = 0; i < cuidador.nm_paciente.Count; i++)
                 {
                     listaServicos += "<div class='areaHistorico " + cuidador.cd_servico[0] + "'>";

@@ -48,10 +48,11 @@ call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.
 'Me chamo Renan, estou nessa trabalho de cuidadoria a bastante tempo e faço isso com muita paixão', 2);
 call cadastrarEspecializacoes(1, 'reinaldosouza@gmail.com');
 call listarServicosAgendados('flaviabeneditamilenamelo@gmail.com');
-call cancelarServicoAgendado(10);
+call cancelarServicoAgendado(10); 
 call listarServicosFinalizadosAntigos('brunastellaflaviadepaula@gmail.com');
 call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
-call listarServicosFinalizadosData('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
+call listarServicosFinalizadosDataAntigos('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
+call listarServicosFinalizadosDataRecentes('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call servicoSelecionado(24);
 call servicoSelecionadoAgora(26);
 call marcarCheckin(5);
