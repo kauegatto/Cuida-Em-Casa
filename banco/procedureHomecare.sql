@@ -148,6 +148,10 @@ BEGIN
 		tipo_especializacao te
 	ON
 		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+	JOIN 
+		servico s 
+	ON
+		(u.nm_email_usuario = u.nm_email_usuario_cuidador)
 	WHERE 
 		d.dt_disponibilidade = vDataServico 
 	AND 
@@ -1799,7 +1803,7 @@ BEGIN
 	UPDATE
 		servico
 	SET
-		hr_checkout_servico = CURRENT_TIME(), dt_checkiout_servico = CURRENT_DATE()
+		hr_checkout_servico = CURRENT_TIME(), dt_checkout_servico = CURRENT_DATE(), cd_status_servico = 3
 	WHERE
 		cd_servico = vServico;
 END$$
@@ -1873,6 +1877,58 @@ BEGIN
 		ic_ativo = false
 	WHERE
 		nm_email_usuario = vEmailUsuario;
+END$$
+
+/* Procedure criada para verificar a disponibilidade do cuidador, sabendo se ele está em serviço ou não */
+
+DROP PROCEDURE IF EXISTS verificarDisponibilidade$$
+
+CREATE PROCEDURE verificarDisponibilidade(vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		s.cd_servico, p.img_paciente, p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente), s.nm_rua_servico, s.cd_num_servico, 
+		s.nm_complemento_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m'),
+		CASE WEEKDAY(s.dt_inicio_servico) 
+                       when 0 then 'Segunda-feira'
+                       when 1 then 'Terça-feira'
+                       when 2 then 'Quarta-feira'
+                       when 3 then 'Quinta-feira'
+                       when 4 then 'Sexta-feira'
+                       when 5 then 'Sábado'
+                       when 6 then 'Domingo'                 
+                       END AS DiaDaSemana,
+		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), s.hr_checkin_servico
+	FROM
+		servico s
+	JOIN
+		paciente p
+	ON
+		(s.cd_paciente = p.cd_paciente)
+	JOIN
+		necessidade_paciente np
+	ON
+		(p.cd_paciente = np.cd_paciente)
+	JOIN
+		tipo_necessidade_paciente tnp
+	ON
+		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
+	JOIN
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	WHERE 
+		s.dt_inicio_servico = CURRENT_DATE()
+	AND
+		s.hr_inicio_servico <= CURRENT_TIME 
+	AND 
+		s.hr_fim_servico >= CURRENT_TIME()
+	AND
+		s.cd_status_servico = 1
+	AND
+		s.nm_email_usuario_cuidador = vEmailCuidador
+	GROUP BY
+		s.cd_servico;
 END$$
 
 /*PROCEDURES REFENRENTE AO ADMINISTRADOR*/

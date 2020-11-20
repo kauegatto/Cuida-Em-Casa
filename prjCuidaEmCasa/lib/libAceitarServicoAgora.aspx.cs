@@ -38,14 +38,22 @@ namespace prjCuidaEmCasa.lib
             string emailCuidador = Request["emailCuidador"].ToString();
 
             clsServico servico = new clsServico();
+            clsCuidador cuidador = new clsCuidador();
 
             if (!(servico.aceitarServico(cdServico, emailCuidador)))
             {
                 Response.Write("false");
                 return;
             }
+            else
+            {
+                if (!(cuidador.tornarIndisponivel(emailCuidador)))
+                {
+                    Response.Write("false");
+                }
 
-            Response.Write("true");
+                Response.Write("true");
+            }
         }
     }
 }

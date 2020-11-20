@@ -166,6 +166,7 @@
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
+    <Content Include="js\BuscaServicoAgora\scriptVerificarSeTemServico.js" />
     <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
@@ -219,13 +220,10 @@
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
     <Content Include="lib\libCancelarServicoAgendado.aspx" />
-
     <Content Include="lib\libConfirmarPagamento.aspx" />
-
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
-
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -243,6 +241,7 @@
     <Content Include="lib\libPacientesEmServico.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
+    <Content Include="lib\libVerificarSeTemServico.aspx" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
@@ -380,7 +379,6 @@
     <Compile Include="lib\libCancelarServicoAgendado.aspx.designer.cs">
       <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="lib\libConfirmarPagamento.aspx.cs">
       <DependentUpon>libConfirmarPagamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -528,8 +526,15 @@
     <Compile Include="lib\libServicoAtual.aspx.designer.cs">
       <DependentUpon>libServicoAtual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libVerificarSeTemServico.aspx.cs">
+      <DependentUpon>libVerificarSeTemServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libVerificarSeTemServico.aspx.designer.cs">
+      <DependentUpon>libVerificarSeTemServico.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-      </ItemGroup>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

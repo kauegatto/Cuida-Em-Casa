@@ -4,9 +4,10 @@ call verificarLogin('flaviapriscilamarianasilveira@gmail.com', '123');
 call alterarSenha('123', 'renanStopa@gmail.com');
 call gerarOcorrencia(3, 'O cuidador agrediu o paciente', 'reinaldosouza@gmail.com', 5, 2);
 call verificarSenha('mauriciorodolfo@gamil.com','123');
-
+update servico set hr_fim_servico = '23:59:59' where cd_servico = 27;
+select * from servico;
 /* PROCEDURES DO CLIENTE */
-
+select * from servico;
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
@@ -15,12 +16,10 @@ call buscarCuidadoresVirarDia('2020-07-12', '22:00:00', '02:00:00');
 call filtrarCuidadores('2020-08-20','09:00:00','16:00:00', 0, 0, 0, 1, 1, null, null, 'Masculino');
 call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', true, false, false, true, 1, null, null, 2);
 call cuidadorEscolhido('matheusraimundofarias@gmail.com');
-call agendarServico(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie',4);
+call agendarServico(29,'2020-11-20','14:00:00','19:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','flaviapriscilamarianasilveira@gmail.com',4);
 call agendarServicoVirarDia(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',4);
 call agendarServicoAgora(28,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
 call agendarServicoAgoraVirarDia(28,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
-call agendarServicoAgora(39,'20:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
-call agendarServicoAgoraVirarDia(23,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
 call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');
@@ -40,9 +39,9 @@ call infoServicoAtual(24);
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
-select * from usuario where cd_tipo_usuario = 2;
-/* PROCEDURE DO CUIDADOR */
 
+/* PROCEDURE DO CUIDADOR */
+select * from servico where cd_servico = 27;
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
 'https://CurriculoDoRenan.com.br', '5 anos de trabalho de cuidadoria na Santa Casa de Santos', 
 'Me chamo Renan, estou nessa trabalho de cuidadoria a bastante tempo e faço isso com muita paixão', 2);
@@ -56,9 +55,10 @@ call listarServicosFinalizadosDataRecentes('flaviabeneditamilenamelo@gmail.com',
 call servicoSelecionado(24);
 call servicoSelecionadoAgora(26);
 call marcarCheckin(5);
-call marcarCheckout(26);
+call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
+call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
 
 /* PROCEDURE DO ADMINISTRADOR */
 
