@@ -169,6 +169,7 @@
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
     <Content Include="js\Cadastro\Cliente\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\Cliente\scriptNavegacaoCadastro.js" />
+    <Content Include="js\Cadastro\Cuidador\scriptCriarContaCuidador.js" />
     <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
@@ -225,6 +226,7 @@
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
+    <Content Include="lib\libCriarContaCuidador.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -408,6 +410,13 @@
     </Compile>
     <Compile Include="lib\libCriarContaCliente.aspx.designer.cs">
       <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libCriarContaCuidador.aspx.cs">
+      <DependentUpon>libCriarContaCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCriarContaCuidador.aspx.designer.cs">
+      <DependentUpon>libCriarContaCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>

@@ -17,6 +17,16 @@ BEGIN
 
 END$$
 
+DROP PROCEDURE IF EXISTS cadastroCuidador$$
+
+CREATE PROCEDURE cadastroCuidador(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15),vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128) )
+BEGIN
+
+
+
+
+END$$
+
 DROP PROCEDURE IF EXISTS verificarLogin$$
 
 CREATE PROCEDURE verificarLogin(vEmailUsuario VARCHAR(200), vSenha VARCHAR(128))

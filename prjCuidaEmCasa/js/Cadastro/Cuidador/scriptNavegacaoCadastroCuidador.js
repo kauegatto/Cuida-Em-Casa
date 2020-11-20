@@ -28,14 +28,24 @@ $(document).ready(function(){
 		localStorage.setItem('nomeCuidador', $('#txtNomeCuidador').val());
 		localStorage.setItem('emailCuidador', $('#txtEmailCuidador').val());
 		localStorage.setItem('telefoneCuidador', $('#txtTelefoneCuidador').val());
-		localStorage.setItem('cpfCuidador', $('#txtTelefoneCuidador').val());
-
+		
 	});
 
 	$(document).on("click", "#btnProximo2", function(){
 
 		$("#wrapper-SegundoCadastroCuidador").css("display", "none");
 		$("#wrapper-TerceiroCadastroCuidador").css("display", "block");
+
+		localStorage.setItem('cpfCuidador', $('#txtTelefoneCuidador').val());
+		localStorage.setItem('senhaCuidador', $('#txtSenha').val());
+
+	});
+
+
+	$(document).on("click", "#btnProximo3", function(){
+
+		$("#wrapper-TerceiroCuidador").css("display", "none");
+		$("#wrapper-QuartoCadastroCuidador").css("display", "block");
 
 		if ($('#uploadImg').val() != "") 
 		{
