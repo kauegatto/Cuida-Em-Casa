@@ -41,6 +41,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> cd_paciente { get; set; }
         public string disponibilidadeCuidador { get; set; }
         public List<string> situacaoServico { get; set; }
+        public List<string> cdEspecializacaoCuidador { get; set; } 
+        public List<string> nomeEspecializacaoCuidador { get; set; } 
 
         public clsCuidador(): base()
         {
@@ -539,6 +541,13 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true;
         }
+
+        #endregion
+
+        #region Listar especializacao cuidador 
+
+
+
 
         #endregion
     }

@@ -63,6 +63,7 @@
     <Content Include="css\cliente\estiloCadastroInicial.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\cuidador\estiloBuscarServico.css" />
+    <Content Include="css\cuidador\estiloCadastroCuidador.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
     <Content Include="css\cuidador\estiloServicoAtual.css" />
     <Content Include="css\estiloCuidador.css" />
@@ -166,8 +167,9 @@
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
-    <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
-    <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
+    <Content Include="js\Cadastro\Cliente\scriptCriarContaCliente.js" />
+    <Content Include="js\Cadastro\Cliente\scriptNavegacaoCadastro.js" />
+    <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
     <Content Include="js\Cuidador\scriptDenunciarServico.js" />
@@ -219,13 +221,10 @@
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
     <Content Include="lib\libCancelarServicoAgendado.aspx" />
-
     <Content Include="lib\libConfirmarPagamento.aspx" />
-
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
-
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -249,6 +248,7 @@
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
     <Content Include="pages\cuidador\atendimento.html" />
+    <Content Include="pages\cuidador\cadastroCuidador.html" />
     <Content Include="pages\escolhaCadastro.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
@@ -380,7 +380,6 @@
     <Compile Include="lib\libCancelarServicoAgendado.aspx.designer.cs">
       <DependentUpon>libCancelarServicoAgendado.aspx</DependentUpon>
     </Compile>
-
     <Compile Include="lib\libConfirmarPagamento.aspx.cs">
       <DependentUpon>libConfirmarPagamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -529,7 +528,7 @@
       <DependentUpon>libServicoAtual.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-      </ItemGroup>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
