@@ -233,6 +233,7 @@
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libDisponibilidadeCuidador.aspx" />
+    <Content Include="lib\libEspecializacaoCuidador.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -463,6 +464,13 @@
     </Compile>
     <Compile Include="lib\libDisponibilidadeCuidador.aspx.designer.cs">
       <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libEspecializacaoCuidador.aspx.cs">
+      <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libEspecializacaoCuidador.aspx.designer.cs">
+      <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>

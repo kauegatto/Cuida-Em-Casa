@@ -1626,11 +1626,11 @@ BEGIN
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
 
-/* procedure criada para filtrar os servicos finalizados por data em ordem decrescente */
+/* procedure criada para filtrar os servicos finalizados por data */
 
-DROP PROCEDURE IF EXISTS listarServicosFinalizadosDataAntigos$$
+DROP PROCEDURE IF EXISTS listarServicosFinalizadosData$$
 
-CREATE PROCEDURE listarServicosFinalizadosDataAntigos(vEmailCuidador VARCHAR(200), vDataServico DATE)
+CREATE PROCEDURE listarServicosFinalizadosData(vEmailCuidador VARCHAR(200), vDataServico DATE)
 BEGIN
 	SELECT 
 		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
@@ -1655,47 +1655,11 @@ BEGIN
 	ON
 		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
 	WHERE 
-		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3 AND s.dt_inicio_servico = vDataServico)
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3)
 	OR
-		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 4 AND s.dt_inicio_servico = vDataServico)
-	GROUP BY
-		s.cd_servico
-	ORDER BY 
-		s.dt_inicio_servico DESC, s.hr_inicio_servico; 
-END$$
-
-/* procedure criada para filtrar os servicos finalizados por data em ordem crescente */
-
-DROP PROCEDURE IF EXISTS listarServicosFinalizadosDataRecentes$$
-
-CREATE PROCEDURE listarServicosFinalizadosDataRecentes(vEmailCuidador VARCHAR(200), vDataServico DATE)
-BEGIN
-	SELECT 
-		p.img_paciente, p.nm_paciente, s.nm_rua_servico, s.cd_servico, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente),
-		DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'),
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.cd_paciente, s.cd_status_servico
-	FROM 
-		servico s 
-	JOIN 
-		paciente p 
-	ON 
-		(s.cd_paciente = p.cd_paciente) 
-	JOIN 
-		necessidade_paciente np 
-	ON 
-		(p.cd_paciente = np.cd_paciente) 
-	JOIN 
-		tipo_necessidade_paciente tnp 
-	ON 
-		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
-	JOIN 
-		usuario u
-	ON
-		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
-	WHERE 
-		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 3 AND s.dt_inicio_servico = vDataServico)
-	OR
-		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 4 AND s.dt_inicio_servico = vDataServico) 
+		(s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 4)
+	AND
+		s.dt_inicio_servico = vDataServico
 	GROUP BY
 		s.cd_servico
 	ORDER BY 
@@ -2117,5 +2081,16 @@ BEGIN
 		nm_email_usuario_cuidador = vEmailUsuario;
 
 END$$
+
+
+DROP PROCEDURE IF EXISTS listarEspecializacao$$
+
+CREATE PROCEDURE listarEspecializacao()
+BEGIN
+
+	select * from tipo_especializacao;
+
+END$$
+
 
 DELIMITER ;

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using prjCuidaEmCasa.classes.Agendamento;
 
 namespace prjCuidaEmCasa.lib
 {
@@ -11,6 +12,24 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            clsCuidador classeCuidador = new clsCuidador();
+
+            if (!classeCuidador.listarEspecializacaoCuidador())
+            {
+                Response.Write("erro");
+                return;
+            }
+            else 
+            {
+                string listaEspecializacao = "";
+
+                for (int i = 0; i < classeCuidador.cdEspecializacaoCuidador.Count; i++)
+                {
+                    listaEspecializacao += "<option value='" + classeCuidador.cdEspecializacaoCuidador[i] +"'>"+ classeCuidador.nomeEspecializacaoCuidador[i] +"</option>";
+                }
+
+                Response.Write(listaEspecializacao);
+            }
 
         }
     }
