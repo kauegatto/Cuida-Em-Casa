@@ -192,5 +192,16 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
 
         #endregion
+
+        #region Criar Conta Cuidador
+
+        public bool criarContaCliente(string imgCuidador, int cdGenero, string linkCurriculo)
+        {
+            return true;
+        }
+
+
+        #endregion 
+
     }
 }

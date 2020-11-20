@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cuida em Casa</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="../../css/cuidador/estiloCadastroCuidador.css">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	<script
+  	 src="https://code.jquery.com/jquery-3.5.1.js"
+ 	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ 	 crossorigin="anonymous"></script>
+	<script src="../../js/Cadastro/Cuidador/scriptNavegacaoCadastroCuidador.js" type="module"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+</head>
+<body>
+	<header>
+		<div class="areaVoltar">
+			<a href="../escolhaCadastro.html"><img src="../../img/icones/iconeVoltar.png"></a>
+		</div>
+		<div class="areaLogo">
+			<img src="../../img/logoSimples.png">
+		</div>
+	</header>
+	<main>
+		<div class="wrapper" id="wrapper-PrimeiroCadastroCuidador">
+			
+			<div class="areaForm" style="height: 360px">
+				<h1>Cadastro</h1>
+				<p>Nome:</p>
+				<input type="text" name="txtNome" required='true' id="txtNomeCuidador" class="areaFormInput">
+				<p>Email:</p>
+				<input type="text" name="txtEmail" required id="txtEmailCuidador" class="areaFormInput">
+				<p>Telefone:</p>
+				<input type="text" name="txtTelefone" required id="txtTelefoneCuidador" class="areaFormInput">
+				
+				<button type="button" id="btnProximo1">Próximo</button>
+			</div>	
+
+		</div>
+
+		<div class="wrapper" id="wrapper-SegundoCadastroCuidador">
+			<p>CPF:</p>
+			<input type="text" name="txtCPF" required id="txtCPFCuidador" class="areaFormInput">
+			<p>Senha:</p>
+			<input type="text" name="txtCPF" required id="txtSenha" class="areaFormInput">
+			<p>Nova Senhha:</p>
+			<input type="text" name="txtCPF" required id="txtConfirmarSenha" class="areaFormInput">
+		</div>
+
+		<div class="wrapper" id="wrapper-TerceiroCadastroCuidador">
+			<div class="areaForm" > 
+				<h1>Adicionar Informações</h1>
+				<p>Adicionar uma foto de perfil:</p>
+				<input type="file" name="foto" required id="uploadImg">
+				<p>Gênero:</p>
+				<select name="genero" class="areaFormInput" id="generoCuidador">
+					<option value="1">Masculino</option>
+					<option value="2">Feminino</option>
+					<option value="3">Outro</option>
+				</select>
+				<p>Link currículo:</p>
+				<input type="text" name="txtCurriculo" required class="areaFormInput" id="txtCurriculo">
+				<p>Escreva uma breve descrição sobre você:</p>
+				<input type="text" name="txtDescricao" required class="areaFormInput" id="txtDescricao">
+				<button type="button" id="btnProximo3">Próximo</button>
+			</div>
+		</div>
+		<div class="wrapper" id="wrapper-QuartoCadastroCuidador">
+			<div class="areaForm" style="height: 345px">
+				<h1>Adicionar Informações</h1>
+				<p>Especialização:</p>
+				<select name="Especialização" class="areaFormInput" id="especializacaoCuidador">
+					<!--<option value="Fisioterapeuta">Fisioterapeuta</option> -->
+				</select>
+				<p>Valor Hora:</p>
+				<input type="text" name="valorHora" required class="areaFormInput" placeholder="R$" id="txtValorHora">
+				<p>Escreva uma breve descrição sobre a sua especialização:</p>
+				<input type="text" name="txtDescricaoEspecializacao" required class="areaFormInput" id="txtDescricaoEspecializacao">
+				<button type="button" id="btnCadastrar">Cadastrar</button>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

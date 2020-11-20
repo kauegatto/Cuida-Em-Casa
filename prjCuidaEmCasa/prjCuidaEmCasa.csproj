@@ -63,6 +63,7 @@
     <Content Include="css\cliente\estiloCadastroInicial.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\cuidador\estiloBuscarServico.css" />
+    <Content Include="css\cuidador\estiloCadastroCuidador.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
     <Content Include="css\cuidador\estiloServicoAtual.css" />
     <Content Include="css\estiloCuidador.css" />
@@ -166,9 +167,16 @@
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
+<<<<<<< HEAD
     <Content Include="js\BuscaServicoAgora\scriptVerificarSeTemServico.js" />
     <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
+=======
+    <Content Include="js\Cadastro\Cliente\scriptCriarContaCliente.js" />
+    <Content Include="js\Cadastro\Cliente\scriptNavegacaoCadastro.js" />
+    <Content Include="js\Cadastro\Cuidador\scriptCriarContaCuidador.js" />
+    <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
+>>>>>>> 32d0b96fc1db37dc83a79e088874a8fc3629833c
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
     <Content Include="js\Cuidador\scriptDenunciarServico.js" />
@@ -224,6 +232,10 @@
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
+<<<<<<< HEAD
+=======
+    <Content Include="lib\libCriarContaCuidador.aspx" />
+>>>>>>> 32d0b96fc1db37dc83a79e088874a8fc3629833c
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -232,6 +244,7 @@
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libDisponibilidadeCuidador.aspx" />
+    <Content Include="lib\libEspecializacaoCuidador.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -248,6 +261,7 @@
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
     <Content Include="pages\cuidador\atendimento.html" />
+    <Content Include="pages\cuidador\cadastroCuidador.html" />
     <Content Include="pages\escolhaCadastro.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
@@ -407,6 +421,13 @@
     <Compile Include="lib\libCriarContaCliente.aspx.designer.cs">
       <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libCriarContaCuidador.aspx.cs">
+      <DependentUpon>libCriarContaCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCriarContaCuidador.aspx.designer.cs">
+      <DependentUpon>libCriarContaCuidador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -462,6 +483,13 @@
     </Compile>
     <Compile Include="lib\libDisponibilidadeCuidador.aspx.designer.cs">
       <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libEspecializacaoCuidador.aspx.cs">
+      <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libEspecializacaoCuidador.aspx.designer.cs">
+      <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>

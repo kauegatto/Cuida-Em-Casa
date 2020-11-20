@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
 
-
 	$('#txtTelefoneCliente').mask('(00) 0000-0000');
 	$('#txtCPF').mask('000.000.000-00');
 
@@ -11,6 +10,7 @@ $(document).ready(function(){
 		if ($('#txtNomeCliente').val() == "") 
 		{
 			alert('digite o seu nome');
+			return;
 		}
 		else
 		{
@@ -20,6 +20,7 @@ $(document).ready(function(){
 		if ($('#txtEmailCliente').val() == "")
 		{
 			alert('digite o seu email');
+			return;
 		}
 		else
 		{
@@ -29,6 +30,7 @@ $(document).ready(function(){
 		if ($("#txtTelefoneCliente").val() == "") 
 		{
 			alert('digite o seu telefone');
+			return;
 		}
 		else
 		{
@@ -47,6 +49,7 @@ $(document).ready(function(){
 		if ($("#txtCPF").val() == "") 
 		{
 			alert('Digite o seu cpf');
+			return;
 		}
 		else
 		{
@@ -56,12 +59,14 @@ $(document).ready(function(){
 		if ($("#txtSenha").val() == "") 
 		{
 			alert('Digite a sua senha');
+			return;
 		}
 		else
 		{
 			if ($('#txtConfirmarSenha').val() == "") 
 			{
 				alert('digite o algo no confirmar senha');
+				return;
 			}
 			else
 			{
@@ -72,6 +77,7 @@ $(document).ready(function(){
 				else
 				{
 					alert('as senhas estao diferentes');
+					return;
 				}
 			}
 		}

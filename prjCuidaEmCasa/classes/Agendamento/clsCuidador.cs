@@ -41,6 +41,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> cd_paciente { get; set; }
         public string disponibilidadeCuidador { get; set; }
         public List<string> situacaoServico { get; set; }
+        public List<string> cdEspecializacaoCuidador { get; set; } 
+        public List<string> nomeEspecializacaoCuidador { get; set; } 
 
         public clsCuidador(): base()
         {
@@ -76,7 +78,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_comp_servico = "";
             cd_paciente = new List<string>();
             situacaoServico = new List<string>();
-
+            cdEspecializacaoCuidador = new List<string>();
+            nomeEspecializacaoCuidador = new List<string>();
         }
 
         #region Listar Cuidadores
@@ -587,6 +590,36 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true;
         }
+
+        #endregion
+
+        #region Listar especializacao cuidador 
+
+        public bool listarEspecializacaoCuidador() 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            if (!Procedure("listarEspecializacao", false, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    cdEspecializacaoCuidador.Add(dados[0].ToString());
+                    nomeEspecializacaoCuidador.Add(dados[1].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+
 
         #endregion
     }
