@@ -167,16 +167,13 @@
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
-<<<<<<< HEAD
     <Content Include="js\BuscaServicoAgora\scriptVerificarSeTemServico.js" />
     <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
-=======
     <Content Include="js\Cadastro\Cliente\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\Cliente\scriptNavegacaoCadastro.js" />
     <Content Include="js\Cadastro\Cuidador\scriptCriarContaCuidador.js" />
     <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
->>>>>>> 32d0b96fc1db37dc83a79e088874a8fc3629833c
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
     <Content Include="js\Cuidador\scriptDenunciarServico.js" />
@@ -232,10 +229,7 @@
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
-<<<<<<< HEAD
-=======
     <Content Include="lib\libCriarContaCuidador.aspx" />
->>>>>>> 32d0b96fc1db37dc83a79e088874a8fc3629833c
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />

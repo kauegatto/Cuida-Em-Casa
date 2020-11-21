@@ -19,12 +19,9 @@ END$$
 
 DROP PROCEDURE IF EXISTS cadastroCuidador$$
 
-CREATE PROCEDURE cadastroCuidador(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15),vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128) )
+CREATE PROCEDURE cadastroCuidador(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15),vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128), vImgCuidador BLOB, vCdGenero INT, vLinkCurriculo VARCHAR(200), vDescricaoCuidador VARCHAR(200), vCdEspecializacao INT, vValorHora INT, vDescricaoEspecializacao VARCHAR(200))
 BEGIN
-
-
-
-
+	insert into (nm_email_usuario, nm_usuario, cd_CPF, cd_telefone, nm_senha, img_usuario, vl_hora_trabalho, cd_link_curriculo, ds_experiencia_usuario, ds_usuario, cd_tipo_usuario, cd_genero, cd_situacao_usuario) values (vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vSenhaUsuario, vImgCuidador, vValorHora, vLinkCurriculo, vDescricaoEspecializacao, vDescricaoCuidador, 3, vCdGenero, 2);
 END$$
 
 DROP PROCEDURE IF EXISTS verificarLogin$$

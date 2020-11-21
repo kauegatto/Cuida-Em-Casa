@@ -94,21 +94,7 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
 
-            string generoCuidador = Request["cpfCuidador"].ToString();
-
-            if (Request["linkCurriculo"] == null)
-            {
-                Response.Write("erro");
-                return;
-            }
-
-            if (Request["linkCurriculo"].ToString() == "")
-            {
-                Response.Write("erro");
-                return;
-            }
-
-            string linkCurriculo = Request["cpfCuidador"].ToString();
+            string generoCuidador = Request["generoCuidador"].ToString();
 
             if (Request["link"] == null)
             {
