@@ -4,10 +4,10 @@ call verificarLogin('flaviapriscilamarianasilveira@gmail.com', '123');
 call alterarSenha('123', 'renanStopa@gmail.com');
 call gerarOcorrencia(3, 'O cuidador agrediu o paciente', 'reinaldosouza@gmail.com', 5, 2);
 call verificarSenha('mauriciorodolfo@gamil.com','123');
-update servico set hr_fim_servico = '23:59:59' where cd_servico = 27;
-select * from servico;
+call cadastrarEspecializacoes(1, 'reinaldosouza@gmail.com');
+
 /* PROCEDURES DO CLIENTE */
-select * from servico;
+
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
@@ -41,11 +41,10 @@ call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
 
 /* PROCEDURE DO CUIDADOR */
-select * from servico where cd_servico = 27;
+
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
 'https://CurriculoDoRenan.com.br', '5 anos de trabalho de cuidadoria na Santa Casa de Santos', 
 'Me chamo Renan, estou nessa trabalho de cuidadoria a bastante tempo e faço isso com muita paixão', 2);
-call cadastrarEspecializacoes(1, 'reinaldosouza@gmail.com');
 call listarServicosAgendados('flaviabeneditamilenamelo@gmail.com');
 call cancelarServicoAgendado(10); 
 call listarServicosFinalizadosAntigos('brunastellaflaviadepaula@gmail.com');
@@ -59,6 +58,7 @@ call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
+call listarEspecializacao();
 
 /* PROCEDURE DO ADMINISTRADOR */
 
@@ -71,7 +71,3 @@ call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
-
-select * from servico where cd_paciente = 6;
-
-select * from servico where cd_servico = 33

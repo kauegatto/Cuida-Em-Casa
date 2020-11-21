@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 	});
 
-	$('#txtTelefoneCuidador').mask('(00) 0000-0000');
+	$('#txtTelefoneCuidador').mask('(00) 00000-0000');
 	$('#txtCPFCuidador').mask('000.000.000-00');
 
 	$(document).on("click", "#btnProximo1", function(){
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		$("#wrapper-SegundoCadastroCuidador").css("display", "none");
 		$("#wrapper-TerceiroCadastroCuidador").css("display", "block");
 
-		localStorage.setItem('cpfCuidador', $('#txtTelefoneCuidador').val());
+		localStorage.setItem('cpfCuidador', $('#txtCPFCuidador').val());
 		localStorage.setItem('senhaCuidador', $('#txtSenha').val());
 
 	});
@@ -44,7 +44,7 @@ $(document).ready(function(){
 
 	$(document).on("click", "#btnProximo3", function(){
 
-		$("#wrapper-TerceiroCuidador").css("display", "none");
+		$("#wrapper-TerceiroCadastroCuidador").css("display", "none");
 		$("#wrapper-QuartoCadastroCuidador").css("display", "block");
 
 		if ($('#uploadImg').val() != "") 

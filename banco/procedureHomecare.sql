@@ -4,7 +4,6 @@ DELIMITER $$
 
 /* Procedure criada para verificar login */
 
-
 DROP PROCEDURE IF EXISTS cadastroCliente$$
 
 CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15), vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128))
@@ -19,9 +18,24 @@ END$$
 
 DROP PROCEDURE IF EXISTS cadastroCuidador$$
 
-CREATE PROCEDURE cadastroCuidador(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15),vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128), vImgCuidador BLOB, vCdGenero INT, vLinkCurriculo VARCHAR(200), vDescricaoCuidador VARCHAR(200), vCdEspecializacao INT, vValorHora INT, vDescricaoEspecializacao VARCHAR(200))
+CREATE PROCEDURE cadastroCuidador(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15),vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128), vImgCuidador BLOB, vCdGenero INT, vLinkCurriculo VARCHAR(200), vDescricaoCuidador TEXT, vValorHora DECIMAL(10, 2), vDescricaoEspecializacao TEXT)
 BEGIN
-	insert into (nm_email_usuario, nm_usuario, cd_CPF, cd_telefone, nm_senha, img_usuario, vl_hora_trabalho, cd_link_curriculo, ds_experiencia_usuario, ds_usuario, cd_tipo_usuario, cd_genero, cd_situacao_usuario) values (vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vSenhaUsuario, vImgCuidador, vValorHora, vLinkCurriculo, vDescricaoEspecializacao, vDescricaoCuidador, 3, vCdGenero, 2);
+	insert into usuario (nm_email_usuario, nm_usuario, cd_CPF, cd_telefone, nm_senha, img_usuario, vl_hora_trabalho, cd_link_curriculo, ds_experiencia_usuario, 
+	ds_usuario, cd_tipo_usuario, cd_genero, cd_situacao_usuario) 
+	values (vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vSenhaUsuario, vImgCuidador, vValorHora, 
+	vLinkCurriculo, vDescricaoEspecializacao, vDescricaoCuidador, vCdGenero, 2);
+END$$
+
+/* Procedure será usada para cadastrar as especializações do cuidador dentro de um for */
+
+DROP PROCEDURE IF EXISTS cadastrarEspecializacoes$$
+
+CREATE PROCEDURE cadastrarEspecializacoes(vEspecializacao INT, vEmailCuidador VARCHAR(200))
+BEGIN
+	INSERT INTO
+		especializacao_usuario
+	VALUES
+		(vEspecializacao, vEmailCuidador);
 END$$
 
 DROP PROCEDURE IF EXISTS verificarLogin$$
@@ -1480,32 +1494,6 @@ BEGIN
 END$$
 
 /*PROCEDURES REFENRENTE AO CUIDADOR*/
-
-/* Procedure será usada para enviar o formulário de cadstro do usuário */
-
-DROP PROCEDURE IF EXISTS cadastrarCuidador$$
-
-CREATE PROCEDURE cadastrarCuidador(vEmailCuidador VARCHAR(200), vNomeUsuario VARCHAR(200), vCPF VARCHAR(15), vTel VARCHAR(15), vSenha VARCHAR(128), vValorHora DECIMAL(10, 2), vCurriculo TEXT, vExperiencia TEXT, vDescricao TEXT, vGenero INT)
-BEGIN
-	INSERT INTO
-		usuario(nm_email_usuario, nm_usuario, cd_CPF, cd_telefone, nm_senha, img_usuario, vl_hora_trabalho,  
-		cd_link_curriculo, ic_ativo, ds_experiencia_usuario, ds_usuario, cd_tipo_usuario, cd_genero, cd_situacao_usuario)
-	VALUES
-		(vEmailCuidador, vNomeUsuario, vCPF, vTel, MD5(vSenha), null, vValorHora, vCurriculo,
-		false, vExperiencia, vDescricao, 3, vGenero, 2);
-END$$
-
-/* Procedure será usada para cadastrar as especializações do cuidador */
-
-DROP PROCEDURE IF EXISTS cadastrarEspecializacoes$$
-
-CREATE PROCEDURE cadastrarEspecializacoes(vEspecializacao INT, vEmailCuidador VARCHAR(200))
-BEGIN
-	INSERT INTO
-		especializacao_usuario
-	VALUES
-		(vEspecializacao, vEmailCuidador);
-END$$
 
 /* Procedure será usada pra listar os serviços pendentes em ordem crescente */
 

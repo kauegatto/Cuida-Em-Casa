@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using prjCuidaEmCasa.classes.Agendamento;
 
 namespace prjCuidaEmCasa.lib
 {
@@ -11,6 +12,7 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            #region Validação
             if (Request["nomeCuidador"] == null)
             {
                 Response.Write("erro");
@@ -182,7 +184,23 @@ namespace prjCuidaEmCasa.lib
             }
 
             string senhaCuidador = Request["senhaCuidador"].ToString();
+            #endregion
 
+            clsUsuario usuario = new clsUsuario();
+
+            if (!(usuario.cadastroCuidador(emailCuidador, nomeCuidador, telefoneCuidador, cpfCuidador, senhaCuidador, imgCuidador, generoCuidador, link, descricaoCuidador, valorHora, descricaoEspecializacao)))
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            if (!(usuario.cadastrarEspecializacoes(especializacaoCuidador, emailCuidador)))
+	        {
+                Response.Write("erro");
+                return;
+	        }
+
+            Response.Write("true");
         }
     }
 }
