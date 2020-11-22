@@ -4,6 +4,7 @@ import scriptAceitarServico from "./scriptAceitarServico.js";
 import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
 import scriptServicoAgora from "./scriptServicoAgora.js";
 import scriptCheckinCheckout from "./scriptCheckinCheckout.js";
+import scriptVerificarSeTemServico from "./scriptVerificarSeTemServico.js";
 
 
 $(document).ready(function () {
@@ -17,6 +18,8 @@ $(document).ready(function () {
     }
 
     localStorage.setItem("indice", "0");
+
+    scriptVerificarSeTemServico();
 
     $(document).on("click", ".btnVerMaisServicoEncontrado", function(){
         

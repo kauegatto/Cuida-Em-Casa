@@ -46,6 +46,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> emailCuidadorAgora { get; set; }
         public string diaDaSemana { get; set; }
         public string cd_geolocalizao { get; set; }
+        public string hr_checkin { get; set; }
 
         public clsServico(): base() 
         {
@@ -86,6 +87,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             codigoAgora = new List<string>();
             diaDaSemana = "";
             cd_geolocalizao = "";
+            hr_checkin = "";
         }
 
         #region Próximo código
@@ -405,6 +407,58 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     hr_fim_servico.Add(dados[12].ToString());
                     dt_inicio_servico.Add(dados[13].ToString());
                     duracaoServico.Add(dados[14].ToString());
+                }
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
+        #region Verificar se tem serviço
+        public bool verificarDisponibilidade(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+            base64standard = "PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJ1c2VyLW51cnNlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtdXNlci1udXJzZSBmYS13LTE0IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTMxOS40MSwzMjAsMjI0LDQxNS4zOSwxMjguNTksMzIwQzU3LjEsMzIzLjEsMCwzODEuNiwwLDQ1My43OUE1OC4yMSw1OC4yMSwwLDAsMCw1OC4yMSw1MTJIMzg5Ljc5QTU4LjIxLDU4LjIxLDAsMCwwLDQ0OCw0NTMuNzlDNDQ4LDM4MS42LDM5MC45LDMyMy4xLDMxOS40MSwzMjBaTTIyNCwzMDRBMTI4LDEyOCwwLDAsMCwzNTIsMTc2VjY1LjgyYTMyLDMyLDAsMCwwLTIwLjc2LTMwTDI0Ni40Nyw0LjA3YTY0LDY0LDAsMCwwLTQ0Ljk0LDBMMTE2Ljc2LDM1Ljg2QTMyLDMyLDAsMCwwLDk2LDY1LjgyVjE3NkExMjgsMTI4LDAsMCwwLDIyNCwzMDRaTTE4NCw3MS42N2E1LDUsMCwwLDEsNS01aDIxLjY3VjQ1YTUsNSwwLDAsMSw1LTVoMTYuNjZhNSw1LDAsMCwxLDUsNVY2Ni42N0gyNTlhNSw1LDAsMCwxLDUsNVY4OC4zM2E1LDUsMCwwLDEtNSw1SDIzNy4zM1YxMTVhNSw1LDAsMCwxLTUsNUgyMTUuNjdhNSw1LDAsMCwxLTUtNVY5My4zM0gxODlhNSw1LDAsMCwxLTUtNVpNMTQ0LDE2MEgzMDR2MTZhODAsODAsMCwwLDEtMTYwLDBaIj48L3BhdGg+PC9zdmc+";
+
+            if (!Procedure("verificarDisponibilidade", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    cd_servico.Add(dados[0].ToString());
+                    if (!Convert.IsDBNull(dados[1]))
+                    {
+                        byte[] imagem = (byte[])dados[1];
+
+                        base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
+                    }
+                    else { base64String.Add(base64standard); }
+                    nm_paciente.Add(dados[2].ToString());
+                    nm_necessidade = dados[3].ToString();
+                    nm_rua_servico.Add(dados[4].ToString());
+                    nm_num_servico = dados[5].ToString();
+                    if (dados[6].ToString() != null)
+                    {
+                        nm_comp_servico = dados[6].ToString();
+                    }
+                    dt_inicio_servico.Add(dados[7].ToString());
+                    diaDaSemana = dados[8].ToString();
+                    hr_inicio_servico.Add(dados[9].ToString());
+                    hr_fim_servico.Add(dados[10].ToString());
+                    cd_geolocalizao = dados[11].ToString();
+                    vl_cuidador.Add(dados[12].ToString());
+                    duracaoServico.Add(dados[13].ToString());
+                    hr_checkin = dados[14].ToString();
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();

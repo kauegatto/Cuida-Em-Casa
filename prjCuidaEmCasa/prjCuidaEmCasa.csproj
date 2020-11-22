@@ -63,6 +63,7 @@
     <Content Include="css\cliente\estiloCadastroInicial.css" />
     <Content Include="css\cuidador\estiloBuscandoCuidadores.css" />
     <Content Include="css\cuidador\estiloBuscarServico.css" />
+    <Content Include="css\cuidador\estiloCadastroCuidador.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
     <Content Include="css\cuidador\estiloServicoAtual.css" />
     <Content Include="css\estiloCuidador.css" />
@@ -120,6 +121,7 @@
     <Content Include="img\icones\iconeVoltar.png" />
     <Content Include="img\icones\index\iconeCuidador.png" />
     <Content Include="img\icones\index\iconeMaleta.png" />
+    <Content Include="img\icones\plus.png" />
     <Content Include="img\icones\satelite.png" />
     <Content Include="img\icones\servicoAgendado\iconeAgenda.png" />
     <Content Include="img\icones\servicoAgendado\iconeAgendaCinza.png" />
@@ -166,8 +168,13 @@
     <Content Include="js\BuscaServicoAgora\scriptDisponibilidadeCuidador.js" />
     <Content Include="js\BuscaServicoAgora\scriptNavegacaoBuscaServicoAgora.js" />
     <Content Include="js\BuscaServicoAgora\scriptServicoAgora.js" />
+    <Content Include="js\BuscaServicoAgora\scriptVerificarSeTemServico.js" />
     <Content Include="js\Cadastro\scriptCriarContaCliente.js" />
     <Content Include="js\Cadastro\scriptNavegacaoCadastro.js" />
+    <Content Include="js\Cadastro\Cliente\scriptCriarContaCliente.js" />
+    <Content Include="js\Cadastro\Cliente\scriptNavegacaoCadastro.js" />
+    <Content Include="js\Cadastro\Cuidador\scriptCriarContaCuidador.js" />
+    <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
     <Content Include="js\Cuidador\scriptDenunciarServico.js" />
@@ -223,6 +230,7 @@
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
+    <Content Include="lib\libCriarContaCuidador.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
     <Content Include="lib\libDadosLogin.aspx" />
     <Content Include="lib\libDenunciarCuidador.aspx" />
@@ -231,6 +239,7 @@
     <Content Include="lib\libDetalhesServico.aspx" />
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libDisponibilidadeCuidador.aspx" />
+    <Content Include="lib\libEspecializacaoCuidador.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -240,12 +249,14 @@
     <Content Include="lib\libPacientesEmServico.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
+    <Content Include="lib\libVerificarSeTemServico.aspx" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
     <Content Include="pages\cliente\servicoAgora.html" />
     <Content Include="pages\cliente\servicoAtual.html" />
     <Content Include="pages\cuidador\atendimento.html" />
+    <Content Include="pages\cuidador\cadastroCuidador.html" />
     <Content Include="pages\escolhaCadastro.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
@@ -405,6 +416,13 @@
     <Compile Include="lib\libCriarContaCliente.aspx.designer.cs">
       <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libCriarContaCuidador.aspx.cs">
+      <DependentUpon>libCriarContaCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libCriarContaCuidador.aspx.designer.cs">
+      <DependentUpon>libCriarContaCuidador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libDadosAgendamento.aspx.cs">
       <DependentUpon>libDadosAgendamento.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -460,6 +478,13 @@
     </Compile>
     <Compile Include="lib\libDisponibilidadeCuidador.aspx.designer.cs">
       <DependentUpon>libDisponibilidadeCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libEspecializacaoCuidador.aspx.cs">
+      <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libEspecializacaoCuidador.aspx.designer.cs">
+      <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
@@ -523,6 +548,13 @@
     </Compile>
     <Compile Include="lib\libServicoAtual.aspx.designer.cs">
       <DependentUpon>libServicoAtual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libVerificarSeTemServico.aspx.cs">
+      <DependentUpon>libVerificarSeTemServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libVerificarSeTemServico.aspx.designer.cs">
+      <DependentUpon>libVerificarSeTemServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

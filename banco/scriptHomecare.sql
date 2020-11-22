@@ -65,7 +65,7 @@ insert into tipo_situacao_usuario values (4, 'Demitido');
 
 CREATE TABLE usuario
 (
-	nm_email_usuario VARCHAR(100),
+	nm_email_usuario VARCHAR(200),
 	nm_usuario VARCHAR(200),
 	cd_CPF VARCHAR(15),
 	cd_telefone VARCHAR(15),

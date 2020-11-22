@@ -8,27 +8,27 @@ using prjCuidaEmCasa.classes.Agendamento;
 
 namespace prjCuidaEmCasa.lib
 {
-    public partial class libServicoAtual : System.Web.UI.Page
+    public partial class libVerificarSeTemServico : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             #region Validação
-            if (Request["cdServico"] == null)
+            if (Request["emailCuidador"] == null)
             {
-                Response.Write("false");
+                Response.Write("erro");
             }
 
-            if (Request["cdServico"].ToString() == "")
+            if (Request["emailCuidador"].ToString() == "")
             {
-                Response.Write("false");
+                Response.Write("erro");
             }
             #endregion
 
             clsServico servico = new clsServico();
 
-            string cdServico = Request["cdServico"].ToString();
+            string emailCuidador = Request["emailCuidador"].ToString();
 
-            if (!(servico.infoServicoAtual(cdServico)))
+            if (!(servico.verificarDisponibilidade(emailCuidador)))
 	        {
 		        Response.Write("false");
                 return;
@@ -60,10 +60,16 @@ namespace prjCuidaEmCasa.lib
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "<div class='areaMapa'>";
 			dadosServicoAtual += "</div>";
-			dadosServicoAtual += "<button class='btnCheckin 0'>Fazer Check-In</button>";
-            dadosServicoAtual += "<button class='btnCheckout 1' style='display:none'>Fazer Checkout</button>";
-
-            Response.Write(dadosServicoAtual);
+            if (servico.hr_checkin == "")
+            {
+                dadosServicoAtual += "<button class='btnCheckin 0'>Fazer Check-In</button>";
+            }
+            else
+            {
+                dadosServicoAtual += "<button class='btnCheckout 1'>Fazer Checkout</button>";
+            }
+            
+            Response.Write(dadosServicoAtual + "&" + servico.cd_servico[0]);
         }
     }
 }

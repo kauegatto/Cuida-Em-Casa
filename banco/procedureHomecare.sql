@@ -4,7 +4,6 @@ DELIMITER $$
 
 /* Procedure criada para verificar login */
 
-
 DROP PROCEDURE IF EXISTS cadastroCliente$$
 
 CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15), vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128))
@@ -15,6 +14,28 @@ BEGIN
 	values 
 		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, md5(vSenhaUsuario));
 
+END$$
+
+DROP PROCEDURE IF EXISTS cadastroCuidador$$
+
+CREATE PROCEDURE cadastroCuidador(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15),vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128), vImgUsuario LONGBLOB, vCdGenero INT, vLinkCurriculo TEXT, vDescricaoCuidador TEXT, vValorHora DECIMAL(10, 2), vDescricaoEspecializacao TEXT)
+BEGIN
+	insert into usuario (nm_email_usuario, nm_usuario, cd_CPF, cd_telefone, nm_senha, img_usuario, vl_hora_trabalho, cd_link_curriculo, ds_experiencia_usuario, 
+	ds_usuario, cd_tipo_usuario, cd_genero, cd_situacao_usuario) 
+	values (vEmailUsuario, vNomeUsuario, vCpfUsuario, vTelefoneUsuario, md5(vSenhaUsuario), vImgUsuario, vValorHora, 
+	vLinkCurriculo, vDescricaoEspecializacao, vDescricaoCuidador, 3, vCdGenero, 2);
+END$$
+
+/* Procedure será usada para cadastrar as especializações do cuidador dentro de um for */
+
+DROP PROCEDURE IF EXISTS cadastrarEspecializacoes$$
+
+CREATE PROCEDURE cadastrarEspecializacoes(vEspecializacao INT, vEmailCuidador VARCHAR(200))
+BEGIN
+	INSERT INTO
+		especializacao_usuario
+	VALUES
+		(vEspecializacao, vEmailCuidador);
 END$$
 
 DROP PROCEDURE IF EXISTS verificarLogin$$
@@ -1206,17 +1227,12 @@ BEGIN
 		tipo_status_servico tss
 	ON
 		(s.cd_status_servico = tss.cd_status_servico)
-<<<<<<< HEAD
 	WHERE 
-		s.nm_email_usuario = vEmailCliente
-=======
-	WHERE
 		s.nm_email_usuario = vEmailCliente
 	AND
 		s.cd_status_servico = 3
 	OR
 		(s.cd_status_servico = 4 AND s.nm_email_usuario = vEmailCliente)
->>>>>>> 9f6f8e9d3c3da093668d0bf2f04a366e694ffe16
     GROUP BY
 		s.cd_servico
 	ORDER BY 
@@ -1474,32 +1490,6 @@ BEGIN
 END$$
 
 /*PROCEDURES REFENRENTE AO CUIDADOR*/
-
-/* Procedure será usada para enviar o formulário de cadstro do usuário */
-
-DROP PROCEDURE IF EXISTS cadastrarCuidador$$
-
-CREATE PROCEDURE cadastrarCuidador(vEmailCuidador VARCHAR(200), vNomeUsuario VARCHAR(200), vCPF VARCHAR(15), vTel VARCHAR(15), vSenha VARCHAR(128), vValorHora DECIMAL(10, 2), vCurriculo TEXT, vExperiencia TEXT, vDescricao TEXT, vGenero INT)
-BEGIN
-	INSERT INTO
-		usuario(nm_email_usuario, nm_usuario, cd_CPF, cd_telefone, nm_senha, img_usuario, vl_hora_trabalho,  
-		cd_link_curriculo, ic_ativo, ds_experiencia_usuario, ds_usuario, cd_tipo_usuario, cd_genero, cd_situacao_usuario)
-	VALUES
-		(vEmailCuidador, vNomeUsuario, vCPF, vTel, MD5(vSenha), null, vValorHora, vCurriculo,
-		false, vExperiencia, vDescricao, 3, vGenero, 2);
-END$$
-
-/* Procedure será usada para cadastrar as especializações do cuidador */
-
-DROP PROCEDURE IF EXISTS cadastrarEspecializacoes$$
-
-CREATE PROCEDURE cadastrarEspecializacoes(vEspecializacao INT, vEmailCuidador VARCHAR(200))
-BEGIN
-	INSERT INTO
-		especializacao_usuario
-	VALUES
-		(vEspecializacao, vEmailCuidador);
-END$$
 
 /* Procedure será usada pra listar os serviços pendentes em ordem crescente */
 
@@ -1768,7 +1758,7 @@ BEGIN
 	UPDATE
 		servico
 	SET
-		hr_checkout_servico = CURRENT_TIME(), dt_checkiout_servico = CURRENT_DATE()
+		hr_checkout_servico = CURRENT_TIME(), dt_checkout_servico = CURRENT_DATE(), cd_status_servico = 3
 	WHERE
 		cd_servico = vServico;
 END$$
@@ -1842,6 +1832,58 @@ BEGIN
 		ic_ativo = false
 	WHERE
 		nm_email_usuario = vEmailUsuario;
+END$$
+
+/* Procedure criada para verificar a disponibilidade do cuidador, sabendo se ele está em serviço ou não */
+
+DROP PROCEDURE IF EXISTS verificarDisponibilidade$$
+
+CREATE PROCEDURE verificarDisponibilidade(vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		s.cd_servico, p.img_paciente, p.nm_paciente, GROUP_CONCAT(tnp.nm_tipo_necessidade_paciente), s.nm_rua_servico, s.cd_num_servico, 
+		s.nm_complemento_servico, DATE_FORMAT(s.dt_inicio_servico, '%d/%m'),
+		CASE WEEKDAY(s.dt_inicio_servico) 
+                       when 0 then 'Segunda-feira'
+                       when 1 then 'Terça-feira'
+                       when 2 then 'Quarta-feira'
+                       when 3 then 'Quinta-feira'
+                       when 4 then 'Sexta-feira'
+                       when 5 then 'Sábado'
+                       when 6 then 'Domingo'                 
+                       END AS DiaDaSemana,
+		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), s.hr_checkin_servico
+	FROM
+		servico s
+	JOIN
+		paciente p
+	ON
+		(s.cd_paciente = p.cd_paciente)
+	JOIN
+		necessidade_paciente np
+	ON
+		(p.cd_paciente = np.cd_paciente)
+	JOIN
+		tipo_necessidade_paciente tnp
+	ON
+		(np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente)
+	JOIN
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	WHERE 
+		s.dt_inicio_servico = CURRENT_DATE()
+	AND
+		s.hr_inicio_servico <= CURRENT_TIME 
+	AND 
+		s.hr_fim_servico >= CURRENT_TIME()
+	AND
+		s.cd_status_servico = 1
+	AND
+		s.nm_email_usuario_cuidador = vEmailCuidador
+	GROUP BY
+		s.cd_servico;
 END$$
 
 /*PROCEDURES REFENRENTE AO ADMINISTRADOR*/
@@ -2087,5 +2129,64 @@ BEGIN
 
 END$$
 
+
+DROP PROCEDURE IF EXISTS listarEspecializacao$$
+
+CREATE PROCEDURE listarEspecializacao()
+BEGIN
+
+	select * from tipo_especializacao;
+
+END$$
+
+/* Proceudre criada para adicionar a disponibilidade do usuario, podendo escolher dia, hora de início e fim */
+
+DROP PROCEDURE IF EXISTS adicionarDisponibilidade$$
+
+CREATE PROCEDURE adicionarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+BEGIN
+	INSERT INTO
+		disponibilidade 
+	VALUES
+		(vDataDisponibilidade, vHoraInicioDisponibilidade, vHoraFimDisponibilidade, vEmailCuidador);
+END$$
+
+/* Procedure criada para verificar se a disponibilidade que ele quer adicionar não entra em conflito com outra */
+
+DROP PROCEDURE IF EXISTS verificarDisponibilidade$$
+
+CREATE PROCEDURE verificarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		*
+	FROM
+		disponibilidade
+	WHERE
+		dt_disponibilidade = vDataDisponibilidade 
+	AND 
+		hr_inicio_disponibilidade <= vHoraInicioDisponibilidade
+	AND
+		hr_fim_disponibilidade >= vHoraFimDisponibilidade
+	AND
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para deletar a disponibilidade caso algum cuidador queira */
+
+DROP PROCEDURE IF EXISTS deletarDisponibilidade$$
+
+CREATE PROCEDURE deletarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+BEGIN
+	DELETE FROM
+		disponibilidade
+	WHERE
+		dt_disponibilidade = vDataDisponibilidade 
+	AND 
+		hr_inicio_disponibilidade = vHoraInicioDisponibilidade
+	AND
+		hr_fim_disponibilidade = vHoraFimDisponibilidade
+	AND
+		nm_email_usuario = vEmailCuidador;
+END$$
 
 DELIMITER ;

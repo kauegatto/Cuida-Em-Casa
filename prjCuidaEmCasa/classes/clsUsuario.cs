@@ -192,5 +192,72 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
 
         #endregion
+
+        #region Criar Conta Cuidador
+
+        public bool cadastroCuidador(string emailCuidador, string nomeCuidador, string telefoneCuidador, string cpfCuidador, string senhaCuidador, string imgCuidador, string cdGenero, string linkCurriculo, string descricaoCuidador, string valorHora, string descricaoEspecializacao)
+        {
+            valorHora = valorHora.Replace(",", ".");
+            imgCuidador = imgCuidador.Replace("data:image/jpeg;base64,", "").Trim();
+
+            MySqlDataReader dados = null;
+            string[,] valores = new string[10, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailCuidador;
+            valores[1, 0] = "vNomeUsuario";
+            valores[1, 1] = nomeCuidador;
+            valores[2, 0] = "vTelefoneUsuario";
+            valores[2, 1] = telefoneCuidador;
+            valores[3, 0] = "vCpfUsuario";
+            valores[3, 1] = cpfCuidador;
+            valores[4, 0] = "vSenhaUsuario";
+            valores[4, 1] = senhaCuidador;
+            valores[5, 0] = "vCdGenero";
+            valores[5, 1] = cdGenero;
+            valores[6, 0] = "vLinkCurriculo";
+            valores[6, 1] = linkCurriculo;
+            valores[7, 0] = "vDescricaoCuidador";
+            valores[7, 1] = descricaoCuidador;
+            valores[8, 0] = "vValorHora";
+            valores[8, 1] = valorHora;
+            valores[9, 0] = "vDescricaoEspecializacao";
+            valores[9, 1] = descricaoEspecializacao;
+
+            byte[] imagemBinario = Convert.FromBase64String(imgCuidador);
+
+            if (!ProcedureIMG("cadastroCuidador", true, valores, imagemBinario, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+
+
+        #endregion 
+
+        #region Cadastrar especilizações cuidador
+
+        public bool cadastrarEspecializacoes(string cdEspecializacao, string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEspecializacao";
+            valores[0, 1] = cdEspecializacao;
+            valores[1, 0] = "vEmailCuidador";
+            valores[1, 1] = emailCuidador;
+
+            if (!Procedure("cadastrarEspecializacoes", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+
+        #endregion
+
     }
 }
