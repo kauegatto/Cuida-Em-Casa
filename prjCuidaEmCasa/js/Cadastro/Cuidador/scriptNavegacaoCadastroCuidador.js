@@ -22,30 +22,75 @@ $(document).ready(function(){
 
 	$(document).on("click", "#btnProximo1", function(){
 
+		if ($('#txtNomeCuidador').val() != "") {
+			localStorage.setItem('nomeCuidador', $('#txtNomeCuidador').val());	
+		}
+		else
+		{
+			alert('digite o seu nome');
+			return;
+		}
+
+		if ($('#txtEmailCuidador').val() != "") {
+			localStorage.setItem('emailCuidador', $('#txtEmailCuidador').val());
+		}
+		else
+		{
+			alert('digite o seu email');
+			return;
+		}
+
+		if ($('#txtTelefoneCuidador').val() != "") {
+			localStorage.setItem('telefoneCuidador', $('#txtTelefoneCuidador').val());
+		}
+		else
+		{
+			alert('digite o seu telefone');
+			return;
+		}
+
 		$("#wrapper-PrimeiroCadastroCuidador").css("display", "none");
 		$("#wrapper-SegundoCadastroCuidador").css("display", "block");
-
-		localStorage.setItem('nomeCuidador', $('#txtNomeCuidador').val());
-		localStorage.setItem('emailCuidador', $('#txtEmailCuidador').val());
-		localStorage.setItem('telefoneCuidador', $('#txtTelefoneCuidador').val());
 		
 	});
 
 	$(document).on("click", "#btnProximo2", function(){
 
+		if ($('#txtCPFCuidador').val() != "") {
+
+			localStorage.setItem('cpfCuidador', $('#txtCPFCuidador').val());
+		}
+		else
+		{
+			alert('digite o seu cpf');
+			return;
+		}
+
+		if ($('#txtSenha').val() != "" && $('#txtConfirmarSenha').val() != "") 
+		{
+			if ($('txtSenha').val() == $('txtConfirmarSenha').val()) 
+			{
+				localStorage.setItem('senhaCuidador', $('#txtSenha').val());
+			}
+			else
+			{
+				alert('as senhas estao diferentes');
+				return;
+			}
+		}
+		else
+		{
+			alert('digite a senha !');
+			return;
+		}
+
 		$("#wrapper-SegundoCadastroCuidador").css("display", "none");
 		$("#wrapper-TerceiroCadastroCuidador").css("display", "block");
-
-		localStorage.setItem('cpfCuidador', $('#txtCPFCuidador').val());
-		localStorage.setItem('senhaCuidador', $('#txtSenha').val());
 
 	});
 
 
 	$(document).on("click", "#btnProximo3", function(){
-
-		$("#wrapper-TerceiroCadastroCuidador").css("display", "none");
-		$("#wrapper-QuartoCadastroCuidador").css("display", "block");
 
 		if ($('#uploadImg').val() != "") 
 		{
@@ -56,8 +101,7 @@ $(document).ready(function(){
 			   //console.log(event.target.result);
 			   imgCuidador = event.target.result;
 			   localStorage.setItem('imgCuidador', imgCuidador);
-			}
-			
+			}		
 		}
 		else
 		{
@@ -65,21 +109,78 @@ $(document).ready(function(){
 			return;
 		}
 
-		localStorage.setItem('generoCuidador', $('#generoCuidador').val());
-		localStorage.setItem('linkCurriculo', $('#txtCurriculo').val());
-		localStorage.setItem('descricaoCuidador', $('#txtDescricao').val());		
+		if ($('#generoCuidador').val() != "") 
+		{
+			localStorage.setItem('generoCuidador', $('#generoCuidador').val());
+		}
+		else
+		{
+			alert('selecione um genero');
+			return;
+		}
+
+		if ($('#txtCurriculo').val() != "") 
+		{
+			localStorage.setItem('linkCurriculo', $('#txtCurriculo').val());
+		}
+		else
+		{
+			alert('digite um curriculo');
+			return;
+		}
+
+		if ($('#txtDescricao').val() != "") 
+		{
+			localStorage.setItem('descricaoCuidador', $('#txtDescricao').val());	
+		}
+		else
+		{
+			alert('Digite uma descrição');
+			return;
+		}
+
+		$("#wrapper-TerceiroCadastroCuidador").css("display", "none");
+		$("#wrapper-QuartoCadastroCuidador").css("display", "block");
+	
 	});
 
 	$(document).on("click", "#btnCadastrar", function(){
 
-		localStorage.setItem('especializacaoCuidador', $('#especializacaoCuidador').val());
-		localStorage.setItem('valorHora', $('#txtValorHora').val());
-		localStorage.setItem('descricaoEspecializacao', $('#txtDescricaoEspecializacao').val());
+		if ($('#especializacaoCuidador'.val() != "")) 
+		{
+			localStorage.setItem('especializacaoCuidador', $('#especializacaoCuidador').val());
+		}
+		else
+		{
+			alert('selecione uma especializacao');
+			return;
+		}
+
+		if ($('#txtValorHora').val() != "") 
+		{
+			localStorage.setItem('valorHora', $('#txtValorHora').val());
+		}
+		else
+		{
+			alert('digite um valor hora');
+			return;
+		}
+
+		if ($('#txtDescricaoEspecializacao').val() != "") 
+		{
+			localStorage.setItem('descricaoEspecializacao', $('#txtDescricaoEspecializacao').val());
+		}
+		else
+		{
+			alert('digite uma descricao para sua especializacao');
+			return;
+		}
 
 		scriptCriarContaCuidador();
 
 		//localStorage.setItem('usuarioLogado', $('#txtEmailCuidador').val());
 		//window.location.href = "";
+		
 	});
 
 
