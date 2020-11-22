@@ -198,7 +198,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public bool cadastroCuidador(string emailCuidador, string nomeCuidador, string telefoneCuidador, string cpfCuidador, string senhaCuidador, string imgCuidador, string cdGenero, string linkCurriculo, string descricaoCuidador, string valorHora, string descricaoEspecializacao)
         {
             valorHora = valorHora.Replace(",", ".");
-            imgCuidador = imgCuidador.Replace("data:image/jpeg;base64,/9j/", "").Trim();
+            imgCuidador = imgCuidador.Replace("data:image/jpeg;base64,", "").Trim();
 
             MySqlDataReader dados = null;
             string[,] valores = new string[11, 2];

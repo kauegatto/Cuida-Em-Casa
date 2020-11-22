@@ -27,7 +27,7 @@
 	<main>
 		<div class="wrapper" id="wrapper-PrimeiroCadastroCuidador">
 			
-			<div class="areaForm" style="height: 360px">
+			<div class="areaForm" style="height: 300px;">
 				<h1>Cadastro</h1>
 				<p>Nome:</p>
 				<input type="text" name="txtNome" required='true' id="txtNomeCuidador" class="areaFormInput">
@@ -42,13 +42,14 @@
 		</div>
 
 		<div class="wrapper" id="wrapper-SegundoCadastroCuidador">
-            <div class="areaForm" > 
+            <div class="areaForm" style="height: 325px;"> 
+            	<h1>Adicionar Informações</h1>
 			    <p>CPF:</p>
 			    <input type="text" name="txtCPF" required id="txtCPFCuidador" class="areaFormInput">
 			    <p>Senha:</p>
-			    <input type="text" name="txtCPF" required id="txtSenha" class="areaFormInput">
-			    <p>Nova Senhha:</p>
-			    <input type="text" name="txtCPF" required id="txtConfirmarSenha" class="areaFormInput">
+			    <input type="password" name="txtSenha" required id="txtSenha" class="areaFormInput">
+			    <p>Nova Senha:</p>
+			    <input type="password" name="txtSenha" required id="txtConfirmarSenha" class="areaFormInput">
                 <button type="button" id="btnProximo2">Próximo</button>
             </div>
 		</div>
@@ -58,6 +59,7 @@
 				<h1>Adicionar Informações</h1>
 				<p>Adicionar uma foto de perfil:</p>
 				<input type="file" name="foto" required id="uploadImg">
+				<div class="invi"></div>
 				<p>Gênero:</p>
 				<select name="genero" class="areaFormInput" id="generoCuidador">
 					<option value="1">Masculino</option>
@@ -72,7 +74,7 @@
 			</div>
 		</div>
 		<div class="wrapper" id="wrapper-QuartoCadastroCuidador">
-			<div class="areaForm" style="height: 345px">
+			<div class="areaForm" style="height: 345px;">
 				<h1>Adicionar Informações</h1>
 				<p>Especialização:</p>
 				<select name="Especialização" class="areaFormInput" id="especializacaoCuidador">

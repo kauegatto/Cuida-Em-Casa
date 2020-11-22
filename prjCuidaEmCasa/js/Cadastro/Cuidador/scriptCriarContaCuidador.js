@@ -8,7 +8,7 @@
 		}
 		else
 		{
-			consele.log('cuidador cadastrado');
+			console.log('cuidador cadastrado');
 		}
 
 	});

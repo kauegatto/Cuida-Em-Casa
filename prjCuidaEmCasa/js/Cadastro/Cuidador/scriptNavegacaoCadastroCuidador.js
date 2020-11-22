@@ -53,10 +53,11 @@ $(document).ready(function(){
 			var fReader = new FileReader();
 			fReader.readAsDataURL(input.files[0]);
 			fReader.onloadend = function(event){
-			   // console.log(event.target.result);
+			   //console.log(event.target.result);
 			   imgCuidador = event.target.result;
 			   localStorage.setItem('imgCuidador', imgCuidador);
 			}
+			
 		}
 		else
 		{
@@ -66,8 +67,7 @@ $(document).ready(function(){
 
 		localStorage.setItem('generoCuidador', $('#generoCuidador').val());
 		localStorage.setItem('linkCurriculo', $('#txtCurriculo').val());
-		localStorage.setItem('descricaoCuidador', $('#txtDescricao').val());
-		
+		localStorage.setItem('descricaoCuidador', $('#txtDescricao').val());		
 	});
 
 	$(document).on("click", "#btnCadastrar", function(){
