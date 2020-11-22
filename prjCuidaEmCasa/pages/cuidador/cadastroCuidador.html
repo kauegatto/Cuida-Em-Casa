@@ -60,7 +60,7 @@
 				<input type="file" name="foto" required id="uploadImg" accept="image/jpeg">
 				<div class="invi"></div>
 				<p>Gênero:</p>
-				<select name="genero" class="areaFormInput" id="generoCuidador">
+				<select name="genero" class="areaFormInput" id="generoCuidador" style="width: 85%;">
 					<option value="1">Masculino</option>
 					<option value="2">Feminino</option>
 					<option value="3">Outro</option>
@@ -73,12 +73,16 @@
 			</div>
 		</div>
 		<div class="wrapper" id="wrapper-QuartoCadastroCuidador">
-			<div class="areaForm" style="height: 345px;">
+			<div class="areaForm" style="height: 345px auto;">
 				<h1>Adicionar Informações</h1>
 				<p>Especialização:</p>
 				<select name="Especialização" class="areaFormInput" id="especializacaoCuidador">
 					<!--<option value="Fisioterapeuta">Fisioterapeuta</option> -->
 				</select>
+                <div class="areaAdicionarEspecializacao">
+					<img src="../../img/icones/plus.png" id="addEspecializacao">
+				</div>
+                <p id="especializacaoEscolhida"></p>
 				<p>Valor Hora:</p>
 				<input type="text" name="valorHora" required class="areaFormInput" placeholder="R$" id="txtValorHora">
 				<p>Escreva uma breve descrição sobre a sua especialização:</p>
