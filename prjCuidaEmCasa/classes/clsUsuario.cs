@@ -201,7 +201,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             imgCuidador = imgCuidador.Replace("data:image/jpeg;base64,", "").Trim();
 
             MySqlDataReader dados = null;
-            string[,] valores = new string[11, 2];
+            string[,] valores = new string[10, 2];
             valores[0, 0] = "vEmailUsuario";
             valores[0, 1] = emailCuidador;
             valores[1, 0] = "vNomeUsuario";
@@ -212,20 +212,20 @@ namespace prjCuidaEmCasa.classes.Agendamento
             valores[3, 1] = cpfCuidador;
             valores[4, 0] = "vSenhaUsuario";
             valores[4, 1] = senhaCuidador;
-            valores[5, 0] = "vImgCuidador";
-            valores[5, 1] = imgCuidador;
-            valores[6, 0] = "vCdGenero";
-            valores[6, 1] = cdGenero;
-            valores[7, 0] = "vLinkCurriculo";
-            valores[7, 1] = linkCurriculo;
-            valores[8, 0] = "vDescricaoCuidador";
-            valores[8, 1] = descricaoCuidador;
-            valores[9, 0] = "vValorHora";
-            valores[9, 1] = valorHora;
-            valores[10, 0] = "vDescricaoEspecializacao";
-            valores[10, 1] = descricaoEspecializacao;
+            valores[5, 0] = "vCdGenero";
+            valores[5, 1] = cdGenero;
+            valores[6, 0] = "vLinkCurriculo";
+            valores[6, 1] = linkCurriculo;
+            valores[7, 0] = "vDescricaoCuidador";
+            valores[7, 1] = descricaoCuidador;
+            valores[8, 0] = "vValorHora";
+            valores[8, 1] = valorHora;
+            valores[9, 0] = "vDescricaoEspecializacao";
+            valores[9, 1] = descricaoEspecializacao;
 
-            if (!Procedure("cadastroCuidador", true, valores, ref dados))
+            byte[] imagemBinario = Convert.FromBase64String(imgCuidador);
+
+            if (!ProcedureIMG("cadastroCuidador", true, valores, imagemBinario, ref dados))
             {
                 Desconectar();
                 return false;

@@ -200,7 +200,6 @@ namespace prjCuidaEmCasa.lib
                 return;
 	        }
 
-            Response.Write("true");
         }
     }
 }

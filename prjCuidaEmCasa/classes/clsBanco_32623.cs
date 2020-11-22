@@ -170,5 +170,51 @@ namespace prjCuidaEmCasa.classes
 
             return true;
         }
+
+        public bool ProcedureIMG(string StoreProcedure, bool temParametros, string[,] parametros, byte[] imgBinario,ref MySqlDataReader dados)
+        {
+            if (Conectar())
+            {
+                try
+                {
+                    MySqlCommand cSQL = new MySqlCommand(StoreProcedure, conexao);
+                    cSQL.CommandType = CommandType.StoredProcedure;
+
+                    if (temParametros)
+                    {
+                        cSQL.Parameters.Clear();
+                        if (parametros.Length != 0)
+                        {
+                            for (int i = 0; i < parametros.GetLength(0); i++)
+                            {
+                                cSQL.Parameters.AddWithValue(parametros[i, 0], parametros[i, 1]);
+                            }
+
+                            MySqlParameter parametroImagem = new MySqlParameter("vImgUsuario", MySqlDbType.Binary);
+                            parametroImagem.Value = imgBinario;
+                            cSQL.Parameters.Add(parametroImagem);
+
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+
+                    dados = cSQL.ExecuteReader();
+                }
+                catch (Exception erro)
+                {
+                    msg = erro.Message;
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
