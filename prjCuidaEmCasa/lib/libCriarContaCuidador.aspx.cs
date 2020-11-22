@@ -194,11 +194,20 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
 
-            if (!(usuario.cadastrarEspecializacoes(especializacaoCuidador, emailCuidador)))
-	        {
-                Response.Write("erro");
-                return;
-	        }
+
+            string[] especializacoes = especializacaoCuidador.Split(';');
+
+            for (int i = 0; i < especializacoes.Length; i++)
+            {
+                
+                if (!(usuario.cadastrarEspecializacoes(especializacoes[i], emailCuidador)))
+	            {
+                    Response.Write("erro");
+                    return;
+	            }
+
+            }
+
 
         }
     }
