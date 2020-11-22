@@ -2139,5 +2139,54 @@ BEGIN
 
 END$$
 
+/* Proceudre criada para adicionar a disponibilidade do usuario, podendo escolher dia, hora de início e fim */
+
+DROP PROCEDURE IF EXISTS adicionarDisponibilidade$$
+
+CREATE PROCEDURE adicionarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+BEGIN
+	INSERT INTO
+		disponibilidade 
+	VALUES
+		(vDataDisponibilidade, vHoraInicioDisponibilidade, vHoraFimDisponibilidade, vEmailCuidador);
+END$$
+
+/* Procedure criada para verificar se a disponibilidade que ele quer adicionar não entra em conflito com outra */
+
+DROP PROCEDURE IF EXISTS verificarDisponibilidade$$
+
+CREATE PROCEDURE verificarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		*
+	FROM
+		disponibilidade
+	WHERE
+		dt_disponibilidade = vDataDisponibilidade 
+	AND 
+		hr_inicio_disponibilidade <= vHoraInicioDisponibilidade
+	AND
+		hr_fim_disponibilidade >= vHoraFimDisponibilidade
+	AND
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para deletar a disponibilidade caso algum cuidador queira */
+
+DROP PROCEDURE IF EXISTS deletarDisponibilidade$$
+
+CREATE PROCEDURE deletarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+BEGIN
+	DELETE FROM
+		disponibilidade
+	WHERE
+		dt_disponibilidade = vDataDisponibilidade 
+	AND 
+		hr_inicio_disponibilidade = vHoraInicioDisponibilidade
+	AND
+		hr_fim_disponibilidade = vHoraFimDisponibilidade
+	AND
+		nm_email_usuario = vEmailCuidador;
+END$$
 
 DELIMITER ;
