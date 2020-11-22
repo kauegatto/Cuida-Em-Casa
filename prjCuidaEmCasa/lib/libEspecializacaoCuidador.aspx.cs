@@ -25,7 +25,7 @@ namespace prjCuidaEmCasa.lib
 
                 for (int i = 0; i < classeCuidador.cdEspecializacaoCuidador.Count; i++)
                 {
-                    listaEspecializacao += "<option value='" + classeCuidador.cdEspecializacaoCuidador[i] +"'>"+ classeCuidador.nomeEspecializacaoCuidador[i] +"</option>";
+                    listaEspecializacao += "<option id='opt" + classeCuidador.nomeEspecializacaoCuidador[i] + "' value='" + classeCuidador.cdEspecializacaoCuidador[i] + "'>" + classeCuidador.nomeEspecializacaoCuidador[i] + "</option>";
                 }
 
                 Response.Write(listaEspecializacao);

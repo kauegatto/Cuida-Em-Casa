@@ -121,6 +121,7 @@
     <Content Include="img\icones\iconeVoltar.png" />
     <Content Include="img\icones\index\iconeCuidador.png" />
     <Content Include="img\icones\index\iconeMaleta.png" />
+    <Content Include="img\icones\plus.png" />
     <Content Include="img\icones\satelite.png" />
     <Content Include="img\icones\servicoAgendado\iconeAgenda.png" />
     <Content Include="img\icones\servicoAgendado\iconeAgendaCinza.png" />

@@ -24,8 +24,12 @@ header { width: 100%; height: 30px; }
 
 .areaForm input { margin-left: 20px; width: 85%; } 
 
-.areaForm select { margin-left: 20px; width: 85%; } 
+.areaForm select { margin-left: 20px; width: 75%; } 
 
 .areaFormInput { background: rgba(40, 85, 147, 0.3); border-radius: 6px; border-style: none; height: 30px;} 
 
 .areaForm button { background: #285593; border-radius: 10px; border-style: none; font-family: Rubik One; font-style: normal; font-weight: normal; font-size: 20px; line-height: 25px; text-align: center; color: #F2F2F2; width: 85%; height: 43px; margin-top: 10px; margin-left: 19px;}
+
+.areaAdicionarEspecializacao { width: 18%; float: right; }
+
+.areaAdicionarEspecializacao img { margin-left: 9px; }

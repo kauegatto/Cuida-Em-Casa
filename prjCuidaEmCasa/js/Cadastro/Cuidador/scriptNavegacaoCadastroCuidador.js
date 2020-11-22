@@ -68,7 +68,7 @@ $(document).ready(function(){
 
 		if ($('#txtSenha').val() != "" && $('#txtConfirmarSenha').val() != "") 
 		{
-			if ($('txtSenha').val() == $('txtConfirmarSenha').val()) 
+			if ($('#txtSenha').val() == $('#txtConfirmarSenha').val()) 
 			{
 				localStorage.setItem('senhaCuidador', $('#txtSenha').val());
 			}
@@ -144,17 +144,52 @@ $(document).ready(function(){
 	
 	});
 
-	$(document).on("click", "#btnCadastrar", function(){
+	var c = 0;
+	var cdEspecializacao = "";
 
-		if ($('#especializacaoCuidador'.val() != "")) 
-		{
-			localStorage.setItem('especializacaoCuidador', $('#especializacaoCuidador').val());
+	$('#especializacaoCuidador').change(function(){
+
+		if (c > 0) {
+			$('#especializacaoEscolhida').html($('#especializacaoEscolhida').html() + ", " + $('#especializacaoCuidador option:selected').html());
+			$('#especializacaoCuidador').prop('disabled', true);			
+  			cdEspecializacao += ";" + $('#especializacaoCuidador').val() ;
+  			console.log(cdEspecializacao);
+  			var id = $('#especializacaoCuidador').children(":selected").attr("id");
+  			$("#"+id).prop('disabled',true);
 		}
 		else
 		{
-			alert('selecione uma especializacao');
-			return;
+			c++;
+			$('#especializacaoEscolhida').html($('#especializacaoCuidador option:selected').html());
+			$('#especializacaoCuidador').prop('disabled', true);
+  			cdEspecializacao += $('#especializacaoCuidador').val();
+  			console.log(cdEspecializacao);
+  			var id = $('#especializacaoCuidador').children(":selected").attr("id");
+  			$("#"+id).prop('disabled',true);
 		}
+  			
+  		localStorage.setItem('especializacaoCuidador', cdEspecializacao);
+	
+
+	});
+
+	$(document).on("click", "#addEspecializacao", function(){
+
+		$('#especializacaoCuidador').prop('disabled', false);
+
+	});
+
+	$(document).on("click", "#btnCadastrar", function(){
+
+		//if ($('#especializacaoCuidador'.val() != "")) 
+		//{
+			//localStorage.setItem('especializacaoCuidador', $('#especializacaoEscolhida').html());
+		//}
+		//else
+		//{
+		//	alert('selecione uma especializacao');
+		//	return;
+		//}
 
 		if ($('#txtValorHora').val() != "") 
 		{
@@ -180,7 +215,7 @@ $(document).ready(function(){
 
 		//localStorage.setItem('usuarioLogado', $('#txtEmailCuidador').val());
 		//window.location.href = "";
-		
+
 	});
 
 
