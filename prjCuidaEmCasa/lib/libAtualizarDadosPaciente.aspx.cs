@@ -12,7 +12,11 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            //fazer validacao 
+
             clsPaciente clsPaciente = new clsPaciente();
+
             string cd_paciente = Request["cd"].ToString();
             string ds_paciente = Request["descricao"].ToString();
             string cep_paciente = Request["CEP"].ToString();
@@ -23,7 +27,10 @@ namespace prjCuidaEmCasa.lib
             string num_paciente = Request["numero"].ToString();
             string complemento_paciente = Request["complemento"].ToString();
             string uf_paciente = Request["uf"].ToString();
-            if (clsPaciente.editarDadosPaciente(cd_paciente,nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente,num_paciente, uf_paciente, complemento_paciente))
+            string imgPaciente = Request["imagemPaciente"].ToString();
+
+
+            if (clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
             {
                 Response.Write("true");
             }

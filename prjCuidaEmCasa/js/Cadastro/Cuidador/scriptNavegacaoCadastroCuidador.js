@@ -146,7 +146,7 @@ $(document).ready(function(){
 
 	var c = 0;
 	var cdEspecializacao = "";
-
+/*
 	$('#especializacaoCuidador').change(function(){
 
 		if (c > 0) {
@@ -171,11 +171,30 @@ $(document).ready(function(){
   		localStorage.setItem('especializacaoCuidador', cdEspecializacao);
 	
 
-	});
+	});*/
 
 	$(document).on("click", "#addEspecializacao", function(){
 
-		$('#especializacaoCuidador').prop('disabled', false);
+		if (c > 0) {
+			$('#especializacaoEscolhida').html($('#especializacaoEscolhida').html() + ", " + $('#especializacaoCuidador option:selected').html());
+			//$('#especializacaoCuidador').prop('disabled', true);			
+  			cdEspecializacao += ";" + $('#especializacaoCuidador').val() ;
+  			console.log(cdEspecializacao);
+  			var id = $('#especializacaoCuidador').children(":selected").attr("id");
+  			$("#"+id).prop('disabled',true);
+		}
+		else
+		{
+			c++;
+			$('#especializacaoEscolhida').html($('#especializacaoCuidador option:selected').html());
+			//$('#especializacaoCuidador').prop('disabled', true);
+  			cdEspecializacao += $('#especializacaoCuidador').val();
+  			console.log(cdEspecializacao);
+  			var id = $('#especializacaoCuidador').children(":selected").attr("id");
+  			$("#"+id).prop('disabled',true);
+		}
+  			
+  		localStorage.setItem('especializacaoCuidador', cdEspecializacao);
 
 	});
 

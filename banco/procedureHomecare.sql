@@ -2086,13 +2086,13 @@ END$$
 
 DROP PROCEDURE IF EXISTS atualizarDadosPaciente$$
 
-CREATE PROCEDURE atualizarDadosPaciente(vCdPaciente VARCHAR(200),vNmPaciente varchar(200),vDsPaciente varchar(200),vCepPaciente varchar(200),vCidadePaciente varchar(200),vBairroPaciente varchar(200),vRuaPaciente varchar(200),vNumPaciente varchar(200),vUFPaciente varchar(200),vComplementoPaciente varchar(200))
+CREATE PROCEDURE atualizarDadosPaciente(vImgUsuario LONGBLOB, vCdPaciente VARCHAR(200),vNmPaciente varchar(200),vDsPaciente varchar(200),vCepPaciente varchar(200),vCidadePaciente varchar(200),vBairroPaciente varchar(200),vRuaPaciente varchar(200),vNumPaciente varchar(200),vUFPaciente varchar(200),vComplementoPaciente varchar(200))
 BEGIN
 	UPDATE
     paciente
 	SET nm_paciente = vNmPaciente, ds_paciente = vDsPaciente, cd_CEP_paciente = vCepPaciente, 
 	nm_cidade_paciente = vCidadePaciente, nm_bairro_cidade = vBairroPaciente, nm_rua_paciente = vRuaPaciente,cd_num_paciente = vNumPaciente,
-    nm_uf_paciente = vUFPaciente,nm_complemento_paciente = vComplementoPaciente
+    nm_uf_paciente = vUFPaciente,nm_complemento_paciente = vComplementoPaciente, img_paciente = vImgUsuario
 	WHERE cd_paciente = vCdPaciente;
 END$$
 
@@ -2187,6 +2187,24 @@ BEGIN
 		hr_fim_disponibilidade = vHoraFimDisponibilidade
 	AND
 		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para buscar a disponibilidade de um cuidador referente ao mês */
+
+DROP PROCEDURE IF EXISTS disponibilidadePorMes$$
+
+CREATE PROCEDURE disponibilidadePorMes(vEmailCuidador VARCHAR(200), vMes INT)
+BEGIN
+	SELECT
+		dt_disponibilidade, hr_inicio_disponibilidade, hr_fim_disponibilidade
+	FROM
+		disponibilidade
+	WHERE
+		nm_email_usuario = vEmailCuidador
+	AND
+		MONTH(dt_disponibilidade) = vMes
+	ORDER BY
+		hr_inicio_disponibilidade;
 END$$
 
 DELIMITER ;
