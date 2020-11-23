@@ -16,12 +16,12 @@
 	var fReader = new FileReader();
 	fReader.readAsDataURL(input.files[0]);
 	fReader.onloadend = function(event){
-		//console.log(event.target.result);
+		console.log(event.target.result);
 		imgPaciente = event.target.result;
-		localStorage.setItem('imgPaciente', imgPaciente);
+		localStorage.setItem('imagemPaciente', imgPaciente);
 	}
 
-    $.post("../../lib/libAtualizarDadosPaciente.aspx",  { imgPaciente: localStorage.getItem('imgPaciente'), cd:cdPaciente,nome:nome, uf:uf, descricao: descricao, CEP:CEP, cidade : cidade,bairro: bairro,rua:rua, numero:numero, complemento:complemento }, function (retorno) {
+    $.post("../../lib/libAtualizarDadosPaciente.aspx",  { imagemPaciente: localStorage.getItem('imagemPaciente'), cd: cdPaciente, nome: nome, uf: uf, descricao: descricao, CEP: CEP, cidade: cidade, bairro: bairro, rua:rua, numero:numero, complemento:complemento }, function (retorno) {
        
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");

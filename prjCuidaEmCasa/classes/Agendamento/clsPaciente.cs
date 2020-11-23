@@ -212,7 +212,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             byte[] imagemBinario = Convert.FromBase64String(imgPaciente);
   
-            if (!ProcedureIMG("atualizarDadosPaciente", true, valores, imagemBinario,ref dados))
+            if (!ProcedureIMG("atualizarDadosPaciente", true, valores, imagemBinario, ref dados))
             {
                 Desconectar();
                 return false;

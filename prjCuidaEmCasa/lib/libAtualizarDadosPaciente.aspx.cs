@@ -27,10 +27,10 @@ namespace prjCuidaEmCasa.lib
             string num_paciente = Request["numero"].ToString();
             string complemento_paciente = Request["complemento"].ToString();
             string uf_paciente = Request["uf"].ToString();
-            string imgUsuario = Request["imgPaciente"].ToString();
+            string imgPaciente = Request["imagemPaciente"].ToString();
 
 
-            if (clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgUsuario))
+            if (clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
             {
                 Response.Write("true");
             }
