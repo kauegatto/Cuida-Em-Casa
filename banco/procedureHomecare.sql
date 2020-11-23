@@ -2189,4 +2189,22 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+/* Procedure criada para buscar a disponibilidade de um cuidador referente ao mês */
+
+DROP PROCEDURE IF EXISTS disponibilidadePorMes$$
+
+CREATE PROCEDURE disponibilidadePorMes(vEmailCuidador VARCHAR(200), vMes INT)
+BEGIN
+	SELECT
+		dt_disponibilidade, hr_inicio_disponibilidade, hr_fim_disponibilidade
+	FROM
+		disponibilidade
+	WHERE
+		nm_email_usuario = vEmailCuidador
+	AND
+		MONTH(dt_disponibilidade) = vMes
+	ORDER BY
+		hr_inicio_disponibilidade;
+END$$
+
 DELIMITER ;

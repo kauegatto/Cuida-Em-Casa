@@ -63,6 +63,7 @@ call listarEspecializacao();
 call adicionarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
 call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
+call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
 
 /* PROCEDURE DO ADMINISTRADOR */
 
