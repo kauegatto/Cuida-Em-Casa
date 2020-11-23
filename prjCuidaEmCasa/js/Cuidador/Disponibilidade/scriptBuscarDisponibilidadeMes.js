@@ -24,8 +24,22 @@
             var horaInicio = arrayAtual[1];
             var horaFim = arrayAtual[2];
             var classeDia = dia;
-            
-            $('.date_table tr td#' + dia).css("background-color","#888");
+
+            var tr = $(".date_table > tbody > tr").not(':eq(0)');
+
+            //console.log(tr)
+
+            tr.each(function(){
+                var td = $(this).children('td')
+                td.each(function(){
+                    var value = $(this).html()
+                    if(value == dia && value!=""){
+                        $(this).css("background-color","#2980b975");
+                        $(this).css("color","black");
+                    }
+                })
+            })      
+           
             console.log('deu certo');
         }
         
