@@ -175,6 +175,9 @@
     <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
+    <Content Include="js\Cuidador\Disponibilidade\scriptCarregarDisponibilidade.js" />
+    <Content Include="js\Cuidador\Disponibilidade\scriptBuscarDisponibilidadeMes.js" />
+    <Content Include="js\Cuidador\osmanli_calendar.js" />
     <Content Include="js\Cuidador\scriptDenunciarServico.js" />
     <Content Include="js\Cuidador\scriptDetalhesServico.js" />
     <Content Include="js\Cuidador\scriptFiltroServico.js" />
@@ -221,6 +224,7 @@
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarCuidadorAgora.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
+    <Content Include="lib\libBuscarDisponibilidadeDoCuidadorPorMes.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
     <Content Include="lib\libCancelarServicoAgendado.aspx" />
@@ -364,6 +368,13 @@
     </Compile>
     <Compile Include="lib\libBuscarDadosPaciente.aspx.designer.cs">
       <DependentUpon>libBuscarDadosPaciente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarDisponibilidadeDoCuidadorPorMes.aspx.cs">
+      <DependentUpon>libBuscarDisponibilidadeDoCuidadorPorMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarDisponibilidadeDoCuidadorPorMes.aspx.designer.cs">
+      <DependentUpon>libBuscarDisponibilidadeDoCuidadorPorMes.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarPaciente.aspx.cs">
       <DependentUpon>libBuscarPaciente.aspx</DependentUpon>

@@ -44,6 +44,13 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> cdEspecializacaoCuidador { get; set; } 
         public List<string> nomeEspecializacaoCuidador { get; set; } 
 
+        /* Propriedades para a disponibilidade */
+
+        public List<string> cd_mes_disponibilidade { get; set; }
+        public List<string> dt_disponibilidade { get; set; }
+        public List<string> hr_inicio_disponibilidade { get; set; }
+        public List<string> hr_fim_disponibilidade { get; set; }
+
         public clsCuidador(): base()
         {
             base64String = new List<string>();
@@ -80,6 +87,14 @@ namespace prjCuidaEmCasa.classes.Agendamento
             situacaoServico = new List<string>();
             cdEspecializacaoCuidador = new List<string>();
             nomeEspecializacaoCuidador = new List<string>();
+
+
+            /* Propriedades pra disponibilidade*/
+
+            cd_mes_disponibilidade = new List<string>();
+            dt_disponibilidade = new List<string>();
+            hr_inicio_disponibilidade = new List<string>();
+            hr_fim_disponibilidade = new List<string>();
         }
 
         #region Listar Cuidadores
@@ -620,6 +635,39 @@ namespace prjCuidaEmCasa.classes.Agendamento
             return true;
         }
 
+
+        #endregion
+
+        #region Buscar Todas as disponibilidades de um usuario num mes
+        public bool buscarDisponibilidadesMes(string emailCuidador, string mesDisponibilidade)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+            valores[1, 0] = "vMes";
+            valores[1, 1] = mesDisponibilidade;
+
+            if (!Procedure("disponibilidadePorMes", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    dt_disponibilidade.Add(dados[0].ToString());
+                    hr_inicio_disponibilidade.Add(dados[1].ToString());
+                    hr_fim_disponibilidade.Add(dados[2].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
 
         #endregion
     }

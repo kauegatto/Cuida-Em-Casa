@@ -111,6 +111,7 @@ var i = 1;
 for (; i <= totalDays; i++) {
   $day = $week.find('td').eq(currentDay);
   $day.text(i);
+  $day.addClass('dia'+i);
   if (i === currentDate) {
     $day.addClass('selected_date');
   }

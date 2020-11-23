@@ -7,9 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace prjCuidaEmCasa.lib.libBuscarDisponibilidadeDoUsuarioPorMes {
+namespace prjCuidaEmCasa.lib {
     
     
-    public partial class aspx {
+    public partial class libBuscarDisponibilidadeDoCuidadorPorMes {
     }
 }
