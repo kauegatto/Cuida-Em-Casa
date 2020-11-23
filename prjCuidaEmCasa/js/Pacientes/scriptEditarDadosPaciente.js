@@ -1,4 +1,5 @@
 ﻿export default function scriptBuscarDadosPaciente() {
+	
 	var retorno;
 	var imgPaciente;
 	var descricao = $('#txtAlterarDescricaoPaciente').val();
