@@ -41,6 +41,12 @@ $(document).ready(function () {
 	    $('#headerComum').addClass("visivel");
     });
 
+    $(document).on("click", "#areaAlterarImagemPaciente", function(){
+
+        $('#uploadImgUsuario').trigger('click');
+
+    });
+
     $(document).on("click", ".imgEditar", function(){
         
         $(".visivel").each(function (i, obj) {

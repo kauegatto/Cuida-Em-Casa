@@ -3,6 +3,8 @@ import scriptDetalhesServicoAgora from "./scriptDetalhesServicoAgora.js";
 import scriptAceitarServico from "./scriptAceitarServico.js";
 import scriptDisponibilidadeCuidador from "./scriptDisponibilidadeCuidador.js";
 import scriptServicoAgora from "./scriptServicoAgora.js";
+import scriptCheckinCheckout from "./scriptCheckinCheckout.js";
+import scriptVerificarSeTemServico from "./scriptVerificarSeTemServico.js";
 
 
 $(document).ready(function () {
@@ -16,6 +18,8 @@ $(document).ready(function () {
     }
 
     localStorage.setItem("indice", "0");
+
+    scriptVerificarSeTemServico();
 
     $(document).on("click", ".btnVerMaisServicoEncontrado", function(){
         
@@ -85,5 +89,26 @@ $(document).ready(function () {
 
         interval = setInterval(scriptBuscarCuidadorAgora, 10000);
     	
+    }); 
+
+    $(document).on("click", ".btnCheckin", function(){
+
+        var classes = $(this).attr("class").split(/\s+/);
+
+        scriptCheckinCheckout(classes[1]);
+
+        $(".btnCheckin").css("display", "none");
+        $(".btnCheckout").css("display", "block");
+
+    });
+
+    $(document).on("click", ".btnCheckout", function(){
+
+        var classes = $(this).attr("class").split(/\s+/);
+
+        scriptCheckinCheckout(classes[1]);
+
+        window.location.href = "../../pages/cuidador/historicoServico.html";
+
     });
 });
