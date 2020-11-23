@@ -50,7 +50,7 @@ $(document).ready(function () {
 	});
 
 	$(document).on("click", "#sair", function(){
-        localStorage.Clear();
+        localStorage.clear();
 		window.location.href = "../index.html";
 
 	});

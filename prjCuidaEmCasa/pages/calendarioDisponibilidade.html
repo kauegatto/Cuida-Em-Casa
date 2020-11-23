@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+<head>
+    
+    <title>Calendário</title>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <script src="../js/Cuidador/osmanli_calendar.js"></script>
+    
+    <script src="../js/Cuidador/Disponibilidade/scriptCarregarDisponibilidade.js" type="module"></script>
+
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/minty/bootstrap.min.css">
+    <style>
+      .container { margin: 150px auto; }
+      tr {margin: #0000 1px solid}
+
+    </style>
+
+</head>
+
+<body style="height: 100vh;">
+  <div>
+    <span class="month-year"></span>
+    <table class="date_table table table-bordered table-striped">
+      <tr>
+        <th>D</th> <th>S</th> <th>T</th><th>Q</th>
+        <th>Q</th> <th>S</th> <th>S</th>
+      </tr>
+    </table>
+    <span class="prev-month  btn btn-danger">Anterior</span>
+    <span class="next-month  btn btn-danger">Próximo</span>
+    <div class="alert alert-info output mt-3">Selected Date: </div>
+  </div>
+</body>
+
+</html>
