@@ -9,19 +9,27 @@
             console.log("deu erro");
             alert("erro");
         }
+
         console.log(retorno);
         retorno = retorno.split("|");
-        console.log(retorno);
-        console.log(retorno.length)
-        for (var i = retorno.length; i > 0; i++) {
-            var arrayAtual = retorno[i]-1;
+
+        for (var i = 0; i < retorno.length; i++) {
+
+            console.log(retorno[i])
+            var arrayAtual = retorno[i];
+            arrayAtual = arrayAtual.replace('[', "");
+            arrayAtual = arrayAtual.replace(']', "");
+            arrayAtual = arrayAtual.split(',');
             var dia = arrayAtual[0];
             var horaInicio = arrayAtual[1];
             var horaFim = arrayAtual[2];
-            var classeDia = ".Dia"+dia;
-            $(classeDia).css("background-color","#888")
+            var classeDia = dia;
+            
+            $('.date_table tr td#' + dia).css("background-color","#888");
+            console.log('deu certo');
         }
         
+
     })
 };
 

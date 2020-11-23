@@ -252,6 +252,7 @@
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
+    <Content Include="pages\calendarioDisponibilidade.html" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />

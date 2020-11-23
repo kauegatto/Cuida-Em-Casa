@@ -1,4 +1,4 @@
-﻿export default function scriptBuscarDadosPaciente() {
+export default function scriptBuscarDadosPaciente() {
 	
 	var retorno;
 	var imgPaciente;
@@ -17,7 +17,7 @@
 	var fReader = new FileReader();
 	fReader.readAsDataURL(input.files[0]);
 	fReader.onloadend = function(event){
-		console.log(event.target.result);
+		//console.log(event.target.result);
 		imgPaciente = event.target.result;
 		localStorage.setItem('imagemPaciente', imgPaciente);
 	}
@@ -38,4 +38,6 @@
 	        console.log(retorno);	      
 	    }
     });
+
+    console.log(localStorage.getItem('imagemPaciente'));
 };
