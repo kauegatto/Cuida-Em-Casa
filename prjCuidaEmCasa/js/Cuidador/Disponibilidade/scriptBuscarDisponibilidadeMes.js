@@ -1,49 +1,83 @@
 ﻿export default function scriptBuscarDisponibilidadeMes (intMes) {
 
     var usuarioLogado = localStorage.getItem("usuarioLogado");
+    var disponibilidades;
+    var dia;var horaInicio; var horaFim;var value;
+
+    function buscarDisponibilidadeMensal(){
+
+        $.post("../../lib/libBuscarDisponibilidadeDoCuidadorPorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
+            
+            if (retorno == "erro") {
+                console.log("deu erro");
+                alert("erro");
+            }
+            retorno = retorno.split("|");
+            
+            disponibilidades = retorno;
+            
+            for (var i = 0; i < retorno.length; i++) {
+
+                
+                if(retorno[i]!=""){console.log(retorno[i]);}
+                var arrayAtual = retorno[i];
+                arrayAtual = arrayAtual.replace('[', "");
+                arrayAtual = arrayAtual.replace(']', "");
+                arrayAtual = arrayAtual.split(',');
+                dia = arrayAtual[0];
+                horaInicio = arrayAtual[1];
+                horaFim = arrayAtual[2];
 
 
-    $.post("../../lib/libBuscarDisponibilidadeDoCuidadorPorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
+                var tr = $(".date_table > tbody > tr").not(':eq(0)');
 
-        if (retorno == "erro") {
-            console.log("deu erro");
-            alert("erro");
-        }
+                //console.log(tr)
 
-        console.log(retorno);
-        retorno = retorno.split("|");
+                tr.each(function(){
+                    var td = $(this).children('td')
+                    td.each(function(){
+                        value = $(this).html()
+                        if(value == dia && value!=""){
+                            $(this).css("background-color","#56cc9d94");//56cc9d94 //2980b975
+                            $(this).css("color","black");
+                        }
+                    })
+                })      
+               
+            }
 
-        for (var i = 0; i < retorno.length; i++) {
+            $(document).on("click", "td", function(){
+                if($(this).html() != ""){
+                    $(".output").html("Data Selecionada: "+$(this).html()+"/"+intMes);
+                    colocarDisponibilidadeDoDia();
+                }
+            });
+            
+        });
+    }
 
-            console.log(retorno[i])
-            var arrayAtual = retorno[i];
-            arrayAtual = arrayAtual.replace('[', "");
-            arrayAtual = arrayAtual.replace(']', "");
-            arrayAtual = arrayAtual.split(',');
-            var dia = arrayAtual[0];
-            var horaInicio = arrayAtual[1];
-            var horaFim = arrayAtual[2];
-            var classeDia = dia;
+    function colocarDisponibilidadeDoDia(){
 
-            var tr = $(".date_table > tbody > tr").not(':eq(0)');
+            value = $(".selected_date").html();
+            $(".horarioDia").html("");
+            if(value!=""){
+                for (var i = 0; i < disponibilidades.length; i++) {
 
-            //console.log(tr)
-
-            tr.each(function(){
-                var td = $(this).children('td')
-                td.each(function(){
-                    var value = $(this).html()
-                    if(value == dia && value!=""){
-                        $(this).css("background-color","#2980b975");
-                        $(this).css("color","black");
+                    var arrayAtual = disponibilidades[i];
+                    arrayAtual = arrayAtual.replace('[', "");
+                    arrayAtual = arrayAtual.replace(']', "");
+                    arrayAtual = arrayAtual.split(',');
+                    dia = arrayAtual[0];
+                    horaInicio = arrayAtual[1];
+                    horaFim = arrayAtual[2];
+                    if(dia == value){
+                        $(".horarioDia").append("<div class='alert alert-dark horarioDisponibilidade'>Hora Inicial: "+horaInicio+" Hora final: "+ horaFim + "</div>");
                     }
-                })
-            })      
-           
-            console.log('deu certo');
-        }
-        
+                }
+            }
+    }
 
-    })
+    buscarDisponibilidadeMensal();
+
 };
 

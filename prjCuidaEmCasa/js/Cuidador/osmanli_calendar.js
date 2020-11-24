@@ -9,7 +9,7 @@ MAX_DATE: 'OFF',
 DAYS_DISABLE_MAX: 'OFF',
 DAYS_DISABLE_MIN: 'OFF',
 ON_SELECT_FUNC: "OFF",
-content : 'Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro'.split(' '),
+content : 'Janeiro Fevereiro Marco Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro'.split(' '),
 weekDayName : 'DOM SEG TER QUA QUI SEX'.split(' '),
 daysOfMonth : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 
@@ -27,7 +27,7 @@ init: function() {
         let day = $(target).html();
         let month  = $('.month-year > h3').html();
         $('#startDate').val(day+' '+month);
-        osmanli_calendar.SELECT_DATE = new Date(day+'-'+month+'-'+osmanli_calendar.CURRENT_DATE.getFullYear())
+        osmanli_calendar.SELECT_DATE = new Date(day+'/'+month+'/'+osmanli_calendar.CURRENT_DATE.getFullYear())
         console.log(osmanli_calendar.SELECT_DATE)
         if (osmanli_calendar.ON_SELECT_FUNC != "OFF") {
           osmanli_calendar.ON_SELECT_FUNC(osmanli_calendar.SELECT_DATE)
@@ -102,7 +102,7 @@ disable_days: function() {
 
 renderCalendar: function(startDay, totalDays, currentDate) {
 // console.log("Current Date: ", currentDate);
-  var currentRow = 1;
+var currentRow = 1;
 var currentDay = startDay;
 var $table = $('table.date_table');
 var $week = this.getCalendarRow();
@@ -112,9 +112,9 @@ for (; i <= totalDays; i++) {
   $day = $week.find('td').eq(currentDay);
   $day.text(i);
   $day.addClass(i);
-  if (i === currentDate) {
-    $day.addClass('selected_date');
-  }
+  //if (i === currentDate) {
+  //  $day.addClass('selected_date'); isso aq adiciona current_date no dia atual;
+  //}
   
   currentDay = ++currentDay % 7;
 
@@ -194,3 +194,4 @@ pre_month:function() {
 }
 
 }
+
