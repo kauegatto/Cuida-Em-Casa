@@ -86,6 +86,7 @@ namespace prjCuidaEmCasa.lib
             }
 
             #endregion
+
             Session["virarDia"] = virarDia;
 
             clsCuidador classeCuidador = new clsCuidador();
@@ -103,6 +104,10 @@ namespace prjCuidaEmCasa.lib
                     string vEspecializacao, vPreco, vAvaliacao, vGenero;
                     vEspecializacao = Request["vEspecializacao"];
                     vPreco = Request["vPreco"];
+                    if (vPreco != null)
+                    {
+                        vPreco = vPreco.Replace(",", ".");
+                    }
                     vAvaliacao = Request["vAvaliacao"];
                     vGenero = Request["vGenero"];
                     if (!classeCuidador.listarCuidadoresFiltro(dataInicio, horaInicio, horaFim, vE, vP, vA, vG, vEspecializacao, vPreco, vAvaliacao, vGenero, virarDia))
@@ -180,9 +185,16 @@ namespace prjCuidaEmCasa.lib
                 listaCuidadores += "</div>";
             }
 
-            listaCuidadores += "|" + dataI.Day + "/" + dataI.Month;
+            if (listaCuidadores == "")
+            {
+                Response.Write("false");    
+            }
+            else
+            {
+                listaCuidadores += "|" + dataI.Day + "/" + dataI.Month;
 
-            Response.Write(listaCuidadores);
+                Response.Write(listaCuidadores);
+            }
         }
     }
 }
