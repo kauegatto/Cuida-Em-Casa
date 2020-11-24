@@ -245,6 +245,7 @@
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libDisponibilidadeCuidador.aspx" />
     <Content Include="lib\libEspecializacaoCuidador.aspx" />
+    <Content Include="lib\libExcluirPaciente.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -506,6 +507,13 @@
     </Compile>
     <Compile Include="lib\libEspecializacaoCuidador.aspx.designer.cs">
       <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libExcluirPaciente.aspx.cs">
+      <DependentUpon>libExcluirPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libExcluirPaciente.aspx.designer.cs">
+      <DependentUpon>libExcluirPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>

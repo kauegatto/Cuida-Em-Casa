@@ -2256,5 +2256,23 @@ BEGIN
 
 END$$
 
+DROP PROCEDURE IF EXISTS excluirPaciente$$
+
+CREATE PROCEDURE excluirPaciente(vCdPaciente INT)
+
+BEGIN
+
+	delete from 
+		necessidade_paciente
+	where
+		cd_paciente = vCdPaciente;
+
+	delete from 
+		paciente 
+	where 
+		cd_paciente = vCdPaciente;
+
+END$$
+
 
 DELIMITER ;

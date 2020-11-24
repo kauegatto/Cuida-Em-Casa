@@ -464,5 +464,26 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         #endregion
 
+        #region Excluir Paciente
+
+        public bool excluirPaciente(string codigoPaciente) 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vCdPaciente";
+            valores[0, 1] = codigoPaciente;
+
+            if (!Procedure("excluirPaciente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+
+
+        #endregion
+
     }
 }

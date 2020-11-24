@@ -2,6 +2,7 @@
 import scriptBuscarDadosPaciente from "./scriptBuscarDadosPaciente.js";
 import scriptEditarDadosPaciente from "./scriptEditarDadosPaciente.js";
 import scriptAdicionarPaciente from "./scriptAdicionarPaciente.js";
+import scriptExcluirPaciente from "./scriptExcluirPaciente.js";
 
 var indexPage = 0; var jump = 0;
 
@@ -157,5 +158,14 @@ $(document).ready(function () {
         //scriptPacientes();
        
     });
+
+    $('.btnExcluir').click(function(){
+
+        scriptExcluirPaciente();
+        $(".iconeVoltar").click();
+        $("#listaPacientes").html(""); 
+
+    });
+
 
 });
