@@ -23,7 +23,7 @@ namespace prjCuidaEmCasa.lib
 
             for (int i = 0; i < classePaciente.cdTipoNecessidade.Count; i++)
             {
-                listaNecessidade += "<option value='" + classePaciente.cdTipoNecessidade[i] + "'>" + classePaciente.nmTipoNecessidade[i] + "</option> -->";
+                listaNecessidade += "<option id='opt" + classePaciente.nmTipoNecessidade[i] + "'value='" + classePaciente.cdTipoNecessidade[i] + "'>" + classePaciente.nmTipoNecessidade[i] + "</option> -->";
             }
 
 

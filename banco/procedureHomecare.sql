@@ -2107,7 +2107,7 @@ BEGIN
 	select 
 	nm_paciente, tnp.nm_tipo_necessidade_paciente, ds_paciente, 
 	cd_CEP_paciente, nm_cidade_paciente, nm_bairro_cidade, nm_rua_paciente,cd_num_paciente,
-    nm_uf_paciente,nm_complemento_paciente, img_paciente
+    nm_uf_paciente,nm_complemento_paciente, img_paciente, tnp.cd_tipo_necessidade_paciente
     from paciente
 	JOIN 
     necessidade_paciente np ON (paciente.cd_paciente = np.cd_paciente)
@@ -2126,6 +2126,19 @@ BEGIN
 	nm_cidade_paciente = vCidadePaciente, nm_bairro_cidade = vBairroPaciente, nm_rua_paciente = vRuaPaciente,cd_num_paciente = vNumPaciente,
     nm_uf_paciente = vUFPaciente,nm_complemento_paciente = vComplementoPaciente, img_paciente = vImgUsuario
 	WHERE cd_paciente = vCdPaciente;
+END$$
+
+
+DROP PROCEDURE IF EXISTS atualizarNecessidadesPaciente$$
+
+CREATE PROCEDURE atualizarNecessidadesPaciente(vCdPaciente INT, vCdTipoNecessidade INT)
+BEGIN
+
+	insert into
+		necessidade_paciente 
+	values 
+		(vCdPaciente, vCdTipoNecessidade);
+
 END$$
 
 DROP PROCEDURE IF EXISTS proxCdPaciente$$
@@ -2249,6 +2262,20 @@ BEGIN
 		cd_tipo_necessidade_paciente, nm_tipo_necessidade_paciente 
 	FROM 
 		tipo_necessidade_paciente;
+
+END$$
+
+
+DROP PROCEDURE IF EXISTS deletarNecessidadesPaciente$$
+
+CREATE PROCEDURE deletarNecessidadesPaciente(vCdPaciente INT)
+
+BEGIN
+
+	delete from 
+		necessidade_paciente 
+	where 
+		cd_paciente = vCdPaciente; 
 
 END$$
 

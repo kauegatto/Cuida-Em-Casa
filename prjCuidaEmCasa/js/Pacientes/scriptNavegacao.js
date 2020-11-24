@@ -47,6 +47,35 @@ $(document).ready(function () {
 
     });
 
+    var c = 0;
+    var cdNecessidade = "";
+
+    $('#addNecessidade').click(function(){
+
+        if (c > 0) {
+            $('#necessidadeEscolhida').html($('#necessidadeEscolhida').html() + ", " + $('#txtAlterarNecessidadePaciente option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);          
+            cdNecessidade += ";" + $('#txtAlterarNecessidadePaciente').val() ;
+            console.log(cdNecessidade);
+            var id = $('#txtAlterarNecessidadePaciente').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+        else
+        {
+            c++;
+            $('#necessidadeEscolhida').html($('#txtAlterarNecessidadePaciente option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);
+            cdNecessidade += $('#txtAlterarNecessidadePaciente').val();
+            console.log(cdNecessidade);
+            var id = $('#txtAlterarNecessidadePaciente').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+
+        $('#areaTxtNecessidade').css('display','block');
+        localStorage.setItem('necessidadeEscolhida', cdNecessidade);
+
+    });
+
     $(document).on("click", ".imgEditar", function(){
         
         $(".visivel").each(function (i, obj) {
@@ -67,17 +96,21 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".btnSalvar", function(){
+
         scriptEditarDadosPaciente();
+
+        $("#listaPacientes").html("");  
         $(".iconeVoltar").click();
-        $("#listaPacientes").html("");        
-        scriptPacientes();
        
     });
 
     $(document).on("click", "#btnSalvarPaciente", function(){
+
         scriptAdicionarPaciente();
+
         $(".iconeVoltar").click();
         $("#listaPacientes").html(""); 
+
         scriptPacientes();
        
     });

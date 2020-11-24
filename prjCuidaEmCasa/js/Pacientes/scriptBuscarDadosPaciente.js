@@ -43,6 +43,8 @@
 	        console.log(retorno[9]); $('#txtAlterarComplementoPaciente').val(retorno[9]);
 	      	var url = "data:image/png;base64," + retorno[10];
 			$("#areaAlterarImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+	    	//localStorage.setItem('cdNecessidadesAntiga', retorno[11]);
 	    }
+
     });
 };

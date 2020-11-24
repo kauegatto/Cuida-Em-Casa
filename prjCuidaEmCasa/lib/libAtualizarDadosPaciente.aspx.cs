@@ -28,15 +28,37 @@ namespace prjCuidaEmCasa.lib
             string complemento_paciente = Request["complemento"].ToString();
             string uf_paciente = Request["uf"].ToString();
             string imgPaciente = Request["imagemPaciente"].ToString();
+            string necessidadesPaciente = Request["necessidadesPaciente"].ToString();
+            string codigoNecessidadesAntigas = Request["codigoNecessidadesAntigas"].ToString();
 
-            if (clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
-            {
-                Response.Write("true");
-            }
-            else
+            if (!clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
             {
                 Response.Write("false");
+                return;
             }
+
+
+            if (!clsPaciente.deletarNecessidadesPaciente(cd_paciente))
+            {
+                Response.Write("false");
+                return;
+            }
+
+            string[] necessidades = necessidadesPaciente.Split(';');
+
+            for (int i = 0; i < necessidades.Length; i++)
+            {
+                if (!clsPaciente.editarNecessidadesPaciente(necessidades[i], cd_paciente))
+                {
+                    Response.Write("false");
+                    return;
+                }
+            }
+
+
+            Response.Write("true");
+
+
 
         }
     }

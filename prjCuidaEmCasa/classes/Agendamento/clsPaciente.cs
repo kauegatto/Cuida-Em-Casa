@@ -175,6 +175,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                         base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
                     }
                     else { base64String.Add(base64standard); }
+                    cdTipoNecessidade.Add(dados[11].ToString());
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }
@@ -374,12 +375,63 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 }
             }
 
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
             return true;
 
         }
 
 
         #endregion 
+
+        #region Editar necessidades paciente
+
+        public bool editarNecessidadesPaciente(string cdNecessidade, string cdPaciente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+
+            valores[0, 0] = "vCdPaciente";
+            valores[0, 1] = cdPaciente;
+            valores[1, 0] = "vCdTipoNecessidade";
+            valores[1, 1] = cdNecessidade;
+
+            if (!Procedure("atualizarNecessidadesPaciente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
+        #endregion
+
+        #region Deletar necessidades paciente
+
+        public bool deletarNecessidadesPaciente(string cdPaciente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            valores[0, 0] = "vCdPaciente";
+            valores[0, 1] = cdPaciente;
+
+            if (!Procedure("deletarNecessidadesPaciente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+    
+
+        #endregion
 
     }
 }
