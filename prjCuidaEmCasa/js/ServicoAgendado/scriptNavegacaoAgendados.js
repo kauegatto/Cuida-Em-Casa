@@ -1,6 +1,8 @@
 import scriptServicoAgendado from "./scriptServicoAgendado.js";
 import scriptServicoAgendadoSelecionado from "./scriptServicoAgendadoSelecionado.js";
 import scriptCancelarServicoAgendado from "./scriptCancelarServicoAgendado.js";
+import scriptCarregarCalendario from "../Cuidador/Disponibilidade/scriptCarregarDisponibilidade.js";
+
 
 $(document).ready(function () {
 
@@ -11,6 +13,27 @@ $(document).ready(function () {
     };
 
     scriptServicoAgendado();
+
+    $(document).on("click", "#areaAgendados", function(){
+        $('#areaAgendados').removeClass('areaCinza');
+        $('#areaAgendados').addClass('areaBranca');
+        $('#areaDisponibilidade').removeClass('areaBranca');
+        $('#areaDisponibilidade').addClass('areaCinza');
+        $('#wrapper-ServicoAgendado').css('display', 'block');
+        $('#wrapper-calendarioDisponibilidade').css('display', 'none');
+        scriptServicoAgendado();
+    });
+
+    $(document).on("click", "#areaDisponibilidade", function(){
+        $('#areaDisponibilidade').removeClass('areaCinza');
+        $('#areaDisponibilidade').addClass('areaBranca');
+        $('#areaAgendados').removeClass('areaBranca');
+        $('#areaAgendados').addClass('areaCinza')
+        $('#wrapper-ServicoAgendado').css('display', 'none');
+        $('#wrapper-calendarioDisponibilidade').css('display', 'block');
+        scriptCarregarCalendario();
+    });
+    
 
  	$(".iconeVoltar").click(function () {
 
