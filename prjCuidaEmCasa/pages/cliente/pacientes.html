@@ -117,7 +117,10 @@
 
 			<div class="wrapper" id="wrapper-areaAdicionarPaciente">
 				<div class="areaInfoDadosPaciente">
-					<div class="areaImagemPaciente" style="background-image: url('../../img/imgIdoso3.jfif'); margin-top: 12px; margin-left: 13px;"></div>
+					<div class="areaImagemPaciente" style="margin-top: 12px; margin-left: 13px;" id="areaAlterarImagemPaciente"></div>
+					<div>
+						<input type="file" name="" accept="image/jpeg" id="uploadImgUsuario">
+					</div>
 					<div class="areaNomePaciente">
 						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
 						<input type="text" id="txtAdicionarNomePaciente" name="txtAdicionarNomePaciente" class="inputInfo" style="width: 205px;
@@ -125,8 +128,8 @@
 					</div>
 					<div class="areaNecessidadePaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
-						<select name="Necessidade"  class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
-						  <option value="Medicação">Medicação</option>
+						<select name="Necessidade"  class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;" id="selectAlterarNecessidade">
+						 <!--  <option value="Medicação">Medicação</option> -->
 						</select>
 					</div>
 					<div class="areaDescricaoPaciente">

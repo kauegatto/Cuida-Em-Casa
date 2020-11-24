@@ -27,6 +27,7 @@ export default function scriptEditarDadosPaciente() {
 	}
 	
 	$('#necessidadeEscolhida').html("");
+	
 	var input = document.getElementById("uploadImgUsuario");
 	var fReader = new FileReader();
 	fReader.readAsDataURL(input.files[0]);

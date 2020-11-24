@@ -31,6 +31,20 @@ $(document).ready(function () {
         $('#tituloGeral-Nav').css("margin-right","56px");
         $('#tituloGeral-Nav').css("margin-left","0");
         $('#tituloGeral-Nav').css("width","204");
+        $.post('../../lib/libListarNecessidades.aspx', {}, function(retorno){
+
+            if (retorno == 'erro') 
+            {
+                console.log('deu erro na lib de listar as necessidades');
+            }
+            else
+            {
+                $('#selectAlterarNecessidade').html(retorno);
+                console.log('necessidades cadastradas');
+            }
+
+    });
+
     });
 
  	$(".iconeVoltar").click(function () {
@@ -111,7 +125,7 @@ $(document).ready(function () {
         $(".iconeVoltar").click();
         $("#listaPacientes").html(""); 
 
-        scriptPacientes();
+        //scriptPacientes();
        
     });
 

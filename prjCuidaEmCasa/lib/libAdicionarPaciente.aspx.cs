@@ -12,7 +12,7 @@ namespace prjCuidaEmCasa.lib
         protected void Page_Load(object sender, EventArgs e)
         {
             clsPaciente clsPaciente = new clsPaciente();
-            string email_logado = "",ds_paciente="", cep_paciente="", nm_paciente="", cidade_paciente="", bairro_paciente="", rua_paciente="", num_paciente="", complemento_paciente="", uf_paciente = "";
+            string email_logado = "",ds_paciente="", cep_paciente="", nm_paciente="", cidade_paciente="", bairro_paciente="", rua_paciente="", num_paciente="", complemento_paciente="", uf_paciente = "", imgPaciente = "";
             try
             {
                 email_logado = Request["usuarioLogado"].ToString();
@@ -24,17 +24,20 @@ namespace prjCuidaEmCasa.lib
                 rua_paciente = Request["rua"].ToString();
                 num_paciente = Request["numero"].ToString();    
                 uf_paciente = Request["uf"].ToString();
+                imgPaciente = Request["imagemPaciente"].ToString();
             }
             catch {
                 Response.Write("false");
                 return;
             }
+
             try
             {
                 complemento_paciente = Request["complemento"].ToString();
             }
             catch { complemento_paciente = ""; }
-            if (clsPaciente.adicionarPaciente( email_logado,nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente))
+
+            if (clsPaciente.adicionarPaciente( email_logado,nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
             {
                 Response.Write("true");
             }
@@ -42,6 +45,7 @@ namespace prjCuidaEmCasa.lib
             {
                 Response.Write("false");
             }
+
         }
     }
 }

@@ -229,7 +229,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         #endregion
 
         #region Adicionar Paciente
-        public bool adicionarPaciente(string emailLogado,string nmPaciente, string dsPaciente, string cepPaciente, string cidadePaciente, string bairroPaciente, string ruaPaciente, string numPaciente, string UFPaciente, string complementoPaciente)
+        public bool adicionarPaciente(string emailLogado,string nmPaciente, string dsPaciente, string cepPaciente, string cidadePaciente, string bairroPaciente, string ruaPaciente, string numPaciente, string UFPaciente, string complementoPaciente, string imgPaciente)
         {
             MySqlDataReader dados = null;
             string[,] valores = new string[10, 2];
@@ -253,7 +253,12 @@ namespace prjCuidaEmCasa.classes.Agendamento
             valores[8, 1] = UFPaciente;
             valores[9, 0] = "vComplementoPaciente";
             valores[9, 1] = complementoPaciente;
-            if (!Procedure("adicionarPaciente", true, valores, ref dados))
+
+            imgPaciente = imgPaciente.Replace("data:image/jpeg;base64,", "").Trim();
+
+            byte[] imagemBinario = Convert.FromBase64String(imgPaciente);
+
+            if (!ProcedureIMG("adicionarPaciente", true, valores, imagemBinario, ref dados))
             {
                 Desconectar();
                 return false;
