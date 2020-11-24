@@ -9,8 +9,10 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/estiloPaciente.css">
 	<script
   	 src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">	
+
  	 </script>
 	<script src="../../js/configuracaoCliente/scriptNavegacaoConfiguracaoCliente.js" type="module"></script>
 </head>
@@ -31,7 +33,7 @@
 					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
 				</div>
 				<div class="areaTituloGeral">
-					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 18px;">Detalhes  do serviço</h1>
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 18px;">Configuração</h1>
 				</div>
 			</div>
 
@@ -67,19 +69,19 @@
 					<span class="emailUsuario">Login e Segurança</span>
 				</div>
 				<div class="areaDadosConta">
-					<span class="areaConta" style="margin-top: 8px;">Email</span>
-					<div>
+					<span class="areaConta" id="alterarDados">Alterar Dados</span>
+<!-- 					<div>
 						<span class="emailDadosConta"></span>
-					</div>
+					</div> -->
 				</div>
-				<div class="areaDadosConta">
+<!-- 				<div class="areaDadosConta">
 					<span class="areaConta" style="margin-top: 8px;">Celular</span>
 					<div>
 						<span class="emailDadosConta" id="telefoneUsuario"></span>
 					</div>
-				</div>
+				</div> -->
 				<div class="areaDadosConta" id="alterarSenha">
-					<span class="areaConta">Senha</span>
+					<span class="areaConta">Alterar Senha</span>
 				</div>
 				<div class="areaDadosConta" style="border-radius: 0px 0px 10px 10px;" id="sair">
 					<span class="areaConta" style="color: #9D2F42;">Sair</span>
@@ -120,6 +122,9 @@
 						<button class="btnEnviarCodigo">Enviar Código</button>
 					</div>
 				</div>
+			</div>
+			<div class="wrapper" id="wrapper-AlterarDados">
+				
 			</div>
 		</main>
 		<footer class="footer">
