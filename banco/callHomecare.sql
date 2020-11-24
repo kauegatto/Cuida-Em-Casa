@@ -8,13 +8,13 @@ call cadastroCuidador('renanstopa@gmail.com', 'Renan Lopes Stopa', '(13) 99618-5
 1, 'https://curriculodorenan.com', 'Meu nome é Renan e cuidar dos outros é minha paixão', '10.00', 'Cursei fisioterapia por 5 anos da Unisantos');
 
 /* PROCEDURES DO CLIENTE */
-
+select * from usuario where cd_tipo_usuario = 3;
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
-call buscarCuidadores('2020-11-03', '12:00:00', '16:59:00');
+call buscarCuidadores('2020-08-20', '09:00:00', '16:00:00');
 call buscarCuidadoresVirarDia('2020-07-12', '22:00:00', '02:00:00');
-call filtrarCuidadores('2020-08-20','09:00:00','16:00:00', 0, 0, 0, 1, 1, null, null, 'Masculino');
+call filtrarCuidadores('2020-08-20','09:00:00','16:00:00', 1, 0, 0, 0, 3, null, null, null);
 call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', true, false, false, true, 1, null, null, 2);
 call cuidadorEscolhido('matheusraimundofarias@gmail.com');
 call agendarServico(29,'2020-11-20','14:00:00','19:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','flaviapriscilamarianasilveira@gmail.com',4);

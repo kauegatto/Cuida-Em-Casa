@@ -248,7 +248,7 @@ END$$
 
 DROP PROCEDURE IF EXISTS filtrarCuidadores$$
 
-CREATE PROCEDURE filtrarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao VARCHAR(100), vPreco DECIMAL(10, 2), vAvaliacao VARCHAR(100), vGenero VARCHAR(100))
+CREATE PROCEDURE filtrarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao INT, vPreco DECIMAL(10, 2), vAvaliacao VARCHAR(100), vGenero VARCHAR(100))
 BEGIN 
 	SET @decimalVPreco := cast(vPreco as decimal(10,2));
     SET @intAvaliacao := cast(vAvaliacao as unsigned);
@@ -273,10 +273,11 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -293,9 +294,10 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
@@ -314,9 +316,10 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND tp.nm_genero = vGenero;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -333,8 +336,9 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			END IF;
 		ELSE
@@ -355,9 +359,10 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -374,8 +379,9 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND te.nm_tipo_especializacao LIKE vEspecializacao
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
@@ -394,8 +400,9 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND tp.nm_genero = vGenero;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -412,7 +419,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			END IF;
 		END IF;
@@ -435,9 +443,10 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -454,8 +463,9 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
@@ -474,8 +484,9 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND tp.nm_genero = vGenero;
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -492,7 +503,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco;
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			END IF;
 		ELSE
@@ -514,7 +526,8 @@ BEGIN
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -531,7 +544,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
@@ -550,7 +564,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
@@ -566,7 +581,8 @@ BEGIN
                     ON (u.cd_genero = tp.cd_genero)
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim; 
+					AND d.hr_fim_disponibilidade >= vHoraFim
+					GROUP BY u.nm_email_usuario; 
 				END IF;
 			END IF;
 		END IF;
@@ -599,8 +615,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >=  @intAvaliacao
 					AND tp.nm_genero = vGenero
 					AND EXISTS
@@ -615,6 +631,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -632,8 +649,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >=  @intAvaliacao
 					AND EXISTS
 						(
@@ -647,6 +664,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			ELSE
@@ -668,8 +686,8 @@ BEGIN
 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND tp.nm_genero = vGenero
 					AND EXISTS
 						(
@@ -683,6 +701,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -699,8 +718,8 @@ BEGIN
                     ON (u.cd_genero = tp.cd_genero)
 					WHERE d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND EXISTS
 						(
 							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -713,6 +732,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			END IF;
@@ -734,7 +754,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
 					AND u.cd_avaliacao >=  @intAvaliacao
 					AND tp.nm_genero = vGenero
 					AND EXISTS
@@ -749,6 +769,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -766,7 +787,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
 					AND u.cd_avaliacao >=  @intAvaliacao
 					AND EXISTS
 						(
@@ -780,6 +801,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			ELSE
@@ -799,7 +821,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
 					AND tp.nm_genero = vGenero
 					AND EXISTS
 						(
@@ -813,6 +835,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -830,7 +853,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
 					AND EXISTS
 						(
 							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -843,6 +866,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			END IF;
@@ -866,7 +890,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >= @intAvaliacao
 					AND tp.nm_genero = vGenero
 					AND EXISTS
@@ -881,6 +905,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -898,7 +923,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >= @intAvaliacao
 					AND EXISTS
 						(
@@ -912,6 +937,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			ELSE
@@ -931,7 +957,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND tp.nm_genero = vGenero
 					AND EXISTS
 						(
@@ -945,6 +971,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -962,7 +989,7 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND EXISTS
 						(
 							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -975,6 +1002,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			END IF;
@@ -1010,6 +1038,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -1040,6 +1069,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				END IF;
 			ELSE
@@ -1072,6 +1102,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						);
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
@@ -1101,6 +1132,7 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						); 
 				END IF;
 			END IF;
