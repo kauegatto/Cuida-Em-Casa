@@ -35,6 +35,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string cd_geolocalizacao { get; set; }
         public string vl_trabalho { get; set; }
         public string duracao { get; set; }
+        public string ultimoCodigoPaciente { get; set; }
 
         public clsPaciente(): base()
         {
@@ -50,7 +51,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_complemento = "";
             nm_bairro = "";
             cep = "";
-
+            ultimoCodigoPaciente = "";
             /* Propriedades para busca de clientes em serviço */
 
             nm_cuidador = "";
@@ -436,6 +437,31 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
     
 
+        #endregion
+
+        #region listar codigo paciente
+
+        public bool listarCodigoPaciente()
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+
+            if (!Procedure("listarUltimoCodigoPaciente", false, valores, ref dados))
+	        {
+                Desconectar();
+                return false;
+	        }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    ultimoCodigoPaciente = dados[0].ToString();
+                }
+            }
+
+            return false;
+        }
         #endregion
 
     }

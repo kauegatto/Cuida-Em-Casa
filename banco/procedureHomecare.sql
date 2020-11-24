@@ -2247,4 +2247,14 @@ BEGIN
 
 END$$
 
+DROP PROCEDURE IF EXISTS listarUltimoCodigoPaciente$$
+
+CREATE PROCEDURE listarUltimoCodigoPaciente()
+BEGIN
+
+	select max(cd_paciente) from paciente;
+
+END$$
+
+
 DELIMITER ;
