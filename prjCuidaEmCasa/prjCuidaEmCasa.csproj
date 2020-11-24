@@ -247,6 +247,7 @@
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
+    <Content Include="lib\libListarNecessidades.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
     <Content Include="lib\libMudarStatusPagamento.aspx" />
@@ -526,6 +527,13 @@
     </Compile>
     <Compile Include="lib\libInfoServicoAtual.aspx.designer.cs">
       <DependentUpon>libInfoServicoAtual.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libListarNecessidades.aspx.cs">
+      <DependentUpon>libListarNecessidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libListarNecessidades.aspx.designer.cs">
+      <DependentUpon>libListarNecessidades.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libListarServicosAgendados.aspx.cs">
       <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>

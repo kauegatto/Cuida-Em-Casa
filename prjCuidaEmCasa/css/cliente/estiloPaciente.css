@@ -43,3 +43,7 @@
 #areaBotoes {width: 100%; min-height: 50px;margin-top: 20px;}
 
 #listaPacientes { margin-top: 35%; }
+
+.areaAdicionarNecessidades { width: 50%; float: right; }
+
+.areaAdicionarNecessidades img { margin-top: 6px; }

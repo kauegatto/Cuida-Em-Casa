@@ -2207,4 +2207,17 @@ BEGIN
 		hr_inicio_disponibilidade;
 END$$
 
+
+DROP PROCEDURE IF EXISTS listarNecessidades$$
+
+CREATE PROCEDURE listarNecessidades()
+BEGIN
+
+	SELECT 
+		cd_tipo_necessidade_paciente, nm_tipo_necessidade_paciente 
+	FROM 
+		tipo_necessidade_paciente;
+
+END$$
+
 DELIMITER ;
