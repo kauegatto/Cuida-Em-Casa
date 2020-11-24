@@ -12,13 +12,36 @@ $(document).ready(function () {
 
 	$(document).on("click", "#conta", function(){
 
+		$(".visivel").each(function (i, obj) {
+           $(this).removeClass("visivel");
+   		});
+    
 		$("#wrapper-ConfiguracaoInicial").css("display","none");
-
 		$("#wrapper-LoginSeguranca").addClass("visivel");
-		$('#headerComum').addClass("visivel");
+		
+		$('#headerComum').removeClass("visivel"); $('#headerComum').css("display","none");
 
+		$('#headerConta').addClass("visivel");
 		//scriptAgendaClienteAgendado();
-	    $('.tituloGeral').html("Conta");
+
+	    $('.emailUsuario').html('Login e Segurança');
+
+	    $('.emailDadosConta').html(localStorage.getItem('usuarioLogado'));
+
+	    $('#telefoneUsuario').html(localStorage.getItem('telefoneUsuario'));
+
+	});
+
+	$(document).on("click", "#headerConta .areaLogo", function(){
+
+		$(".visivel").each(function (i, obj) {
+	       $(this).removeClass("visivel");
+	    });
+
+		$("#wrapper-ConfiguracaoInicial").css("display","visivel");
+		$("#wrapper-ConfiguracaoInicial").addClass("visivel");
+		$('#headerComum').addClass("visivel");
+		//scriptAgendaClienteAgendado();
 
 	    $('.emailUsuario').html('Login e Segurança');
 
@@ -31,15 +54,40 @@ $(document).ready(function () {
 	$(document).on("click", "#alterarSenha", function(){
 
 	    $(".visivel").each(function (i, obj) {
-	           $(this).removeClass("visivel");
+	       $(this).removeClass("visivel");
 	    });
 
 		$("#wrapper-LoginSeguranca").css("display","none");
 
 		$("#wrapper-AtualizarSenha").addClass("visivel");
-		$('#headerComum').addClass("visivel");
 
-		$('.tituloGeral').html('Alterar Senha');
+		$('#headerSenha').addClass("visivel");
+
+
+	});
+
+	$(document).on("click", "#headerSenha .areaLogo", function(){
+
+		$(".visivel").each(function (i, obj) {
+	       $(this).removeClass("visivel");
+	    });
+
+
+		$("#wrapper-LoginSeguranca").addClass("visivel");
+		
+		$('#headerConta').addClass("visivel");
+
+		
+		$('#headerComum').removeClass("visivel"); $('#headerComum').css("display","none");
+
+		$('#headerConta').addClass("visivel");
+		//scriptAgendaClienteAgendado();
+
+	    $('.emailUsuario').html('Login e Segurança');
+
+	    $('.emailDadosConta').html(localStorage.getItem('usuarioLogado'));
+
+	    $('#telefoneUsuario').html(localStorage.getItem('telefoneUsuario'));
 
 	});
 
@@ -50,7 +98,7 @@ $(document).ready(function () {
 	});
 
 	$(document).on("click", "#sair", function(){
-        localStorage.Clear();
+        localStorage.clear();
 		window.location.href = "../index.html";
 
 	});

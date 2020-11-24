@@ -1,4 +1,4 @@
-﻿localStorage.clear();
+﻿//localStorage.clear();
 
 $(document).on("click", "#btnLogin", function () {
 

@@ -16,7 +16,7 @@ a { text-decoration: none; }
 
 .areaForm p { margin-top: 10px;  width: 94%; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 16px; line-height: 19px; color: #000;text-align:center;}
 
-.areaForm input { background: rgba(40, 85, 147, 0.3); border-radius: 6px; border-style: none; width: 80%; height: 41px; display: block;margin: 0 auto }
+.areaForm input { background: rgba(40, 85, 147, 0.3); border-radius: 6px; border-style: none; width: 77%; height: 41px; display: block;margin: 0 auto;padding-left:10px; }
 
 .areaForm button { display:block;background: #285593; border-radius: 10px; border-style: none; width: 80%; height: 48px; font-family: Rubik;font-weight:bold; font-size: 20px; color: #F1F1F1;margin:0 auto;margin-top: 25px;}
     

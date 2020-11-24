@@ -1,6 +1,7 @@
-﻿export default function scriptBuscarDadosPaciente() {
+export default function scriptBuscarDadosPaciente() {
+	
 	var retorno;
-
+	var imgPaciente;
 	var descricao = $('#txtAlterarDescricaoPaciente').val();
 	var CEP =  $('#txtAlterarCEPPaciente').val();
 	var cidade =  $('#txtAlterarCidadePaciente').val();
@@ -10,9 +11,18 @@
 	var uf = "SP";
 	var numero = $('#txtAlterarNumeroPaciente').val();
 	var complemento = $('#txtAlterarComplementoPaciente').val();
-	var cdPaciente = localStorage.getItem("cdPaciente")
+	var cdPaciente = localStorage.getItem("cdPaciente");
 
-    $.post("../../lib/libAtualizarDadosPaciente.aspx",  { cd:cdPaciente,nome:nome, uf:uf, descricao: descricao, CEP:CEP, cidade : cidade,bairro: bairro,rua:rua, numero:numero,complemento:complemento  }, function (retorno) {
+	var input = document.getElementById("uploadImgUsuario");
+	var fReader = new FileReader();
+	fReader.readAsDataURL(input.files[0]);
+	fReader.onloadend = function(event){
+		//console.log(event.target.result);
+		imgPaciente = event.target.result;
+		localStorage.setItem('imagemPaciente', imgPaciente);
+	}
+
+    $.post("../../lib/libAtualizarDadosPaciente.aspx",  { imagemPaciente: localStorage.getItem('imagemPaciente'), cd: cdPaciente, nome: nome, uf: uf, descricao: descricao, CEP: CEP, cidade: cidade, bairro: bairro, rua:rua, numero:numero, complemento:complemento }, function (retorno) {
        
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
@@ -28,4 +38,6 @@
 	        console.log(retorno);	      
 	    }
     });
+
+    console.log(localStorage.getItem('imagemPaciente'));
 };
