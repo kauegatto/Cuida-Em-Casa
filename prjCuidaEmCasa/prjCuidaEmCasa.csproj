@@ -175,6 +175,7 @@
     <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
+    <Content Include="js\Cuidador\Disponibilidade\scriptAdicionarRemoverDisponibilidade.js" />
     <Content Include="js\Cuidador\Disponibilidade\scriptCarregarDisponibilidade.js" />
     <Content Include="js\Cuidador\Disponibilidade\scriptBuscarDisponibilidadeMes.js" />
     <Content Include="js\Cuidador\osmanli_calendar.js" />
@@ -215,6 +216,7 @@
     <Content Include="lib\dadosEmailCuidador.aspx" />
     <Content Include="lib\dadosEndereco.aspx" />
     <Content Include="lib\libAceitarServicoAgora.aspx" />
+    <Content Include="lib\libAdicionarDisponibilidade.aspx" />
     <Content Include="lib\libAdicionarPaciente.aspx" />
     <Content Include="lib\libAgendadosAgendaCliente.aspx" />
     <Content Include="lib\libAgendadosHistoricoCliente.aspx" />
@@ -245,10 +247,12 @@
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
+    <Content Include="lib\libListarNecessidades.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libHistoricoServico.aspx" />
     <Content Include="lib\libMudarStatusPagamento.aspx" />
     <Content Include="lib\libPacientesEmServico.aspx" />
+    <Content Include="lib\libRemoverDisponibilidade.aspx" />
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
@@ -306,6 +310,13 @@
     </Compile>
     <Compile Include="lib\libAceitarServicoAgora.aspx.designer.cs">
       <DependentUpon>libAceitarServicoAgora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAdicionarDisponibilidade.aspx.cs">
+      <DependentUpon>libAdicionarDisponibilidade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAdicionarDisponibilidade.aspx.designer.cs">
+      <DependentUpon>libAdicionarDisponibilidade.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libAdicionarPaciente.aspx.cs">
       <DependentUpon>libAdicionarPaciente.aspx</DependentUpon>
@@ -517,6 +528,13 @@
     <Compile Include="lib\libInfoServicoAtual.aspx.designer.cs">
       <DependentUpon>libInfoServicoAtual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libListarNecessidades.aspx.cs">
+      <DependentUpon>libListarNecessidades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libListarNecessidades.aspx.designer.cs">
+      <DependentUpon>libListarNecessidades.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libListarServicosAgendados.aspx.cs">
       <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -544,6 +562,13 @@
     </Compile>
     <Compile Include="lib\libPacientesEmServico.aspx.designer.cs">
       <DependentUpon>libPacientesEmServico.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libRemoverDisponibilidade.aspx.cs">
+      <DependentUpon>libRemoverDisponibilidade.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libRemoverDisponibilidade.aspx.designer.cs">
+      <DependentUpon>libRemoverDisponibilidade.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libServicoAgendadoSelecionado.aspx.cs">
       <DependentUpon>libServicoAgendadoSelecionado.aspx</DependentUpon>

@@ -2228,7 +2228,7 @@ DROP PROCEDURE IF EXISTS disponibilidadePorMes$$
 CREATE PROCEDURE disponibilidadePorMes(vEmailCuidador VARCHAR(200), vMes INT)
 BEGIN
 	SELECT
-		day(dt_disponibilidade), hr_inicio_disponibilidade, hr_fim_disponibilidade
+		day(dt_disponibilidade)	, hr_inicio_disponibilidade, hr_fim_disponibilidade
 	FROM
 		disponibilidade
 	WHERE
@@ -2237,6 +2237,19 @@ BEGIN
 		MONTH(dt_disponibilidade) = vMes
 	ORDER BY
 		hr_inicio_disponibilidade;
+END$$
+
+
+DROP PROCEDURE IF EXISTS listarNecessidades$$
+
+CREATE PROCEDURE listarNecessidades()
+BEGIN
+
+	SELECT 
+		cd_tipo_necessidade_paciente, nm_tipo_necessidade_paciente 
+	FROM 
+		tipo_necessidade_paciente;
+
 END$$
 
 DELIMITER ;

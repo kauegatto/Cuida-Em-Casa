@@ -12,14 +12,27 @@
 		}
         else if (retorno == "usuarioIncorreto"){window.location.href = "../index.html"}
 		else{
+
 	        retorno = retorno.split("|");
 	        console.log(retorno);
 	        console.log(retorno[0]); $('#txtAlterarNomePaciente').val(retorno[0]);
 	        
-
 	        console.log(retorno[1]); 
-	        $('#txtAlterarNecessidadePaciente').append("<option selected>"+retorno[1]+"</option>");
-	       
+	        //$('#txtAlterarNecessidadePaciente').append("<option selected>"+retorno[1]+"</option>");
+	       	
+	       	$.post('../../lib/libListarNecessidades.aspx', {}, function(retorno){
+
+				if (retorno == 'erro') 
+				{
+					console.log('deu erro na lib de listar as necessidades');
+				}
+				else
+				{
+					$('#txtAlterarNecessidadePaciente').html(retorno);
+					console.log('necessidades cadastradas');
+				}
+
+			});
 
 	        console.log(retorno[2]); $('#txtAlterarDescricaoPaciente').val(retorno[2]);
 	        console.log(retorno[3]); $('#txtAlterarCEPPaciente').val(retorno[3]);

@@ -29,7 +29,6 @@ namespace prjCuidaEmCasa.lib
             string uf_paciente = Request["uf"].ToString();
             string imgPaciente = Request["imagemPaciente"].ToString();
 
-
             if (clsPaciente.editarDadosPaciente(cd_paciente, nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
             {
                 Response.Write("true");
@@ -38,6 +37,7 @@ namespace prjCuidaEmCasa.lib
             {
                 Response.Write("false");
             }
+
         }
     }
 }

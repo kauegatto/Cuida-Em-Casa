@@ -13,6 +13,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> nm_cidade { get; set; }
         public List<string> nm_estado { get; set; } 
         public List<string> base64String { get; set; }
+        public List<string> cdTipoNecessidade { get; set; }
+        public List<string> nmTipoNecessidade { get; set; }
         public string base64standard { get; set; }
         public string ds_paciente { get; set; }
         public string nm_tipo_necessidade_paciente { get; set; }
@@ -41,6 +43,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_cidade = new List<string>();
             nm_estado = new List<string>();
             base64String = new List<string>();
+            cdTipoNecessidade = new List<string>();
+            nmTipoNecessidade = new List<string>();
             nm_num = "";
             nm_rua = "";
             nm_complemento = "";
@@ -347,6 +351,35 @@ namespace prjCuidaEmCasa.classes.Agendamento
             return true;
         }
         #endregion
+
+        #region Listar todas as necessidades
+
+        public bool listarNecessidades()
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            if (!Procedure("listarNecessidades", false, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read()) 
+                {
+                    cdTipoNecessidade.Add(dados[0].ToString());
+                    nmTipoNecessidade.Add(dados[1].ToString());
+                }
+            }
+
+            return true;
+
+        }
+
+
+        #endregion 
 
     }
 }

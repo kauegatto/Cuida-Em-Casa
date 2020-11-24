@@ -670,5 +670,82 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
 
         #endregion
+
+        #region Adicionar Disponibilidade
+        
+
+        public bool adicionarDisponibilidade(string emailCuidador, string dtDisponibilidade, string horaInicioDisponibilidade, string horaFimDisponibilidade)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[4, 2];
+            valores[0, 0] = "vDataDisponibilidade";
+            valores[0, 1] = dtDisponibilidade;
+            valores[1, 0] = "vHoraInicioDisponibilidade";
+            valores[1, 1] = horaInicioDisponibilidade;
+            valores[2,0] ="vHoraFimDisponibilidade";
+            valores[2, 1] = horaFimDisponibilidade;
+            valores[3,0] = "vEmailCuidador";
+            valores[3,1] = emailCuidador;
+
+
+            if (!Procedure("adicionarDisponibilidade", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    dt_disponibilidade.Add(dados[0].ToString());
+                    hr_inicio_disponibilidade.Add(dados[1].ToString());
+                    hr_fim_disponibilidade.Add(dados[2].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+
+        #endregion
+        
+        #region Remover Disponibilidade
+        public bool removerDisponibilidade(string emailCuidador, string dtDisponibilidade, string horaInicioDisponibilidade, string horaFimDisponibilidade)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[4, 2];
+            valores[0, 0] = "vDataDisponibilidade";
+            valores[0, 1] = dtDisponibilidade;
+            valores[1, 0] = "vHoraInicioDisponibilidade";
+            valores[1, 1] = horaInicioDisponibilidade;
+            valores[2,0] ="vHoraFimDisponibilidade";
+            valores[2, 1] = horaFimDisponibilidade;
+            valores[3,0] = "vEmailCuidador";
+            valores[3,1] = emailCuidador;
+
+
+            if (!Procedure("deletarDisponibilidade", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    dt_disponibilidade.Add(dados[0].ToString());
+                    hr_inicio_disponibilidade.Add(dados[1].ToString());
+                    hr_fim_disponibilidade.Add(dados[2].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+        #endregion
     }
 }
