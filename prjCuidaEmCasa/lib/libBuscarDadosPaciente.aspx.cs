@@ -17,7 +17,7 @@ namespace prjCuidaEmCasa.lib
             {
                 string resposta = clsPaciente.nm_paciente[0] + "|" + clsPaciente.nm_tipo_necessidade_paciente + "|" + clsPaciente.ds_paciente + "|";
                 resposta += clsPaciente.cep + "|" + clsPaciente.nm_cidade[0] + "|" + clsPaciente.nm_bairro + "|" + clsPaciente.nm_rua + "|";
-                resposta += clsPaciente.nm_num + "|" + clsPaciente.nm_estado[0] + "|" + clsPaciente.nm_complemento + "|" + clsPaciente.base64String[0];
+                resposta += clsPaciente.nm_num + "|" + clsPaciente.nm_estado[0] + "|" + clsPaciente.nm_complemento + "|" + clsPaciente.base64String[0] + "|" + clsPaciente.cdTipoNecessidade[0]; 
                 Response.Write(resposta);
             }
             else 
