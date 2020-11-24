@@ -65,6 +65,7 @@
     <Content Include="css\cuidador\estiloBuscarServico.css" />
     <Content Include="css\cuidador\estiloCadastroCuidador.css" />
     <Content Include="css\cuidador\estiloDenuncia.css" />
+    <Content Include="css\cuidador\estiloDisponibilidadeCuidador.css" />
     <Content Include="css\cuidador\estiloServicoAtual.css" />
     <Content Include="css\estiloCuidador.css" />
     <Content Include="css\cliente\agendamento\estiloEndereco.css" />
@@ -256,7 +257,6 @@
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
-    <Content Include="pages\calendarioDisponibilidade.html" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
