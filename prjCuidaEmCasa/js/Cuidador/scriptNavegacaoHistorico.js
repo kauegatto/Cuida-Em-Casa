@@ -26,6 +26,9 @@ $(document).ready(function () {
 	    $("#wrapper-historicoServico").addClass("visivel");
 	    $('#headerComum').addClass("visivel");
 
+        $('.areaFiltro').css('display', 'none');
+        $('.areaFiltro').css('display', 'block');
+
         scriptHistoricoServico();
 
     });

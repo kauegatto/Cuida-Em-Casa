@@ -2,8 +2,8 @@
 
         var filtroEspecializacao = $('.cbxEspecializacao').val();
         var filtroPreco = $('.cbxPreco').val().replace('Até R$', '').trim(); var intFiltroPreco; var intAvaliacao;
-        var filtroGenero = $('.cbxGenero').val();
-        var filtroAvaliacao = $('.cbxAvaliacao').val();
+        var filtroGenero = $('.cbxGenero').val(); var infoGenero
+        var filtroAvaliacao = $('.cbxAvaliacao').val().replace('Maior que:', '').trim();
         var vE,vP,vG,vA;
 
         if (filtroEspecializacao == "0") {vE = "false";}
@@ -18,12 +18,12 @@
 	    }
 
     	if (filtroGenero == "Selecione") {vG = "false";}
-        else{vG = "true";}
+        else{vG = "true"; infoGenero = filtroGenero}
 
     	if (filtroAvaliacao == "") {vA = "false";}
         else{vA = "true"; intAvaliacao = filtroAvaliacao}
 
-	  	$.post("../../lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), filtro: "true", vA: vA, vP: vP, vG: vG, vE: vE,vEspecializacao: filtroEspecializacao, vPreco: intFiltroPreco,vAvaliacao: intAvaliacao,vGenero:filtroGenero}, function (retorno) {
+	  	$.post("../../lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), filtro: "true", vA: vA, vP: vP, vG: vG, vE: vE,vEspecializacao: filtroEspecializacao, vPreco: intFiltroPreco,vAvaliacao: intAvaliacao,vGenero:infoGenero}, function (retorno) {
 	       	console.log(retorno);
             var botao = "<button class='btnProximo' id='btnCuidador'>Próximo</button>";
 	        if (retorno == "" || retorno == null){

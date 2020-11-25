@@ -46,7 +46,7 @@
         $('#endereco').html(localStorage.getItem("nomeRua") + " - " + localStorage.getItem("numEndereco") + ", " + localStorage.getItem("nomeBairro") + ", " + localStorage.getItem("nomeCidade") + " - " + localStorage.getItem("nomeEstado"));
     }
 
-    var url = "data:image/svg+xml;base64," + localStorage.getItem("imagemCuidador");
+    var url = "data:image/svg+xml+jpeg+jpg;base64," + localStorage.getItem("imagemCuidador");
     $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
 
 };

@@ -66,7 +66,7 @@ $.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
     }
     else
     {
-	    $('.cbxEspecializacao').html("<option id='opt  Selecione' value='0'>Selecione</option>" + retorno);
+	    $('.cbxEspecializacao').html("<option id='opt Selecione' value='0'>Selecione</option>" + retorno);
     }
 
 });

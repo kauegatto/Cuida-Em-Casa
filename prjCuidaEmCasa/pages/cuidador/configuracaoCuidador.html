@@ -14,7 +14,8 @@
   	 src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">	
 
  	 </script>
-	<script src="../../js/configuracaoCliente/scriptNavegacaoConfiguracaoCliente.js" type="module"></script>
+	<script src="../../js/configuracaoCuidador/scriptNavegacaoConfiguracaoCuidador.js" type="module"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 	<div class="estruturaGeral">
@@ -128,67 +129,58 @@
 					<div class="areaImagemPaciente" id="areaAlterarImagemPaciente" 
 					style="margin-top: 12px; margin-left: 13px;">
 					</div>
+					<div class="invi"></div>
 					<div>
 						<input type="file" name="" accept="image/jpeg" id="uploadImgUsuario">
 					</div>
 					<div class="areaNomePaciente">
 						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
-						<input type="text" name="txtNomePaciente" id="txtAlterarNomePaciente" class="inputInfo" 
+						<input type="text" name="txtNomePaciente" id="txtAlterarNomeCuidador" class="inputInfo" 
 						 style="width: 205px;height: 31px; margin-left: 8px; margin-top: 5px;">
 					</div>
 					<div class="areaNecessidadePaciente">
-						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
-						<select name="Necessidade" id="txtAlterarNecessidadePaciente" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
+						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Especializações:</h3>
+						<select name="Necessidade" id="especializacoesCuidador" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
 						</select>
 						<div class="areaAdicionarNecessidades">
-							<img src="../../img/icones/plus.png" id="addNecessidade">
+							<img src="../../img/icones/plus.png" id="addEspecializacao">
 						</div>
 						<div id="areaTxtNecessidade">
-							<span id="necessidadeEscolhida"></span>
+							<span id="txtEspecializacoesCuidador"></span>
 						</div>
 					</div>
 					<div class="areaNecessidadePaciente">
 						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Gênero:</h3>
-						<select name="Necessidade" id="txtAlterarNecessidadePaciente" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px; margin-bottom: 10px;">
+						<select name="Necessidade" id="generoCuidador" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px; margin-bottom: 10px;">
+							<option value="1" id="generoMasculino">Masculino</option>
+							<option value="2" id="generoFeminino">Feminino</option>
+							<option value="3" id="generoOutro">Outro</option>
 						</select>
 					</div>
 					<div class="areaDescricaoPaciente" style="height: 85px;">
 						<h3 class="tituloInfo" style="margin-left: 13px;">Sua Descrição:</h3>
-						<textarea class="inputInfo" id="txtAlterarDescricaoPaciente" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 50px;"></textarea>
+						<textarea class="inputInfo" id="txtDescricaoCuidador" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 50px;"></textarea>
 					</div>
 					<div class="areaDescricaoPaciente" style="height: 85px;">
 						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição da especialização:</h3>
-						<textarea class="inputInfo" id="txtAlterarDescricaoPaciente" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 50px;"></textarea>
+						<textarea class="inputInfo" id="txtDescricaoEspecializacao" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 50px;"></textarea>
 					</div>
-					<div class="areaEnderecoPaciente">
+					<div class="areaEnderecoPaciente" style="height: 40px;">
 						
 						<span class="tituloInfo" style="margin-left: 13px;">Telefone:</span>
-						<input type="text" id="txtAlterarBairroPaciente" name="bairro" class="inputInfo" style="width: 100px; height: 30px; text-align: center;" value="">
-						<span class="tituloInfo" style="margin-left: 13px;">CPF:</span>
-						<input type="text" id="txtAlterarBairroPaciente" name="bairro" class="inputInfo" style="width: 80px; height: 30px; text-align: center;" value="">
-						<!-- <div class="enderecos">
-							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
-						<input type="text" id="txtAlterarRuaPaciente" name="rua" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="">
-						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
-						<input type="text" id="txtAlterarNumeroPaciente" name="numero" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="">
-						</div>
-						<div class="enderecos">
-							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
-							<input type="text" id="txtAlterarCidadePaciente" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
-							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
-							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
-						  		<option value="SP">SP</option>
-							</select>
-						</div>
-						<div class="enderecos">
-							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
-							<input type="text" id="txtAlterarComplementoPaciente" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="">
-						</div> -->
+						<input type="text" id="txtAlterarTelefone" name="bairro" class="inputInfo" style="width: 100px; height: 30px; text-align: center;" value="">
+						<span class="tituloInfo">CPF:</span>
+						<input type="text" id="txtAlterarCPF" name="bairro" class="inputInfo" style="width: 95px; height: 30px; text-align: center;" value="">
+					</div>
+					<span class="tituloInfo" style="margin-left: 13px;">Link do currículo:</span>
+						<input type="text" id="txtAlterarLinkCurriculo" name="" class="inputInfo" style="width: 177px;; height: 30px; text-align: center;" value="">
+					<div style="margin-top: 10px;">
+						<span class="tituloInfo" style="margin-left: 13px;">Valor da Hora:</span>
+					<input type="text" id="txtAlterarValorHora" name="valorHora" class="inputInfo" style="width: 195px; height: 30px; text-align: center;" value="">
 					</div>
 					<div class="clear"></div>
 					<div id="areaBotoes">
-						<button type="button" class="btnSalvar">Salvar</button>
-						<button type="button" class="btnExcluir">Excluir</button>
+						<button type="button" class="btnSalvar" style="margin-left: 93px;">Salvar</button>
 					</div>
 
 				</div>
@@ -199,9 +191,9 @@
 				<div class="menuGeral">
 					<a href="atendimento.html">
 						<div class="areaIcone">
-							<img src="../../img/icones/buscarServico/iconeAtendimento.png" style="margin-left: 10px;">
+							<img src="../../img/icones/iconeAtendimento.png" style="margin-left: 10px;">
 						</div>
-						<span style="margin-left: 15px;">Atendimento</span>
+						<span style="margin-left: 17px;">Atendimento</span>
 					</a>
 				</div>
 				<div class="menuGeral">
@@ -209,21 +201,21 @@
 						<div class="areaIcone">
 							<img src="../../img/icones/buscarServico/iconeAgenda.png" style="margin-left: 10px;">
 						</div>
+                        <span style="margin-left: 22px;">Agendados</span>
 					</a>
-					<span style="margin-left: 20px;">Agendados</span>
 				</div>
-				<div class="menuGeral paginaAtual">
+				<div class="menuGeral">
 					<a href="historicoServico.html">
 						<div class="areaIcone">
 							<img src="../../img/icones/buscarServico/iconeHistorico.png" style="margin-left: 5px;">
 						</div>
-						<span style="margin-left: 22px;">Histórico</span>
+						<span style="margin-left: 25px;">Histórico</span>
 					</a>
 				</div>
-				<div class="menuGeral">
+				<div class="menuGeral paginaAtual">
                     <a href="configuracaoCuidador.html">
 					    <div class="areaIcone">
-						    <img src="../../img/icones/buscarServico/iconeConfiguracao.png">
+						    <img src="../../img/icones/configuracao/iconeConfiguracao.png">
 					    </div>
 					    <span style="margin-left: 7px; ">Configuração</span>
                     </a>
