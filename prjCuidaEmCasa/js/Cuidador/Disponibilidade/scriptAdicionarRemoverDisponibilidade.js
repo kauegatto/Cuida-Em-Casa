@@ -1,5 +1,6 @@
 ﻿import scriptBuscarDisponibilidadeMes from './scriptBuscarDisponibilidadeMes.js'; 
 import scriptCarregarCalendario from './scriptCarregarDisponibilidade.js';
+import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js";
 
     var mes;
     var hrFimDisponibilidade,hrInicioDisponibilidade;
@@ -83,6 +84,47 @@ import scriptCarregarCalendario from './scriptCarregarDisponibilidade.js';
         scriptCarregarCalendario();
     });
 
+    $(document).on("click", "td", function(){
+
+        if($("#areaDisponibilidade").hasClass("areaBranca")){
+            if($(this).html() != ""){
+
+                //vai se fode dougla
+
+                $(".output").html("Data Selecionada: "+$(this).html()+"/"+intMes);
+
+                colocarDisponibilidadeDoDia();
+
+            /* Guardar na procedure a data selecionada*/
+                dia = $(this).html();
+                if(dia.length == 1){
+                    //console.log("entrou");
+                    dia = "0"+dia;
+                }
+                //console.log("dia : " +dia);
+                var mes = intMes;
+
+                if(mes.length == 1){
+                    //console.log("entrou");
+                    mes = "0"+mes;
+                }
+
+                //console.log("mes : " +mes);
+
+                var ano = $('.mesServico').html();
+                
+                ano = ano.split(" ");
+                
+                ano = ano[1];
+                
+                //console.log("ano : " +ano);
+
+                localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);
+            }
+        }
+
+    });
+
     function adicionarDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
         $.post("../../lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
@@ -111,4 +153,4 @@ import scriptCarregarCalendario from './scriptCarregarDisponibilidade.js';
         });
     }
 
-    scriptCarregarCalendario();
+    //scriptCarregarCalendario();

@@ -24,27 +24,26 @@ call agendarServicoAgoraVirarDia(28,'02:00:00', '11533-040','Cubatão', 'Jardim 
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
 call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');
-call infoServicoAtualCuidador(27);
+call infoServicoAtualCuidador(50);
 call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
-call infoServicoAtual(50);#select * from servico where cd_servico = 50;
+call infoServicoAtual(50);
+select * from servico where cd_servico = 50;
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteNaoFoiSelecionado(10);
 call listarAgendaClienteJaFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteJaFoiSelecionado(13);
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
-call infoServicoAtual(24);
+call infoServicoAtual(50);
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
 call listarNecessidades();
 call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
-call listarUltimoCodigoPaciente();
-call excluirPaciente(10);
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
@@ -63,11 +62,12 @@ call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
-call listarEspecializacao();
-call adicionarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
-call verificarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
-call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
+
+/* Calendario / Agenda  */
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
+call buscarServicoAgendadoCuidadorMes('flaviabeneditamilenamelo@gmail.com', 11);
+call listarEspecializacao();
+call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
 
 /* PROCEDURE DO ADMINISTRADOR */
 
@@ -80,3 +80,5 @@ call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
+
+
