@@ -34,7 +34,7 @@
             alert("Ocorreu um erro na busca dos dados do cuidador!");
             window.location.href = "../index.html"
         }
-        retorno = retorno.split("/");
+        retorno = retorno.split("|");
         console.log(retorno);
         $('#vl_hora_cuidador').html(retorno[0] + " por hora");
         $('#nm_cuidador').html(retorno[1]);
@@ -45,7 +45,7 @@
         localStorage.setItem("imagemCuidador", retorno[6]);
         localStorage.setItem("valorHora", retorno[0]);
         localStorage.setItem("nomeCuidador", retorno[1]);
-        var url = "data:image/svg+xml;base64," + localStorage.getItem("imagemCuidador");
+        var url = "data:image/svg+xml+jpeg+jpg;base64," + localStorage.getItem("imagemCuidador");
         $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
     });
 };

@@ -38,6 +38,21 @@ BEGIN
 		(vEspecializacao, vEmailCuidador);
 END$$
 
+DROP PROCEDURE IF EXISTS deletarEspecializacoes$$
+
+CREATE PROCEDURE deletarEspecializacoes(vEmailCuidador VARCHAR(200))
+BEGIN
+
+
+	delete from 
+		especializacao_usuario 
+	where 
+		nm_email_usuario = vEmailCuidador;
+
+
+END$$
+
+
 DROP PROCEDURE IF EXISTS verificarLogin$$
 
 CREATE PROCEDURE verificarLogin(vEmailUsuario VARCHAR(200), vSenha VARCHAR(128))
@@ -1117,7 +1132,7 @@ BEGIN
 	SELECT 
 		u.img_usuario, u.vl_hora_trabalho, u.nm_usuario, 
 		te.nm_tipo_especializacao, g.nm_genero, u.ds_experiencia_usuario, 
-		u.ds_usuario 
+		u.ds_usuario, u.cd_CPF, u.cd_telefone, u.cd_link_curriculo
 	FROM 
 		usuario u 
 	JOIN 
@@ -2271,6 +2286,23 @@ BEGIN
 		paciente 
 	where 
 		cd_paciente = vCdPaciente;
+
+END$$
+
+
+DROP PROCEDURE IF EXISTS editarDadosCuidador$$
+
+CREATE PROCEDURE editarDadosCuidador(vCdGenero INT, vExperienciaCuidador TEXT, vDescricaoCuidador TEXT,vLinkCurriculo TEXT, vValorHora DECIMAL(10,2),vImgUsuario LONGBLOB, vEmailUsuario VARCHAR(200), vNomeCuidador VARCHAR(200), vCpfCuidador VARCHAR(15), vTelefoneCuidador VARCHAR(15))
+BEGIN
+
+update 
+	usuario 
+set 
+	nm_usuario = vNomeCuidador, cd_CPF = vCpfCuidador, cd_telefone = vTelefoneCuidador, img_usuario = vImgUsuario, vl_hora_trabalho = vValorHora, 
+	cd_link_curriculo = vLinkCurriculo, ds_experiencia_usuario = vExperienciaCuidador, ds_usuario = vDescricaoCuidador, cd_genero = vCdGenero 
+where 
+	nm_email_usuario = vEmailUsuario;
+
 
 END$$
 

@@ -18,6 +18,10 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> ds_usuario { get; set; }
         public List<string> ds_experiencia { get; set; }
         public List<string> cd_avaliacao { get; set; }
+        public List<string> cpfCuidador { get; set; }
+        public List<string> telefoneCuidador { get; set; }
+        public List<string> linkCurriculo { get; set; }
+
         public string nm_email_cuidador_selecionado { get; set; }
 
         /* Propriedades para o histórico do cuidador */
@@ -64,6 +68,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
             ds_experiencia = new List<string>();
             cd_avaliacao = new List<string>();
             nm_email_cuidador_selecionado = "";
+            cpfCuidador = new List<string>();
+            telefoneCuidador = new List<string>();
+            linkCurriculo = new List<string>();
 
             /* Propriedade para o histórico do cuidador */
 
@@ -371,6 +378,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     nm_genero.Add(dados[4].ToString());
                     ds_experiencia.Add(dados[5].ToString());
                     ds_usuario.Add(dados[6].ToString());
+                    cpfCuidador.Add(dados[7].ToString());
+                    telefoneCuidador.Add(dados[8].ToString());
+                    linkCurriculo.Add(dados[9].ToString());
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
@@ -747,5 +757,77 @@ namespace prjCuidaEmCasa.classes.Agendamento
             return true;
         }
         #endregion
+
+        #region Editar Dados Cuidador 
+
+        public bool editarDadosCuidador(string emailCuidador, string nomeCuidador, string cpfCuidador, string telefoneCuidador, string imgCuidador, string valorHora, string link, string dsExperiencia, string dsCuidador, string cdGenero)
+        {
+            MySqlDataReader dados = null;
+
+            valorHora = valorHora.Replace(",", ".");
+
+            string[,] valores = new string[9, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailCuidador;
+            valores[1, 0] = "vNomeCuidador";
+            valores[1, 1] = nomeCuidador;
+            valores[2, 0] = "vCpfCuidador";
+            valores[2, 1] = cpfCuidador;
+            valores[3, 0] = "vTelefoneCuidador";
+            valores[3, 1] = telefoneCuidador;
+            valores[4, 0] = "vValorHora";
+            valores[4, 1] = valorHora;
+            valores[5, 0] = "vLinkCurriculo";
+            valores[5, 1] = link;
+            valores[6, 0] = "vExperienciaCuidador";
+            valores[6, 1] = dsExperiencia;
+            valores[7, 0] = "vDescricaoCuidador";
+            valores[7, 1] = dsCuidador;
+            valores[8, 0] = "vCdGenero";
+            valores[8, 1] = cdGenero;
+
+            imgCuidador = imgCuidador.Replace("data:image/jpeg;base64,", "").Trim();
+
+
+            byte[] imagemCuidador = Convert.FromBase64String(imgCuidador);
+
+            if (!ProcedureIMG("editarDadosCuidador",true, valores, imagemCuidador, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
+
+        #endregion
+
+        #region Deletar especializacoes 
+
+        public bool deletarEspecializacoes(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("deletarEspecializacoes",true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+        #endregion
+
     }
 }

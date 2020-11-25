@@ -50,8 +50,10 @@
 
 #necessidadeEscolhida { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; }
 
-#areaTxtNecessidade { margin-bottom: 10px; margin-top: 10px; display: none; }
+#areaTxtNecessidade { margin-bottom: 10px; margin-top: 10px; display: none; font-family: 'Roboto';}
 
-#areaTxtNecessidade2 { margin-bottom: 10px; margin-top: 10px; display: none; }
+#areaTxtNecessidade2 { margin-bottom: 10px; margin-top: 10px; display: none; font-family: 'Roboto';font-family: 'Roboto';}
 
-#necessidadeEscolhida2 { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; }
+#necessidadeEscolhida2 { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; font-family: 'Roboto';font-family: 'Roboto';font-family: 'Roboto';}
+
+#txtEspecializacoesCuidador { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; font-family: 'Roboto';}

@@ -38,13 +38,16 @@ namespace prjCuidaEmCasa.lib
 
             string dadosCuidador = "";
 
-            dadosCuidador += classeCuidador.vl_cuidador[0] + "/";
-            dadosCuidador += classeCuidador.nm_cuidador[0] + "/";
-            dadosCuidador += classeCuidador.nm_especializacao[0] + "/";
-            dadosCuidador += classeCuidador.nm_genero[0] + "/";
-            dadosCuidador += classeCuidador.ds_experiencia[0] + "/";
-            dadosCuidador += classeCuidador.ds_usuario[0] + "/";
-            dadosCuidador += classeCuidador.base64String[0] + "/";
+            dadosCuidador += classeCuidador.vl_cuidador[0] + "|";
+            dadosCuidador += classeCuidador.nm_cuidador[0] + "|";
+            dadosCuidador += classeCuidador.nm_especializacao[0] + "|";
+            dadosCuidador += classeCuidador.nm_genero[0] + "|";
+            dadosCuidador += classeCuidador.ds_experiencia[0] + "|";
+            dadosCuidador += classeCuidador.ds_usuario[0] + "|";
+            dadosCuidador += classeCuidador.base64String[0] + "|";
+            dadosCuidador += classeCuidador.cpfCuidador[0] + "|";
+            dadosCuidador += classeCuidador.telefoneCuidador[0] + "|";
+            dadosCuidador += classeCuidador.linkCurriculo[0] + "|"; ;
             dadosCuidador = dadosCuidador.Substring(0, dadosCuidador.Length - 1);
             Response.Write(dadosCuidador);
         }
