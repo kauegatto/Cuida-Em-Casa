@@ -2063,6 +2063,20 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+/* Procedure criada para definir o cuidador como demitido */
+
+DROP PROCEDURE IF EXISTS recusarCuidador$$
+
+CREATE PROCEDURE recusarCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 4
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
 /* Procedure criada para listar todas as ocorrências cadastradas */
 
 DROP PROCEDURE IF EXISTS listarOcorrencia$$
@@ -2155,6 +2169,62 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+/* Procedure criada para buscar os cuidadores para contrato */
+
+DROP PROCEDURE IF EXISTS listarCuidadoresContrato$$
+
+CREATE PROCEDURE listarCuidadoresContrato()
+BEGIN
+	SELECT 
+		u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializações,
+		u.nm_email_usuario
+	FROM
+		usuario u 
+	JOIN
+		especializacao_usuario eu
+	ON
+		(u.nm_email_usuario = eu.nm_email_usuario)
+	JOIN
+		tipo_especializacao te
+	ON
+		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+	WHERE
+		u.cd_situacao_usuario = 2
+	GROUP BY
+		u.nm_email_usuario;
+END$$
+
+/* Procedure criada para buscar informações completas do cuidador para contrato selecionado pelo adm */
+
+DROP PROCEDURE IF EXISTS infoCuidadorContrato$$
+
+CREATE PROCEDURE infoCuidadorContrato(vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
+		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
+		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
+		u.vl_hora_trabalho, u.cd_link_curriculo
+	FROM
+		usuario u
+	JOIN
+		tipo_genero tg
+	ON
+		(u.cd_genero = tg.cd_genero)
+	JOIN
+		especializacao_usuario eu
+	ON
+		(u.nm_email_usuario = eu.nm_email_usuario)
+	JOIN
+		tipo_especializacao te
+	ON
+		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+	WHERE
+		u.nm_email_usuario = vEmailCuidador
+	GROUP BY
+		u.nm_email_usuario;
+END$$
 
 DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
 
