@@ -141,20 +141,21 @@ $(document).ready(function () {
 
     $(document).on("click", ".btnSalvar", function(){
 
+        $("#listaPacientes").html("");  
         scriptEditarDadosPaciente();
 
-        $("#listaPacientes").html("");  
+        
         $(".iconeVoltar").click();
        
     });
 
     $(document).on("click", "#btnSalvarPaciente", function(){
+       $("#listaPacientes").html(""); 
 
         scriptAdicionarPaciente();
 
         $(".iconeVoltar").click();
-        $("#listaPacientes").html(""); 
-
+      
         //scriptPacientes();
        
     });

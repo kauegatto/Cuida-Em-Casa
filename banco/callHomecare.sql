@@ -77,15 +77,21 @@ call editarDadosCuidador();
 
 
 /* PROCEDURE DO ADMINISTRADOR */
-
+select * from usuario where cd_tipo_usuario = 3;
 call listarSituacaoCuidadores(3);
-call verificarCuidador('reinaldosouza@gmail.com');
+call verificarCuidador('renanstopa@gmail.com');
 call contratarCuidador('reinaldosouza@gmail.com');
+call recusarCuidador('renanstopa@gmail.com');
 call listarOcorrencia();
 call listarNumerosOcorrencia();
 call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
+<<<<<<< HEAD
+call listarCuidadoresContrato();
+call infoCuidadorContrato('renanstopa@gmail.com');
+=======
 
 
+>>>>>>> 731cfa6998953e526961cf5f17ee394bd27411c5

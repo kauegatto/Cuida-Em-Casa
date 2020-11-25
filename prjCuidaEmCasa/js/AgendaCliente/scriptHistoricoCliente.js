@@ -12,7 +12,7 @@
 
 			$("#listaHistorico").html(retorno);
 			$(".areaDadosAgendadosHistorico").each(function (i, obj) {
-				var url = "data:image/svg+xml;base64," + $(this).children('.invi').html();
+				var url = "data:image/svg+xml+jpeg+jpg;base64," + $(this).children('.invi').html();
                 $(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             });
 

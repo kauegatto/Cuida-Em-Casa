@@ -6,8 +6,8 @@
         }
 
         $('#wrapper-detalhesServico').html(retorno);
-        //console.log(retorno);
-        var url = "data:image/svg+xml;base64," + $(".invi").html();
+        console.log(retorno);
+        var url = "data:image/png;base64," + $(".invi").html();
         $(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
     });
 

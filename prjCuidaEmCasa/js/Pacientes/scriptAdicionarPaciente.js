@@ -14,6 +14,7 @@ export default function scriptAdicionarPaciente() {
 	var numero = $('#txtAdicionarNumeroPaciente').val();
 	var complemento = $('#txtAdicionarComplementoPaciente').val();
 	var usuarioLogado =  localStorage.getItem("usuarioLogado");
+	
 	var input = document.getElementById("uploadImgUsuario");
 	var fReader = new FileReader();
 	fReader.readAsDataURL(input.files[0]);
