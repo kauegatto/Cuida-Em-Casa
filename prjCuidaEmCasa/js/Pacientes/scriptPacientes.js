@@ -1,6 +1,5 @@
 ﻿export default function scriptPacientes() {
 	var retorno;
-
     $.post("../../lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
        
         if (!retorno) {
