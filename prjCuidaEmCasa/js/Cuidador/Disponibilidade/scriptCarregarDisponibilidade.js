@@ -67,7 +67,7 @@ export default function scriptCarregarCalendario() {
   carregarDisponibilidades();
 
   $(document).on("click", ".btnMes", function(){
-    if (true) {
+    if ($("#areaDisponibilidade").hasClass("areaBranca")) {
       carregarDisponibilidades();
       $(".btnAdicionar").css("display","block");
     }

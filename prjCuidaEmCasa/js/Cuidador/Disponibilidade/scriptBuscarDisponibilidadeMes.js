@@ -18,6 +18,7 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
                 console.log("deu erro");
                 alert("erro");
             }
+
             retorno = retorno.split("|");
             window.disponibilidades = retorno;
 
@@ -60,10 +61,7 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
         });
     }
     
-    buscarDisponibilidadeMensal();
-
-    
-    
+    buscarDisponibilidadeMensal();    
 
 };
 

@@ -1,3 +1,4 @@
+
 export default function colocarDisponibilidadeDoDia(){
 	 var value = $(".selected_date").html();            
             $(".horarioDia").html("");
@@ -14,9 +15,10 @@ export default function colocarDisponibilidadeDoDia(){
                     arrayAtual = arrayAtual.replace('[', "");
                     arrayAtual = arrayAtual.replace(']', "");
                     arrayAtual = arrayAtual.split(',');
-                    dia = arrayAtual[0];
-                    horaInicio = arrayAtual[1];
-                    horaFim = arrayAtual[2];
+                    var dia = arrayAtual[0];
+                    var horaInicio = arrayAtual[1];
+                    var horaFim = arrayAtual[2];
+                    console.log(dia+horaInicio+horaFim);
                     if(dia == value){
                         $(".horarioDia").append("<div class='alert alert-dark horarioDisponibilidade'>Hora Inicial: <span class='horaInicio'>"+horaInicio+"</span> Hora final: <span class='horaFim'>"+ horaFim +"</span></div>");
                         $(".horarioDia").children(".alert").last().append("<div class='' id='btnRemover'> remover  </div>");

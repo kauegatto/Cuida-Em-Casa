@@ -26,6 +26,10 @@
     
     <script src="../../js/Cuidador/Disponibilidade/scriptCarregarDisponibilidade.js" type="module"></script>
     <script src="../../js/Cuidador/Disponibilidade/scriptAdicionarRemoverDisponibilidade.js" type="module"></script>
+
+    <style>
+    	.btnMes {font-family: Rubik;font-style: normal;font-weight: bold;font-size: 18px;}	
+    </style>
 </head>
 <body>
 	<div class="estruturaGeral">
@@ -35,7 +39,7 @@
 					<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
 				</div>
 				<div class="areaTituloGeral">
-					<h1 class="tituloGeral" style="width: 200px; margin-left: 23px; margin-top: 45px;">Serviços Agendados</h1>
+					<h1 class="tituloGeral" style="width: 200px; margin-left: 23px; margin-top: 45px;">Agenda</h1>
 				</div>
 			</div>
 			<div id="headerNav" style="display:none;">
@@ -43,11 +47,11 @@
 					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
 				</div>
 				<div class="areaTituloGeral">
-					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 21px;">Informações  do serviço</h1>
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 21px;">Agenda</h1>
 				</div>
 			</div>
 		</header>
-		<main class="conteudoGeral">
+		<main class="conteudoGeral"	style="margin-bottom: 0;">
 			<div class="opcoes">
 				<div id="areaAgendados" class="areaBranca">
 					<h3>Agendados</h3>
@@ -60,23 +64,26 @@
 			<div class="wrapper" id="wrapper-calendarioDisponibilidade" style="display: block;">
                     <div class="wrapper wrapper-calendario" >
                         <span class="month-year"></span>
-                        <table class="date_table table table-bordered table-striped">
+                        <table class="date_table table table-bordered table-striped" style="line-height: 1.25;">
                           <tr>
                             <th>D</th> <th>S</th> <th>T</th><th>Q</th>
                             <th>Q</th> <th>S</th> <th>S</th>
                           </tr>
                         </table>
                         <div class="botoes">
-                          <span class="prev-month  btn btn-primary btnMes" style="margin-left: 36px;">Anterior</span>
-                          <span class="next-month  btn btn-primary btnMes">Próximo</span>
+                          <span class="prev-month  btn btn-primary btnMes" style="margin-left: 15%;background-color: #27AE60">Anterior</span>
+                          <span class="next-month  btn btn-primary btnMes" style="background-color:#27AE60;margin-left: 5%;}">Próximo</span>
                         </div>
-                        <div class="alert alert-dark output mt-3">Data Selecionada: </div>
-                        <div class="horarioDia"></div>
-                        <div class="btn btn-success btnAdicionar" style="margin: 0 auto; display: block">Adicionar novo horário para o dia</div>
-                    	<div id="ListaServicosAgendados"></div>
                     </div>
 			</div>
-                    
+            <div id="wrapper-informacoesDisponibilidade" style="margin-top: 145px;display: none;">
+            	<div class="horarioDia"></div>
+            	<div class="alert alert-dark output mt-3">Data Selecionada: </div>
+                <div class="btn btn-success btnAdicionar" style="margin: 0 auto; display: block">Adicionar novo horário para o dia</div>
+            </div>
+            <div id="wrapper-informacoesServico">
+            	<div id="listaServicosAgendados" style="margin-bottom: 100px;"></div>
+            </div>                      
 	        <div id="wrapper-escolherDataServico" class="wrapper">
 	            <h3 id="diaDisponibilidade">Dia</h3>
 	            <h3 class="tituloServico" style="margin-top: 35%;">Selecione uma hora de início para disponibilidade</h3>

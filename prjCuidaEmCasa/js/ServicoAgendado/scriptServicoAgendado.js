@@ -7,7 +7,8 @@
         }
         else 
         {
-            $("#ListaServicosAgendados").html(retorno);
+            console.log("salve");
+            $("#listaServicosAgendados").html(retorno);
             
             $(".areaAgendaConteudo").each(function (i, obj) {
                 var url = "data:image/png;base64," + $(this).children('.invi').html();

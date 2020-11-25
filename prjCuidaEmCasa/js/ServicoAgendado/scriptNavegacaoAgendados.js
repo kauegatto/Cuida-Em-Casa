@@ -6,17 +6,15 @@ import scriptCarregarCalendarioAgenda from "./scriptCarregarCalendarioAgenda.js"
 import colocarAgendadosDia from "./scriptColocarServicoDoDia.js";
 
 var start_date_dialog = osmanli_calendar
-
+var mes
 
 $(document).ready(function () {
 
     var start_date_dialog;
     start_date_dialog = osmanli_calendar;
           
-    $('.prev-month').click(function () {start_date_dialog.pre_month()});
-    $('.next-month').click(function () {start_date_dialog.next_month()});
-
-    
+    $('.prev-month').click(function () {start_date_dialog.pre_month();$("#listaServicosAgendados").html("")});
+    $('.next-month').click(function () {start_date_dialog.next_month();$("#listaServicosAgendados").html("")});
 
     if(!localStorage.getItem("tipoUsuario") == 3){
         alert("Você não tem acesso a essa página, realize o login novamente");
@@ -27,12 +25,59 @@ $(document).ready(function () {
     //scriptServicoAgendado();
     scriptCarregarCalendarioAgenda();
 
+    function pegarMes(stringMes){
+        mes = stringMes.split(" ");
+        mes = mes[0];
+        switch (mes) {
+                  case "Janeiro":
+                    mes = 1;
+                    break;
+                  case "Fevereiro":
+                    mes = 2;
+                    break;
+                  case "Marco":
+                    mes = 3;
+                    break;
+                  case "Abril":
+                    mes = 4;
+                    break;
+                  case "Maio":
+                    mes = 5;
+                    break;
+                  case "Junho":
+                    mes=6;
+                    break;
+                  case "Julho":
+                    mes=7;
+                    break;
+                  case "Agosto":
+                    mes=8;
+                    break;
+                  case "Setembro":
+                    mes=9;
+                    break;
+                  case "Outubro":
+                    mes=10;
+                    break;
+                  case "Novembro":
+                    mes=11;
+                    break;
+                  case "Dezembro":
+                    mes=12;
+                    break;
+       }
+    };
+
+    mes = $(".mesServico").text();
+    pegarMes(mes);
+
     $(document).on("click", "#areaAgendados", function(){
         $('#areaAgendados').removeClass('areaCinza');
         $('#areaAgendados').addClass('areaBranca');
         $('#areaDisponibilidade').removeClass('areaBranca');
         $('#areaDisponibilidade').addClass('areaCinza');
         $('#wrapper-calendarioDisponibilidade').css('display', 'block');
+        console.log("passou agenda");
         scriptCarregarCalendarioAgenda();
     });
 
@@ -41,7 +86,7 @@ $(document).ready(function () {
         $('#areaDisponibilidade').addClass('areaBranca');
         $('#areaAgendados').removeClass('areaBranca');
         $('#areaAgendados').addClass('areaCinza')
-        $('#ListaServicosAgendados').css('display', 'none');
+        $('#listaServicosAgendados').css('display', 'none');
         $('#wrapper-calendarioDisponibilidade').css('display', 'block');
         scriptCarregarCalendario();
     });
@@ -52,14 +97,25 @@ $(document).ready(function () {
     	$(".visivel").each(function (i, obj) {
 	       $(this).removeClass("visivel");
 	    });
+
+        /* Mostrar divs novas */
+                    $("#headerComum").css("display","block");$("#headerComum").removeClass("visivel");
+                    $("#wrapper-calendarioDisponibilidade").css("display","block");
+                    $(".opcoes").css("display","block");
+
+        /* Esconder divs antigas */
         
-        $("#wrapper-InfoServicoAgendado").css("display","none");
-
-
-	    $("#wrapper-ServicoAgendado").addClass("visivel");
-	    $('#headerComum').addClass("visivel");
-
-        scriptCarregarCalendarioAgenda();
+                    $("#listaServicosAgendados").css("display","none");
+                    $("wrapper-informacoesDisponibilidade").css("display","none");
+                    $("#headerNav").css("display","none");$("#headerNav").removeClass("visivel");
+                    $("#wrapper-InfoServicoAgendado").css("display","none");
+        if($("#areaAgendados").hasClass("areaBranca")){
+            scriptCarregarCalendarioAgenda();
+        }
+        else{
+            scriptCarregarCalendario();
+        }
+        
 
 
     });
@@ -103,37 +159,56 @@ $(document).ready(function () {
     });
 
     $(document).on("click", "td", function(){
+
         if($("#areaAgendados").hasClass("areaBranca")){
+            console.log("tem");
             if($(this).html() != ""){
                 
-                $(".output").html("Data Selecionada: "+$(this).html()+"/"+intMes);
+                $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
+                
+                /* Esconder divs antigas */
+                    $("#wrapper-calendarioDisponibilidade").css("display","none");
+                    $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
+                    $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
+                    $(".opcoes").css("display","none");
+
+                /* Mostrar divs novas */
+                    $("#headerNav").css("display","block");   
+                    $("#listaServicosAgendados").css("display","block");    
+                       
                 
                 colocarAgendadosDia();
-                //console.log("coloca os agendado pf");
+
                 /* Guardar na procedure a data selecionada*/
-                dia = $(this).html();
-                if(dia.length == 1){
-                    //console.log("entrou");
-                    dia = "0"+dia;
-                }
-                //console.log("dia : " +dia);
-                var mes = intMes;
-
-                if(mes.length == 1){
-                    //console.log("entrou");
-                    mes = "0"+mes;
-                }
-
-                //console.log("mes : " +mes);
-
-                var ano = $('.mesServico').html();
                 
-                ano = ano.split(" ");
-                
-                ano = ano[1];
-                
-                localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia+1);
+                    var dia = $(this).html();
+                    
+                    if(dia.length == 1){
+                        //console.log("entrou");
+                        dia = "0"+dia;
+                    }
+                    //console.log("dia : " +dia)
+                    if(mes.length == 1){
+                        //console.log("entrou");
+                        mes = "0"+mes;
+                    }
+
+                    //console.log("mes : " +mes);
+
+                    var ano = $('.mesServico').html();
+                    
+                    ano = ano.split(" ");
+                    
+                    ano = ano[1];
+                    
+                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia+1);
             }
         }
     });
 });
+
+
+
+
+
+

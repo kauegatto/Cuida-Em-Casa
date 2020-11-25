@@ -50,7 +50,10 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
                   break;
         }
     };
-
+   
+    mes = $(".mesServico").text();
+    pegarMes(mes);
+    
     function carregarDisponibilidades(){
         mes = $(".mesServico").text();
         pegarMes(mes);
@@ -88,21 +91,22 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
         if($("#areaDisponibilidade").hasClass("areaBranca")){
             if($(this).html() != ""){
-
-                //vai se fode dougla
-
-                $(".output").html("Data Selecionada: "+$(this).html()+"/"+intMes);
-
+                
+                $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
+                
                 colocarDisponibilidadeDoDia();
 
-            /* Guardar na procedure a data selecionada*/
-                dia = $(this).html();
+                $("#wrapper-calendarioDisponibilidade").css("display","none");
+                $(".opcoes").css("display","none");
+                $("#listaServicosAgendados").css("display","block");
+
+                /* Guardar na procedure a data selecionada*/
+                var dia = $(this).html();
                 if(dia.length == 1){
                     //console.log("entrou");
                     dia = "0"+dia;
                 }
                 //console.log("dia : " +dia);
-                var mes = intMes;
 
                 if(mes.length == 1){
                     //console.log("entrou");
@@ -120,6 +124,17 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
                 //console.log("ano : " +ano);
 
                 localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);
+
+                /* Esconder divs antigas */
+                    $("#wrapper-calendarioDisponibilidade").css("display","none");
+                    $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
+                    $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
+                    $(".opcoes").css("display","none");
+                    $("#listaServicosAgendados").css("display","none");       
+
+                /* Mostrar divs novas */
+                    $("#headerNav").css("display","block");   
+                    $("#wrapper-informacoesDisponibilidade").css("display","block");
             }
         }
 
