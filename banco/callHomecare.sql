@@ -43,6 +43,8 @@ call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
 call listarNecessidades();
 call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
+call listarUltimoCodigoPaciente();
+call excluirPaciente(10);
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 

@@ -103,4 +103,16 @@ $(document).ready(function () {
 
 	});
 
+	
+	$(document).on("click", "#alterarDados", function(){
+
+		$('#wrapper-LoginSeguranca').removeClass('visivel');
+		$('#wrapper-AlterarDados').addClass('visivel');
+
+		
+		
+
+	});
+
+
 });
