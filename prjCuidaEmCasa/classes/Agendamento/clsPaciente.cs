@@ -349,6 +349,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     cd_geolocalizacao = dados[9].ToString();
                     vl_trabalho = dados[10].ToString();
                     duracao = dados[11].ToString();
+                    nm_cidade.Add(dados[12].ToString());
+                    nm_estado.Add(dados[13].ToString());
+
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

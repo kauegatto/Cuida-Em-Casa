@@ -13,11 +13,20 @@ namespace prjCuidaEmCasa.lib
         protected void Page_Load(object sender, EventArgs e)
         {
             clsPaciente paciente = new clsPaciente();
+            #region validação
 
-            string cdServico = "24";
+            if (Request["cdServico"] == "" || Request["cdServico"] == null)
+            {     
+                Response.Write("false");
+                return;
+            }
+            #endregion
+
+            string cdServico = Request["cdServico"];
 
             if (!paciente.infoServicoAtual(cdServico))
             {
+                Response.Write("false");
                 return;
             }
 
@@ -25,11 +34,20 @@ namespace prjCuidaEmCasa.lib
 
             infoServico += "<div class='areaDadosBuscandoCuidadores'>";
 			infoServico += "<div class='areaImagemCuidador'></div>";
-            infoServico += "<div class='invi' style='display: none'>" + paciente.base64String[0] + "</div>";
-			infoServico += "<div class='areaDadosCuidador'>";
+            
+            try
+            {
+                infoServico += "<div class='invi' style='display: none'>" + paciente.base64String[0] + "</div>";
+            }
+            catch {
+                Response.Write("erro");
+                return;
+            }
+
+            infoServico += "<div class='areaDadosCuidador'>";
 			infoServico += "<h3>" + paciente.nm_cuidador + "</h3>";
             string duracao = paciente.duracao;
-            string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
+            string duracaoMinutos = duracao[4].ToString() + duracao[5].ToString();
             string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
             double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
             double valorTotal = horaFinal * double.Parse(paciente.vl_trabalho);
@@ -38,9 +56,10 @@ namespace prjCuidaEmCasa.lib
 			infoServico += "</div>";
 			infoServico += "<h3 class='tituloBuscandoCuidadores'>Localização do Cuidador</h3>";
 			infoServico += "<div class='areaLocalizacaoCuidador'>";
-			infoServico += "<img src='img/mapa.png'>";
+			infoServico += "<div id='map'></div>";
+            infoServico += "<span id='informacoesEndereco' style='display:none;'>"+ paciente.nm_rua + ' ' + paciente.nm_num + ' '+ paciente.nm_bairro +' ' + paciente.nm_cidade[0] + ' ' +paciente.nm_estado[0] + "</span>";
 			infoServico += "</div>";
-			infoServico += "<h3 class='tituloBuscandoCuidadores' style='width: 311px; margin-left: 22px;'>Estimativa de 30 minutos até sua chegada</h3>";
+			infoServico += "<h3 class='tituloBuscandoCuidadores' style='width: 311px; margin-left: 22px;font-size:15px;color:#222;'>Estimativa de 30 minutos até sua chegada</h3>";
             infoServico += "<button class='btnCancelar' type='button'>Cencelar</button>";
            
             Response.Write(infoServico);

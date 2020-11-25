@@ -58,7 +58,8 @@ namespace prjCuidaEmCasa.lib
             }
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "</div>";
-			dadosServicoAtual += "<div class='areaMapa'>";
+            dadosServicoAtual += "<div id='map'>";
+            dadosServicoAtual += "<span id='informacoesEndereco' style='display:none;'>"+ servico.nm_rua_servico[0] + ' ' + servico.nm_num_servico + ' '+ servico.nm_bairro_servico +' ' + servico.nm_cidade_servico + ' ' +servico.nm_uf_servico+ "</span>";
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "<button class='btnCheckin 0'>Fazer Check-In</button>";
             dadosServicoAtual += "<button class='btnCheckout 1' style='display:none'>Fazer Checkout</button>";

@@ -510,6 +510,10 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     cd_geolocalizao = dados[10].ToString();
                     vl_cuidador.Add(dados[11].ToString());
                     duracaoServico.Add(dados[12].ToString());
+                    nm_bairro_servico = dados[13].ToString();
+                    nm_cidade_servico = dados[14].ToString();
+                    nm_uf_servico = dados[15].ToString();
+                    
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();

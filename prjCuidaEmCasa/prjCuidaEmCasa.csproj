@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -198,6 +199,7 @@
     <Content Include="js\Pacientes\scriptEditarDadosPaciente.js" />
     <Content Include="js\Pacientes\scriptInfoServicoAtual.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
+    <Content Include="js\Pacientes\scriptNavegacaoServicoAtual.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
     <Content Include="js\Pagamento\scriptBuscarPagamento.js" />
     <Content Include="js\Pagamento\scriptDadosPagamento.js" />
@@ -601,7 +603,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53825</DevelopmentServerPort>
+          <DevelopmentServerPort>56781</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
