@@ -2362,6 +2362,25 @@ BEGIN
 
 END$$
 
+/* Procedure criada para buscar os agendados de um cuidador referente ao mês */
+
+DROP PROCEDURE IF EXISTS buscarServicoAgendadoCuidadorMes$$
+
+CREATE PROCEDURE buscarServicoAgendadoCuidadorMes(vEmailCuidador VARCHAR(200), vMes INT)
+BEGIN
+	SELECT
+		day(dt_inicio_servico), cd_servico, hr_inicio_servico
+	FROM
+		servico
+	WHERE
+		nm_email_usuario_cuidador = vEmailCuidador
+	AND
+		MONTH(dt_inicio_servico) = vMes
+	AND
+		cd_status_servico = 2
+	ORDER BY
+		hr_inicio_servico;
+END$$
 
 DROP PROCEDURE IF EXISTS editarDadosCuidador$$
 

@@ -28,7 +28,7 @@ init: function() {
         let month  = $('.month-year > h3').html();
         $('#startDate').val(day+' '+month);
         osmanli_calendar.SELECT_DATE = new Date(day+'/'+month+'/'+osmanli_calendar.CURRENT_DATE.getFullYear())
-        console.log(osmanli_calendar.SELECT_DATE)
+        //console.log(osmanli_calendar.SELECT_DATE)
         if (osmanli_calendar.ON_SELECT_FUNC != "OFF") {
           osmanli_calendar.ON_SELECT_FUNC(osmanli_calendar.SELECT_DATE)
         } 

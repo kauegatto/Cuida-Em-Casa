@@ -14,30 +14,30 @@ call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
 call buscarCuidadores('2020-11-03', '12:00:00', '16:59:00');
 call buscarCuidadoresVirarDia('2020-07-12', '22:00:00', '02:00:00');
-select * from disponibilidade where dt_disponibilidade = '2020-08-20';
 call filtrarCuidadores('2020-08-20','12:00:00','14:00:00', 1, 0, 0, 0, 1, null, null, null);
 call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', 0, 0, 0, 0, null, null, null, null);
 call cuidadorEscolhido('matheusraimundofarias@gmail.com');
 call agendarServico(29,'2020-11-20','14:00:00','19:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','flaviapriscilamarianasilveira@gmail.com',4);
 call agendarServicoVirarDia(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',4);
-call agendarServicoAgora(50,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'mauriciorodolfo@gamil.com', 4, 10);
-call agendarServicoAgoraVirarDia(28,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 4, 10);
+call agendarServicoAgora(24,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'mauriciorodolfo@gamil.com', 8, 60);
+call agendarServicoAgoraVirarDia(29,'02:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie', 8, 10);
 call buscarCuidadoresAgora(10.00);
 call servicoParaAgora();
 call aceitarServicoAgora(26, 'brunastellaflaviadepaula@gmail.com');
-call infoServicoAtualCuidador(27);
+call infoServicoAtualCuidador(50);
 call listarServicos('oosvaldocarlosdarosa@live.ie', 1);
 call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
-call infoServicoAtual(50);#select * from servico where cd_servico = 50;
+call infoServicoAtual(50);
+
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteNaoFoiSelecionado(10);
 call listarAgendaClienteJaFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteJaFoiSelecionado(13);
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
-call infoServicoAtual(24);
+call infoServicoAtual(50);
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('mauriciorodolfo@gamil.com');
 call listarAgendaClienteJaFoi('mauriciorodolfo@gamil.com');
@@ -46,6 +46,7 @@ call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
 call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
+
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
@@ -58,18 +59,22 @@ call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosDataAntigos('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call listarServicosFinalizadosDataRecentes('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call servicoSelecionado(24);
-call servicoSelecionadoAgora(26);
+call servicoSelecionadoAgora(24); 
 call marcarCheckin(5);
 call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
+
+/* Calendario / Agenda  */
+call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
+call buscarServicoAgendadoCuidadorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call listarEspecializacao();
-call adicionarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
-call verificarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
 call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
+
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call editarDadosCuidador();
+
 
 /* PROCEDURE DO ADMINISTRADOR */
 
@@ -82,3 +87,5 @@ call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
+
+

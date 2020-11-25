@@ -116,8 +116,13 @@
     <Content Include="img\icones\editarPaciente\pacientes.png" />
     <Content Include="img\icones\endereco\iconeCasa.png" />
     <Content Include="img\icones\iconeAgenda.png" />
+    <Content Include="img\icones\iconeAgendadosDestaque.png" />
+    <Content Include="img\icones\iconeAtendimento.png" />
+    <Content Include="img\icones\iconeAtendimentoDestaque.png" />
     <Content Include="img\icones\iconeCalendario.png" />
+    <Content Include="img\icones\iconeCalendarioDestaque.png" />
     <Content Include="img\icones\iconeConfiguracoes.png" />
+    <Content Include="img\icones\iconeHistorico.png" />
     <Content Include="img\icones\iconePaciente.png" />
     <Content Include="img\icones\iconeServico.png" />
     <Content Include="img\icones\iconeVoltar.png" />
@@ -226,6 +231,7 @@
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libAtualizarSenha.aspx" />
     <Content Include="lib\libAvaliacaoCuidador.aspx" />
+    <Content Include="lib\libBuscarAgendadosDoCuidadorMes.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarCuidadorAgora.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
@@ -268,6 +274,7 @@
     <Content Include="pages\cliente\servicoAtual.html" />
     <Content Include="pages\cuidador\atendimento.html" />
     <Content Include="pages\cuidador\cadastroCuidador.html" />
+    <Content Include="pages\cuidador\configuracaoCuidador.html" />
     <Content Include="pages\escolhaCadastro.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
@@ -363,6 +370,13 @@
     </Compile>
     <Compile Include="lib\libAvaliacaoCuidador.aspx.designer.cs">
       <DependentUpon>libAvaliacaoCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarAgendadosDoCuidadorMes.aspx.cs">
+      <DependentUpon>libBuscarAgendadosDoCuidadorMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarAgendadosDoCuidadorMes.aspx.designer.cs">
+      <DependentUpon>libBuscarAgendadosDoCuidadorMes.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarCuidador.aspx.cs">
       <DependentUpon>libBuscarCuidador.aspx</DependentUpon>

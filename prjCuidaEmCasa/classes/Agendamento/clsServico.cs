@@ -879,6 +879,36 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
 
         #endregion 
+        
+        public bool buscarDisponibilidadesServico(string usuarioLogado, string intMes) {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = usuarioLogado;
+            valores[1, 0] = "vMes";
+            valores[1, 1] = intMes;
+
+            if (!Procedure("buscarServicoAgendadoCuidadorMes", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    dt_inicio_servico.Add(dados[0].ToString());
+                    cd_servico.Add(dados[1].ToString());
+                    hr_inicio_servico.Add(dados[2].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        
+        }
 
     }
 }
