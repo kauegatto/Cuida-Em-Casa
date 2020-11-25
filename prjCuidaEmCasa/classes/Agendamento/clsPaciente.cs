@@ -35,6 +35,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string cd_geolocalizacao { get; set; }
         public string vl_trabalho { get; set; }
         public string duracao { get; set; }
+        public string ultimoCodigoPaciente { get; set; }
 
         public clsPaciente(): base()
         {
@@ -50,7 +51,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nm_complemento = "";
             nm_bairro = "";
             cep = "";
-
+            ultimoCodigoPaciente = "";
             /* Propriedades para busca de clientes em serviço */
 
             nm_cuidador = "";
@@ -348,6 +349,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     cd_geolocalizacao = dados[9].ToString();
                     vl_trabalho = dados[10].ToString();
                     duracao = dados[11].ToString();
+                    nm_cidade.Add(dados[12].ToString());
+                    nm_estado.Add(dados[13].ToString());
+
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }
@@ -435,6 +439,52 @@ namespace prjCuidaEmCasa.classes.Agendamento
             return true;
         }
     
+
+        #endregion
+
+        #region listar codigo paciente
+
+        public bool listarCodigoPaciente()
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+
+            if (!Procedure("listarUltimoCodigoPaciente", false, valores, ref dados))
+	        {
+                Desconectar();
+                return false;
+	        }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    ultimoCodigoPaciente = dados[0].ToString();
+                }
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region Excluir Paciente
+
+        public bool excluirPaciente(string codigoPaciente) 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vCdPaciente";
+            valores[0, 1] = codigoPaciente;
+
+            if (!Procedure("excluirPaciente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            return true;
+        }
+
 
         #endregion
 

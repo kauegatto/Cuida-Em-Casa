@@ -1516,7 +1516,7 @@ BEGIN
                        when 6 then 'Domingo'                 
                        END AS DiaDaSemana,
 		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),nm_bairro_servico,nm_cidade_servico,nm_uf_servico
 	FROM
 		servico s
 	JOIN
@@ -1853,9 +1853,9 @@ BEGIN
                        when 4 then 'Sexta-feira'
                        when 5 then 'Sábado'
                        when 6 then 'Domingo'                 
-                       END AS DiaDaSemana,
+		END AS DiaDaSemana,
 		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i')
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), p.nm_cidade_paciente, p.nm_uf_paciente
 	FROM
 		servico s
 	JOIN
@@ -2319,5 +2319,33 @@ BEGIN
 		cd_paciente = vCdPaciente; 
 
 END$$
+
+DROP PROCEDURE IF EXISTS listarUltimoCodigoPaciente$$
+
+CREATE PROCEDURE listarUltimoCodigoPaciente()
+BEGIN
+
+	select max(cd_paciente) from paciente;
+
+END$$
+
+DROP PROCEDURE IF EXISTS excluirPaciente$$
+
+CREATE PROCEDURE excluirPaciente(vCdPaciente INT)
+
+BEGIN
+
+	delete from 
+		necessidade_paciente
+	where
+		cd_paciente = vCdPaciente;
+
+	delete from 
+		paciente 
+	where 
+		cd_paciente = vCdPaciente;
+
+END$$
+
 
 DELIMITER ;

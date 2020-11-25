@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -198,6 +199,7 @@
     <Content Include="js\Pacientes\scriptEditarDadosPaciente.js" />
     <Content Include="js\Pacientes\scriptInfoServicoAtual.js" />
     <Content Include="js\Pacientes\scriptNavegacao.js" />
+    <Content Include="js\Pacientes\scriptNavegacaoServicoAtual.js" />
     <Content Include="js\Pacientes\scriptPacientesEmServico.js" />
     <Content Include="js\Pagamento\scriptBuscarPagamento.js" />
     <Content Include="js\Pagamento\scriptDadosPagamento.js" />
@@ -245,6 +247,7 @@
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libDisponibilidadeCuidador.aspx" />
     <Content Include="lib\libEspecializacaoCuidador.aspx" />
+    <Content Include="lib\libExcluirPaciente.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
@@ -507,6 +510,13 @@
     <Compile Include="lib\libEspecializacaoCuidador.aspx.designer.cs">
       <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libExcluirPaciente.aspx.cs">
+      <DependentUpon>libExcluirPaciente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libExcluirPaciente.aspx.designer.cs">
+      <DependentUpon>libExcluirPaciente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libFinalizarServico.aspx.cs">
       <DependentUpon>libFinalizarServico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -601,7 +611,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53825</DevelopmentServerPort>
+          <DevelopmentServerPort>56781</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

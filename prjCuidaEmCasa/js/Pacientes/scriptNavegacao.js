@@ -2,6 +2,7 @@
 import scriptBuscarDadosPaciente from "./scriptBuscarDadosPaciente.js";
 import scriptEditarDadosPaciente from "./scriptEditarDadosPaciente.js";
 import scriptAdicionarPaciente from "./scriptAdicionarPaciente.js";
+import scriptExcluirPaciente from "./scriptExcluirPaciente.js";
 
 var indexPage = 0; var jump = 0;
 
@@ -90,6 +91,35 @@ $(document).ready(function () {
 
     });
 
+    var c2 = 0;
+    var cdNecessidade2 = "";
+
+    $('#addNecessidadeAddPaciente').click(function(){
+
+        if (c2 > 0) {
+            $('#necessidadeEscolhida2').html($('#necessidadeEscolhida2').html() + ", " + $('#selectAlterarNecessidade option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);          
+            cdNecessidade2 += ";" + $('#selectAlterarNecessidade').val() ;
+            console.log(cdNecessidade2);
+            var id = $('#selectAlterarNecessidade').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+        else
+        {
+            c2++;
+            $('#necessidadeEscolhida2').html($('#selectAlterarNecessidade option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);
+            cdNecessidade2 += $('#selectAlterarNecessidade').val();
+            console.log(cdNecessidade2);
+            var id = $('#selectAlterarNecessidade').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+
+        $('#areaTxtNecessidade2').css('display','block');
+        localStorage.setItem('necessidadeEscolhida', cdNecessidade2);
+
+    });
+
     $(document).on("click", ".imgEditar", function(){
         
         $(".visivel").each(function (i, obj) {
@@ -128,5 +158,14 @@ $(document).ready(function () {
         //scriptPacientes();
        
     });
+
+    $('.btnExcluir').click(function(){
+
+        scriptExcluirPaciente();
+        $(".iconeVoltar").click();
+        $("#listaPacientes").html(""); 
+
+    });
+
 
 });
