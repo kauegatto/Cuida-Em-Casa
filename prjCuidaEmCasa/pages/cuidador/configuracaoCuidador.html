@@ -124,7 +124,74 @@
 				</div>
 			</div>
 			<div class="wrapper" id="wrapper-AlterarDados">
-				
+				<div class="areaInfoDadosPaciente">
+					<div class="areaImagemPaciente" id="areaAlterarImagemPaciente" 
+					style="margin-top: 12px; margin-left: 13px;">
+					</div>
+					<div>
+						<input type="file" name="" accept="image/jpeg" id="uploadImgUsuario">
+					</div>
+					<div class="areaNomePaciente">
+						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
+						<input type="text" name="txtNomePaciente" id="txtAlterarNomePaciente" class="inputInfo" 
+						 style="width: 205px;height: 31px; margin-left: 8px; margin-top: 5px;">
+					</div>
+					<div class="areaNecessidadePaciente">
+						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Necessidade:</h3>
+						<select name="Necessidade" id="txtAlterarNecessidadePaciente" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px;">
+						</select>
+						<div class="areaAdicionarNecessidades">
+							<img src="../../img/icones/plus.png" id="addNecessidade">
+						</div>
+						<div id="areaTxtNecessidade">
+							<span id="necessidadeEscolhida"></span>
+						</div>
+					</div>
+					<div class="areaNecessidadePaciente">
+						<h3 class="tituloInfo" style="margin-left: 13px; margin-top: 13px;">Gênero:</h3>
+						<select name="Necessidade" id="txtAlterarNecessidadePaciente" class="inputInfo" style="width: 132px; height: 30px; margin-left: 13px; margin-top: 6px; margin-bottom: 10px;">
+						</select>
+					</div>
+					<div class="areaDescricaoPaciente" style="height: 85px;">
+						<h3 class="tituloInfo" style="margin-left: 13px;">Sua Descrição:</h3>
+						<textarea class="inputInfo" id="txtAlterarDescricaoPaciente" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 50px;"></textarea>
+					</div>
+					<div class="areaDescricaoPaciente" style="height: 85px;">
+						<h3 class="tituloInfo" style="margin-left: 13px;">Descrição da especialização:</h3>
+						<textarea class="inputInfo" id="txtAlterarDescricaoPaciente" style="resize: none; margin-left: 13px; margin-top: 6px; width: 305px; height: 50px;"></textarea>
+					</div>
+					<div class="areaEnderecoPaciente">
+						
+						<span class="tituloInfo" style="margin-left: 13px;">Telefone:</span>
+						<input type="text" id="txtAlterarBairroPaciente" name="bairro" class="inputInfo" style="width: 100px; height: 30px; text-align: center;" value="">
+						<span class="tituloInfo" style="margin-left: 13px;">CPF:</span>
+						<input type="text" id="txtAlterarBairroPaciente" name="bairro" class="inputInfo" style="width: 80px; height: 30px; text-align: center;" value="">
+						<!-- <div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px; margin-top: 26px;">Rua:</span>
+						<input type="text" id="txtAlterarRuaPaciente" name="rua" class="inputInfo" style="width: 181px; height: 30px; text-align: center;" value="">
+						<span class="tituloInfo" style="margin-left: 10px;">Nº:</span>
+						<input type="text" id="txtAlterarNumeroPaciente" name="numero" class="inputInfo" style="width: 48px; height: 30px; text-align: center;" value="">
+						</div>
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px;">Cidade:</span>
+							<input type="text" id="txtAlterarCidadePaciente" name="bairro" class="inputInfo" style="width: 159px; height: 30px; text-align: center;" value="Santos">
+							<span class="tituloInfo" style="margin-left: 10px;">UF:</span>
+							<select name="UF" class="inputInfo" style="width: 48px; height: 30px;">
+						  		<option value="SP">SP</option>
+							</select>
+						</div>
+						<div class="enderecos">
+							<span class="tituloInfo" style="margin-left: 13px;">Complemento:</span>
+							<input type="text" id="txtAlterarComplementoPaciente" name="bairro" class="inputInfo" style="width: 198px; height: 30px; text-align: center;" value="">
+						</div> -->
+					</div>
+					<div class="clear"></div>
+					<div id="areaBotoes">
+						<button type="button" class="btnSalvar">Salvar</button>
+						<button type="button" class="btnExcluir">Excluir</button>
+					</div>
+
+				</div>
 			</div>
 		</main>
 		<footer class="footer">
