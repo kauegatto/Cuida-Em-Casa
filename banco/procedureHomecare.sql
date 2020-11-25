@@ -244,11 +244,36 @@ BEGIN
 		cd_servico = vCdServico;
 
 END$$
+
+/* function criada para buscar as especializações de cada cuidador refente ao código */
+
+DROP FUNCTION IF EXISTS buscarEspecializacao$$
+
+CREATE FUNCTION buscarEspecializacao(vEmailCuidador VARCHAR(200)) RETURNS TEXT
+BEGIN
+	DECLARE nomeEspecializacao TEXT;
+
+	SELECT 
+		GROUP_CONCAT(te.nm_tipo_especializacao) INTO nomeEspecializacao
+	FROM
+		tipo_especializacao te
+	JOIN 
+		especializacao_usuario eu
+	ON
+		(te.cd_tipo_especializacao = eu.cd_tipo_especializacao)
+	WHERE
+		eu.nm_email_usuario = vEmailCuidador
+	GROUP BY
+		eu.nm_email_usuario;
+
+	RETURN nomeEspecializacao;
+END$$
+
 /* Procedure filtrarCuidadores será usada caso o cliente queira buscar o cuidador pelas opções do filtro */
 
 DROP PROCEDURE IF EXISTS filtrarCuidadores$$
 
-CREATE PROCEDURE filtrarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao VARCHAR(100), vPreco DECIMAL(10, 2), vAvaliacao VARCHAR(100), vGenero VARCHAR(100))
+CREATE PROCEDURE filtrarCuidadores(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao INT, vPreco DECIMAL(10, 2), vAvaliacao DECIMAL(10, 2), vGenero VARCHAR(100))
 BEGIN 
 	SET @decimalVPreco := cast(vPreco as decimal(10,2));
     SET @intAvaliacao := cast(vAvaliacao as unsigned);
@@ -260,7 +285,7 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -273,14 +298,15 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -293,15 +319,16 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -314,13 +341,14 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND tp.nm_genero = vGenero;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -333,8 +361,9 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			END IF;
 		ELSE
@@ -342,7 +371,7 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -355,13 +384,14 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -374,14 +404,15 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -394,12 +425,13 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND tp.nm_genero = vGenero;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -412,7 +444,8 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao;
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			END IF;
 		END IF;
@@ -422,7 +455,7 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -435,13 +468,14 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
+					AND u.vl_hora_trabalho <= @decimalVPreco
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -454,14 +488,34 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >= @intAvaliacao;
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario;
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -475,24 +529,7 @@ BEGIN
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
 					AND u.vl_hora_trabalho = @decimalVPreco
-					AND tp.nm_genero = vGenero;
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco;
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			END IF;
 		ELSE
@@ -500,490 +537,7 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero;
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.cd_avaliacao >= @intAvaliacao;
-				END IF;
-			ELSE
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND tp.nm_genero = vGenero;
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim; 
-				END IF;
-			END IF;
-		END IF;
-	END IF;
-END$$
-
-/* Procedure filtrarCuidadores será usada caso o cliente queira buscar o cuidador pelas opções do filtro e o serviço termine no próximo dia */
-
-DROP PROCEDURE IF EXISTS filtrarCuidadoresVirarDia$$
-CREATE PROCEDURE filtrarCuidadoresVirarDia(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao INT, vPreco DECIMAL(10, 2), vAvaliacao Varchar(100), vGenero VARCHAR(100))
-BEGIN 
-    SET @decimalVPreco := cast(vPreco as decimal(10,2));
-    SET @intAvaliacao := cast(vAvaliacao as unsigned);
-	IF (vE = TRUE) THEN
-		IF (vP = TRUE) THEN
-			IF (vA = TRUE) THEN
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >=  @intAvaliacao
-					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >=  @intAvaliacao
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				END IF;
-			ELSE
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-
-					WHERE d.dt_disponibilidade = vDataServico 
-
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				END IF;
-			END IF;
-		ELSE
-			IF (vA = TRUE) THEN
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.cd_avaliacao >=  @intAvaliacao
-					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero) 
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND u.cd_avaliacao >=  @intAvaliacao
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				END IF;
-			ELSE
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND eu.cd_tipo_especializacao = vEspecializacao
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				END IF;
-			END IF;
-		END IF;
-	ELSE
-		IF (vP = TRUE) THEN
-			IF (vA = TRUE) THEN
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero) 
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >= @intAvaliacao
-					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND u.cd_avaliacao >= @intAvaliacao
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				END IF;
-			ELSE
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				ELSE
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
-					FROM usuario u 
-					JOIN disponibilidade d 
-					ON (u.nm_email_usuario = d.nm_email_usuario )
-					JOIN especializacao_usuario eu
-					ON (u.nm_email_usuario = eu.nm_email_usuario)
-					JOIN tipo_especializacao te
-					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-                    JOIN tipo_genero tp 
-                    ON (u.cd_genero = tp.cd_genero)
-					WHERE d.dt_disponibilidade = vDataServico 
-					AND d.hr_inicio_disponibilidade <= vHoraInicio
-					AND d.hr_fim_disponibilidade >= vHoraFim 
-					AND u.vl_hora_trabalho = @decimalVPreco
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
-				END IF;
-			END IF;
-		ELSE
-			IF (vA = TRUE) THEN
-				IF (vG = TRUE) THEN
-					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -998,23 +552,11 @@ BEGIN
 					AND d.hr_fim_disponibilidade >= vHoraFim 
 					AND u.cd_avaliacao >= @intAvaliacao
 					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1028,25 +570,13 @@ BEGIN
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
 					AND u.cd_avaliacao >= @intAvaliacao
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
+					GROUP BY u.nm_email_usuario;
 				END IF;
 			ELSE
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1060,23 +590,11 @@ BEGIN
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim 
 					AND tp.nm_genero = vGenero
-					AND EXISTS
-						(
-							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
-								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
-							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
-							JOIN especializacao_usuario eu
-							ON (u.nm_email_usuario = eu.nm_email_usuario) 
-							JOIN tipo_especializacao te
-							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
-							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
-						);
+					GROUP BY u.nm_email_usuario;
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1089,11 +607,49 @@ BEGIN
 					WHERE d.dt_disponibilidade = vDataServico 
 					AND d.hr_inicio_disponibilidade <= vHoraInicio
 					AND d.hr_fim_disponibilidade >= vHoraFim
+					GROUP BY u.nm_email_usuario; 
+				END IF;
+			END IF;
+		END IF;
+	END IF;
+END$$
+
+/* Procedure filtrarCuidadores será usada caso o cliente queira buscar o cuidador pelas opções do filtro e o serviço termine no próximo dia */
+
+DROP PROCEDURE IF EXISTS filtrarCuidadoresVirarDia$$
+CREATE PROCEDURE filtrarCuidadoresVirarDia(vDataServico DATE, vHoraInicio TIME, vHoraFim TIME, vE BOOL, vP BOOL, vA BOOl, vG BOOl, vEspecializacao INT, vPreco DECIMAL(10, 2), vAvaliacao DECIMAL(10, 2), vGenero VARCHAR(100))
+BEGIN 
+    SET @decimalVPreco := cast(vPreco as decimal(10,2));
+    SET @intAvaliacao := cast(vAvaliacao as unsigned);
+	IF (vE = TRUE) THEN
+		IF (vP = TRUE) THEN
+			IF (vA = TRUE) THEN
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >=  @intAvaliacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
 					AND EXISTS
 						(
 							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 								   u.vl_hora_trabalho, u.cd_avaliacao, 
-		                           GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações FROM usuario u 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
 							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
 							JOIN especializacao_usuario eu
 							ON (u.nm_email_usuario = eu.nm_email_usuario) 
@@ -1101,6 +657,523 @@ BEGIN
 							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
 							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
 							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >=  @intAvaliacao
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			ELSE
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+
+					WHERE d.dt_disponibilidade = vDataServico 
+
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			END IF;
+		ELSE
+			IF (vA = TRUE) THEN
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.cd_avaliacao >=  @intAvaliacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero) 
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND u.cd_avaliacao >=  @intAvaliacao
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			ELSE
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND eu.cd_tipo_especializacao LIKE vEspecializacao
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			END IF;
+		END IF;
+	ELSE
+		IF (vP = TRUE) THEN
+			IF (vA = TRUE) THEN
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero) 
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >= @intAvaliacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			ELSE
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.vl_hora_trabalho <= @decimalVPreco
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.vl_hora_trabalho = @decimalVPreco
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			END IF;
+		ELSE
+			IF (vA = TRUE) THEN
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.cd_avaliacao >= @intAvaliacao
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND u.cd_avaliacao >= @intAvaliacao
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				END IF;
+			ELSE
+				IF (vG = TRUE) THEN
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim 
+					AND tp.nm_genero = vGenero
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
+						);
+				ELSE
+					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+							u.vl_hora_trabalho, u.cd_avaliacao, 
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+					FROM usuario u 
+					JOIN disponibilidade d 
+					ON (u.nm_email_usuario = d.nm_email_usuario )
+					JOIN especializacao_usuario eu
+					ON (u.nm_email_usuario = eu.nm_email_usuario)
+					JOIN tipo_especializacao te
+					ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+                    JOIN tipo_genero tp 
+                    ON (u.cd_genero = tp.cd_genero)
+					WHERE d.dt_disponibilidade = vDataServico 
+					AND d.hr_inicio_disponibilidade <= vHoraInicio
+					AND d.hr_fim_disponibilidade >= vHoraFim
+					GROUP BY u.nm_email_usuario
+					AND EXISTS
+						(
+							SELECT u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
+								   u.vl_hora_trabalho, u.cd_avaliacao, 
+		                           buscarEspecializacao(u.nm_email_usuario) AS Especializações FROM usuario u 
+							JOIN disponibilidade d ON (u.nm_email_usuario = d.nm_email_usuario ) 
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario) 
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							WHERE dt_disponibilidade = DATE_ADD(vDataServico, INTERVAL 1 DAY) AND
+							hr_inicio_disponibilidade >= '00:00:00' AND hr_fim_disponibilidade >= '01:00:00'
+							GROUP BY u.nm_email_usuario
 						); 
 				END IF;
 			END IF;
