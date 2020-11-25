@@ -69,6 +69,7 @@ call adicionarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabened
 call verificarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
 call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
+call editarDadosCuidador();
 
 /* PROCEDURE DO ADMINISTRADOR */
 
