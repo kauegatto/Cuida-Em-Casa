@@ -55,6 +55,16 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\administrador\estiloAdvertenciaCuidador.css" />
+    <Content Include="css\administrador\estiloContratar.css" />
+    <Content Include="css\administrador\estiloCuidador.css" />
+    <Content Include="css\administrador\estiloCuidadores.css" />
+    <Content Include="css\administrador\estiloCuidadorPendente.css" />
+    <Content Include="css\administrador\estiloGeral.css" />
+    <Content Include="css\administrador\estiloLogin.css" />
+    <Content Include="css\administrador\estiloOcorrenciaCuidador.css" />
+    <Content Include="css\administrador\estiloOcorrencias.css" />
+    <Content Include="css\administrador\estiloServicos.css" />
     <Content Include="css\cliente\agendamento\estiloAgendamento.css" />
     <Content Include="css\cliente\agendamento\estiloBuscandoCuidadores.css" />
     <Content Include="css\cliente\agendamento\estiloConfirmacaoCuidador.css" />
@@ -108,6 +118,7 @@
     <Content Include="img\icones\configuracao\iconePaciente.png" />
     <Content Include="img\icones\cuidador\iconeCifrao.png" />
     <Content Include="img\icones\cuidador\iconeCrifaoPequeno.png" />
+    <Content Include="img\icones\cuidador\IconeInformacao.png" />
     <Content Include="img\icones\cuidador\iconeMaleta.png" />
     <Content Include="img\icones\editarPaciente\agenda.png" />
     <Content Include="img\icones\editarPaciente\atendimento.png" />
@@ -157,6 +168,8 @@
     <Content Include="img\logoIndex.svg" />
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
+    <Content Include="js\Administrador\ContratarCuidador\scriptContratarCuidador.js" />
+    <Content Include="js\Administrador\ContratarCuidador\scriptInfoCuidadorContrato.js" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
     <Content Include="js\AgendaCliente\scriptAvaliacaoCuidador.js" />
     <Content Include="js\AgendaCliente\scriptCancelarServicoAgendado.js" />
@@ -241,6 +254,7 @@
     <Content Include="lib\libConfirmarPagamento.aspx" />
     <Content Include="lib\libCancelarServicoAgora.aspx" />
     <Content Include="lib\libCheckinCheckout.aspx" />
+    <Content Include="lib\libContratarCuidador.aspx" />
     <Content Include="lib\libCriarContaCliente.aspx" />
     <Content Include="lib\libCriarContaCuidador.aspx" />
     <Content Include="lib\libDadosAgendamento.aspx" />
@@ -256,6 +270,7 @@
     <Content Include="lib\libExcluirPaciente.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
     <Content Include="lib\libFinalizarServicoAgora.aspx" />
+    <Content Include="lib\libInfoCuidadorContrato.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
     <Content Include="lib\libListarNecessidades.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
@@ -266,6 +281,8 @@
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
+    <Content Include="pages\administrador\contratarCuidador.html" />
+    <Content Include="pages\administrador\infoCuidadorContrato.html" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
     <Content Include="pages\cliente\configuracaoCliente.html" />
@@ -296,6 +313,7 @@
     <Compile Include="classes\Agendamento\clsCuidador.cs" />
     <Compile Include="classes\Agendamento\clsPaciente.cs" />
     <Compile Include="classes\Agendamento\clsServico.cs" />
+    <Compile Include="classes\clsAdministrador.cs" />
     <Compile Include="classes\clsUsuario.cs" />
     <Compile Include="classes\clsBanco_32623.cs" />
     <Compile Include="classes\clsConexao.cs" />
@@ -440,6 +458,13 @@
     <Compile Include="lib\libCheckinCheckout.aspx.designer.cs">
       <DependentUpon>libCheckinCheckout.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libContratarCuidador.aspx.cs">
+      <DependentUpon>libContratarCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libContratarCuidador.aspx.designer.cs">
+      <DependentUpon>libContratarCuidador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libCriarContaCliente.aspx.cs">
       <DependentUpon>libCriarContaCliente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -545,6 +570,13 @@
     <Compile Include="lib\libFinalizarServicoAgora.aspx.designer.cs">
       <DependentUpon>libFinalizarServicoAgora.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libInfoCuidadorContrato.aspx.cs">
+      <DependentUpon>libInfoCuidadorContrato.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libInfoCuidadorContrato.aspx.designer.cs">
+      <DependentUpon>libInfoCuidadorContrato.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libInfoServicoAtual.aspx.cs">
       <DependentUpon>libInfoServicoAtual.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -617,6 +649,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
