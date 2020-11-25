@@ -47,14 +47,11 @@ export default function scriptCarregarCalendario() {
     }
   };
 
-
-
-  var start_date_dialog = osmanli_calendar
-          $('.prev-month').click(function () {start_date_dialog.pre_month()});
-          $('.next-month').click(function () {start_date_dialog.next_month()});
-
+  var start_date_dialog;
+  start_date_dialog = osmanli_calendar
+   
           start_date_dialog.init();
-          
+         
           start_date_dialog.ON_SELECT_FUNC = function(){
            $('.output').html(osmanli_calendar.SELECT_DATE);
   }
@@ -63,12 +60,17 @@ export default function scriptCarregarCalendario() {
       mes = $(".mesServico").text();
       pegarMes(mes);
       scriptBuscarDisponibilidadeMes(mes);
+      $(".btnAdicionar").css("display","block");
+      $(".horarioDia").css("display","block");
   }
 
   carregarDisponibilidades();
 
   $(document).on("click", ".btnMes", function(){
+    if (true) {
       carregarDisponibilidades();
+      $(".btnAdicionar").css("display","block");
+    }
   });   
 
 

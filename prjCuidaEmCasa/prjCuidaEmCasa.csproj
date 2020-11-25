@@ -244,6 +244,7 @@
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libAtualizarSenha.aspx" />
     <Content Include="lib\libAvaliacaoCuidador.aspx" />
+    <Content Include="lib\libBuscarAgendadosDoCuidadorMes.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarCuidadorAgora.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
@@ -387,6 +388,13 @@
     </Compile>
     <Compile Include="lib\libAvaliacaoCuidador.aspx.designer.cs">
       <DependentUpon>libAvaliacaoCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarAgendadosDoCuidadorMes.aspx.cs">
+      <DependentUpon>libBuscarAgendadosDoCuidadorMes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarAgendadosDoCuidadorMes.aspx.designer.cs">
+      <DependentUpon>libBuscarAgendadosDoCuidadorMes.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarCuidador.aspx.cs">
       <DependentUpon>libBuscarCuidador.aspx</DependentUpon>

@@ -1,28 +1,31 @@
-﻿import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js";
-export default function scriptBuscarDisponibilidadeMes (intMes) {
+// adicionar no vs
+import colocarAgendadosDia from "./scriptColocarServicoDoDia.js";
+import scriptServicoAgendado from "./scriptServicoAgendado.js";
+
+export default function scriptBuscarServicos (intMes) {
 
     var usuarioLogado = localStorage.getItem("usuarioLogado");
     
-    var disponibilidades;
+    var servicos;
     
-    window.disponibilidades = "";
+    window.servicos = "";
 
-    var dia;var horaInicio; var horaFim; var value;
+    var dia;var cdServico; var value;
     
 
-    function buscarDisponibilidadeMensal(){
+    function buscarAgendadosMensalmente(){
 
-        $.post("../../lib/libBuscarDisponibilidadeDoCuidadorPorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
+        $.post("../../lib/libBuscarAgendadosDoCuidadorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
             
             if (retorno == "erro") {
                 console.log("deu erro");
                 alert("erro");
             }
             retorno = retorno.split("|");
-            window.disponibilidades = retorno;
+            window.servicos = retorno;
 
             //console.log(window.disponibilidades);
-            
+            //console.log("foi ate antes do for");
             for (var i = 0; i < retorno.length; i++) {
 
                 
@@ -32,10 +35,8 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
                 arrayAtual = arrayAtual.replace(']', "");
                 arrayAtual = arrayAtual.split(',');
                 dia = arrayAtual[0];
-                horaInicio = arrayAtual[1];
-                horaFim = arrayAtual[2];
-
-
+                cdServico = arrayAtual[1];
+               
                 var tr = $(".date_table > tbody > tr").not(':eq(0)');
 
                 //console.log(tr)
@@ -46,6 +47,7 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
                     td.each(function(){
                         
                         window.value = $(this).html();
+                        //console.log("vendo cada tabelinha fofa");
                         if(window.value == dia && window.value!=""){
                             $(this).css("background-color","#56cc9d94");//56cc9d94 //2980b975
                             $(this).css("color","black");
@@ -55,15 +57,13 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
                 })      
                
             }
-
-            colocarDisponibilidadeDoDia()
         });
     }
-    
-    buscarDisponibilidadeMensal();
 
+    buscarAgendadosMensalmente();
+    
+    colocarAgendadosDia();
     
     
-
 };
 
