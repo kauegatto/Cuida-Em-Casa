@@ -50,7 +50,16 @@ export default function scriptBuscarDadosCuidador(){
 
 			$('#txtDescricaoEspecializacao').val(retorno[4]);
 			$('#txtDescricaoCuidador').val(retorno[5]);
-			$('#invi').html(retorno[6]);
+
+			$('.invi').html(retorno[6]);
+
+			 $(".areaInfoDadosPaciente").each(function (i, obj) {
+
+                   var url = "data:image/svg+xml+jpeg+jpg;base64," + $(this).children(".invi").html();
+                   $(this).children(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                  
+             });
+
 			$('#txtAlterarCPF').val(retorno[7]);
 			$('#txtAlterarTelefone').val(retorno[8]);
 			$('#txtAlterarLinkCurriculo').val(retorno[9]);
