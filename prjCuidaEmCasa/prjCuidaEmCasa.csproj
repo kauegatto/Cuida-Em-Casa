@@ -283,6 +283,7 @@
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
     <Content Include="pages\administrador\contratarCuidador.html" />
+    <Content Include="pages\administrador\index.html" />
     <Content Include="pages\administrador\infoCuidadorContrato.html" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
