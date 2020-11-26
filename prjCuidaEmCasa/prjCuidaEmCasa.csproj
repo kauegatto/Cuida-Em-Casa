@@ -243,6 +243,7 @@
     <Content Include="lib\libAdicionarPaciente.aspx" />
     <Content Include="lib\libAgendadosAgendaCliente.aspx" />
     <Content Include="lib\libAgendadosHistoricoCliente.aspx" />
+    <Content Include="lib\libAtualizarDadosCliente.aspx" />
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libAtualizarSenha.aspx" />
     <Content Include="lib\libAvaliacaoCuidador.aspx" />
@@ -371,6 +372,13 @@
     </Compile>
     <Compile Include="lib\libAgendadosHistoricoCliente.aspx.designer.cs">
       <DependentUpon>libAgendadosHistoricoCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAtualizarDadosCliente.aspx.cs">
+      <DependentUpon>libAtualizarDadosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAtualizarDadosCliente.aspx.designer.cs">
+      <DependentUpon>libAtualizarDadosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libAtualizarDadosPaciente.aspx.cs">
       <DependentUpon>libAtualizarDadosPaciente.aspx</DependentUpon>

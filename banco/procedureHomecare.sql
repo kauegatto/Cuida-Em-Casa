@@ -2526,6 +2526,20 @@ BEGIN
 
 END$$
 
+DROP PROCEDURE IF EXISTS atualizarDadosCliente$$
+
+CREATE PROCEDURE atualizarDadosCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vCpfUsuario VARCHAR(15), vTelefoneUsuario VARCHAR(15))
+BEGIN
+
+	update 
+		usuario 
+	set 
+		nm_usuario = vNomeUsuario, cd_CPF = vCpfUsuario, cd_telefone = vTelefoneUsuario
+	where
+		nm_email_usuario = vEmailUsuario;
+
+END$$
+
 
 
 DELIMITER ;

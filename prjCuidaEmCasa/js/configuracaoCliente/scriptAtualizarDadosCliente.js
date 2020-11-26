@@ -1,11 +1,12 @@
-﻿
+﻿import scriptBuscarDadosCliente from './scriptBuscarDadosCliente.js';
+
 export default function scriptAtualizarDadosCliente(){
 
 	var nmCliente = $('#txtAlterarNomeCliente').val();
 	var telCliente = $('#txtAlterarTelefoneCliente').val();
 	var cpf = $('#txtAlterarCpfCliente').val();
 
-	$.post("../../lib/libAtualizarDadosCliente", { nomeCliente: nmCliente, telefoneCliente: telCliente, cpfCliente: cpf}, function(retorno){
+	$.post("../../lib/libAtualizarDadosCliente.aspx", { nomeCliente: nmCliente, telefoneCliente: telCliente, cpfCliente: cpf, emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
 
 		if (retorno == "erro") 
 		{
@@ -14,6 +15,9 @@ export default function scriptAtualizarDadosCliente(){
 		else
 		{
 			console.log('deu certo alterou dados');
+			alert('Dados alterado com sucesso!');
+			scriptBuscarDadosCliente();
+			$('.iconeVoltar').click();
 		}
 
 

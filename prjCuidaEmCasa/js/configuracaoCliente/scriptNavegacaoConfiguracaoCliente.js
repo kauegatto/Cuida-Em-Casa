@@ -1,7 +1,11 @@
 ﻿import scriptAtualizarSenha from './scriptAtualizarSenha.js';
 import scriptAtualizarDadosCliente from './scriptAtualizarDadosCliente.js';
+import scriptBuscarDadosCliente from './scriptBuscarDadosCliente.js';
 
 $(document).ready(function () {
+
+	$('#txtAlterarCpfCliente').mask('000.000.000-00');
+	$('#txtAlterarTelfoneCliente').mask('(00) 00000-0000');
 
     $(".visivel").each(function (i, obj) {
            $(this).removeClass("visivel");
@@ -73,10 +77,11 @@ $(document).ready(function () {
 
 		$('#wrapper-AlterarDados').addClass('visivel');
 
+		scriptBuscarDadosCliente();
+
 	});
 
 	$(document).on("click", "#btnSalvarDadosCliente", function(){
-
 
 		scriptAtualizarDadosCliente();
 

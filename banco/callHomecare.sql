@@ -46,7 +46,7 @@ call deletarNecessidadesPaciente(2);
 call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
 call buscarDadosCliente('mauriciorodolfo@gamil.com');
-
+call atualizarDadosCliente('mauriciorodolfo@gamil.com', 'Douglas Reis', '526.013.418-40', '(13) 33631503');
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
