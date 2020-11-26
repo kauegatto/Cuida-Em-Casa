@@ -30,7 +30,6 @@ call proxCodigo();
 call proxCodigoOcorrencia();
 call buscarPacienteServicoEmAndamento('hadassabetinaviana-80@scuderiagwr.com.br');
 call infoServicoAtual(50);
-
 call buscarPacienteServicoEmAndamento(6);
 call listarAgendaClienteNaoFoi('flaviapriscilamarianasilveira@gmail.com');
 call listarAgendaClienteNaoFoiSelecionado(10);
@@ -67,18 +66,16 @@ call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
 
 /* Calendario / Agenda  */
+
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call buscarServicoAgendadoCuidadorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call listarEspecializacao();
 call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
-
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call editarDadosCuidador();
 
-
 /* PROCEDURE DO ADMINISTRADOR */
-select * from usuario where cd_tipo_usuario = 3;
-call listarSituacaoCuidadores(3);
+
 call verificarCuidador('renanstopa@gmail.com');
 call contratarCuidador('reinaldosouza@gmail.com');
 call recusarCuidador('renanstopa@gmail.com');
@@ -88,10 +85,5 @@ call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
-<<<<<<< HEAD
 call listarCuidadoresContrato();
 call infoCuidadorContrato('renanstopa@gmail.com');
-=======
-
-
->>>>>>> 731cfa6998953e526961cf5f17ee394bd27411c5
