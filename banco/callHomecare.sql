@@ -45,7 +45,7 @@ call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
 call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
-
+select * from servico;
 /* PROCEDURE DO CUIDADOR */
 
 call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
@@ -79,11 +79,14 @@ call editarDadosCuidador();
 call verificarCuidador('renanstopa@gmail.com');
 call contratarCuidador('reinaldosouza@gmail.com');
 call recusarCuidador('renanstopa@gmail.com');
-call listarOcorrencia();
 call listarNumerosOcorrencia();
 call situacaoAdvertencia('reinaldosouza@gmail.com');
 call proxCodigoAdvertencia();
-call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos sserviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
+call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos serviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
 call listarCuidadoresContrato();
 call infoCuidadorContrato('renanstopa@gmail.com');
+call listarCuidadores();
+call listarOcorrencia('brunastellaflaviadepaula@gmail.com');
+call listarAdvertencia('brunastellaflaviadepaula@gmail.com');
+call infoServicoCuidador('brunastellaflaviadepaula@gmail.com');

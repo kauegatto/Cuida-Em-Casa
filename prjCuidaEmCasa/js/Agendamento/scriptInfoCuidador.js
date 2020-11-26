@@ -28,7 +28,7 @@
             $(this).css("height", "altura");
             $(this).children(".btnExpandir").html("-");
         }
-    }); //VA I SE F8UDE AJAVASCIRPT!!!
+    }); //VAI SE F8UDE AJAVASCIRPT!!!
     $.post("../../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
         if (!retorno) {
             alert("Ocorreu um erro na busca dos dados do cuidador!");

@@ -1976,23 +1976,6 @@ END$$
 
 /*PROCEDURES REFENRENTE AO ADMINISTRADOR*/
 
-/* Procedure criada para o adm listar as ocorrências */
-
-DROP PROCEDURE IF EXISTS listarOcorrencia$$
-
-CREATE PROCEDURE listarOcorrencia()
-BEGIN
-	SELECT
-		o.cd_ocorrencia, o.dt_ocorrencia, o.ds_ocorrencia,
-		o.nm_email_usuario, o.cd_servico, tpo.nm_tipo_ocorrencia
-	FROM
-		ocorrencia o
-	JOIN
-		tipo_ocorrencia tpo
-	ON
-		(o.cd_tipo_ocorrencia = tpo.cd_tipo_ocorrencia);
-END$$
-
 /* Proedure criada para listar os cuidadores a serem contratados */
 
 DROP PROCEDURE IF EXISTS listarSituacaoCuidadores$$
@@ -2075,25 +2058,6 @@ BEGIN
 		cd_situacao_usuario = 4
 	WHERE
 		nm_email_usuario = vEmailCuidador;
-END$$
-
-/* Procedure criada para listar todas as ocorrências cadastradas */
-
-DROP PROCEDURE IF EXISTS listarOcorrencia$$
-
-CREATE PROCEDURE listarOcorrencia()
-BEGIN
-	SELECT 
-		o.cd_ocorrencia, o.ds_ocorrencia, o.dt_ocorrencia,
-		o.nm_email_usuario, o.cd_servico, tpo.nm_tipo_ocorrencia
-	FROM
-		ocorrencia o 
-	JOIN 
-		tipo_ocorrencia tpo
-	ON
-		(o.cd_tipo_ocorrencia = tpo.cd_tipo_ocorrencia)
-	ORDER BY 
-		o.cd_ocorrencia;
 END$$
 
 /* Procedure criada para listar o número de ocorrências de cada cuidador */
@@ -2195,6 +2159,38 @@ BEGIN
 		u.nm_email_usuario;
 END$$
 
+/* Procedure criada para listar quantidade de ocorrências do cuidador */
+
+DROP PROCEDURE IF EXISTS listarOcorrencia$$
+
+CREATE PROCEDURE listarOcorrencia(vEmailCuidador VARCHAR(200)) 
+BEGIN
+	SELECT
+		COUNT(o.cd_ocorrencia)
+	FROM
+		ocorrencia o
+	JOIN 
+		servico s
+	ON
+		(o.cd_servico = s.cd_servico)
+	WHERE 
+		s.nm_email_usuario_cuidador = vEmailCuidador;
+END$$
+
+/* Procedure criada para listar quantidade de advertências do cuidador */
+
+DROP PROCEDURE IF EXISTS listarAdvertencia$$
+
+CREATE PROCEDURE listarAdvertencia(vEmailCuidador VARCHAR(200)) 
+BEGIN
+	SELECT
+		COUNT(cd_advertencia)
+	FROM
+		advertencia 
+	WHERE 
+		nm_email_usuario = vEmailCuidador;
+END$$
+
 /* Procedure criada para buscar informações completas do cuidador para contrato selecionado pelo adm */
 
 DROP PROCEDURE IF EXISTS infoCuidadorContrato$$
@@ -2225,6 +2221,65 @@ BEGIN
 	GROUP BY
 		u.nm_email_usuario;
 END$$
+
+/* Procedure criada para buscar informações básicas de todos os cuidadores */
+
+DROP PROCEDURE IF EXISTS listarCuidadores$$
+
+CREATE PROCEDURE listarCuidadores()
+BEGIN
+	SELECT 
+		u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+		buscarEspecializacao(u.nm_email_usuario) AS especializações,
+		nm_situacao_usuario, u.nm_email_usuario
+	FROM
+		usuario u
+	JOIN
+		especializacao_usuario eu
+	ON
+		(u.nm_email_usuario = eu.nm_email_usuario)
+	JOIN
+		tipo_especializacao te
+	ON
+		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+	JOIN
+		tipo_situacao_usuario tsu
+	ON
+		(u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+	WHERE
+		u.cd_tipo_usuario = 3
+	GROUP BY
+		u.nm_email_usuario;
+END$$
+
+/* Procedure criada para buscar informações básicas de todos os serviços de um cuidador */
+
+DROP PROCEDURE IF EXISTS infoServicoCuidador$$
+
+CREATE PROCEDURE infoServicoCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		s.nm_email_usuario, DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), 
+		DATE_FORMAT(s.dt_fim_servico, '%d/%m/%Y'), TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), 
+		TIME_FORMAT(s.hr_fim_servico, '%H:%i'), DATE_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i') AS duração,
+		u.vl_hora_trabalho, tsu.nm_status_servico
+	FROM
+		servico s
+	JOIN	
+		usuario u
+	ON
+		(s.nm_email_usuario_cuidador = u.nm_email_usuario)
+	JOIN
+		tipo_status_servico tsu
+	ON
+		(s.cd_status_servico = tsu.cd_status_servico)
+	WHERE
+		s.nm_email_usuario_cuidador = vEmailCuidador
+	ORDER BY
+		s.dt_inicio_servico DESC;
+END$$
+
+/* Procedure criada para buscar os dados do paciente */
 
 DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
 

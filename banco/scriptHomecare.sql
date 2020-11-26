@@ -390,3 +390,5 @@ CREATE TABLE ocorrencia
 );
 
 insert into ocorrencia values (1, 'O Cuidador roubou meu dinheiro', current_date(), 'jenniferevelyngomes@gmail.com',1,2);
+insert into ocorrencia values (2, 'O Cuidador roubou meu cachorro', current_date(), 'jenniferevelyngomes@gmail.com',21,2);
+insert into ocorrencia values (3, 'O Cuidador roubou meu armário', current_date(), 'jenniferevelyngomes@gmail.com',22,2);
