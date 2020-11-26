@@ -47,7 +47,7 @@ namespace prjCuidaEmCasa.lib
             dadosCuidador += classeCuidador.base64String[0] + "|";
             dadosCuidador += classeCuidador.cpfCuidador[0] + "|";
             dadosCuidador += classeCuidador.telefoneCuidador[0] + "|";
-            dadosCuidador += classeCuidador.linkCurriculo[0] + "|"; ;
+            dadosCuidador += classeCuidador.linkCurriculo[0] + "|";
             dadosCuidador = dadosCuidador.Substring(0, dadosCuidador.Length - 1);
             Response.Write(dadosCuidador);
         }

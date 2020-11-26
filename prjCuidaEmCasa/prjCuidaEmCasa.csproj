@@ -196,7 +196,9 @@
     <Content Include="js\Cadastro\Cliente\scriptNavegacaoCadastro.js" />
     <Content Include="js\Cadastro\Cuidador\scriptCriarContaCuidador.js" />
     <Content Include="js\Cadastro\Cuidador\scriptNavegacaoCadastroCuidador.js" />
+    <Content Include="js\configuracaoCliente\scriptAtualizarDadosCliente.js" />
     <Content Include="js\configuracaoCliente\scriptAtualizarSenha.js" />
+    <Content Include="js\configuracaoCliente\scriptBuscarDadosCliente.js" />
     <Content Include="js\configuracaoCliente\scriptNavegacaoConfiguracaoCliente.js" />
     <Content Include="js\Cuidador\Disponibilidade\scriptAdicionarRemoverDisponibilidade.js" />
     <Content Include="js\Cuidador\Disponibilidade\scriptCarregarDisponibilidade.js" />
@@ -245,12 +247,14 @@
     <Content Include="lib\libAdicionarPaciente.aspx" />
     <Content Include="lib\libAgendadosAgendaCliente.aspx" />
     <Content Include="lib\libAgendadosHistoricoCliente.aspx" />
+    <Content Include="lib\libAtualizarDadosCliente.aspx" />
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libAtualizarSenha.aspx" />
     <Content Include="lib\libAvaliacaoCuidador.aspx" />
     <Content Include="lib\libBuscarAgendadosDoCuidadorMes.aspx" />
     <Content Include="lib\libBuscarCuidador.aspx" />
     <Content Include="lib\libBuscarCuidadorAgora.aspx" />
+    <Content Include="lib\libBuscarDadosCliente.aspx" />
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarDisponibilidadeDoCuidadorPorMes.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
@@ -386,6 +390,13 @@
     <Compile Include="lib\libAgendadosHistoricoCliente.aspx.designer.cs">
       <DependentUpon>libAgendadosHistoricoCliente.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libAtualizarDadosCliente.aspx.cs">
+      <DependentUpon>libAtualizarDadosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAtualizarDadosCliente.aspx.designer.cs">
+      <DependentUpon>libAtualizarDadosCliente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libAtualizarDadosPaciente.aspx.cs">
       <DependentUpon>libAtualizarDadosPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -427,6 +438,13 @@
     </Compile>
     <Compile Include="lib\libBuscarCuidadorAgora.aspx.designer.cs">
       <DependentUpon>libBuscarCuidadorAgora.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libBuscarDadosCliente.aspx.cs">
+      <DependentUpon>libBuscarDadosCliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libBuscarDadosCliente.aspx.designer.cs">
+      <DependentUpon>libBuscarDadosCliente.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarDadosPaciente.aspx.cs">
       <DependentUpon>libBuscarDadosPaciente.aspx</DependentUpon>
