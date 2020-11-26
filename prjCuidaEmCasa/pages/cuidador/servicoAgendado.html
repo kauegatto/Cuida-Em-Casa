@@ -28,7 +28,8 @@
     <script src="../../js/Cuidador/Disponibilidade/scriptAdicionarRemoverDisponibilidade.js" type="module"></script>
 
     <style>
-    	.btnMes {font-family: Rubik;font-style: normal;font-weight: bold;font-size: 18px;}	
+    	.btnMes, .btn-success {font-family: Rubik;font-style: normal;font-weight: bold;font-size: 18px;}
+    	.output {background-color: #2980B9;}	
     </style>
 </head>
 <body>
@@ -76,12 +77,14 @@
                         </div>
                     </div>
 			</div>
-            <div id="wrapper-informacoesDisponibilidade" style="margin-top: 145px;display: none;">
-            	<div class="horarioDia"></div>
+            <div id="wrapper-informacoesDisponibilidade" style="margin-top: 120px;display: none;">
             	<div class="alert alert-dark output mt-3">Data Selecionada: </div>
+            	<div class="horarioDia"></div>
+            	
                 <div class="btn btn-success btnAdicionar" style="margin: 0 auto; display: block">Adicionar novo horário para o dia</div>
             </div>
-            <div id="wrapper-informacoesServico">
+
+            <div id="wrapper-informacoesServico" style="margin-top: 150px;">
             	<div id="listaServicosAgendados" style="margin-bottom: 100px;"></div>
             </div>                      
 	        <div id="wrapper-escolherDataServico" class="wrapper">
@@ -102,8 +105,23 @@
 	        </div>
 
 			<div class="wrapper" id="wrapper-InfoServicoAgendado" style="margin-top: 105px;">
+
 				<h3 class="tituloConteudo">Informações do Paciente</h3>
-				
+				<div class="areaInfoPaciente">
+					<div class="areaImagemPacienteAgendamento"></div>
+					<div class="areaDadosInfoPaciente">
+						<h3 class="nomeInfoPaciente"></h3>
+						<div class="necessidadeInfoPaciente">
+							<span style="font-weight: bold;">Necessidade:</span>
+							<span id="medicacao"></span>
+						</div>
+						<div class="areaDescricaoInfo">
+							<h3 style="font-family: Roboto;font-style: normal;font-weight: bold;font-size: 16px;line-height: 19px;margin-left: 10px;">Descrição:</h3>
+							<span id="descricao"></span>
+						</div>
+					</div>
+					<div class="invi"></div>
+				</div>
 				<h3 class="tituloConteudo" style="margin-top: 10px;">Localização do Paciente</h3>
 				<div class="areaLocalizacaoPaciente">
 					<div class="areaInfoLocal">

@@ -26,13 +26,28 @@ namespace prjCuidaEmCasa.lib
             }
 
             #endregion 
+            #region Validação de Request
+            if (Request["diaSelecionado"] == null)
+            {
+                Response.Write("erro");
+                return;
+            }
 
+            if (Request["diaSelecionado"].ToString() == "")
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            #endregion 
+            
             #region Lista dos Serviços Agendados
+
             string usuarioLogado = Request["e"].ToString();
-     
+            string dataServico = Request["diaSelecionado"];
             clsServicoAgendado classeServicoAgendado = new clsServicoAgendado();
 
-            if (!classeServicoAgendado.listarServicosAgendados(usuarioLogado))
+            if (!classeServicoAgendado.listarServicosAgendados(usuarioLogado,dataServico))
             {
                 Response.Write("erro");
                 return;

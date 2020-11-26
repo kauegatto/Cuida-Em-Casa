@@ -2468,5 +2468,48 @@ where
 
 END$$
 
+/* Procedure será usada pra listar os serviços pendentes em ordem crescente com data específica */
+
+DROP PROCEDURE IF EXISTS listarServicosDia$$
+
+CREATE PROCEDURE listarServicosDia(vEmailCuidador VARCHAR(200), vDataServico DATE)
+BEGIN
+    SELECT 
+        p.nm_paciente, s.nm_rua_servico, s.cd_num_servico, group_concat(tnp.nm_tipo_necessidade_paciente),
+        DATE_FORMAT(s.dt_inicio_servico, '%d/%m/%Y'), s.hr_inicio_servico, s.hr_fim_servico, tss.nm_status_servico, p.img_paciente, DATEDIFF(s.dt_inicio_servico, current_date()),
+        u.vl_hora_trabalho, TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), s.cd_servico
+    FROM 
+        servico s 
+    JOIN 
+        paciente p 
+    ON 
+        (s.cd_paciente = p.cd_paciente) 
+    JOIN 
+        necessidade_paciente np 
+    ON 
+        (p.cd_paciente = np.cd_paciente) 
+    JOIN 
+        tipo_necessidade_paciente tnp 
+    ON 
+        (np.cd_tipo_necessidade_paciente = tnp.cd_tipo_necessidade_paciente) 
+    JOIN
+        tipo_status_servico tss
+    ON
+        (tss.cd_status_servico = s.cd_status_servico)
+    JOIN
+        usuario u 
+    ON
+        (u.nm_email_usuario = s.nm_email_usuario_cuidador)
+    WHERE 
+        s.nm_email_usuario_cuidador = vEmailCuidador 
+    AND 
+        s.cd_status_servico = 2
+    AND
+        s.dt_inicio_servico = vDataServico
+    GROUP BY
+        s.cd_servico
+    ORDER BY 
+        s.dt_inicio_servico, s.hr_inicio_servico; 
+END$$
 
 DELIMITER ;

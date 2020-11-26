@@ -92,49 +92,47 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
         if($("#areaDisponibilidade").hasClass("areaBranca")){
             if($(this).html() != ""){
                 
-                $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
-                
-                colocarDisponibilidadeDoDia();
+                /* Guardar na storage a data selecionada e mostrar no titulo*/
+                    var dia = $(this).html();
+                    if(dia.length == 1){
+                        //console.log("entrou");
+                        dia = "0"+dia;
+                    }
+                    //console.log("dia : " +dia);
+                    mes = $(".mesServico").text();
+                    pegarMes(mes);
+                    if(mes.length == 1){
+                        //console.log("entrou");
+                        mes = "0"+mes;
+                    }
+                    $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
+                    //console.log("mes : " +mes);
 
-                $("#wrapper-calendarioDisponibilidade").css("display","none");
-                $(".opcoes").css("display","none");
-                $("#listaServicosAgendados").css("display","block");
+                    var ano = $('.mesServico').html();
+                    
+                    ano = ano.split(" ");
+                    
+                    ano = ano[1];
+                    
+                    //console.log("ano : " +ano);
 
-                /* Guardar na procedure a data selecionada*/
-                var dia = $(this).html();
-                if(dia.length == 1){
-                    //console.log("entrou");
-                    dia = "0"+dia;
-                }
-                //console.log("dia : " +dia);
-
-                if(mes.length == 1){
-                    //console.log("entrou");
-                    mes = "0"+mes;
-                }
-
-                //console.log("mes : " +mes);
-
-                var ano = $('.mesServico').html();
-                
-                ano = ano.split(" ");
-                
-                ano = ano[1];
-                
-                //console.log("ano : " +ano);
-
-                localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);
-
+                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);
                 /* Esconder divs antigas */
+                    $("#wrapper-informacoesServico").css("display","none");
+                    $("#wrapper-informacoesServico").removeClass("visivel");
+
                     $("#wrapper-calendarioDisponibilidade").css("display","none");
                     $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
                     $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
                     $(".opcoes").css("display","none");
-                    $("#listaServicosAgendados").css("display","none");       
-
+                    $("#listaServicosAgendados").css("display","none");
+                    $("#wrapper-calendarioDisponibilidade").css("display","none");
+                    $(".opcoes").css("display","none");
                 /* Mostrar divs novas */
                     $("#headerNav").css("display","block");   
                     $("#wrapper-informacoesDisponibilidade").css("display","block");
+                    $("#listaServicosAgendados").css("display","block");
+                colocarDisponibilidadeDoDia();
             }
         }
 

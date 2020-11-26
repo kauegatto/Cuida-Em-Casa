@@ -1,4 +1,5 @@
-﻿import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js";
+﻿
+import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js";
 export default function scriptBuscarDisponibilidadeMes (intMes) {
 
     var usuarioLogado = localStorage.getItem("usuarioLogado");

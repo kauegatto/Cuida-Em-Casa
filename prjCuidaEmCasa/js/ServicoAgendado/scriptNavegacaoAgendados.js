@@ -88,6 +88,7 @@ $(document).ready(function () {
         $('#areaAgendados').addClass('areaCinza')
         $('#listaServicosAgendados').css('display', 'none');
         $('#wrapper-calendarioDisponibilidade').css('display', 'block');
+
         scriptCarregarCalendario();
     });
     
@@ -106,20 +107,18 @@ $(document).ready(function () {
         /* Esconder divs antigas */
         
                     $("#listaServicosAgendados").css("display","none");
-                    $("wrapper-informacoesDisponibilidade").css("display","none");
+                    $("#wrapper-informacoesDisponibilidade").css("display","none");
                     $("#headerNav").css("display","none");$("#headerNav").removeClass("visivel");
                     $("#wrapper-InfoServicoAgendado").css("display","none");
+
+        
         if($("#areaAgendados").hasClass("areaBranca")){
             scriptCarregarCalendarioAgenda();
         }
         else{
             scriptCarregarCalendario();
         }
-        
-
-
     });
-
     var classes;
 
     $(document).on("click", ".areaAgendaConteudo", function(){
@@ -133,6 +132,8 @@ $(document).ready(function () {
         scriptServicoAgendadoSelecionado(classes[1]);
       
         $("#wrapper-calendarioDisponibilidade").css("display","none");
+        $("#wrapper-informacoesServico").css("display","none");
+        $("#wrapper-informacoesServico").removeClass("visivel");
         $(".opcoes").css("display","none");    
 
 
@@ -163,23 +164,17 @@ $(document).ready(function () {
         if($("#areaAgendados").hasClass("areaBranca")){
             console.log("tem");
             if($(this).html() != ""){
-                
-                $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
-                
                 /* Esconder divs antigas */
                     $("#wrapper-calendarioDisponibilidade").css("display","none");
                     $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
                     $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
                     $(".opcoes").css("display","none");
-
                 /* Mostrar divs novas */
                     $("#headerNav").css("display","block");   
-                    $("#listaServicosAgendados").css("display","block");    
-                       
-                
-                colocarAgendadosDia();
-
-                /* Guardar na procedure a data selecionada*/
+                    $("#listaServicosAgendados").css("display","block");
+                    $("#wrapper-informacoesServico").css("display","visivel");
+                    $("#wrapper-informacoesServico").addClass("visivel");    
+                /* Guardar na procedure a data selecionada e coloca-la no título*/
                 
                     var dia = $(this).html();
                     
@@ -187,12 +182,15 @@ $(document).ready(function () {
                         //console.log("entrou");
                         dia = "0"+dia;
                     }
+                    mes = $(".mesServico").text();
+                    pegarMes(mes);
                     //console.log("dia : " +dia)
                     if(mes.length == 1){
                         //console.log("entrou");
                         mes = "0"+mes;
                     }
 
+                    $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
                     //console.log("mes : " +mes);
 
                     var ano = $('.mesServico').html();
@@ -200,8 +198,9 @@ $(document).ready(function () {
                     ano = ano.split(" ");
                     
                     ano = ano[1];
-                    
-                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia+1);
+
+                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);             
+                colocarAgendadosDia();   
             }
         }
     });
