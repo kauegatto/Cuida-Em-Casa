@@ -1,4 +1,5 @@
-﻿import scriptAtualizarSenha from './scriptAtualizarSenha.js'
+﻿import scriptAtualizarSenha from './scriptAtualizarSenha.js';
+import scriptAtualizarDadosCliente from './scriptAtualizarDadosCliente.js';
 
 $(document).ready(function () {
 
@@ -63,6 +64,21 @@ $(document).ready(function () {
 
 		$('#headerSenha').addClass("visivel");
 
+
+	});
+
+	$(document).on("click", "#alterarDados", function(){
+
+		$('#wrapper-LoginSeguranca').css('display', 'none');
+
+		$('#wrapper-AlterarDados').addClass('visivel');
+
+	});
+
+	$(document).on("click", "#btnSalvarDadosCliente", function(){
+
+
+		scriptAtualizarDadosCliente();
 
 	});
 

@@ -2512,4 +2512,20 @@ BEGIN
         s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
 
+DROP PROCEDURE IF EXISTS buscarDadosCliente$$
+
+CREATE PROCEDURE buscarDadosCliente(vEmailCliente VARCHAR(200))
+BEGIN
+
+	select 
+		nm_usuario, cd_CPF, cd_telefone 
+	from 
+		usuario 
+	where 
+		nm_email_usuario = vEmailCliente;
+
+END$$
+
+
+
 DELIMITER ;

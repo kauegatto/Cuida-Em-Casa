@@ -45,6 +45,7 @@ call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
 call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
+call buscarDadosCliente('mauriciorodolfo@gamil.com');
 
 /* PROCEDURE DO CUIDADOR */
 

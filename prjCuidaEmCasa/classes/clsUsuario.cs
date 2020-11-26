@@ -13,6 +13,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string codigoOcrrencia { get; set; }
         public string telefoneUsuario { get; set; }
         public string senhaVerificada { get; set; }
+        public List<string> nomeCliente { get; set; }
+        public List<string> cpfCliente { get; set; }
+        public List<string> telefoneCliente { get; set; }
 
         public clsUsuario(): base()
         {
@@ -20,6 +23,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
             tipoUsuario = "";
             codigoOcrrencia = "";
             senhaVerificada = "";
+            nomeCliente = new List<string>();
+            cpfCliente = new List<string>();
+            telefoneCliente = new List<string>();
         }
 
         #region Verificar login usuario
@@ -253,6 +259,37 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 Desconectar();
                 return false;
             }
+
+            return true;
+        }
+
+        #endregion
+
+        #region Buscar Dados do Cliente 
+
+        public bool buscarDadosCliente(string emailCliente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            if (!Procedure("buscarDadosCliente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+	        {
+                while (dados.Read()) 
+                {
+                    nomeCliente.Add(dados[0].ToString());
+                    cpfCliente.Add(dados[1].ToString());
+                    telefoneCliente.Add(dados[2].ToString());
+                }
+	        }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
 
             return true;
         }
