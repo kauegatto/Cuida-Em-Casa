@@ -6,6 +6,18 @@ $(document).ready(function(){
     var autorizado;
 
     scriptPacientesEmServico();
+
+    function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
     
     if($('#wrapper-pacienteServico').html() == "ERRO NO RETORNO" || $('#wrapper-pacienteServico').html() == "Nenhum de seus clientes está em serviço!"){
         return;
@@ -37,13 +49,19 @@ $(document).ready(function(){
                 $("#wrapper-ServicoAtual").css("display","block");$("#wrapper-ServicoAtual").addClass("visivel");
             }
             catch {
-                alert("Por favor, escolha um paciente!");
+                alertIonic("Por favor, escolha um paciente!");
                 return;
             }
         }
            
         else{
-            alert("Por favor, escolha um paciente!!");
+            alertIonic("Por favor, escolha um paciente!!");
         }
+    });
+
+    $('.iconeVoltar').click(function(){
+
+        window.location.href = 'atendimento.html';
+
     });
 });

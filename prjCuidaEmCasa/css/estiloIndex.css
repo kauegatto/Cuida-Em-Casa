@@ -21,3 +21,5 @@ a { text-decoration: none; }
 .areaForm button { display:block;background: #285593; border-radius: 10px; border-style: none; width: 80%; height: 48px; font-family: Rubik;font-weight:bold; font-size: 20px; color: #F1F1F1;margin:0 auto;margin-top: 25px;}
     
 #crieAgora{color: #285593; font-family: Rubik; }
+
+.teste { font-family: Rubik; }

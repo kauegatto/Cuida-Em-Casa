@@ -4,6 +4,18 @@ import scriptServicoAgendado from "./scriptServicoAgendado.js";
 
 export default function scriptBuscarServicos (intMes) {
 
+    function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
     var usuarioLogado = localStorage.getItem("usuarioLogado");
     
     var servicos;
@@ -18,8 +30,8 @@ export default function scriptBuscarServicos (intMes) {
         $.post("http://3.96.217.5/lib/libBuscarAgendadosDoCuidadorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
             
             if (retorno == "erro") {
-                console.log("deu erro");
-                alert("erro");
+                //console.log("deu erro");
+                alertIonic("Houve um erro");
             }
             retorno = retorno.split("|");
             window.servicos = retorno;

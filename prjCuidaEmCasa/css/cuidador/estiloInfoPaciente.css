@@ -1,5 +1,5 @@
 
-.areaInfoPaciente { width: 88%; height: 160.48px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 23px; margin-top: 8px; }
+.areaInfoPaciente { width: 88%; min-height: 180px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 23px; margin-top: 8px; }
 
 .areaDadosInfoPaciente { width: 78%; height: 160.48px; margin-left: 22%; }
 
@@ -30,3 +30,5 @@
 .areaEstimativa { width: 90%; border-top: 1px solid black; padding: 5px; margin-left: 8px; margin-top: 5px;}
 
 .estimativa { font-family: Roboto; font-style: normal; font-size: 14px; line-height: 16px; }
+
+#descricao {     margin-left: 15px; }

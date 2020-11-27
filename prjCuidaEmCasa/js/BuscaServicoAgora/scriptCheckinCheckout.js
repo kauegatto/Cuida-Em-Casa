@@ -1,16 +1,40 @@
 ﻿export default function scriptCheckinCheckout(valor){
 
+	function alertCerto(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
+    function alertErro(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
     if (valor == 0) 
 		{
 				//checkin
 				$.post("http://3.96.217.5/lib/libCheckinCheckout.aspx", { ativo: valor, cdServico: localStorage.getItem('cdServico') }, function(retorno){
 					
 					if (retorno == "erro") {
-						console.log("deu erro");
+						alertErro('Houve um erro!')
 					}
 					else
 					{
-						console.log("marcou o checkin");
+						alertCerto('Check-In marcado com sucesso!');
 					}
 					
 				});
@@ -21,11 +45,11 @@
 				$.post("../../lib/libCheckinCheckout.aspx", { ativo: valor, cdServico: localStorage.getItem('cdServico') }, function(retorno){
 					
 					if (retorno == "erro") {
-						console.log("deu erro");
+						alertErro('Houve um erro!')
 					}
 					else
 					{
-						console.log("marcou o checkout");
+						alertCerto('Check-Out marcado com sucesso!');
 					}
 
 				});

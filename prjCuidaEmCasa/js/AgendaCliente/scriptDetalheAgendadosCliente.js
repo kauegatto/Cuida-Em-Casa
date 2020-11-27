@@ -10,24 +10,25 @@ export default function scriptDetalheAgendadosCliente(cdServico) {
 		}
 		else
 		{
-
 			$('#listaDetalheAgenda').html(retorno);
 
+			console.log('detalhe agendados cliente');
+			
 			if ($('.invi').html() == imgPadrao) 
 			{
-				$(".areaDadosAgendados").each(function (i, obj) {
+				$(".areaInformacoesCuidador1").each(function (i, obj) {
 					var url = "data:image/svg+xml;base64," + $(this).children('.invi').html();
                 	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             	});
-
 			}
 			else
 			{
-				$(".areaDadosAgendados").each(function (i, obj) {
+				$(".areaInformacoesCuidador1").each(function (i, obj) {
 					var url = "data:image/jpeg+jpg;base64," + $(this).children('.invi').html();
                 	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             	});
 			}
+
 
 		}
 	});	
