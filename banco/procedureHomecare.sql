@@ -2655,6 +2655,35 @@ BEGIN
 
 END$$
 
+DROP PROCEDURE IF EXISTS codigoRecuperarSenha$$
 
+CREATE PROCEDURE codigoRecuperarSenha(vEmailUsuario VARCHAR(200))
+BEGIN
+
+	select 
+		cd_auth_recover 
+	from 
+		auth_recover 
+	where 
+		nm_email_usuario = vEmailUsuario;
+
+END$$
+
+DROP PROCEDURE IF EXISTS verificarCodigoRecuperacao$$
+
+CREATE PROCEDURE verificarCodigoRecuperacao(vEmailUsuario VARCHAR(200), vCdRecuperacao INT)
+BEGIN
+
+	select 
+		cd_auth_recover 
+	from 
+		auth_recover 
+	where 
+		nm_email_usuario = vEmailUsuario 
+	AND 
+		cd_auth_recover = vCdRecuperacao;
+
+
+END$$
 
 DELIMITER ;

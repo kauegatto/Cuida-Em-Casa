@@ -186,6 +186,10 @@ namespace prjCuidaEmCasa.lib
             string senhaCuidador = Request["senhaCuidador"].ToString();
             #endregion
 
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+
             clsUsuario usuario = new clsUsuario();
 
             if (!(usuario.cadastroCuidador(emailCuidador, nomeCuidador, telefoneCuidador, cpfCuidador, senhaCuidador, imgCuidador, generoCuidador, link, descricaoCuidador, valorHora, descricaoEspecializacao)))
@@ -193,7 +197,6 @@ namespace prjCuidaEmCasa.lib
                 Response.Write("erro");
                 return;
             }
-
 
             string[] especializacoes = especializacaoCuidador.Split(';');
 

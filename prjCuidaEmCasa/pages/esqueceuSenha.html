@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Cuida em Casa</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="../css/estiloGeral.css">
+	<link rel="stylesheet" type="text/css" href="../css/cliente/configuracao/estiloConfiguracao.css">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	<script src="../js/jquery-3.2.1.min.js" type="text/javascript"></script>
+	<script type="module" src="../js/esqueceuSenha/scriptNavegacaoEsqueceuSenha.js"></script>
+</head>
+<body >
+	<div class="estruturaGeral">
+		<header class="header">
+			<div class="areaLogo">
+				<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+			</div>
+			<div class="areaTituloGeral">
+				<h1 class="tituloGeral" style="margin-left: 16px; margin-top: 30px;">Recuperar Senha</h1>
+			</div>
+		</header>
+		<main class="conteudoGeral" >
+			<div class="wrapper" id="wrapper-EsqueceuSenhaInicio">
+				<div class="esqueceuSenha">
+				<h3>Esqueceu sua Senha?</h3>
+					<div class="areaEnviarCodigo" style="margin-top: 30%;">
+						<h2>Digite o seu Email:</h2>
+						<input type="text" name="txtCodigo" placeholder="Insira o Email" id="txtEmailRecuperarSenha">
+						<button class="btnEnviarCodigo" id="btnEnviarEmail">Enviar Email</button>
+					</div>
+				</div>
+			</div>
+			<div class="wrapper" id="wrapper-CodigoRecuperarSenha" style="display: none;">
+				<div class="esqueceuSenha">
+				<h3>Recuperação de Senha</h3>
+					<div class="areaEnviarCodigo" style="margin-top: 30%;">
+						<h2>Digite o código:</h2>
+						<input type="text" name="txtCodigo" placeholder="Insira o Código" id="txtCodigoRecuperacao">
+						<button class="btnEnviarCodigo" id="btnEnviarCodigoRecuperacao">Enviar Código</button>
+					</div>
+				</div>
+
+			</div>
+			<div class="wrapper" id="wrapper-AlterarSenhaRecuperacao" style="display: none;">
+				<div class="esqueceuSenha">
+				<h3>Recuperação de Senha</h3>
+					<div class="areaEnviarCodigo" style="margin-top: 30%;">
+						<h2>Digite uma nova senha:</h2>
+						<input type="text" name="txtCodigo" placeholder="Insira uma nova senha" id="txtSenhaRecuperacao">
+						<h2 style="margin-top: 20px;">Digite a confirmação da senha:</h2>
+						<input type="text" name="txtCodigo" placeholder="Insira uma confirmação da senha" id="txtConfirmacaoSenhaRecuperacao">
+						<button class="btnEnviarCodigo" id="btnEnviarNovaSenhaRecuperacao">Enviar Código</button>
+					</div>
+				</div>
+
+			</div>
+		</main>
+
+	</div>
+</body>
+</html>
