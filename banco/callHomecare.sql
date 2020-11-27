@@ -8,6 +8,7 @@ call cadastroCuidador('renanstopa@gmail.com', 'Renan Lopes Stopa', '(13) 99618-5
 1, 'https://curriculodorenan.com', 'Meu nome é Renan e cuidar dos outros é minha paixão', '10.00', 'Cursei fisioterapia por 5 anos da Unisantos');
 call codigoRecuperarSenha('mauriciorodolfo@gamil.com');
 call verificarCodigoRecuperacao('dougreisrrs@gmail.com', 999);
+call inserirAuthRecover('brunastellaflaviadepaula@gmail.com',1233);
 /* PROCEDURES DO CLIENTE */
 
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');

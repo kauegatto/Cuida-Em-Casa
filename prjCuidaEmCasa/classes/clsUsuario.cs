@@ -389,10 +389,37 @@ namespace prjCuidaEmCasa.classes.Agendamento
             Desconectar();
 
             return true;
+        }
+
+
+        #endregion
+
+        #region inserirAuthRecover
+
+        public bool inserirAuthRecover(string emailCliente, string codigoSeguranca) 
+        {
+
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailCliente;
+            valores[1, 0] = "vCodigoAuthRecover";
+            valores[1, 1] = codigoSeguranca;
+
+            if (!Procedure("inserirAuthRecover", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+
 
             return true;
         }
-
 
         #endregion
 

@@ -6,13 +6,14 @@ DELIMITER $$
 
 DROP PROCEDURE IF EXISTS cadastroCliente$$
 
-CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200), vTelefoneUsuario VARCHAR(15), vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128))
+CREATE PROCEDURE cadastroCliente(vEmailUsuario VARCHAR(200), vNomeUsuario VARCHAR(200),
+vTelefoneUsuario VARCHAR(15), vCpfUsuario VARCHAR(15), vSenhaUsuario VARCHAR(128))
 BEGIN
 
 	insert into 
 		usuario (nm_email_usuario, nm_usuario, cd_telefone, cd_CPF, nm_senha, cd_tipo_usuario) 
 	values 
-		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, md5(vSenhaUsuario));
+		(vEmailUsuario, vNomeUsuario, vTelefoneUsuario, vCpfUsuario, md5(vSenhaUsuario), 2);
 
 END$$
 
@@ -2622,6 +2623,18 @@ BEGIN
 		nm_email_usuario = vEmailUsuario 
 	AND 
 		cd_auth_recover = vCdRecuperacao;
+
+END$$
+
+DROP PROCEDURE IF EXISTS inserirAuthRecover$$
+
+CREATE PROCEDURE inserirAuthRecover(vEmailUsuario VARCHAR(200), vCodigoAuthRecover INT)
+BEGIN
+
+	insert into 
+		auth_recover 
+	values 
+		(vCodigoAuthRecover, current_time(), current_date(), vEmailUsuario);
 
 
 END$$
