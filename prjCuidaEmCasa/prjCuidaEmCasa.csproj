@@ -209,6 +209,10 @@
     <Content Include="js\Cuidador\scriptFiltroServico.js" />
     <Content Include="js\Cuidador\scriptHistoricoServico.js" />
     <Content Include="js\Cuidador\scriptNavegacaoHistorico.js" />
+    <Content Include="js\esqueceuSenha\scriptAlterarSenha.js" />
+    <Content Include="js\esqueceuSenha\scriptEnviarCodigoRecuperacao.js" />
+    <Content Include="js\esqueceuSenha\scriptEnviarEmailUsuario.js" />
+    <Content Include="js\esqueceuSenha\scriptNavegacaoEsqueceuSenha.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\Agendamento\scriptAlterarEndereco.js" />
     <Content Include="js\Agendamento\scriptConfirmarEndereco.js" />
@@ -247,6 +251,7 @@
     <Content Include="lib\libAdicionarPaciente.aspx" />
     <Content Include="lib\libAgendadosAgendaCliente.aspx" />
     <Content Include="lib\libAgendadosHistoricoCliente.aspx" />
+    <Content Include="lib\libAlterarSenhaRecuperacao.aspx" />
     <Content Include="lib\libAtualizarDadosCliente.aspx" />
     <Content Include="lib\libAtualizarDadosPaciente.aspx" />
     <Content Include="lib\libAtualizarSenha.aspx" />
@@ -275,6 +280,8 @@
     <Content Include="lib\libDetalhesServicoAgora.aspx" />
     <Content Include="lib\libDisponibilidadeCuidador.aspx" />
     <Content Include="lib\libEditarDadosCuidador.aspx" />
+    <Content Include="lib\libEnviarCodigoRecuperacao.aspx" />
+    <Content Include="lib\libEnviarEmailUsuario.aspx" />
     <Content Include="lib\libEspecializacaoCuidador.aspx" />
     <Content Include="lib\libExcluirPaciente.aspx" />
     <Content Include="lib\libFinalizarServico.aspx" />
@@ -308,6 +315,7 @@
     <Content Include="pages\cuidador\cadastroCuidador.html" />
     <Content Include="pages\cuidador\configuracaoCuidador.html" />
     <Content Include="pages\escolhaCadastro.html" />
+    <Content Include="pages\esqueceuSenha.html" />
     <Content Include="pages\mySqlDLL\MySql.Data.dll" />
     <Content Include="pages\cliente\agendamento.html" />
     <Content Include="pages\cliente\atendimento.html" />
@@ -389,6 +397,13 @@
     </Compile>
     <Compile Include="lib\libAgendadosHistoricoCliente.aspx.designer.cs">
       <DependentUpon>libAgendadosHistoricoCliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libAlterarSenhaRecuperacao.aspx.cs">
+      <DependentUpon>libAlterarSenhaRecuperacao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libAlterarSenhaRecuperacao.aspx.designer.cs">
+      <DependentUpon>libAlterarSenhaRecuperacao.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libAtualizarDadosCliente.aspx.cs">
       <DependentUpon>libAtualizarDadosCliente.aspx</DependentUpon>
@@ -585,6 +600,20 @@
     </Compile>
     <Compile Include="lib\libEditarDadosCuidador.aspx.designer.cs">
       <DependentUpon>libEditarDadosCuidador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libEnviarCodigoRecuperacao.aspx.cs">
+      <DependentUpon>libEnviarCodigoRecuperacao.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libEnviarCodigoRecuperacao.aspx.designer.cs">
+      <DependentUpon>libEnviarCodigoRecuperacao.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libEnviarEmailUsuario.aspx.cs">
+      <DependentUpon>libEnviarEmailUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libEnviarEmailUsuario.aspx.designer.cs">
+      <DependentUpon>libEnviarEmailUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libEspecializacaoCuidador.aspx.cs">
       <DependentUpon>libEspecializacaoCuidador.aspx</DependentUpon>

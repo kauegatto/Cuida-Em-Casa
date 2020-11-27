@@ -16,6 +16,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> nomeCliente { get; set; }
         public List<string> cpfCliente { get; set; }
         public List<string> telefoneCliente { get; set; }
+        public List<string> cdRecuperarSenha { get; set; }
 
         public clsUsuario(): base()
         {
@@ -26,6 +27,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             nomeCliente = new List<string>();
             cpfCliente = new List<string>();
             telefoneCliente = new List<string>();
+            cdRecuperarSenha = new List<string>();
         }
 
         #region Verificar login usuario
@@ -319,6 +321,74 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 Desconectar();
                 return false; 
             }
+
+            return true;
+        }
+
+
+        #endregion
+
+        #region codigoRecuperarSenha
+
+        public bool codigoRecuperarSenha(string emailUsuario)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+
+            if (!Procedure("codigoRecuperarSenha", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read()) 
+                {
+                    cdRecuperarSenha.Add(dados[0].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
+        #endregion 
+
+        #region verificar Codigo Recuperacao
+
+        public bool verificarCodigoRecuperacao(string emailUsuario, string codigoRecuperacao)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+            valores[1, 0] = "vCdRecuperacao";
+            valores[1, 1] = codigoRecuperacao;
+
+            if (!Procedure("verificarCodigoRecuperacao", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    cdRecuperarSenha.Add(dados[0].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
 
             return true;
         }
