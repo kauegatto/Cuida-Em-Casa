@@ -2340,6 +2340,59 @@ BEGIN
 		cd_ocorrencia = vCodigoOcorrencia;
 END$$
 
+/* Procedure criada para listar todas advertências do cuidador */
+
+DROP PROCEDURE IF EXISTS listarAdvertenciaCuidador$$
+
+CREATE PROCEDURE listarAdvertenciaCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		tpa.nm_tipo_advertencia, DATE_FORMAT(a.dt_advertencia, '%d/%m/%Y'), 
+		u.nm_usuario, a.nm_email_usuario_admin, a.ds_advertencia
+	FROM
+		advertencia a 
+	JOIN
+		usuario u 
+	ON
+		(a.nm_email_usuario_admin = u.nm_email_usuario)
+	JOIN
+		tipo_advertencia tpa 
+	ON		
+		(a.cd_tipo_advertencia = tpa.cd_tipo_advertencia)
+	WHERE
+		a.nm_email_usuario = vEmailCuidador
+	AND
+		a.ic_verificado = 0
+	ORDER BY
+		a.dt_advertencia;
+END$$
+
+/* Procedure criada para buscar os cuidadores que tem ocorrências registradas */
+
+DROP PROCEDURE IF EXISTS listarCuidadoresOcorrencia$$
+
+CREATE PROCEDURE listarCuidadoresOcorrencia()
+BEGIN
+	SELECT
+		u.img_usuario, u.nm_usuario, u.vl_hora_trabalho,
+		buscarEspecializacao(u.nm_email_usuario), COUNT(o.cd_ocorrencia),
+		u.nm_email_usuario
+	FROM
+		usuario u 
+	JOIN
+		servico s
+	ON
+		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
+	JOIN
+		ocorrencia o
+	ON
+		(o.cd_servico = s.cd_servico)
+	WHERE
+		o.ic_verificado = 0
+	GROUP BY
+		s.nm_email_usuario_cuidador;
+END$$
+
 /* Procedure criada para buscar os dados do paciente */
 
 DROP PROCEDURE IF EXISTS buscarDadosPaciente$$

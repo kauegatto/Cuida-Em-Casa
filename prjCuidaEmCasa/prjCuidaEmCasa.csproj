@@ -118,6 +118,7 @@
     <Content Include="img\icones\configuracao\iconePaciente.png" />
     <Content Include="img\icones\cuidador\iconeCifrao.png" />
     <Content Include="img\icones\cuidador\iconeCrifaoPequeno.png" />
+    <Content Include="img\icones\cuidador\iconeDenuncia.png" />
     <Content Include="img\icones\cuidador\IconeInformacao.png" />
     <Content Include="img\icones\cuidador\iconeMaleta.png" />
     <Content Include="img\icones\editarPaciente\agenda.png" />
@@ -168,11 +169,13 @@
     <Content Include="img\logoIndex.svg" />
     <Content Include="img\logoSimples.png" />
     <Content Include="img\mapa.png" />
+    <Content Include="js\Administrador\Advertencia\scripListarAdvertencias.js" />
     <Content Include="js\Administrador\ContratarCuidador\scriptContratarCuidador.js" />
     <Content Include="js\Administrador\ContratarCuidador\scriptInfoCuidadorContrato.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptInfoCuidador.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptListarCuidadores.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptServico.js" />
+    <Content Include="js\Administrador\Ocorrencia\scriptListarCuidadores.js" />
     <Content Include="js\Administrador\Ocorrencia\scriptListarOcorrencias.js" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
     <Content Include="js\AgendaCliente\scriptAvaliacaoCuidador.js" />
@@ -291,7 +294,9 @@
     <Content Include="lib\libInfoCuidadorContrato.aspx" />
     <Content Include="lib\libInfoCuidadoresAdm.aspx" />
     <Content Include="lib\libInfoServicoAtual.aspx" />
+    <Content Include="lib\libListarAdvertenciaCuidador.aspx" />
     <Content Include="lib\libListarCuidadoresAdm.aspx" />
+    <Content Include="lib\libListarCuidadoresOcorrencia.aspx" />
     <Content Include="lib\libListarNecessidades.aspx" />
     <Content Include="lib\libListarOcorrenciaCuidador.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
@@ -302,12 +307,14 @@
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libServicosCuidadorAdm.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
+    <Content Include="pages\administrador\advertenciaCuidador.html" />
     <Content Include="pages\administrador\contratarCuidador.html" />
     <Content Include="pages\administrador\cuidadores.html" />
     <Content Include="pages\administrador\index.html" />
     <Content Include="pages\administrador\infoCuidadorContrato.html" />
     <Content Include="pages\administrador\infoCuidadores.html" />
     <Content Include="pages\administrador\ocorrenciaCuidador.html" />
+    <Content Include="pages\administrador\ocorrencias.html" />
     <Content Include="pages\administrador\servicos.html" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
@@ -674,12 +681,26 @@
     <Compile Include="lib\libInfoServicoAtual.aspx.designer.cs">
       <DependentUpon>libInfoServicoAtual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="lib\libListarAdvertenciaCuidador.aspx.cs">
+      <DependentUpon>libListarAdvertenciaCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libListarAdvertenciaCuidador.aspx.designer.cs">
+      <DependentUpon>libListarAdvertenciaCuidador.aspx</DependentUpon>
+    </Compile>
     <Compile Include="lib\libListarCuidadoresAdm.aspx.cs">
       <DependentUpon>libListarCuidadoresAdm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="lib\libListarCuidadoresAdm.aspx.designer.cs">
       <DependentUpon>libListarCuidadoresAdm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libListarCuidadoresOcorrencia.aspx.cs">
+      <DependentUpon>libListarCuidadoresOcorrencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libListarCuidadoresOcorrencia.aspx.designer.cs">
+      <DependentUpon>libListarCuidadoresOcorrencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libListarNecessidades.aspx.cs">
       <DependentUpon>libListarNecessidades.aspx</DependentUpon>

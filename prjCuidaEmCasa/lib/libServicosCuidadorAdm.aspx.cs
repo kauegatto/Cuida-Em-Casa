@@ -92,7 +92,7 @@ namespace prjCuidaEmCasa.lib
             servicosCuidador += "</div>";
             servicosCuidador += "</div>";
 
-            Response.Write(servicosCuidador);
+            Response.Write(adm.base64String[0] + "|@" + servicosCuidador);
         }
     }
 }
