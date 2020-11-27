@@ -40,6 +40,20 @@ namespace prjCuidaEmCasa.lib
 
             string senhaUsuario = Request["senha"].ToString();
 
+            if (Request["cdRecuperacao"] == null)
+	        {
+                Response.Write("erro");
+                return;
+	        }
+
+            if (Request["cdRecuperacao"].ToString() == "")
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            string cdRecuperacao = Request["cdRecuperacao"].ToString();
+
             clsUsuario classeUsuario = new clsUsuario();
 
             if (!classeUsuario.alterarSenha(senhaUsuario, emailUsuario))
@@ -47,6 +61,22 @@ namespace prjCuidaEmCasa.lib
                 Response.Write("erro");
                 return;
             }
+
+            if (!classeUsuario.deletarAuthRecover(cdRecuperacao, emailUsuario))
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+
+            if (!classeUsuario.inserirAuthRecover(emailUsuario, sixDigitNumber))
+	        {
+		        Response.Write("erro");
+                return;
+	        }
 
 
         }

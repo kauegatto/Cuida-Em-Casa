@@ -11,6 +11,7 @@
 		{
 			$('#wrapper-CodigoRecuperarSenha').css('display', 'none');
 			$('#wrapper-AlterarSenhaRecuperacao').css('display', 'block');
+			localStorage.setItem('cdRecuperacao', codigo);
 		}
 
 
