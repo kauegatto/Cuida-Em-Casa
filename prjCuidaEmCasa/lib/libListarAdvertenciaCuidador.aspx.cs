@@ -60,7 +60,8 @@ namespace prjCuidaEmCasa.lib
                 dadosAdvertencia += "<span>Data de emissão:</span><span class='dataEmissaoAdvertencia'>" + adm.dataAdvertencia[i] + "</span>";
                 dadosAdvertencia += "<br/>";
                 dadosAdvertencia += "<span>Advertido por:</span><span class='adminAdvertencia'>" + adm.nomeAdm[i] + "</span>";
-                dadosAdvertencia += "<span class='emailAdminAdvertencia'>" + adm.emailAdm[i] + "</span>";
+                dadosAdvertencia += "<br/>";
+                dadosAdvertencia += "<span>Email adm:</span><span class='emailAdminAdvertencia'>" + adm.emailAdm[i] + "</span>";
                 dadosAdvertencia += "<br/>";
                 dadosAdvertencia += "<span>Descrição:</span><span class='descricaoDenuncia'>" + adm.dsAdvertencia[i] + "</span>";
                 dadosAdvertencia += "</div>";

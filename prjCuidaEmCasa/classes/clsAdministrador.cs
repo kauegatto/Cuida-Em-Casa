@@ -153,6 +153,7 @@ namespace prjCuidaEmCasa.classes
                     especiazalicaoCuidador.Add(dados[7].ToString());
                     vlHora.Add(dados[8].ToString());
                     linkCurriculo.Add(dados[9].ToString());
+                    situacaoUsuario.Add(dados[10].ToString());
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }
@@ -515,6 +516,90 @@ namespace prjCuidaEmCasa.classes
             }
 
             return true;
+        }
+        #endregion
+
+        #region Suspender cuidador
+        public bool suspenderCuidador(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("suspenderCuidador", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
+        }
+        #endregion
+
+        #region Tirar suspensão do cuidador
+        public bool removerSuspensao(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("removerSuspensao", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
+        }
+        #endregion
+
+        #region Banir cuidador
+        public bool banirCuidador(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("banirCuidador", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
+        }
+        #endregion
+
+        #region Desbanir cuidador
+        public bool desbanirCuidador(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("desbanirCuidador", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
         }
         #endregion
     }

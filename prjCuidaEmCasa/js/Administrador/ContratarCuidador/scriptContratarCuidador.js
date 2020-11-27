@@ -3,7 +3,7 @@
     var botao = 3;
     localStorage.setItem("emailCuidadorContrato", "teste@gmail.com");
 
-    $.post("http://3.96.217.5/lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
+    $.post("../../../lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
         if (retorno == "false") {
             console.log("deu erro na lib");
         }
@@ -22,14 +22,14 @@
         localStorage.setItem("emailCuidadorContrato", classes[1]);
         botao = 0;
 
-        $.post("http://3.96.217.5/lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
+        $.post("../../../lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
             if (retorno == "false") {
                 console.log("deu erro na lib");
             }
             else {
                 botao = 3;
 
-                $.post("http://3.96.217.5/lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
+                $.post("../../../lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
                     if (retorno == "false") {
                         console.log("deu erro na lib");
                     }
@@ -48,14 +48,14 @@
         localStorage.setItem("emailCuidadorContrato", classes[1]);
         botao = 1;
 
-        $.post("http://3.96.217.5/lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
+        $.post("../../../lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
             if (retorno == "false") {
                 console.log("deu erro na lib");
             }
             else {
                 botao = 3;
 
-                $.post("http://3.96.217.5/lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
+                $.post("../../../lib/libContratarCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidadorContrato") }, function (retorno) {
                     if (retorno == "false") {
                         console.log("deu erro na lib");
                     }

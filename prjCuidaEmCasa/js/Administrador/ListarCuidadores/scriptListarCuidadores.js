@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $.post("http://3.96.217.5/lib/libListarCuidadoresAdm.aspx", function (retorno) {
+    $.post("../../../lib/libListarCuidadoresAdm.aspx", function (retorno) {
         if (retorno == "false") {
             console.log("deu erro na lib");
         }

@@ -175,6 +175,7 @@
     <Content Include="js\Administrador\ListarCuidadores\scriptInfoCuidador.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptListarCuidadores.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptServico.js" />
+    <Content Include="js\Administrador\ListarCuidadores\scriptSuspenderBanir.js" />
     <Content Include="js\Administrador\Ocorrencia\scriptListarCuidadores.js" />
     <Content Include="js\Administrador\Ocorrencia\scriptListarOcorrencias.js" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
@@ -306,6 +307,7 @@
     <Content Include="lib\libServicoAgendadoSelecionado.aspx" />
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libServicosCuidadorAdm.aspx" />
+    <Content Include="lib\libSuspenderBanir.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
     <Content Include="pages\administrador\advertenciaCuidador.html" />
     <Content Include="pages\administrador\contratarCuidador.html" />
@@ -764,6 +766,13 @@
     </Compile>
     <Compile Include="lib\libServicosCuidadorAdm.aspx.designer.cs">
       <DependentUpon>libServicosCuidadorAdm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libSuspenderBanir.aspx.cs">
+      <DependentUpon>libSuspenderBanir.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libSuspenderBanir.aspx.designer.cs">
+      <DependentUpon>libSuspenderBanir.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libVerificarSeTemServico.aspx.cs">
       <DependentUpon>libVerificarSeTemServico.aspx</DependentUpon>

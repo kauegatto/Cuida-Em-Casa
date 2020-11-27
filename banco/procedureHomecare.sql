@@ -2204,7 +2204,7 @@ BEGIN
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
 		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
-		u.vl_hora_trabalho, u.cd_link_curriculo
+		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario
 	FROM
 		usuario u
 	JOIN
@@ -2391,6 +2391,62 @@ BEGIN
 		o.ic_verificado = 0
 	GROUP BY
 		s.nm_email_usuario_cuidador;
+END$$
+
+/* Procedure criada para suspender o cuidador por um tempo indeterminado */
+
+DROP PROCEDURE IF EXISTS suspenderCuidador$$
+
+CREATE PROCEDURE suspenderCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 3
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para tirar suspender do cuidador */
+
+DROP PROCEDURE IF EXISTS removerSuspensao$$
+
+CREATE PROCEDURE removerSuspensao(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 1
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para banir o cuidador */
+
+DROP PROCEDURE IF EXISTS banirCuidador$$
+
+CREATE PROCEDURE banirCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 4
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para desbanir o cuidador caso tenha algum erro */
+
+DROP PROCEDURE IF EXISTS desbanirCuidador$$
+
+CREATE PROCEDURE desbanirCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 1
+	WHERE
+		nm_email_usuario = vEmailCuidador;
 END$$
 
 /* Procedure criada para buscar os dados do paciente */
