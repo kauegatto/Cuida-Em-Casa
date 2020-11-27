@@ -27,7 +27,7 @@
     if (valor == 0) 
 		{
 				//checkin
-				$.post("../../lib/libCheckinCheckout.aspx", { ativo: valor, cdServico: localStorage.getItem('cdServico') }, function(retorno){
+				$.post("http://3.96.217.5/lib/libCheckinCheckout.aspx", { ativo: valor, cdServico: localStorage.getItem('cdServico') }, function(retorno){
 					
 					if (retorno == "erro") {
 						alertErro('Houve um erro!')

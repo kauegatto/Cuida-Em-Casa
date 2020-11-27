@@ -29,6 +29,19 @@
                 $('.btnAdvertencias').prop("disabled", false);
             }
             $('#advertencia_cuidador').html(retorno[11]);
+
+            if (retorno[12] == "1") {
+                $('#aplicar_suspensao').css("display", "inline");
+                $('#banir_cuidador').css("display", "inline");
+            }
+            if (retorno[12] == "3") {
+                $('#remover_suspensao').css("display", "inline");
+                $('#banir_cuidador').css("display", "inline");
+            }
+            if (retorno[12] == "4") {
+                $('#desbanir_cuidador').css("display", "inline");
+            }
+
             var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
             $("#img_cuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         }

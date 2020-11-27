@@ -7,7 +7,10 @@
             console.log("deu erro na lib");
         }
         else {
-            $('.conteudoCuidador').html(retorno);
+            retorno = retorno.split("|@")
+            $('.conteudoCuidador').html(retorno[1]);
+            var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
+            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         }
     });
 
@@ -29,7 +32,10 @@
                     }
                     else {
                         if (retorno != "true") {
-                            $('.conteudoCuidador').html(retorno);
+                            retorno = retorno.split("|@")
+                            $('.conteudoCuidador').html(retorno[1]);
+                            var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
+                            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
                         }
                     }
                 });
@@ -46,7 +52,7 @@
         var emailCliente = $('.emailClienteOcorrencia').html();
         var cdTipoOcorrencia = classes[2];
 
-        $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: dsOcorrencia, emailAdm: localStorage.getItem("usuarioLogado"), cdTipoOcorrencia: cdTipoOcorrencia  }, function (retorno) {
+        $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: dsOcorrencia, emailAdm: localStorage.getItem("usuarioLogado"), cdTipoOcorrencia: cdTipoOcorrencia }, function (retorno) {
             if (retorno == "false") {
                 console.log("deu erro na lib");
             }
@@ -59,7 +65,10 @@
                     }
                     else {
                         if (retorno != "true") {
-                            $('.conteudoCuidador').html(retorno);
+                            retorno = retorno.split("|@")
+                            $('.conteudoCuidador').html(retorno[1]);
+                            var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
+                            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
                         }
                     }
                 });

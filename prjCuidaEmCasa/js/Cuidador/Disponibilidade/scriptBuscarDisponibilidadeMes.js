@@ -13,7 +13,7 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
 
     function buscarDisponibilidadeMensal(){
 
-        $.post("../../lib/libBuscarDisponibilidadeDoCuidadorPorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
+        $.post("../../../lib/libBuscarDisponibilidadeDoCuidadorPorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
             
             if (retorno == "erro") {
                 console.log("deu erro");

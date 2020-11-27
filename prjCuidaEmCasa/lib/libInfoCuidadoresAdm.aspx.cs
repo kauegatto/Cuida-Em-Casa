@@ -62,6 +62,7 @@ namespace prjCuidaEmCasa.lib
             dadosCuidador += adm.linkCurriculo[0] + "|";
             dadosCuidador += adm.qtdOcorrencias[0] + "|";
             dadosCuidador += adm.qtdAdvertencias[0] + "|";
+            dadosCuidador += adm.situacaoUsuario[0] + "|";
             dadosCuidador = dadosCuidador.Substring(0, dadosCuidador.Length - 1);
 
             Response.Write(dadosCuidador);

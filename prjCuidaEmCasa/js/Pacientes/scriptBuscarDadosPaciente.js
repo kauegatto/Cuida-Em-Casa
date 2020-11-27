@@ -34,7 +34,7 @@
 	        console.log(retorno[1]); 
 	        //$('#txtAlterarNecessidadePaciente').append("<option selected>"+retorno[1]+"</option>");
 	       	
-	       	$.post('../../lib/libListarNecessidades.aspx', {}, function(retorno){
+	       	$.post("../../lib/libListarNecessidades.aspx", {}, function(retorno){
 
 				if (retorno == 'erro') 
 				{

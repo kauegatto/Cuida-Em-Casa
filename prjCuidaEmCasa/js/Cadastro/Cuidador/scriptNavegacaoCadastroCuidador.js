@@ -16,7 +16,7 @@ $(document).ready(function(){
 
 	var imgCuidador;
 
-	$.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
+	$.post("../../../lib/libEspecializacaoCuidador.aspx", function(retorno){
 
 		if (retorno == "erro") 
 		{

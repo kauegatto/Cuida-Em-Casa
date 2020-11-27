@@ -3,7 +3,7 @@
 		if (valor == 0) 
 		{
 				//tornar disponivel
-				$.post("../../lib/libDisponibilidadeCuidador.aspx", { ativo: valor, emailCuidador: localStorage.getItem('usuarioLogado') }, function(retorno){
+				$.post("http://3.96.217.5/lib/libDisponibilidadeCuidador.aspx", { ativo: valor, emailCuidador: localStorage.getItem('usuarioLogado') }, function(retorno){
 					
 					if (retorno == "erro") {
 						console.log("deu erro");
@@ -22,7 +22,7 @@
 		else
 		{
 				//tornar indisponivel
-				$.post("../../lib/libDisponibilidadeCuidador.aspx", { ativo: valor, emailCuidador: localStorage.getItem('usuarioLogado') }, function(retorno){
+				$.post("http://3.96.217.5/lib/libDisponibilidadeCuidador.aspx", { ativo: valor, emailCuidador: localStorage.getItem('usuarioLogado') }, function(retorno){
 					
 					if (retorno == "erro") {
 						console.log("deu erro");

@@ -17,7 +17,7 @@ export default function scriptBuscarDadosCuidador(){
 	$('#txtAlterarTelefone').mask('(00) 00000-0000');
 	$('#txtAlterarCPF').mask('000.000.000-00');
 
-	$.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
+	$.post("http://3.96.217.5/lib/libEspecializacaoCuidador.aspx", function(retorno){
 
 		if (retorno == "erro") 
 		{
@@ -31,7 +31,7 @@ export default function scriptBuscarDadosCuidador(){
 
 	});
 
-	$.post("../../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem('usuarioLogado')}, function(retorno){
+	$.post("http://3.96.217.5/lib/dadosEmailCuidador.aspx", { e: localStorage.getItem('usuarioLogado')}, function(retorno){
 
 		if (retorno == "erro") 
 		{

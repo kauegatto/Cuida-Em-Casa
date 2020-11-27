@@ -50,7 +50,7 @@ namespace prjCuidaEmCasa.lib
                 {
                     listaCuidadores += "<span style='margin-left: 2px'  class='status'> Status: </span><span class='statusSuspenso'>" + adm.situacaoUsuario[i] + "</span>";
                 }
-                if (adm.situacaoUsuario[i] == "Em advertência")
+                if (adm.situacaoUsuario[i] == "Suspenso")
                 {
                     listaCuidadores += "<span style='margin-left: 2px'  class='status'> Status: </span><span class='statusSuspenso'>" + adm.situacaoUsuario[i] + "</span>";
                 }

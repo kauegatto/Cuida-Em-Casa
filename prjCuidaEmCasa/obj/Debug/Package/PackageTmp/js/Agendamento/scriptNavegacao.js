@@ -58,6 +58,19 @@ if(!localStorage.getItem("tipoUsuario") == 2){
 
 scriptPaciente();
 
+$.post("http://3.96.217.5/lib/libEspecializacaoCuidador.aspx", function(retorno){
+
+    if (retorno == "erro") 
+    {
+	    console.log('deu erro na libEspecializacaoCuidador');
+    }
+    else
+    {
+	    $('.cbxEspecializacao').html("<option id='opt Selecione' value='0'>Selecione</option>" + retorno);
+    }
+
+});
+
 // Pg 1  : btnPaciente
 $(document).on("click", "#btnPaciente", function(){
 
@@ -112,12 +125,13 @@ $("#btnDataHora").click(function () {
     scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
     scriptCuidador(); 
     $(".areaFiltro").addClass("visivel");
+    $('#dinheiro').mask('000,00', { reverse: true });
+    $('#avaliacao').mask('0.0', { reverse: true });
 });
 
 //pg 5: pag cuidador -> vai para info cuidador  
 $(document).on("click", "#btnCuidador", function(){
     passarPagina($(this),1);
-    $(".infoFiltro").removeClass("visivel");
     $(".areaFiltro").removeClass("visivel");
     var classes = $(".selecionado").attr("class").split(/\s+/);
     localStorage.setItem("emailCuidador", classes[1]);    

@@ -9,6 +9,7 @@ call cadastroCuidador('renanstopa@gmail.com', 'Renan Lopes Stopa', '(13) 99618-5
 call codigoRecuperarSenha('mauriciorodolfo@gamil.com');
 call verificarCodigoRecuperacao('dougreisrrs@gmail.com', 999);
 call inserirAuthRecover('brunastellaflaviadepaula@gmail.com',1233);
+
 /* PROCEDURES DO CLIENTE */
 
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
@@ -88,7 +89,7 @@ call situacaoAdvertencia('reinaldosouza@gmail.com');
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos serviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
 call listarCuidadoresContrato();
-call infoCuidadorContrato('renanstopa@gmail.com');
+call infoCuidadorContrato('flaviabeneditamilenamelo@gmail.com');
 call listarCuidadores();
 call listarOcorrencia('flaviabeneditamilenamelo@gmail.com');
 call listarAdvertencia('flaviabeneditamilenamelo@gmail.com');
@@ -97,3 +98,9 @@ call listarOcorrenciaCuidador('flaviabeneditamilenamelo@gmail.com');
 call proxCodigoAdvertencia();
 call aplicarAdvertencia(4, 'Houve várias reclamções de atrasos recorrentes', 'flaviabeneditamilenamelo@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',1);
 call removerOcorrencia(2);
+call listarAdvertenciaCuidador('oliverbrunoluccanunes@gmail.com');
+call listarCuidadoresOcorrencia();
+call suspenderCuidador('flaviabeneditamilenamelo@gmail.com');
+call removerSuspensao('flaviabeneditamilenamelo@gmail.com');
+call banirCuidador('flaviabeneditamilenamelo@gmail.com');
+call desbanirCuidador('flaviabeneditamilenamelo@gmail.com');

@@ -2,7 +2,7 @@
 
 $(document).on("click", "#btnLogin", function () {
 
-    $.post("../../lib/libDadosLogin.aspx", { email: $("#txtEmail").val(), senha: $("#txtSenha").val() }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libDadosLogin.aspx", { email: $("#txtEmail").val(), senha: $("#txtSenha").val() }, function (retorno) {
 
         var retorno;
         retornoLogin = retorno.split("|");
@@ -22,7 +22,7 @@ $(document).on("click", "#btnLogin", function () {
                 localStorage.setItem('telefoneUsuario', retornoLogin[2]);
 
                 if (retornoLogin[1] == "1") {
-                    console.log("adm");
+                    window.location.href = "../../pages/administrador/contratarCuidador.html";
                 }
                 else if (retornoLogin[1] == "2") {
                     window.location.href = "../../pages/cliente/atendimento.html";

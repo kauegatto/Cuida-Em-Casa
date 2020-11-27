@@ -12,7 +12,8 @@
         return alert.present();
     }
 
-	$.post("../../lib/libAtualizarSenha.aspx", { sa: senhaAtual, ns: novaSenha, cs: confirmarSenha, eu: emailUsuario}, function(retorno) {
+
+	$.post("../../../lib/libAtualizarSenha.aspx", { sa: senhaAtual, ns: novaSenha, cs: confirmarSenha, eu: emailUsuario}, function(retorno) {
 
 		if (retorno == "erro") 
 		{

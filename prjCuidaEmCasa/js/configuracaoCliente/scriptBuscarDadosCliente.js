@@ -12,7 +12,8 @@ export default function scriptBuscarDadosCliente(){
         return alert.present();
     }
 
-	$.post("../../lib/libBuscarDadosCliente.aspx", { emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
+	
+	$.post("../../../lib/libBuscarDadosCliente.aspx", { emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
 
 		if (retorno == "erro") 
 		{

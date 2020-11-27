@@ -1,6 +1,6 @@
 ﻿export default function scriptVerificarSeTemServico(){
 
-    $.post("../../lib/libVerificarSeTemServico.aspx", { emailCuidador: localStorage.getItem("usuarioLogado") }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libVerificarSeTemServico.aspx", { emailCuidador: localStorage.getItem("usuarioLogado") }, function (retorno) {
         retorno = retorno.replace("</html>", "").trim();
         console.log(retorno);
         if (retorno == "erro") {

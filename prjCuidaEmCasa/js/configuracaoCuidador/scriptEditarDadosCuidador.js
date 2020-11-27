@@ -55,7 +55,7 @@ export default function scriptEditarDadosCuidador(){
 				localStorage.setItem('especializacoesCuidador', $('#especializacoesCuidador').val())
 			}
 
-			$.post('../../lib/libEditarDadosCuidador.aspx', { emailCuidador: localStorage.getItem('usuarioLogado'), imagemCuidador: resultado, nmCuidador: nomeCuidador, especializacoes: localStorage.getItem('especializacoesCuidador'), genero: generoCuidador, dsCuidador: descricaoCuidador, dsEspecializacao: descricaoEspecializacao,telCuidador: telefoneCuidador, cpf: cpfCuidador, link: linkCurriculo, vlHora: valorHora }, function(retorno){
+			$.post('http://3.96.217.5/lib/libEditarDadosCuidador.aspx', { emailCuidador: localStorage.getItem('usuarioLogado'), imagemCuidador: resultado, nmCuidador: nomeCuidador, especializacoes: localStorage.getItem('especializacoesCuidador'), genero: generoCuidador, dsCuidador: descricaoCuidador, dsEspecializacao: descricaoEspecializacao,telCuidador: telefoneCuidador, cpf: cpfCuidador, link: linkCurriculo, vlHora: valorHora }, function(retorno){
 
 				if (retorno == "erro") 
 				{
