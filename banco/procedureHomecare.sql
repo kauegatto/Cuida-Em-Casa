@@ -2175,7 +2175,9 @@ BEGIN
 	ON
 		(o.cd_servico = s.cd_servico)
 	WHERE 
-		s.nm_email_usuario_cuidador = vEmailCuidador;
+		s.nm_email_usuario_cuidador = vEmailCuidador
+	AND
+		o.ic_verificado = 0;
 END$$
 
 /* Procedure criada para listar quantidade de advertências do cuidador */
@@ -2278,6 +2280,64 @@ BEGIN
 		s.nm_email_usuario_cuidador = vEmailCuidador
 	ORDER BY
 		s.dt_inicio_servico DESC;
+END$$
+
+/* Procedure criada para buscar as informações de denúncias que o cuidador recebeu */
+
+DROP PROCEDURE IF EXISTS listarOcorrenciaCuidador$$
+
+CREATE PROCEDURE listarOcorrenciaCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	SELECT
+		tpo.nm_tipo_ocorrencia, DATE_FORMAT(o.dt_ocorrencia, '%d/%m/%Y'), 
+		u.nm_usuario, o.nm_email_usuario, o.ds_ocorrencia, o.cd_ocorrencia,
+		o.cd_tipo_ocorrencia
+	FROM
+		ocorrencia o 
+	JOIN
+		usuario u 
+	ON
+		(o.nm_email_usuario = u.nm_email_usuario)
+	JOIN
+		servico s
+	ON
+		(o.cd_servico = s.cd_servico)
+	JOIN
+		tipo_ocorrencia tpo 
+	ON		
+		(o.cd_tipo_ocorrencia = tpo.cd_tipo_ocorrencia)
+	WHERE
+		s.nm_email_usuario_cuidador = vEmailCuidador
+	AND
+		o.ic_verificado = 0
+	ORDER BY
+		o.dt_ocorrencia;
+END$$
+
+/* Procedure criada para aplicar advertência ao cuidador */
+
+DROP PROCEDURE IF EXISTS aplicarAdvertencia$$
+
+CREATE PROCEDURE aplicarAdvertencia(vCodigoOcorrencia INT, vDsOcorrencia TEXT, vEmailCuidador VARCHAR(200), vEmailAdm VARCHAR(200), vCodigoTipoOcorrencia INT)
+BEGIN
+	INSERT INTO
+		advertencia
+	VALUES
+		(vCodigoOcorrencia, vDsOcorrencia, CURRENT_DATE, vEmailCuidador, vEmailAdm, vCodigoTipoOcorrencia);
+END$$
+
+/* Procedure criada para remover ocorrência */
+
+DROP PROCEDURE IF EXISTS removerOcorrencia$$
+
+CREATE PROCEDURE removerOcorrencia(vCodigoOcorrencia INT)
+BEGIN
+	UPDATE 
+		ocorrencia
+	SET
+		ic_verificado = 1
+	WHERE
+		cd_ocorrencia = vCodigoOcorrencia;
 END$$
 
 /* Procedure criada para buscar os dados do paciente */

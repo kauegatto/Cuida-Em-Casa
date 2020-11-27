@@ -47,15 +47,12 @@ call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
 call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
-<<<<<<< HEAD
-select * from servico;
-=======
 call buscarDadosCliente('mauriciorodolfo@gamil.com');
 call atualizarDadosCliente('mauriciorodolfo@gamil.com', 'Douglas Reis', '526.013.418-40', '(13) 33631503');
->>>>>>> 7e87b8ec5f546a56742dc4c17cf24f0d8917054e
+
 /* PROCEDURE DO CUIDADOR */
 
-call cadastrarCuidador('reinaldosouza@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
+call cadastrarCuidador('renanstopa@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
 'https://CurriculoDoRenan.com.br', '5 anos de trabalho de cuidadoria na Santa Casa de Santos', 
 'Me chamo Renan, estou nessa trabalho de cuidadoria a bastante tempo e faço isso com muita paixão', 2);
 call listarServicosAgendados('flaviabeneditamilenamelo@gmail.com');
@@ -88,12 +85,15 @@ call contratarCuidador('reinaldosouza@gmail.com');
 call recusarCuidador('renanstopa@gmail.com');
 call listarNumerosOcorrencia();
 call situacaoAdvertencia('reinaldosouza@gmail.com');
-call proxCodigoAdvertencia();
 call definirAdvertencia(4, 'O cuidador Reinaldo recebeu uma advertência de 3 dias por roubo contínuo nos serviços', '2020-08-12', '2020-08-15', 'reinaldosouza@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 2);
 call marcarDemissao('reinaldosouza@gmail.com');
 call listarCuidadoresContrato();
 call infoCuidadorContrato('renanstopa@gmail.com');
 call listarCuidadores();
-call listarOcorrencia('brunastellaflaviadepaula@gmail.com');
-call listarAdvertencia('brunastellaflaviadepaula@gmail.com');
+call listarOcorrencia('flaviabeneditamilenamelo@gmail.com');
+call listarAdvertencia('flaviabeneditamilenamelo@gmail.com');
 call infoServicoCuidador('brunastellaflaviadepaula@gmail.com');
+call listarOcorrenciaCuidador('flaviabeneditamilenamelo@gmail.com');
+call proxCodigoAdvertencia();
+call aplicarAdvertencia(4, 'Houve várias reclamções de atrasos recorrentes', 'flaviabeneditamilenamelo@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',1);
+call removerOcorrencia(2);

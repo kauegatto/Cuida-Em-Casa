@@ -173,6 +173,7 @@
     <Content Include="js\Administrador\ListarCuidadores\scriptInfoCuidador.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptListarCuidadores.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptServico.js" />
+    <Content Include="js\Administrador\Ocorrencia\scriptListarOcorrencias.js" />
     <Content Include="js\AgendaCliente\scriptAgendaCliente.js" />
     <Content Include="js\AgendaCliente\scriptAvaliacaoCuidador.js" />
     <Content Include="js\AgendaCliente\scriptCancelarServicoAgendado.js" />
@@ -292,6 +293,7 @@
     <Content Include="lib\libInfoServicoAtual.aspx" />
     <Content Include="lib\libListarCuidadoresAdm.aspx" />
     <Content Include="lib\libListarNecessidades.aspx" />
+    <Content Include="lib\libListarOcorrenciaCuidador.aspx" />
     <Content Include="lib\libListarServicosAgendados.aspx" />
     <Content Include="lib\libMudarStatusPagamento.aspx" />
     <Content Include="lib\libPacientesEmServico.aspx" />
@@ -305,6 +307,7 @@
     <Content Include="pages\administrador\index.html" />
     <Content Include="pages\administrador\infoCuidadorContrato.html" />
     <Content Include="pages\administrador\infoCuidadores.html" />
+    <Content Include="pages\administrador\ocorrenciaCuidador.html" />
     <Content Include="pages\administrador\servicos.html" />
     <Content Include="pages\cliente\agendaCliente.html" />
     <Content Include="pages\cliente\cadastroInicialCliente.html" />
@@ -684,6 +687,13 @@
     </Compile>
     <Compile Include="lib\libListarNecessidades.aspx.designer.cs">
       <DependentUpon>libListarNecessidades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libListarOcorrenciaCuidador.aspx.cs">
+      <DependentUpon>libListarOcorrenciaCuidador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libListarOcorrenciaCuidador.aspx.designer.cs">
+      <DependentUpon>libListarOcorrenciaCuidador.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libListarServicosAgendados.aspx.cs">
       <DependentUpon>libListarServicosAgendados.aspx</DependentUpon>
