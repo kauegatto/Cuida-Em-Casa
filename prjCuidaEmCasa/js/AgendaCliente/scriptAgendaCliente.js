@@ -12,8 +12,12 @@
 		else
 		{
 			console.log('deu certo agenda');
-			$("#listaAgenda").html(retorno);
-			
+			if (retorno!=""){
+				$("#listaAgenda").html(retorno);
+			}
+			else{
+				$("#listaAgenda").html("<h3 style='font-family:rubik;text-align:center;'>Você não tem serviços para o futuro!</h3>");
+			}
 			if ($('.invi').html() == imgPadrao) 
 			{
 				$(".areaDadosAgendados").each(function (i, obj) {

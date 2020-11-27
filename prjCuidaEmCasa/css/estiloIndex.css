@@ -4,9 +4,9 @@ body { background: #2980B9; }
 
 a { text-decoration: none; } 
 
-.areaLogo { width: 75%;max-width:500px;margin:0 auto; }
+.areaLogo { width: 75%;max-width: 500px;margin: 0 auto;	margin-top: 18px;}
 
-.areaLogo img { width: 100%; margin:0 auto;}
+.areaLogo img {margin-top: 10px;display: block;width: 63%;margin: 0 auto;}
 
 .areaForm { padding: 5%; width: 80%; background: #F4F4F4; border-radius: 14px; margin: 0 auto; margin-top: 25px; ;}
 
