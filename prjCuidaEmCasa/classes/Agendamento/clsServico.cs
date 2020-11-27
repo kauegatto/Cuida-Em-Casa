@@ -44,6 +44,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> vl_maximo { get; set; }
         public List<string> codigoAgora { get; set; }
         public List<string> emailCuidadorAgora { get; set; }
+        public List<string> cd_avaliacaoNota { get; set; } 
         public string diaDaSemana { get; set; }
         public string cd_geolocalizao { get; set; }
         public string hr_checkin { get; set; }
@@ -60,6 +61,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             hr_inicio_servico = new List<string>();
             hr_fim_servico = new List<string>();
             duracaoServico = new List<string>();
+            cd_avaliacaoNota = new List<string>();
             nm_necessidade = "";
             ds_paciente = "";
             cd_CEP_servico = "";
@@ -819,6 +821,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     duracaoServico.Add(dados[14].ToString());
                     vl_cuidador.Add(dados[15].ToString());
                     situacaoServico.Add(dados[16].ToString());
+                    emailCuidador.Add(dados[17].ToString());
                 }
             }
 
@@ -880,6 +883,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion 
         
+        #region buscarDisponibilidadesServico
         public bool buscarDisponibilidadesServico(string usuarioLogado, string intMes) {
             MySqlDataReader dados = null;
             string[,] valores = new string[2, 2];
@@ -907,8 +911,43 @@ namespace prjCuidaEmCasa.classes.Agendamento
             if (!dados.IsClosed) { dados.Close(); }
             Desconectar();
             return true;
-        
+
         }
+        #endregion
+
+        #region Listar avaliacao
+
+        public bool listarAvaliacao(string emailUsuario) 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+
+            if (!Procedure("listarAvaliacoes", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    if (dados[0].ToString() != "")
+                    {
+                        cd_avaliacaoNota.Add(dados[0].ToString());
+                    }
+
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+
+        #endregion
 
     }
 }

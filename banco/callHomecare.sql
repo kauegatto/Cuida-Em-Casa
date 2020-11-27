@@ -69,7 +69,7 @@ call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
-
+call listarAvaliacoes('flaviabeneditamilenamelo@gmail.com');
 /* Calendario / Agenda  */
 
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
