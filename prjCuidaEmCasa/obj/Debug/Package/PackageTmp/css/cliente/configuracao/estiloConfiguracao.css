@@ -6,6 +6,8 @@
 
 #wrapper-EsqueceuSenha { display: none; }
 
+#wrapper-AlterarDados { display: none; }
+
 .areaEmail { width: 100%; height: 55px; background: #285593; margin-top: 29.8%;}
 
 .emailUsuario { float: left; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; color: #FFFFFF; margin-left: 17px; margin-top: 15px; }
@@ -28,7 +30,7 @@
 
 .btnAtualizarSenha { margin-left: 80px; border-style: none; width: 196px; height: 34px; background: #27AE60; border-radius: 10px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;}
 
-.esqueceuSenha { width: 100%; height: auto; }
+.esqueceuSenha { width: 100%; height: auto; margin-top: 35%;}
 
 .esqueceuSenha h3 { margin-top: 37px; margin-left: 85px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464;}
 

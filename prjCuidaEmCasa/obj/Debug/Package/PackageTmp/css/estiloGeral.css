@@ -30,7 +30,7 @@ height: 47px;}
 
 .footer { color: rgba(240,240,247,0.65) !important; grid-area: footer; height: 70px; background: #2980B9;  width: 100%; position: fixed; bottom: 0%; transform: translateZ(0);} 
 
-.paginaAtual { color : #fafafa;  }
+.paginaAtual { font-weight: bold;  }
 
 
 /*.paginaAtual img{ background:#fafafa; }*/
@@ -39,7 +39,7 @@ height: 47px;}
 
 .areaIcone { height: 80%; margin-top: 14px; margin-left: 30px;}
 
-.menuGeral span { height: 20%; position: relative; font-family: 'Archivo', sans-serif;font-style: normal; font-weight: bold; font-size: 12px; line-height: 13px;}
+.menuGeral span { height: 20%; position: relative; font-family: 'Archivo', sans-serif;font-style: normal; font-size: 12px; line-height: 13px;}
 
 .iconeCasa { margin-top: 10px; margin-left: 159px; }
 

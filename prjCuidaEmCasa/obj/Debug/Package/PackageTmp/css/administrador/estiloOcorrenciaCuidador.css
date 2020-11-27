@@ -1,0 +1,31 @@
+* { margin: 0; padding: 0; }
+
+a { text-decoration: none;}
+
+body { background: #E5E5E5; }
+
+.conteudoCuidador {width: 60%;margin-left: 20%;background-color: #2980B9; margin-top: 30px; border-radius: 10px; border-style: none; padding: 25px;}
+
+.areaCuidador { width: 85%; height: 100px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-left: 7.5%;}
+
+.areaImagemCuidador {  width: 12%; height: 80px; float: left; position: relative; background-size: cover; border-radius: 50%; background-position: center; margin-left: 10px;  margin-top: 2px; }
+
+.areaNomeCuidador {  margin-top: 5px; height: 90px; width: 150px; float: left; margin-left: 15px;}
+
+.areaOcorrencia {width: 85%; min-height: 200px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 14px; margin-left: 7.5%;}
+
+.areaCuidador h3 { font-family: Roboto; font-style: normal; font-weight: bold; font-size: 20px; line-height: 21px; margin-top: 5px;}
+
+.areaOcorrencia h2 {font-family: Roboto; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; margin-left: 20px; padding-top: 10px}
+
+.tituloConteudo {font-family: Rubik; color: white; font-size: 20px; margin-top: 10px; text-align: center}
+
+.areaInfoOcorrencia {min-height: 100px; width: 95%; margin-top: 5px; margin-left: 20px }
+
+.areaInfoOcorrencia span{position: relative; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 15px; line-height: 30px; padding: 2px }
+
+.areaBotao { width: 90%; min-height: 60px;border-top: 1px solid gray; position: relative;left: 20px}
+
+.btnDenuncia { position: relative; top: 15px; left: 70% ;background: #27AE60; border-radius: 10px; width: 180px; height: 30px; border-style: none; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 18px; line-height: 21px; color: white; cursor: pointer;}
+
+.btnEnviarAdvertencia {position: relative; top: 15px; left: 10%; ;background: #9D2F42; border-radius: 10px; width: 180px; height: 30px; border-style: none; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 18px; line-height: 21px; color: white; cursor: pointer;}

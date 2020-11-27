@@ -191,7 +191,7 @@
           }
           
             doSubmit=true;
-            //form.submit();
+            form.submit();
 
 
         }).fail(function (jqxhr, textStatus, error) {    
@@ -240,16 +240,17 @@
               default:
                 alert("Desculpe, um erro inesperado aconteceu. O código de debug é: " +jqxhr);
             }
-        });
-    }
-    function comprovarPagamento (){
 
-      $.post("http://localhost:53825/lib/libConfirmarPagamento.aspx", { cdServico: localStorage.getItem("cdServico") }, function (retorno) {
+        });
+  }
+
+  function comprovarPagamento (){
+      let cdServico =  localStorage.getItem("cdServico"); console.log(cdServico);
+      $.post("../../lib/libConfirmarPagamento.aspx", { cdServico: cdServico }, function (retorno) {
           if (!retorno) {
                 alert("Ocorreu um erro na hora de registrar o pagamento de seu pedido, contate a cuida em casa!");
                 window.location.href = "cliente/agendamento.html"
           }
       });
-
-    }
+  }
 });
