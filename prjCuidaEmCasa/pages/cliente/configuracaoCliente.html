@@ -9,11 +9,13 @@
 	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../../css/cliente/estiloPaciente.css">
 	<script
   	 src="https://code.jquery.com/jquery-3.5.1.js"
  	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
  	 crossorigin="anonymous"></script>
 	<script src="../../js/configuracaoCliente/scriptNavegacaoConfiguracaoCliente.js" type="module"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 </head>
 <body>
 	<div class="estruturaGeral">
@@ -65,17 +67,8 @@
 				<div class="areaEmail">
 					<span class="emailUsuario">Login e Segurança</span>
 				</div>
-				<div class="areaDadosConta">
-					<span class="areaConta" style="margin-top: 8px;">Email</span>
-					<div>
-						<span class="emailDadosConta"></span>
-					</div>
-				</div>
-				<div class="areaDadosConta">
-					<span class="areaConta" style="margin-top: 8px;">Celular</span>
-					<div>
-						<span class="emailDadosConta" id="telefoneUsuario"></span>
-					</div>
+				<div class="areaDadosConta" id="alterarDados">
+					<span class="areaConta">Alterar Dados</span>
 				</div>
 				<div class="areaDadosConta" id="alterarSenha">
 					<span class="areaConta">Alterar Senha</span>
@@ -100,11 +93,36 @@
 					</div>
 					<div class="areaText">
 						<button class="btnAtualizarSenha">Atualizar Senha</button>
-						<h2 class="areaEsqueceuSenha">Esqueceu a Senha?</h2>
+						
 					</div>
 				</div>
 			</div>
-			<div class="wrapper" id="wrapper-EsqueceuSenha">
+			<div class="wrapper" id="wrapper-AlterarDados">
+				<div class="areaInfoDadosPaciente" style="min-height: 315px; margin-top: 50%;">
+					<div class="areaNomePaciente" style="float: left;     margin-left: 20%;
+">
+						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Nome:</h3>
+						<input type="text" name="txtNomePaciente" id="txtAlterarNomeCliente" class="inputInfo" 
+						 style="width: 205px;height: 31px; margin-left: 8px; margin-top: 5px; padding: 5px;">
+					</div>
+					<div class="areaNomePaciente" style="float: left;     margin-left: 20%;
+">
+						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px;">Telefone:</h3>
+						<input type="text" name="txtNomePaciente" id="txtAlterarTelefoneCliente" class="inputInfo" 
+						 style="width: 205px;height: 31px; margin-left: 8px; margin-top: 5px; padding: 5px;">
+					</div>
+					<div class="areaNomePaciente" style="float: left;     margin-left: 20%;
+">
+						<h3 class="tituloInfo" style="margin-top: 20px; margin-left: 10px; ">CPF:</h3>
+						<input type="text" name="txtNomePaciente" id="txtAlterarCpfCliente" class="inputInfo" 
+						 style="width: 205px;height: 31px; margin-left: 8px; margin-top: 5px; padding: 5px;">
+					</div>
+					<div id="areaBotoes">
+						<button type="button" class="btnSalvar" style="margin-left: 100px; margin-top: 30px;" id="btnSalvarDadosCliente">Salvar</button>
+					</div>
+				</div>
+			</div>
+<!-- 			<div class="wrapper" id="wrapper-EsqueceuSenha">
 				<div class="esqueceuSenha">
 					<h3>Esqueceu sua Senha?</h3>
 					<div class="areaEmailCodigo">
@@ -119,7 +137,7 @@
 						<button class="btnEnviarCodigo">Enviar Código</button>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</main>
 		<footer class="footer">
 			<nav>

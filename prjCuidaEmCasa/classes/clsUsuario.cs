@@ -13,6 +13,10 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string codigoOcrrencia { get; set; }
         public string telefoneUsuario { get; set; }
         public string senhaVerificada { get; set; }
+        public List<string> nomeCliente { get; set; }
+        public List<string> cpfCliente { get; set; }
+        public List<string> telefoneCliente { get; set; }
+        public List<string> cdRecuperarSenha { get; set; }
 
         public clsUsuario(): base()
         {
@@ -20,6 +24,10 @@ namespace prjCuidaEmCasa.classes.Agendamento
             tipoUsuario = "";
             codigoOcrrencia = "";
             senhaVerificada = "";
+            nomeCliente = new List<string>();
+            cpfCliente = new List<string>();
+            telefoneCliente = new List<string>();
+            cdRecuperarSenha = new List<string>();
         }
 
         #region Verificar login usuario
@@ -258,6 +266,190 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
 
         #endregion
+
+        #region Buscar Dados do Cliente 
+
+        public bool buscarDadosCliente(string emailCliente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCliente";
+            valores[0, 1] = emailCliente;
+
+            if (!Procedure("buscarDadosCliente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+	        {
+                while (dados.Read()) 
+                {
+                    nomeCliente.Add(dados[0].ToString());
+                    cpfCliente.Add(dados[1].ToString());
+                    telefoneCliente.Add(dados[2].ToString());
+                }
+	        }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
+        #endregion
+
+        #region Atualizar dados do cliente 
+
+        public bool atualizarDadosCliente(string emailCliente, string nomeCliente, string cpfCliente, string telefoneCliente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[4, 2];
+
+            valores[0, 0] = "vEmailUsuario";
+            valores[0 ,1] = emailCliente;
+            valores[1, 0] = "vNomeUsuario";
+            valores[1, 1] = nomeCliente;
+            valores[2, 0] = "vCpfUsuario";
+            valores[2, 1] = cpfCliente;
+            valores[3, 0] = "vTelefoneUsuario";
+            valores[3, 1] = telefoneCliente;
+
+            if (!Procedure("atualizarDadosCliente", true, valores, ref dados))
+            {
+                Desconectar();
+                return false; 
+            }
+
+            return true;
+        }
+
+
+        #endregion
+
+        #region codigoRecuperarSenha
+
+        public bool codigoRecuperarSenha(string emailUsuario)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+
+            if (!Procedure("codigoRecuperarSenha", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read()) 
+                {
+                    cdRecuperarSenha.Add(dados[0].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
+        #endregion 
+
+        #region verificar Codigo Recuperacao
+
+        public bool verificarCodigoRecuperacao(string emailUsuario, string codigoRecuperacao)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+            valores[1, 0] = "vCdRecuperacao";
+            valores[1, 1] = codigoRecuperacao;
+
+            if (!Procedure("verificarCodigoRecuperacao", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    cdRecuperarSenha.Add(dados[0].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
+
+        #endregion
+
+        #region inserirAuthRecover
+
+        public bool inserirAuthRecover(string emailCliente, string codigoSeguranca) 
+        {
+
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailCliente;
+            valores[1, 0] = "vCodigoAuthRecover";
+            valores[1, 1] = codigoSeguranca;
+
+            if (!Procedure("inserirAuthRecover", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+
+
+            return true;
+        }
+
+        #endregion
+
+        #region deltetar auth recover 
+
+        public bool deletarAuthRecover(string cdAuthRecover, string emailUsuario)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+            valores[1, 0] = "vCodigoAuthRecover";
+            valores[1, 1] = cdAuthRecover;
+
+            if (!Procedure("deletarAuthRecover", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+
+
+        }
+
+
+        #endregion 
 
     }
 }

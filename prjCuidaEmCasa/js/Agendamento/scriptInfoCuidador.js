@@ -1,4 +1,5 @@
 ﻿export default function scriptInfoCuidador () {
+
     $(".areaInfoDetalhes").click(function () {
         $(this).toggleClass("fechado");
         if ($(this).hasClass("fechado")) {
@@ -28,7 +29,7 @@
             $(this).css("height", "altura");
             $(this).children(".btnExpandir").html("-");
         }
-    }); //VA I SE F8UDE AJAVASCIRPT!!!
+    }); //VAI SE F8UDE AJAVASCIRPT!!!
     $.post("../../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
         if (!retorno) {
             alert("Ocorreu um erro na busca dos dados do cuidador!");
@@ -45,7 +46,18 @@
         localStorage.setItem("imagemCuidador", retorno[6]);
         localStorage.setItem("valorHora", retorno[0]);
         localStorage.setItem("nomeCuidador", retorno[1]);
-        var url = "data:image/svg+xml+jpeg+jpg;base64," + localStorage.getItem("imagemCuidador");
-        $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+
+        if (localStorage.getItem('imagemCuidador') == imgPadrao) 
+        {
+            var url = "data:image/svg+xml;base64," + localStorage.getItem("imagemCuidador");
+            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+        }
+        else
+        {
+            var url = "data:image/jpeg;base64," + localStorage.getItem("imagemCuidador");
+            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+        }
+
+       
     });
 };

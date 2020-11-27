@@ -194,7 +194,6 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
 
-
             string[] especializacoes = especializacaoCuidador.Split(';');
 
             for (int i = 0; i < especializacoes.Length; i++)
@@ -207,6 +206,17 @@ namespace prjCuidaEmCasa.lib
 	            }
 
             }
+
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+
+            if (!usuario.inserirAuthRecover(emailCuidador, sixDigitNumber))
+            {
+                Response.Write("erro");
+                return;
+            }
+
 
 
         }

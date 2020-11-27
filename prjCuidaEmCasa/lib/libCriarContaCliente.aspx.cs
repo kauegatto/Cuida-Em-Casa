@@ -83,9 +83,19 @@ namespace prjCuidaEmCasa.lib
 
             string senhaCliente = Request["senhaCliente"].ToString();
 
+            Random r = new Random();
+            int randNum = r.Next(1000000);
+            string sixDigitNumber = randNum.ToString("D6");
+
             clsUsuario classeUsuario = new clsUsuario();
 
             if (!classeUsuario.cadastroCliente(emailCliente,nomeCliente,telefoneCliente,cpfCliente,senhaCliente))
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            if (!classeUsuario.inserirAuthRecover(emailCliente, sixDigitNumber))
             {
                 Response.Write("erro");
                 return;

@@ -12,7 +12,7 @@ body { background: #E5E5E5; }
 
 .areaNomeCuidador {  margin-top: 5px; height: 90px; width: 150px; float: left; margin-left: 15px;}
 
-.areaServico {width: 85%; height: 120px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 14px; margin-left: 7.5%;}
+.areaServico {width: 85%; min-height: 172px; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 14px; margin-left: 7.5%;}
 
 .areaCuidador h3 { font-family: Roboto; font-style: normal; font-weight: bold; font-size: 20px; line-height: 21px; margin-top: 5px;}
 
@@ -22,6 +22,12 @@ body { background: #E5E5E5; }
 
 .areaInfoServico span{position: relative; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 15px; line-height: 30px; padding: 2px }
 
-.tituloServico {position: relative; top: 5px; left: 15px}
+.tituloServico {position: relative; left: 15px}
 
 .tituloServico span{font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 21px; padding: 2px }
+
+.finalziado { color: #27AE60; }
+
+.pendente { color: #DD570B; }
+
+.cancelado { color: #FB0D0D; }
