@@ -1,6 +1,6 @@
 ﻿export default function scriptPacienteAgora() {
 	var retorno;
-    $.post("../../lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
         }

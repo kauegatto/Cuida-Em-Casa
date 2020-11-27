@@ -1,6 +1,6 @@
 ﻿export default function scriptEnviarCodigoRecuperacao(codigo, email){
 
-	$.post("../../lib/libEnviarCodigoRecuperacao.aspx", { codigoRecuperacao: codigo, emailUsuario: email}, function(retorno){
+	$.post("http://3.96.217.5/lib/libEnviarCodigoRecuperacao.aspx", { codigoRecuperacao: codigo, emailUsuario: email}, function(retorno){
 
 		if (retorno == "erro") 
 		{

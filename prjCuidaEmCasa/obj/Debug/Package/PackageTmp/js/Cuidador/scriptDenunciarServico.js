@@ -1,6 +1,6 @@
 export default function scriptDenunciarServico(emailCliente, txtDenuncia, cdServico, cdTipoDenuncia) {
 
-	$.post("../../lib/libDenunciarCuidador.aspx", { e: emailCliente, d: txtDenuncia, c: cdServico, cd: cdTipoDenuncia}, function(retorno) {
+	$.post("http://3.96.217.5/lib/libDenunciarCuidador.aspx", { e: emailCliente, d: txtDenuncia, c: cdServico, cd: cdTipoDenuncia}, function(retorno) {
 
 		if (retorno == "erro") 
 		{

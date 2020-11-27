@@ -25,7 +25,7 @@ export default function scriptAdicionarPaciente() {
 		//$('.areaImagemPaciente').css('background-image', 'url(' + localStorage.getItem('imagemPaciente') + ')');
 	}
 
-    $.post("../../lib/libAdicionarPaciente.aspx",  { cdNecessidade: localStorage.getItem('necessidadeEscolhida'), imagemPaciente: localStorage.getItem('imagemPaciente'), usuarioLogado : usuarioLogado,nome:nome, uf:uf, descricao: descricao, CEP:CEP, cidade : cidade,bairro: bairro,rua:rua, numero:numero,complemento:complemento  }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libAdicionarPaciente.aspx",  { cdNecessidade: localStorage.getItem('necessidadeEscolhida'), imagemPaciente: localStorage.getItem('imagemPaciente'), usuarioLogado : usuarioLogado,nome:nome, uf:uf, descricao: descricao, CEP:CEP, cidade : cidade,bairro: bairro,rua:rua, numero:numero,complemento:complemento  }, function (retorno) {
        
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");

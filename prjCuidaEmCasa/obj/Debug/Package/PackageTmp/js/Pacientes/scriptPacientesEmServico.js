@@ -1,7 +1,7 @@
 ﻿export default function scriptPacientesEmServico () {
     
     var retorno;
-    $.post("../../lib/libPacientesEmServico.aspx", { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libPacientesEmServico.aspx", { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
 
         if (retorno == "erro") {
             $('#wrapper-pacienteServico').html("ERRO NO RETORNO");

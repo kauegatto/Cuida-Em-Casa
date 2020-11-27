@@ -1,6 +1,6 @@
 ﻿export default function scriptCancelarServicoAgora() {
 
-	$.post("../../lib/libCancelarServicoAgora.aspx", { codigoServico: localStorage.getItem("cdServico") }, function(retorno) {
+	$.post("http://3.96.217.5/lib/libCancelarServicoAgora.aspx", { codigoServico: localStorage.getItem("cdServico") }, function(retorno) {
 
 		if (retorno == "false") 
 		{

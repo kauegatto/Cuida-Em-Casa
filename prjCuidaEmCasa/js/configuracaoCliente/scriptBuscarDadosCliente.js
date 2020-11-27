@@ -1,6 +1,6 @@
 export default function scriptBuscarDadosCliente(){
 
-	$.post("../../lib/libBuscarDadosCliente.aspx", { emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
+	$.post("http://3.96.217.5/lib/libBuscarDadosCliente.aspx", { emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
 
 		if (retorno == "erro") 
 		{

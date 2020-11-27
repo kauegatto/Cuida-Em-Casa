@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 	var imgCuidador;
 
-	$.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
+	$.post("http://3.96.217.5/lib/libEspecializacaoCuidador.aspx", function(retorno){
 
 		if (retorno == "erro") 
 		{

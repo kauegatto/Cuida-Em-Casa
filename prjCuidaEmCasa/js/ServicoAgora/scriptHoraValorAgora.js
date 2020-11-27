@@ -33,7 +33,7 @@
         localStorage.setItem("valorMaximo", valorMaximo);
         localStorage.setItem("data", diaAtual);
 
-        $.post("../../lib/libBuscarServicoAgora.aspx", { du: localStorage.getItem("duracaoAgora"), ha: localStorage.getItem("horaAtual"), da: diaAtual, hf: localStorage.getItem("horaFinal") }, function (retorno) {
+        $.post(http://3.96.217.5/lib/libBuscarServicoAgora.aspx", { du: localStorage.getItem("duracaoAgora"), ha: localStorage.getItem("horaAtual"), da: diaAtual, hf: localStorage.getItem("horaFinal") }, function (retorno) {
             localStorage.setItem("dataFim", retorno);
         });
 }

@@ -6,7 +6,7 @@ export default function scriptAtualizarDadosCliente(){
 	var telCliente = $('#txtAlterarTelefoneCliente').val();
 	var cpf = $('#txtAlterarCpfCliente').val();
 
-	$.post("../../lib/libAtualizarDadosCliente.aspx", { nomeCliente: nmCliente, telefoneCliente: telCliente, cpfCliente: cpf, emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
+	$.post("http://3.96.217.5/lib/libAtualizarDadosCliente.aspx", { nomeCliente: nmCliente, telefoneCliente: telCliente, cpfCliente: cpf, emailCliente: localStorage.getItem('usuarioLogado')}, function(retorno){
 
 		if (retorno == "erro") 
 		{

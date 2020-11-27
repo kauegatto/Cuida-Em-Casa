@@ -1,6 +1,6 @@
 ﻿export default function scriptCancelarServicoAgendado(cdServico) {
     var dados;
-    $.post("../../lib/libCancelarServicoAgendado.aspx", { codigoServico: cdServico }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libCancelarServicoAgendado.aspx", { codigoServico: cdServico }, function (retorno) {
          if (retorno == "false") {
             console.log("deu erro");
         }

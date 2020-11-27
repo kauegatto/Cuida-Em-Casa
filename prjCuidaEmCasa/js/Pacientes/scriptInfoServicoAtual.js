@@ -4,7 +4,7 @@
     var retorno;
     var map = document.getElementById('map');
     var img = document.createElement('img'); 
-    $.post("../../lib/libInfoServicoAtual.aspx", { cdServico: cdServico}, function (retorno) {
+    $.post("http://3.96.217.5/lib/libInfoServicoAtual.aspx", { cdServico: cdServico}, function (retorno) {
 
         if (!retorno) {
             $('#wrapper-ServicoAtual').html("ERRO NO RETORNO");

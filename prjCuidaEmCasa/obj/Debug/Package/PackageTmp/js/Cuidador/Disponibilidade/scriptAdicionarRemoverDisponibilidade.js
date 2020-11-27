@@ -140,7 +140,7 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
     function adicionarDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
-        $.post("../../lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+        $.post("http://3.96.217.5/lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
             
             if (retorno == "false") {
                 console.log("deu erro");
@@ -154,7 +154,7 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
     function removerDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
-        $.post("../../lib/libRemoverDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+        $.post("http://3.96.217.5/lib/libRemoverDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
             
             if (retorno == "false") {
                 console.log("deu erro");

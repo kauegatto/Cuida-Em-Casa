@@ -11,7 +11,7 @@
     
     //console.log(recente);
            
-    $.post("../../lib/libHistoricoServico.aspx", { filtro: recente, email: localStorage.getItem("usuarioLogado"), data: filtroData }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libHistoricoServico.aspx", { filtro: recente, email: localStorage.getItem("usuarioLogado"), data: filtroData }, function (retorno) {
 
             if (retorno == "" || retorno == null) {
                 $('#wrapper-historicoServico').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%'>Erro no retorno</h2>");
