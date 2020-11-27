@@ -167,7 +167,7 @@ namespace prjCuidaEmCasa.lib
 
                     dadosOcorrencia += "</div>";
 
-                    Response.Write(dadosOcorrencia);
+                    Response.Write(adm.base64String[0] + "|@"  + dadosOcorrencia);
                 }
             }
         }

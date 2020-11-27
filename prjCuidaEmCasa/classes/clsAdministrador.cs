@@ -36,7 +36,12 @@ namespace prjCuidaEmCasa.classes
         public List<string> cdOcorrencia { get; set; }
         public List<string> cdTipoOcorrencia { get; set; }
         public string codigo { get; set; }
-        
+        public List<string> tipoAdvertencia { get; set; }
+        public List<string> dataAdvertencia { get; set; }
+        public List<string> nomeAdm { get; set; }
+        public List<string> emailAdm { get; set; }
+        public List<string> dsAdvertencia { get; set; }
+        public List<string> qtdOcorrenciaCuidadores { get; set; }
 
         public clsAdministrador(): base()
         {
@@ -68,6 +73,12 @@ namespace prjCuidaEmCasa.classes
             cdOcorrencia = new List<string>();
             cdTipoOcorrencia = new List<string>();
             codigo = "";
+            tipoAdvertencia = new List<string>();
+            dataAdvertencia = new List<string>();
+            nomeAdm = new List<string>();
+            emailAdm = new List<string>();
+            dsAdvertencia = new List<string>();
+            qtdOcorrenciaCuidadores = new List<string>();
         }
 
         #region Listar cuidadores para cadastro
@@ -434,6 +445,76 @@ namespace prjCuidaEmCasa.classes
             Desconectar();
 
             return true; 
+        }
+        #endregion
+
+        #region Listar todas as advertências do cuidador
+        public bool listarAdvertenciaCuidador(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("listarAdvertenciaCuidador", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    tipoAdvertencia.Add(dados[0].ToString());
+                    dataAdvertencia.Add(dados[1].ToString());
+                    nomeAdm.Add(dados[2].ToString());
+                    emailAdm.Add(dados[3].ToString());
+                    dsAdvertencia.Add(dados[4].ToString());
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+            }
+
+            return true;
+        }
+        #endregion
+
+        #region Listar todos os cuidadores com ocorrência
+        public bool listarCuidadoresOcorrencia()
+        {
+            MySqlDataReader dados = null;
+
+            if (!Procedure("listarCuidadoresOcorrencia", false, null, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    if (!Convert.IsDBNull(dados[0]))
+                    {
+                        byte[] imagem = (byte[])dados[0];
+
+                        base64String.Add(Convert.ToBase64String(imagem, 0, imagem.Length));
+                    }
+                    else { base64String.Add(base64standard); }
+                    nomeCuidador.Add(dados[1].ToString());
+                    vlHora.Add(dados[2].ToString());
+                    especiazalicaoCuidador.Add(dados[3].ToString());
+                    qtdOcorrenciaCuidadores.Add(dados[4].ToString());
+                    nmEmailCuidador.Add(dados[5].ToString());
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+            }
+
+            return true;
         }
         #endregion
     }
