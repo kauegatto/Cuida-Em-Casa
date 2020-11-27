@@ -4,7 +4,7 @@
     {
         retorno = retorno.split("|");
         if (!retorno[0]) {
-            alert("erro na hora de cadastrar serviço");
+            alertIonic("Erro na hora de cadastrar serviço");
         }
         else {
             localStorage.setItem("cdServico",retorno[1]);
