@@ -44,7 +44,7 @@ CREATE TABLE tipo_situacao_usuario (
 
 insert into tipo_situacao_usuario values (1, 'Contratado');
 insert into tipo_situacao_usuario values (2, 'Em análise');
-insert into tipo_situacao_usuario values (3, 'Em advertência');
+insert into tipo_situacao_usuario values (3, 'Suspenso');
 insert into tipo_situacao_usuario values (4, 'Demitido');
 
 

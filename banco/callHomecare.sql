@@ -100,3 +100,7 @@ call aplicarAdvertencia(4, 'Houve várias reclamções de atrasos recorrentes', 
 call removerOcorrencia(2);
 call listarAdvertenciaCuidador('oliverbrunoluccanunes@gmail.com');
 call listarCuidadoresOcorrencia();
+call suspenderCuidador('flaviabeneditamilenamelo@gmail.com');
+call removerSuspensao('flaviabeneditamilenamelo@gmail.com');
+call banirCuidador('flaviabeneditamilenamelo@gmail.com');
+call desbanirCuidador('flaviabeneditamilenamelo@gmail.com');

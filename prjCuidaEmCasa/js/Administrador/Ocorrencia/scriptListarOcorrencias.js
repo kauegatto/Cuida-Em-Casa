@@ -2,7 +2,7 @@
 
     var botao = 3;
 
-    $.post("http://3.96.217.5/lib/libListarOcorrenciaCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidador"), cdOcorrencia: "0", dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
+    $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidador"), cdOcorrencia: "0", dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
         if (retorno == "false") {
             console.log("deu erro na lib");
         }
@@ -19,14 +19,14 @@
         localStorage.setItem("cdOcorrencia", classes[1]);
         botao = 0;
 
-        $.post("http://3.96.217.5/lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
+        $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
             if (retorno == "false") {
                 console.log("deu erro na lib");
             }
             else {
                 botao = 3;
 
-                $.post("http://3.96.217.5/lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
+                $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
                     if (retorno == "false") {
                         console.log("deu erro na lib");
                     }
@@ -52,14 +52,14 @@
         var emailCliente = $('.emailClienteOcorrencia').html();
         var cdTipoOcorrencia = classes[2];
 
-        $.post("http://3.96.217.5/lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: dsOcorrencia, emailAdm: localStorage.getItem("usuarioLogado"), cdTipoOcorrencia: cdTipoOcorrencia }, function (retorno) {
+        $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: dsOcorrencia, emailAdm: localStorage.getItem("usuarioLogado"), cdTipoOcorrencia: cdTipoOcorrencia }, function (retorno) {
             if (retorno == "false") {
                 console.log("deu erro na lib");
             }
             else {
                 botao = 3;
 
-                $.post("http://3.96.217.5/lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
+                $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, cdOcorrencia: localStorage.getItem("cdOcorrencia"), emailCuidador: localStorage.getItem("emailCuidador"), dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
                     if (retorno == "false") {
                         console.log("deu erro na lib");
                     }
