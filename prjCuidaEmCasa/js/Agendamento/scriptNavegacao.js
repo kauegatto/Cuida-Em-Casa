@@ -58,7 +58,7 @@ if(!localStorage.getItem("tipoUsuario") == 2){
 
 scriptPaciente();
 
-$.post("http://3.96.217.5/lib/libEspecializacaoCuidador.aspx", function(retorno){
+$.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
 
     if (retorno == "erro") 
     {

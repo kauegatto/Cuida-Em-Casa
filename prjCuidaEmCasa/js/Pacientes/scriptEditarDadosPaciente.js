@@ -53,7 +53,7 @@ export default function scriptEditarDadosPaciente() {
 
 			$('#necessidadeEscolhida').html("");
 
-			$.post("http://3.96.217.5/lib/libAtualizarDadosPaciente.aspx",  { necessidadesPaciente: cdNecessidades, imagem: resultado, cd: cdPaciente, nome: nome, uf: uf, descricao: descricao, CEP: CEP, cidade: cidade, bairro: bairro, rua:rua, numero:numero, complemento:complemento }, function (retorno) {
+			$.post("../../lib/libAtualizarDadosPaciente.aspx",  { necessidadesPaciente: cdNecessidades, imagem: resultado, cd: cdPaciente, nome: nome, uf: uf, descricao: descricao, CEP: CEP, cidade: cidade, bairro: bairro, rua:rua, numero:numero, complemento:complemento }, function (retorno) {
 
 				if (!retorno) {
 					$('#wrapper-paciente').html("ERRO NO RETORNO");

@@ -24,7 +24,7 @@
     	if (filtroAvaliacao == "") {vA = "false";}
         else{vA = "true"; intAvaliacao = filtroAvaliacao}
 
-	  	$.post("http://3.96.217.5/lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), filtro: "true", vA: vA, vP: vP, vG: vG, vE: vE,vEspecializacao: filtroEspecializacao, vPreco: intFiltroPreco,vAvaliacao: intAvaliacao,vGenero:infoGenero}, function (retorno) {
+	  	$.post("../../lib/libBuscarCuidador.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), filtro: "true", vA: vA, vP: vP, vG: vG, vE: vE,vEspecializacao: filtroEspecializacao, vPreco: intFiltroPreco,vAvaliacao: intAvaliacao,vGenero:infoGenero}, function (retorno) {
 	       	console.log(retorno);
             var botao = "<button class='btnProximo' id='btnCuidador'>Próximo</button>";
 	        if (retorno == "" || retorno == null){

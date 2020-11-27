@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $.post("../../../lib/libListarAdvertenciaCuidador.aspx", { emailCuidador: localStorage.getItem("emailCuidador") }, function (retorno) {
+    $.post("http://3.96.217.5/lib/libListarAdvertenciaCuidador.aspx", { emailCuidador: localStorage.getItem("emailCuidador") }, function (retorno) {
         if (retorno == "false") {
             console.log("deu erro na lib");
         }

@@ -32,7 +32,7 @@ $(document).ready(function () {
         $('#tituloGeral-Nav').css("margin-right","56px");
         $('#tituloGeral-Nav').css("margin-left","0");
         $('#tituloGeral-Nav').css("width","204");
-        $.post('http://3.96.217.5/lib/libListarNecessidades.aspx', {}, function(retorno){
+        $.post('../../lib/libListarNecessidades.aspx', {}, function(retorno){
 
             if (retorno == 'erro') 
             {

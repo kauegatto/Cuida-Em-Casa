@@ -1,6 +1,6 @@
 ﻿export default function scriptAtualizarSenha(senhaAtual, novaSenha, confirmarSenha, emailUsuario) {
 
-	$.post("http://3.96.217.5/lib/libAtualizarSenha.aspx", { sa: senhaAtual, ns: novaSenha, cs: confirmarSenha, eu: emailUsuario}, function(retorno) {
+	$.post("../../../lib/libAtualizarSenha.aspx", { sa: senhaAtual, ns: novaSenha, cs: confirmarSenha, eu: emailUsuario}, function(retorno) {
 
 		if (retorno == "erro") 
 		{

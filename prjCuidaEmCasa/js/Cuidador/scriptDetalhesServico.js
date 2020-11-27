@@ -1,6 +1,6 @@
 ﻿export default function scriptDetalhesServico(cd_servico_selecionado){
 
-    $.post("http://3.96.217.5/lib/libDetalhesServico.aspx", { cdServico: cd_servico_selecionado }, function (retorno) {
+    $.post("../../lib/libDetalhesServico.aspx", { cdServico: cd_servico_selecionado }, function (retorno) {
         if (!retorno) {
             console.log("Erro");
         }

@@ -1,6 +1,6 @@
 ﻿export default function scriptHistoricoServico(){
 
-        $.post("http://3.96.217.5/lib/libHistoricoServico.aspx", { email: localStorage.getItem("usuarioLogado"), filtro: "true" }, function (retorno) {
+        $.post("../../lib/libHistoricoServico.aspx", { email: localStorage.getItem("usuarioLogado"), filtro: "true" }, function (retorno) {
             
             //console.log(retorno);
 

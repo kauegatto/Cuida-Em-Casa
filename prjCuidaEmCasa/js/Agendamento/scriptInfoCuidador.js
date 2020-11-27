@@ -30,7 +30,7 @@
             $(this).children(".btnExpandir").html("-");
         }
     }); //VAI SE F8UDE AJAVASCIRPT!!!
-    $.post("http://3.96.217.5/lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
+    $.post("../../lib/dadosEmailCuidador.aspx", { e: localStorage.getItem("emailCuidador") }, function (retorno) {
         if (!retorno) {
             alert("Ocorreu um erro na busca dos dados do cuidador!");
             window.location.href = "../index.html"

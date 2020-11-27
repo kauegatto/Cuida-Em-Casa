@@ -1,6 +1,6 @@
 ﻿export default function scriptServicoAgendado() {
 
-    $.post("http://3.96.217.5/lib/libListarServicosAgendados.aspx", { e: localStorage.getItem("usuarioLogado"),diaSelecionado:localStorage.getItem("diaSelecionado") }, function (retorno) {
+    $.post("../../lib/libListarServicosAgendados.aspx", { e: localStorage.getItem("usuarioLogado"),diaSelecionado:localStorage.getItem("diaSelecionado") }, function (retorno) {
 
         if (retorno == "erro") {
             console.log("deu erro");

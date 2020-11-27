@@ -6,7 +6,7 @@
 	}
 	else
 	{
-		$.post("http://3.96.217.5/lib/libAlterarSenhaRecuperacao.aspx", { cdRecuperacao: localStorage.getItem('cdRecuperacao'),emailUsuario: localStorage.getItem('emailUsuario'), senha: $('#txtSenhaRecuperacao').val()}, function(retorno){
+		$.post("../../lib/libAlterarSenhaRecuperacao.aspx", { cdRecuperacao: localStorage.getItem('cdRecuperacao'),emailUsuario: localStorage.getItem('emailUsuario'), senha: $('#txtSenhaRecuperacao').val()}, function(retorno){
 
 			if (retorno == "erro") 
 			{

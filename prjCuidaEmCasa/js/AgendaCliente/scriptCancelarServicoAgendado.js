@@ -1,6 +1,6 @@
 ﻿export default function scriptCancelarServicoAgendado() {
 
-	$.post("http://3.96.217.5/lib/libCancelarServicoAgendado.aspx", { codigoServico: localStorage.getItem("cdServico")}, function(retorno) {
+	$.post("../../lib/libCancelarServicoAgendado.aspx", { codigoServico: localStorage.getItem("cdServico")}, function(retorno) {
 
 		if (retorno == "false") 
 		{

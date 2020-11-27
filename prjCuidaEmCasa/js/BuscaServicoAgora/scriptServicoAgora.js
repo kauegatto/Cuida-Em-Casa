@@ -2,7 +2,7 @@
     var map = document.getElementById('map');
     var img = document.createElement('img'); 
    
-    $.post("http://3.96.217.5/lib/libServicoAtual.aspx", { cdServico: localStorage.getItem("cdServico") }, function (retorno) {
+    $.post("../../lib/libServicoAtual.aspx", { cdServico: localStorage.getItem("cdServico") }, function (retorno) {
         if (!retorno) {
             console.log("deu errado");
             return;

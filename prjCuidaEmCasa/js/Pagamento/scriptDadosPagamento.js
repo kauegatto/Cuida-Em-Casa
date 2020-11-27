@@ -246,7 +246,7 @@
 
   function comprovarPagamento (){
       let cdServico =  localStorage.getItem("cdServico"); console.log(cdServico);
-      $.post("http://3.96.217.5/lib/libConfirmarPagamento.aspx", { cdServico: cdServico }, function (retorno) {
+      $.post("../../lib/libConfirmarPagamento.aspx", { cdServico: cdServico }, function (retorno) {
           if (!retorno) {
                 alert("Ocorreu um erro na hora de registrar o pagamento de seu pedido, contate a cuida em casa!");
                 window.location.href = "cliente/agendamento.html"

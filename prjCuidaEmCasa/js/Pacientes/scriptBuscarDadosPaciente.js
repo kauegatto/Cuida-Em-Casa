@@ -1,6 +1,6 @@
 ﻿export default function scriptBuscarDadosPaciente() {
 	var retorno;
-    $.post(http://3.96.217.5/lib/libBuscarDadosPaciente.aspx",  { cd: localStorage.getItem("cdPaciente") }, function (retorno) {
+    $.post("../../lib/libBuscarDadosPaciente.aspx",  { cd: localStorage.getItem("cdPaciente") }, function (retorno) {
        
         if (!retorno) {
         	$('#wrapper-paciente').html("ERRO NO RETORNO");
@@ -20,7 +20,7 @@
 	        console.log(retorno[1]); 
 	        //$('#txtAlterarNecessidadePaciente').append("<option selected>"+retorno[1]+"</option>");
 	       	
-	       	$.post("http://3.96.217.5/lib/libListarNecessidades.aspx", {}, function(retorno){
+	       	$.post("../../lib/libListarNecessidades.aspx", {}, function(retorno){
 
 				if (retorno == 'erro') 
 				{

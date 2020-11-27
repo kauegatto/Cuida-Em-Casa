@@ -8,7 +8,7 @@
             
 
             
-            $.post("http://3.96.217.5/lib/dadosEndereco.aspx", { cdPaciente: cd }, function (retorno) {
+            $.post("../../lib/dadosEndereco.aspx", { cdPaciente: cd }, function (retorno) {
 
                 if (retorno == "erro") {
                     console.log("deu erro");

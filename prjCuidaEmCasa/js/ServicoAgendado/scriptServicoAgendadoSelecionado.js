@@ -1,6 +1,6 @@
 export default function scriptServicoAgendadoSelecionado(cdServico) {
     var dados;
-    $.post("http://3.96.217.5/lib/libServicoAgendadoSelecionado.aspx", { codigoServico: cdServico }, function (retorno) {
+    $.post("../../lib/libServicoAgendadoSelecionado.aspx", { codigoServico: cdServico }, function (retorno) {
 
         if (retorno == "erro") {
             console.log("deu erro");

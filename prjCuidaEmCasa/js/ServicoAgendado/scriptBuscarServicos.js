@@ -15,7 +15,7 @@ export default function scriptBuscarServicos (intMes) {
 
     function buscarAgendadosMensalmente(){
 
-        $.post("../../lib/libBuscarAgendadosDoCuidadorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
+        $.post("http://3.96.217.5/lib/libBuscarAgendadosDoCuidadorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
             
             if (retorno == "erro") {
                 console.log("deu erro");

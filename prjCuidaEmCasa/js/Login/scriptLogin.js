@@ -2,7 +2,7 @@
 
 $(document).on("click", "#btnLogin", function () {
 
-    $.post("http://3.96.217.5/lib/libDadosLogin.aspx", { email: $("#txtEmail").val(), senha: $("#txtSenha").val() }, function (retorno) {
+    $.post("../../lib/libDadosLogin.aspx", { email: $("#txtEmail").val(), senha: $("#txtSenha").val() }, function (retorno) {
 
         var retorno;
         retornoLogin = retorno.split("|");

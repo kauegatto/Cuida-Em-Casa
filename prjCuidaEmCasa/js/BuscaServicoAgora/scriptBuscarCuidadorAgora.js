@@ -2,7 +2,7 @@
 
     console.log('chamou o metodo');
 
-    $.post("http://3.96.217.5/lib/libBuscarCuidadorAgora.aspx", { usuario: localStorage.getItem("usuarioLogado"), indice: localStorage.getItem("indice") }, function(retorno){
+    $.post("../../lib/libBuscarCuidadorAgora.aspx", { usuario: localStorage.getItem("usuarioLogado"), indice: localStorage.getItem("indice") }, function(retorno){
             
         if (retorno == "erro") {
             console.log("deu errado no usuario");
