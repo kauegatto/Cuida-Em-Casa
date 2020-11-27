@@ -3,11 +3,10 @@ DROP SCHEMA IF EXISTS prjcuidaemcasa;
 CREATE SCHEMA prjcuidaemcasa;
 use prjcuidaemcasa;
 
-CREATE TABLE tipo_especializacao
-(
-	cd_tipo_especializacao INT,
-	nm_tipo_especializacao VARCHAR(100),
-	CONSTRAINT pk_tipo_especializacao PRIMARY KEY (cd_tipo_especializacao)
+CREATE TABLE tipo_especializacao (
+    cd_tipo_especializacao INT,
+    nm_tipo_especializacao VARCHAR(100),
+    CONSTRAINT pk_tipo_especializacao PRIMARY KEY (cd_tipo_especializacao)
 ); 
 
 insert into tipo_especializacao values(1,'Cuidador');
@@ -16,23 +15,21 @@ insert into tipo_especializacao values(3,'Psicologia');
 insert into tipo_especializacao values(4,'Enfermagem');
 
 
-CREATE TABLE tipo_usuario
-(
-	cd_tipo_usuario INT,
-	nm_tipo_usuario VARCHAR(100),
-	CONSTRAINT pk_tipo_usuario PRIMARY KEY (cd_tipo_usuario)
+CREATE TABLE tipo_usuario (
+    cd_tipo_usuario INT,
+    nm_tipo_usuario VARCHAR(100),
+    CONSTRAINT pk_tipo_usuario PRIMARY KEY (cd_tipo_usuario)
 );
 
 insert into tipo_usuario values(1,'Adiministrador');
 insert into tipo_usuario values(2,'Cliente');
 insert into tipo_usuario values(3,'Cuidador');
 
-CREATE TABLE auth_recover
-(
-	cd_auth_recover VARCHAR (100),
-	hr_criacao_auth_recover TIME,
-	dt_criacao_auth_recover DATE,
-	CONSTRAINT pk_auth_recover PRIMARY KEY (cd_auth_recover)
+CREATE TABLE auth_recover (
+    cd_auth_recover VARCHAR(100),
+    hr_criacao_auth_recover TIME,
+    dt_criacao_auth_recover DATE,
+    CONSTRAINT pk_auth_recover PRIMARY KEY (cd_auth_recover)
 );
 
 insert into auth_recover values('123','10:12:08','2020-01-14');
@@ -40,22 +37,20 @@ insert into auth_recover values('234','12:30:34','2020-02-12');
 insert into auth_recover values('345','09:34:09','2020-04-10');
 insert into auth_recover values('456','13:23:45','2020-07-11');
 
-CREATE TABLE tipo_genero 
-(
-	cd_genero INT,
-	nm_genero VARCHAR (45),
-	CONSTRAINT pk_genero PRIMARY KEY (cd_genero)
+CREATE TABLE tipo_genero (
+    cd_genero INT,
+    nm_genero VARCHAR(45),
+    CONSTRAINT pk_genero PRIMARY KEY (cd_genero)
 );
 
 insert into tipo_genero values (1, 'Masculino');
 insert into tipo_genero values (2, 'Feminino');
 insert into tipo_genero values (3, 'Outro');
 
-CREATE TABLE tipo_situacao_usuario
-(
-	cd_situacao_usuario INT,
-	nm_situacao_usuario VARCHAR(100),
-	CONSTRAINT pk_tipo_situacao_usuario PRIMARY KEY (cd_situacao_usuario)
+CREATE TABLE tipo_situacao_usuario (
+    cd_situacao_usuario INT,
+    nm_situacao_usuario VARCHAR(100),
+    CONSTRAINT pk_tipo_situacao_usuario PRIMARY KEY (cd_situacao_usuario)
 );
 
 insert into tipo_situacao_usuario values (1, 'Contratado');
@@ -63,33 +58,32 @@ insert into tipo_situacao_usuario values (2, 'Em análise');
 insert into tipo_situacao_usuario values (3, 'Em advertência');
 insert into tipo_situacao_usuario values (4, 'Demitido');
 
-CREATE TABLE usuario
-(
-	nm_email_usuario VARCHAR(200),
-	nm_usuario VARCHAR(200),
-	cd_CPF VARCHAR(15),
-	cd_telefone VARCHAR(15),
-	nm_senha VARCHAR(128),
-	img_usuario LONGBLOB,
-	vl_hora_trabalho DECIMAL(10, 2),
-	cd_link_curriculo TEXT,
-	ic_ativo BOOl,
-	ds_experiencia_usuario TEXT,
-	ds_usuario TEXT,
-	cd_avaliacao DECIMAL(10, 2),
-	cd_tipo_usuario INT,
-	cd_auth_recover VARCHAR (100),
-	cd_genero INT,
-	cd_situacao_usuario INT,
-	CONSTRAINT pk_usuario PRIMARY KEY (nm_email_usuario),
-	CONSTRAINT fk_usuario_tipo_usuario FOREIGN KEY (cd_tipo_usuario)
-	REFERENCES tipo_especializacao (cd_tipo_especializacao),
-	CONSTRAINT fk_usuario_auth_recover FOREIGN KEY (cd_auth_recover)
-	REFERENCES auth_recover (cd_auth_recover),
-	CONSTRAINT fk_usuario_genero FOREIGN KEY (cd_genero)
-	REFERENCES tipo_genero (cd_genero),
-	CONSTRAINT fk_usuario_tipo_situacao_usuario FOREIGN KEY (cd_situacao_usuario)
-	REFERENCES tipo_situacao_usuario (cd_situacao_usuario)
+CREATE TABLE usuario (
+    nm_email_usuario VARCHAR(200),
+    nm_usuario VARCHAR(200),
+    cd_CPF VARCHAR(15),
+    cd_telefone VARCHAR(15),
+    nm_senha VARCHAR(128),
+    img_usuario LONGBLOB,
+    vl_hora_trabalho DECIMAL(10 , 2 ),
+    cd_link_curriculo TEXT,
+    ic_ativo BOOl,
+    ds_experiencia_usuario TEXT,
+    ds_usuario TEXT,
+    cd_avaliacao DECIMAL(10 , 2 ),
+    cd_tipo_usuario INT,
+    cd_auth_recover VARCHAR(100),
+    cd_genero INT,
+    cd_situacao_usuario INT,
+    CONSTRAINT pk_usuario PRIMARY KEY (nm_email_usuario),
+    CONSTRAINT fk_usuario_tipo_usuario FOREIGN KEY (cd_tipo_usuario)
+        REFERENCES tipo_especializacao (cd_tipo_especializacao),
+    CONSTRAINT fk_usuario_auth_recover FOREIGN KEY (cd_auth_recover)
+        REFERENCES auth_recover (cd_auth_recover),
+    CONSTRAINT fk_usuario_genero FOREIGN KEY (cd_genero)
+        REFERENCES tipo_genero (cd_genero),
+    CONSTRAINT fk_usuario_tipo_situacao_usuario FOREIGN KEY (cd_situacao_usuario)
+        REFERENCES tipo_situacao_usuario (cd_situacao_usuario)
 ); 
 /*Adiministradores*/
 insert into usuario values('thiagofranciscojosefigueiredo-75@adiministrador.com','Thiago Francisco José Figueiredo','264.346.238-60','(13)98292-8428',md5('123'),null,null,null,null,null,null,null,1,null,null,null);
@@ -111,15 +105,14 @@ insert into usuario values('flaviabeneditamilenamelo@gmail.com','Flávia Benedit
 insert into usuario values('matheusraimundofarias@gmail.com','Matheus Raimundo Farias','829.441.818-82','(13)98375-6008',md5('123'),null,45.0,'https://CurriculoDoMatheus.com.br',true,'1 ano na Union HomeCare','Gosto bastante de trabalhar como cuidador de idosos',3.5,3,null,1,1);
 insert into usuario values('sarahelainealiciaribeiro@gmail.com','Sarah Elaine Alícia Ribeiro','426.701.408-66','(13)98279-0959',md5('123'),null,50.0,'https://CurriculoDaSarah.com.br',true,'5 anos no Hospital Guilherme Alvaro','Olá me chamo Sarah e carrego uma bagagem muito vasta como cuidadora de idosos e posso dizer que eu amo trabalhar nesta área',1.5,3,null,2,1);
 
-CREATE TABLE especializacao_usuario
-(
-	cd_tipo_especializacao INT,
-	nm_email_usuario VARCHAR(100),
-	CONSTRAINT pk_especializacao_usuario PRIMARY KEY (cd_tipo_especializacao, nm_email_usuario),
-	CONSTRAINT fk_especializacao_usuario_tipo_especializacao FOREIGN KEY (cd_tipo_especializacao)
-	REFERENCES tipo_especializacao (cd_tipo_especializacao),
-	CONSTRAINT fk_especializacao_usuario_usuario FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario)
+CREATE TABLE especializacao_usuario (
+    cd_tipo_especializacao INT,
+    nm_email_usuario VARCHAR(100),
+    CONSTRAINT pk_especializacao_usuario PRIMARY KEY (cd_tipo_especializacao , nm_email_usuario),
+    CONSTRAINT fk_especializacao_usuario_tipo_especializacao FOREIGN KEY (cd_tipo_especializacao)
+        REFERENCES tipo_especializacao (cd_tipo_especializacao),
+    CONSTRAINT fk_especializacao_usuario_usuario FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario)
 );
 
 insert into especializacao_usuario values (1, 'oliverbrunoluccanunes@gmail.com');
@@ -134,15 +127,14 @@ insert into especializacao_usuario values (3, 'brunastellaflaviadepaula@gmail.co
 insert into especializacao_usuario values (3, 'flaviabeneditamilenamelo@gmail.com');
 insert into especializacao_usuario values (4, 'verabarbarajoanaaparicio@gmail.com');
 
-CREATE TABLE disponibilidade
-(
-	dt_disponibilidade DATE,
-	hr_inicio_disponibilidade TIME,
-	hr_fim_disponibilidade TIME,
-	nm_email_usuario VARCHAR(100),
-	CONSTRAINT pk_disponibildiade PRIMARY KEY (dt_disponibilidade, hr_inicio_disponibilidade, hr_fim_disponibilidade),
-	CONSTRAINT fk_disponibilidade_usuario FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario)
+CREATE TABLE disponibilidade (
+    dt_disponibilidade DATE,
+    hr_inicio_disponibilidade TIME,
+    hr_fim_disponibilidade TIME,
+    nm_email_usuario VARCHAR(100),
+    CONSTRAINT pk_disponibildiade PRIMARY KEY (dt_disponibilidade , hr_inicio_disponibilidade , hr_fim_disponibilidade),
+    CONSTRAINT fk_disponibilidade_usuario FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario)
 );
 
 insert into disponibilidade values('2020-08-20','08:00:00','18:00:00','oliverbrunoluccanunes@gmail.com');
@@ -168,67 +160,64 @@ insert into disponibilidade values('2020-11-02','07:00:00','17:00:00','matheusra
 insert into disponibilidade values('2020-08-20','13:30:00','22:00:00','sarahelainealiciaribeiro@gmail.com');
 insert into disponibilidade values('2020-08-20','08:00:00','20:00:00','sarahelainealiciaribeiro@gmail.com');
 
-CREATE TABLE tipo_advertencia
-(
-	cd_tipo_advertencia INT,
-	nm_tipo_advertencia VARCHAR(150),
-	CONSTRAINT pk_tipo_advertencia PRIMARY KEY (cd_tipo_advertencia)
+CREATE TABLE tipo_advertencia (
+    cd_tipo_advertencia INT,
+    nm_tipo_advertencia VARCHAR(150),
+    CONSTRAINT pk_tipo_advertencia PRIMARY KEY (cd_tipo_advertencia)
 );
 
-insert into tipo_advertencia values (1, 'Agressão');
-insert into tipo_advertencia values (2, 'Roubo');
-insert into tipo_advertencia values (3, 'Atraso Recorrente'); 
+insert into tipo_advertencia values (1, 'Falta de profissionalismo');
+insert into tipo_advertencia values (2, 'Conduta inadequada');
+insert into tipo_advertencia values (3, 'Abuso físico'); 
+insert into tipo_advertencia values (4, 'Agressão física'); 
+insert into tipo_advertencia values (5, 'Roubo');
 
-CREATE TABLE advertencia
-(
-	cd_advertencia INT,
-	ds_advertencia TEXT,
-	dt_inicio_advertencia DATE,
-	dt_fim_advertencia DATE,
-	nm_email_usuario VARCHAR(100),
-	nm_email_usuario_admin VARCHAR(100),
-	cd_tipo_advertencia INT,
-	CONSTRAINT pk_advertencia PRIMARY KEY (cd_advertencia),
-	CONSTRAINT fk_advertencia_tipo_advertencia FOREIGN KEY (cd_tipo_advertencia)
-	REFERENCES tipo_advertencia (cd_tipo_advertencia),
-	CONSTRAINT fk_advertencia_usuario FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario),
-	CONSTRAINT fk_advertencia_admin FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario)
+CREATE TABLE advertencia (
+    cd_advertencia INT,
+    ds_advertencia TEXT,
+    dt_advertencia DATE,
+    nm_email_usuario VARCHAR(100),
+    nm_email_usuario_admin VARCHAR(100),
+    cd_tipo_advertencia INT,
+    CONSTRAINT pk_advertencia PRIMARY KEY (cd_advertencia),
+    CONSTRAINT fk_advertencia_tipo_advertencia FOREIGN KEY (cd_tipo_advertencia)
+        REFERENCES tipo_advertencia (cd_tipo_advertencia),
+    CONSTRAINT fk_advertencia_usuario FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario),
+    CONSTRAINT fk_advertencia_admin FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario)
 );
 
-insert into advertencia values (1, 'Houve várias reclamações de agressão','2020-08-11', '2020-08-12','oliverbrunoluccanunes@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',1);
-insert into advertencia values (2, 'Houve reclamações de roubo','2020-08-11', '2020-08-12','brunastellaflaviadepaula@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',2);
-insert into advertencia values (3, 'Houve várias reclamções de atrasos recorrentes','2020-08-20', '2020-08-27','brunastellaflaviadepaula@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',3);
+insert into advertencia values (1, 'Houve várias reclamações de agressão','2020-08-11','oliverbrunoluccanunes@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',4);
+insert into advertencia values (2, 'Houve reclamações de roubo','2020-08-11','brunastellaflaviadepaula@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',55);
+insert into advertencia values (3, 'Houve várias reclamções de atrasos recorrentes','2020-08-20','brunastellaflaviadepaula@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',1);
 
-CREATE TABLE tipo_necessidade_paciente
-(
-	cd_tipo_necessidade_paciente INT,
-	nm_tipo_necessidade_paciente VARCHAR(45),
-	ds_tipo_necessidade_paciente TEXT,
-	CONSTRAINT pk_tipo_necessidade_paciente PRIMARY KEY (cd_tipo_necessidade_paciente)
+CREATE TABLE tipo_necessidade_paciente (
+    cd_tipo_necessidade_paciente INT,
+    nm_tipo_necessidade_paciente VARCHAR(45),
+    ds_tipo_necessidade_paciente TEXT,
+    CONSTRAINT pk_tipo_necessidade_paciente PRIMARY KEY (cd_tipo_necessidade_paciente)
 );
 
 insert into tipo_necessidade_paciente values(1,'Medicação','O idoso precisa receber medicações periodicas');
 insert into tipo_necessidade_paciente values(2,'Banho','O idoso não consegue toamr banho sozinho e precisa de um acompanhante');
 
-CREATE TABLE paciente
-(
-	cd_paciente INT,
-	nm_paciente VARCHAR(200),
-	ds_paciente TEXT,
-	cd_CEP_paciente VARCHAR(12),
-	nm_cidade_paciente VARCHAR(200),
-	nm_bairro_cidade VARCHAR(200),
-	nm_rua_paciente VARCHAR(200),
-	cd_num_paciente INT,
-	nm_uf_paciente VARCHAR(200),
-	nm_complemento_paciente VARCHAR(100),
-	nm_email_usuario VARCHAR(100),
-	img_paciente LONGBLOB,
-	CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
-	CONSTRAINT fk_paciente_usuario FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario)
+CREATE TABLE paciente (
+    cd_paciente INT,
+    nm_paciente VARCHAR(200),
+    ds_paciente TEXT,
+    cd_CEP_paciente VARCHAR(12),
+    nm_cidade_paciente VARCHAR(200),
+    nm_bairro_cidade VARCHAR(200),
+    nm_rua_paciente VARCHAR(200),
+    cd_num_paciente INT,
+    nm_uf_paciente VARCHAR(200),
+    nm_complemento_paciente VARCHAR(100),
+    nm_email_usuario VARCHAR(100),
+    img_paciente LONGBLOB,
+    CONSTRAINT pk_paciente PRIMARY KEY (cd_paciente),
+    CONSTRAINT fk_paciente_usuario FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario)
 );
 
 insert into paciente values(1,'Nicole Sebastiana Malu Moraes', 'Nicole adora passar o tempo conversando', '11510-310', 'Cubatão', 'Vila Couto', 'Av. Dr. Fernando Costa', '264', 'SP', null, 'jenniferevelyngomes@gmail.com', null);
@@ -241,15 +230,14 @@ insert into paciente values(7,'Marcia Maria Dolores', 'Marcia não gosta de toma
 insert into paciente values(8,'Jenivalda Radelia', 'Jenivalda gosta de conversar', '11370-530', 'São Vicente', 'Jardim Guassu', 'R. Francisco Silva Santos', '164', 'SP', 'Apartamento 12', 'mauriciorodolfo@gamil.com', null);
 insert into paciente values(9,'Astolfo Rodrigues da Silva', 'Astolfo gosta de assistir Silvio Santos', '11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '548', 'SP', null, 'flaviapriscilamarianasilveira@gmail.com', null);
 
-CREATE TABLE necessidade_paciente
-(
-	cd_paciente INT,
-	cd_tipo_necessidade_paciente INT,
-	CONSTRAINT pk_necessidade_paciente PRIMARY KEY (cd_paciente, cd_tipo_necessidade_paciente),
-	CONSTRAINT fk_necessidade_paciente_paciente FOREIGN KEY (cd_paciente)
-	REFERENCES paciente (cd_paciente),
-	CONSTRAINT fk_necessidade_paciente_tipo_necessidade_paciente FOREIGN KEY (cd_tipo_necessidade_paciente)
-	REFERENCES tipo_necessidade_paciente (cd_tipo_necessidade_paciente)
+CREATE TABLE necessidade_paciente (
+    cd_paciente INT,
+    cd_tipo_necessidade_paciente INT,
+    CONSTRAINT pk_necessidade_paciente PRIMARY KEY (cd_paciente , cd_tipo_necessidade_paciente),
+    CONSTRAINT fk_necessidade_paciente_paciente FOREIGN KEY (cd_paciente)
+        REFERENCES paciente (cd_paciente),
+    CONSTRAINT fk_necessidade_paciente_tipo_necessidade_paciente FOREIGN KEY (cd_tipo_necessidade_paciente)
+        REFERENCES tipo_necessidade_paciente (cd_tipo_necessidade_paciente)
 );
 
 insert into necessidade_paciente values(1,1);
@@ -264,11 +252,10 @@ insert into necessidade_paciente values(7,1);
 insert into necessidade_paciente values(8,2);
 insert into necessidade_paciente values(9,1);
 
-CREATE TABLE tipo_status_servico
-(
-	cd_status_servico INT,
-	nm_status_servico VARCHAR(45),
-	CONSTRAINT pk_tipo_status_servico PRIMARY KEY (cd_status_servico)
+CREATE TABLE tipo_status_servico (
+    cd_status_servico INT,
+    nm_status_servico VARCHAR(45),
+    CONSTRAINT pk_tipo_status_servico PRIMARY KEY (cd_status_servico)
 );
 
 insert into tipo_status_servico values(1,'Em Andamento');
@@ -278,11 +265,10 @@ insert into tipo_status_servico values(4,'Cancelado');
 insert into tipo_status_servico values(5,'Confirmado');
 insert into tipo_status_servico values(6,'Buscando Cuidador');
 
-CREATE TABLE avaliacao
-(
-	cd_avaliacao INT,
-	nm_avaliacao VARCHAR(45),
-	CONSTRAINT pk_avaliacao PRIMARY KEY (cd_avaliacao)
+CREATE TABLE avaliacao (
+    cd_avaliacao INT,
+    nm_avaliacao VARCHAR(45),
+    CONSTRAINT pk_avaliacao PRIMARY KEY (cd_avaliacao)
 );
 
 insert into avaliacao values(1,'Pessimo');
@@ -291,43 +277,42 @@ insert into avaliacao values(3,'Regular');
 insert into avaliacao values(4,'Bom');
 insert into avaliacao values(5,'Excelente');
 
-CREATE TABLE servico
-(
-	cd_servico INT,
-	dt_inicio_servico DATE,
-	hr_inicio_servico TIME,
-	dt_fim_servico DATE,
-	hr_fim_servico TIME,
-	cd_CEP_servico VARCHAR(12),
-	nm_cidade_servico VARCHAR(200),
-	nm_bairro_servico VARCHAR(200),
-	nm_rua_servico VARCHAR(200),
-	cd_num_servico INT,
-	nm_uf_servico VARCHAR(200),
-	nm_complemento_servico VARCHAR(100),
-	hr_checkin_servico TIME,
-	dt_checkin_servico DATE,
-	hr_checkout_servico TIME,
-	dt_checkout_servico DATE,
-	cd_geolocalizacao_entrada VARCHAR(200),
-	nm_email_usuario VARCHAR(100),
-	nm_email_usuario_cuidador VARCHAR(100),
-	cd_avaliacao INT,
-	cd_status_servico INT,
-	cd_paciente INT,
-    cd_pagamento_servico VARCHAR (100),
-	vl_maximo DECIMAL(10, 2),
-	CONSTRAINT pk_servico PRIMARY KEY (cd_servico),
-	CONSTRAINT fk_servico_usuario FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario),
-	CONSTRAINT fk_servico_usuario_cuidador FOREIGN KEY (nm_email_usuario_cuidador)
-	REFERENCES usuario (nm_email_usuario),
-	CONSTRAINT fk_servico_avaliacao FOREIGN KEY (cd_avaliacao)
-	REFERENCES avaliacao (cd_avaliacao),
-	CONSTRAINT fk_servico_tipo_status_servico FOREIGN KEY (cd_status_servico)
-	REFERENCES tipo_status_servico (cd_status_servico), 
-	CONSTRAINT fk_servico_paciente FOREIGN KEY (cd_paciente)
-	REFERENCES paciente (cd_paciente)
+CREATE TABLE servico (
+    cd_servico INT,
+    dt_inicio_servico DATE,
+    hr_inicio_servico TIME,
+    dt_fim_servico DATE,
+    hr_fim_servico TIME,
+    cd_CEP_servico VARCHAR(12),
+    nm_cidade_servico VARCHAR(200),
+    nm_bairro_servico VARCHAR(200),
+    nm_rua_servico VARCHAR(200),
+    cd_num_servico INT,
+    nm_uf_servico VARCHAR(200),
+    nm_complemento_servico VARCHAR(100),
+    hr_checkin_servico TIME,
+    dt_checkin_servico DATE,
+    hr_checkout_servico TIME,
+    dt_checkout_servico DATE,
+    cd_geolocalizacao_entrada VARCHAR(200),
+    nm_email_usuario VARCHAR(100),
+    nm_email_usuario_cuidador VARCHAR(100),
+    cd_avaliacao INT,
+    cd_status_servico INT,
+    cd_paciente INT,
+    cd_pagamento_servico VARCHAR(100),
+    vl_maximo DECIMAL(10 , 2 ),
+    CONSTRAINT pk_servico PRIMARY KEY (cd_servico),
+    CONSTRAINT fk_servico_usuario FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario),
+    CONSTRAINT fk_servico_usuario_cuidador FOREIGN KEY (nm_email_usuario_cuidador)
+        REFERENCES usuario (nm_email_usuario),
+    CONSTRAINT fk_servico_avaliacao FOREIGN KEY (cd_avaliacao)
+        REFERENCES avaliacao (cd_avaliacao),
+    CONSTRAINT fk_servico_tipo_status_servico FOREIGN KEY (cd_status_servico)
+        REFERENCES tipo_status_servico (cd_status_servico),
+    CONSTRAINT fk_servico_paciente FOREIGN KEY (cd_paciente)
+        REFERENCES paciente (cd_paciente)
 );
 
 /*Serviços Finalizados*/
@@ -358,11 +343,10 @@ insert into servico values(14,'2020-12-30','12:00:00','2020-10-30','15:00:00','1
 /*Serviços Cancelados*/
 insert into servico values(15,'2020-07-22','07:00:00','2020-07-22','20:00:00','11370-110','São Vicente','Vila Cascatinha','R. Ribeiro Júnior','96','SP',null,null,null,null,null,'-23.960448;-46.378629','oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',null,4,4,null,null);
 
-CREATE TABLE tipo_ocorrencia
-(
-	cd_tipo_ocorrencia INT,
-	nm_tipo_ocorrencia VARCHAR(45),
-	CONSTRAINT pk_tipo_ocorrencia PRIMARY KEY (cd_tipo_ocorrencia)
+CREATE TABLE tipo_ocorrencia (
+    cd_tipo_ocorrencia INT,
+    nm_tipo_ocorrencia VARCHAR(45),
+    CONSTRAINT pk_tipo_ocorrencia PRIMARY KEY (cd_tipo_ocorrencia)
 );
 
 insert into tipo_ocorrencia values (1, 'Falta de profissionalismo');
@@ -372,23 +356,25 @@ insert into tipo_ocorrencia values (4, 'Agressão física');
 insert into tipo_ocorrencia values (5, 'Roubo');
 
 
-CREATE TABLE ocorrencia 
-(
-	cd_ocorrencia INT,
-	ds_ocorrencia TEXT,
-	dt_ocorrencia DATE,
-	nm_email_usuario VARCHAR(100),
-	cd_servico INT,
-	cd_tipo_ocorrencia INT,
-	CONSTRAINT pk_ocorrencia PRIMARY KEY (cd_ocorrencia),
-	CONSTRAINT fk_ocorrencia_usuario FOREIGN KEY (nm_email_usuario)
-	REFERENCES usuario (nm_email_usuario),
-	CONSTRAINT fk_ocorrencia_servico FOREIGN KEY (cd_servico)
-	REFERENCES servico (cd_servico),
-	CONSTRAINT fk_ocorrencia_tipo_ocorrencia FOREIGN KEY (cd_tipo_ocorrencia)
-	REFERENCES tipo_ocorrencia (cd_tipo_ocorrencia)
+CREATE TABLE ocorrencia (
+    cd_ocorrencia INT,
+    ds_ocorrencia TEXT,
+    dt_ocorrencia DATE,
+    ic_verificado BOOl,
+    nm_email_usuario VARCHAR(100),
+    cd_servico INT,
+    cd_tipo_ocorrencia INT,
+    CONSTRAINT pk_ocorrencia PRIMARY KEY (cd_ocorrencia),
+    CONSTRAINT fk_ocorrencia_usuario FOREIGN KEY (nm_email_usuario)
+        REFERENCES usuario (nm_email_usuario),
+    CONSTRAINT fk_ocorrencia_servico FOREIGN KEY (cd_servico)
+        REFERENCES servico (cd_servico),
+    CONSTRAINT fk_ocorrencia_tipo_ocorrencia FOREIGN KEY (cd_tipo_ocorrencia)
+        REFERENCES tipo_ocorrencia (cd_tipo_ocorrencia)
 );
 
-insert into ocorrencia values (1, 'O Cuidador roubou meu dinheiro', current_date(), 'jenniferevelyngomes@gmail.com',1,2);
-insert into ocorrencia values (2, 'O Cuidador roubou meu cachorro', current_date(), 'jenniferevelyngomes@gmail.com',21,2);
-insert into ocorrencia values (3, 'O Cuidador roubou meu armário', current_date(), 'jenniferevelyngomes@gmail.com',22,2);
+insert into ocorrencia values (1, 'O Cuidador roubou meu dinheiro', current_date(), 0, 'jenniferevelyngomes@gmail.com',1,5);
+insert into ocorrencia values (2, 'O Cuidador roubou meu cachorro', current_date(), 0, 'jenniferevelyngomes@gmail.com',21,5);
+insert into ocorrencia values (3, 'O Cuidador roubou meu armário', current_date(), 0, 'jenniferevelyngomes@gmail.com',22,5);
+insert into ocorrencia values (4, 'O Cuidador quis bater no meu avô porque ele não comeu a maçã', current_date(), 0, 'jenniferevelyngomes@gmail.com',2,3);
+insert into ocorrencia values (5, 'O Cuidador bateu em mim quando fui proteger meu avô', '2020-11-27', 0, 'jenniferevelyngomes@gmail.com',2,3);

@@ -29,6 +29,13 @@ namespace prjCuidaEmCasa.classes
         public List<string> duracaoServico { get; set; }
         public List<string> statusServico { get; set; }
         public List<string> emailCliente { get; set; }
+        public List<string> tipoOcorrencia { get; set; }
+        public List<string> dataOcorrencia { get; set; }
+        public List<string> nomeCliente { get; set; }
+        public List<string> dsOcorrencia { get; set; }
+        public List<string> cdOcorrencia { get; set; }
+        public List<string> cdTipoOcorrencia { get; set; }
+        public string codigo { get; set; }
         
 
         public clsAdministrador(): base()
@@ -54,6 +61,13 @@ namespace prjCuidaEmCasa.classes
             duracaoServico = new List<string>();
             statusServico = new List<string>();
             emailCliente = new List<string>();
+            tipoOcorrencia = new List<string>();
+            dataOcorrencia = new List<string>();
+            nomeCliente = new List<string>();
+            dsOcorrencia = new List<string>();
+            cdOcorrencia = new List<string>();
+            cdTipoOcorrencia = new List<string>();
+            codigo = "";
         }
 
         #region Listar cuidadores para cadastro
@@ -309,6 +323,117 @@ namespace prjCuidaEmCasa.classes
             }
 
             return true;
+        }
+        #endregion
+
+        #region Listar todas as ocorrências do cuidador
+        public bool listarOcorrenciasCuidador(string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCuidador;
+
+            if (!Procedure("listarOcorrenciaCuidador", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    tipoOcorrencia.Add(dados[0].ToString());
+                    dataOcorrencia.Add(dados[1].ToString());
+                    nomeCliente.Add(dados[2].ToString());
+                    emailCliente.Add(dados[3].ToString());
+                    dsOcorrencia.Add(dados[4].ToString());
+                    cdOcorrencia.Add(dados[5].ToString());
+                    cdTipoOcorrencia.Add(dados[6].ToString());
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+            }
+
+            return true;
+        }
+        #endregion
+
+        #region Próximo código da advertencia
+        public bool proxCodigoAdvertencia()
+        { 
+            MySqlDataReader dados = null;
+            
+            if (!Procedure("proxCodigoAdvertencia", false, null, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    codigo = dados[0].ToString();
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+            }
+
+            return true;
+        }
+        #endregion
+
+        #region Aplicar advertência ao cuidador
+        public bool aplicarAdvertencia(string codigoOcorrencia, string descricaoOcorrencia, string emailCuidador, string emailAdm, string codigoTipoOcorrencia)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[5, 2];
+            valores[0, 0] = "vCodigoOcorrencia";
+            valores[0, 1] = codigoOcorrencia;
+            valores[1, 0] = "vDsOcorrencia";
+            valores[1, 1] = descricaoOcorrencia;
+            valores[2, 0] = "vEmailCuidador";
+            valores[2, 1] = emailCuidador;
+            valores[3, 0] = "vEmailAdm";
+            valores[3, 1] = emailAdm;
+            valores[4, 0] = "vCodigoTipoOcorrencia";
+            valores[4, 1] = codigoTipoOcorrencia;
+
+            if (!Procedure("aplicarAdvertencia", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
+        }
+        #endregion
+
+        #region Remover ocorrência analisada 
+        public bool removerOcorrencia(string cdOcorrencia)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vCodigoOcorrencia";
+            valores[0, 1] = cdOcorrencia;
+
+            if (!Procedure("removerOcorrencia", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true; 
         }
         #endregion
     }
