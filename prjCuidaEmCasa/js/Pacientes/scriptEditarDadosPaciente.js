@@ -2,6 +2,18 @@ import scriptPacientes from './scriptPacientes.js';
 
 export default function scriptEditarDadosPaciente() {
 
+	function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
 	function readFileAsync(file){
 
 		return new Promise((resolve, reject) => {
@@ -62,13 +74,13 @@ export default function scriptEditarDadosPaciente() {
 				else if (retorno == "") {
 					$('#wrapper-paciente').html("Você ainda não tem pacientes cadastrados!");
 					return;
-					console.log(retorno);
+					//console.log(retorno);
 				}
-				else if (retorno == "usuarioIncorreto"){window.location.href = "../index.html"}
+				else if (retorno == "usuarioIncorreto"){ window.location.href = "../index.html"}
 				else{
-					console.log(retorno);	
-					scriptPacientes();      
-					//alert("Os dados do(a) cliente "+nome+" foram alterados com sucesso!");
+					//console.log(retorno);	
+					alertIonic("Os dados do(a) paciente " + nome + " foram alterados com sucesso!");
+					scriptPacientes();      				
 				}
 			});
 

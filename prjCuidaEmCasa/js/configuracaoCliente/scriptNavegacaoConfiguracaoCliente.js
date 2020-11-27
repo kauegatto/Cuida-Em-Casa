@@ -130,9 +130,6 @@ $(document).ready(function () {
 		$('#wrapper-LoginSeguranca').removeClass('visivel');
 		$('#wrapper-AlterarDados').addClass('visivel');
 
-		
-		
-
 	});
 
 

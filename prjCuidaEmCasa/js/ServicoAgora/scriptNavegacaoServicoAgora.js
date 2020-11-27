@@ -7,6 +7,19 @@ import scriptCancelarServicoAgora from "./scriptCancelarServicoAgora.js"
 
 var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
 
+
+function alertIonic(text) {
+    const alert = document.createElement('ion-alert');
+    alert.cssClass = 'alertBonito';
+    alert.header = 'Atenção';
+    alert.subHeader = '';
+    alert.message = text;
+    alert.buttons = ['OK'];
+
+    document.body.appendChild(alert);
+    return alert.present();
+}
+
 function passarPagina(SentDomElement,Jump) {
 
 $(".conteudoGeral").children().eq(indexPage).addClass("visivel");
@@ -48,7 +61,7 @@ $(".iconeVoltar").click(function(){
 $(document).ready(function () {
 
 if(!localStorage.getItem("tipoUsuario") == 2){
-    alert("Você não tem acesso a essa página, realize o login novamente");
+    alertIonic("Você não tem acesso a essa página, realize o login novamente");
     localStorage.clear();
     window.location.href = "../../pages/index.html";
 }
@@ -68,12 +81,12 @@ $(document).on("click", "#btnPaciente", function(){
             scriptConfirmarEnderecoAgora();
         }
         catch {
-            alert("Por favor, escolha um paciente!");
+            alertIonic("Por favor, escolha um paciente!");
             return;
         }
     }   
     else{
-        alert("Por favor, escolha um paciente!!");
+        alertIonic("Por favor, escolha um paciente!!");
     }
 });
 //btnEnderecoDiferente
@@ -97,7 +110,7 @@ $("#btnAlterarEndereco").click(function () {
         scriptAlterarEnderecoAgora(); // guarda os dados do endereço que foi digitado
     }
     else{
-        alert("Os únicos campos que podem estar vazios são CEP e Complemento!");
+        alertIonic("Os únicos campos que podem estar vazios são CEP e Complemento!");
         return;
     }
    

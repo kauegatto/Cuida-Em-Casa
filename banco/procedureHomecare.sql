@@ -106,7 +106,7 @@ BEGIN
 	INSERT INTO
 		ocorrencia 
 	VALUES 
-		(vCodigo, vDsOcorrencia, date_format(current_date(), '%d/%m/%Y'), vEmailUsuario, vCodigoServico, vCodigoTipoOcorrencia);
+		(vCodigo, vDsOcorrencia, current_date(), vEmailUsuario, vCodigoServico, vCodigoTipoOcorrencia);
 END$$
 
 /* CRIAÇÃO DE FUNCTIONS */

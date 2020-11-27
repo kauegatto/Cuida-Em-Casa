@@ -10,9 +10,21 @@ $(".iconeVoltar").click(function(){
 });
 
 $(document).ready(function () {
+
+    function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
     
     if(!localStorage.getItem("tipoUsuario") == 2){
-        alert("Você não tem acesso a essa página, realize o login novamente");
+        alertIonic("Você não tem acesso a essa página, realize o login novamente");
         localStorage.clear();
         window.location.href = "../../pages/index.html";
     }
@@ -32,16 +44,17 @@ $(document).ready(function () {
         $('#tituloGeral-Nav').css("margin-right","56px");
         $('#tituloGeral-Nav').css("margin-left","0");
         $('#tituloGeral-Nav').css("width","204");
+        
         $.post('../../lib/libListarNecessidades.aspx', {}, function(retorno){
 
             if (retorno == 'erro') 
             {
-                console.log('deu erro na lib de listar as necessidades');
+                //console.log('deu erro na lib de listar as necessidades');
             }
             else
             {
                 $('#selectAlterarNecessidade').html(retorno);
-                console.log('necessidades cadastradas');
+                alertIonic('As necessidades do paciente foram cadastradas com sucesso !');
             }
 
     });

@@ -2,6 +2,18 @@
 
 $(document).ready(function(){
 
+	function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
 	var imgCuidador;
 
 	$.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
@@ -27,7 +39,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite o seu nome');
+			alertIonic('Digite o seu nome!');
 			return;
 		}
 
@@ -36,7 +48,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite o seu email');
+			alertIonic('Digite o seu email!');
 			return;
 		}
 
@@ -45,7 +57,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite o seu telefone');
+			alertIonic('Digite o seu telefone!');
 			return;
 		}
 
@@ -62,7 +74,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite o seu cpf');
+			alertIonic('Digite o seu CPF!')
 			return;
 		}
 
@@ -74,13 +86,13 @@ $(document).ready(function(){
 			}
 			else
 			{
-				alert('as senhas estao diferentes');
+				alertIonic('As senhas estão diferentes!');
 				return;
 			}
 		}
 		else
 		{
-			alert('digite a senha !');
+			alertIonic('Digite sua senha!');
 			return;
 		}
 
@@ -105,7 +117,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('coloca img pf ae mano');
+			alertIonic('Selecione uma imagem!');
 			return;
 		}
 
@@ -115,7 +127,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('selecione um genero');
+			alertIonic('Selecione um genero!');
 			return;
 		}
 
@@ -125,7 +137,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite um curriculo');
+			alertIonic('Digite o seu link!');
 			return;
 		}
 
@@ -135,7 +147,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('Digite uma descrição');
+			alertIonic('Digite uma descrição!');
 			return;
 		}
 
@@ -216,7 +228,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite um valor hora');
+			alertIonic('Digite um valor hora!');
 			return;
 		}
 
@@ -226,7 +238,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite uma descricao para sua especializacao');
+			alertIonic('Digite uma descrição para sua especialização');
 			return;
 		}
 

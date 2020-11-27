@@ -2,6 +2,18 @@
 
 $(document).on("click", "#btnLogin", function () {
 
+    function presentAlert() {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'teste';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = 'O login e/ou senha inserida é inválido, tente novamente!';
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
     $.post("../../lib/libDadosLogin.aspx", { email: $("#txtEmail").val(), senha: $("#txtSenha").val() }, function (retorno) {
 
         var retorno;
@@ -34,7 +46,7 @@ $(document).on("click", "#btnLogin", function () {
 
             }
             else {
-                alert("O login e/ou senha inserida é inválido, tente novamente!");
+                presentAlert();
             }
         }
     });

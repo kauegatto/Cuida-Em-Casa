@@ -1,6 +1,18 @@
 ﻿window.Mercadopago.setPublishableKey("TEST-06f36a5d-e8bf-4e09-a0cf-f9245242a3e5");
 
 window.Mercadopago.getIdentificationTypes();
+
+function alertIonic(text) {
+    const alert = document.createElement('ion-alert');
+    alert.cssClass = 'alertBonito';
+    alert.header = 'Atenção';
+    alert.subHeader = '';
+    alert.message = text;
+    alert.buttons = ['OK'];
+
+    document.body.appendChild(alert);
+    return alert.present();
+}
   
 document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
 
@@ -35,7 +47,7 @@ function setPaymentMethod(status, response) {
         }
 
     } else {
-        alert(`payment method info error: ${response}`);
+        alertIonic(`payment method info error: ${response}`);
     }
 }
 
@@ -62,7 +74,7 @@ function setIssuers(status, response) {
            issuerSelect.value
        );
    } else {
-       alert(`issuers method info error: ${response}`);
+       alertIonic(`issuers method info error: ${response}`);
    }
 }
 var payment_method_id;
@@ -85,7 +97,7 @@ function setInstallments(status, response){
            document.getElementById('installments').appendChild(opt);
        });
    } else {
-       alert(`installments method info error: ${response}`);
+       alertIonic(`installments method info error: ${response}`);
    }
  }
 
@@ -113,7 +125,7 @@ function setCardTokenAndPay(status, response) {
        //doSubmit=true;form.submit();
        realizarPagamento(response.id);
    } else {
-       alert("Cartão de crédito inválido");
+       alertIonic("Cartão de crédito inválido");
    }
 };
 
@@ -152,22 +164,22 @@ function realizarPagamento(cardToken) {
         switch (resultado){
         case "approved":
             comprovarPagamento();
-            alert("pagamento aprovado");
+            alertIonic("pagamento aprovado");
             break
         case "FUND":
-            alert("Esse cartão não tem saldo suficiente");
+            alertIonic("Esse cartão não tem saldo suficiente");
             break;
         case "EXPI":
-            alert("O cartão inserido apresentou informações inválidas");
+            alertIonic("O cartão inserido apresentou informações inválidas");
             break;
         case "CALL":
-            alert("O cartão inserido foi recusado, mas nao deveria ter sido.");
+            alertIonic("O cartão inserido foi recusado, mas nao deveria ter sido.");
             break;
         case "OTHE":
-            alert("Erro na API");
+            alertIonic("Erro na API");
             break;
         default:
-            alert("Erro desconhecido, contate o desenvolvedor");
+            alertIonic("Erro desconhecido, contate o desenvolvedor");
             break;
         }
         
@@ -180,46 +192,46 @@ function realizarPagamento(cardToken) {
           console.log(customErrorCode);
           switch (customErrorCode) {
             case 2067:
-              alert("Erro no número do documento");
+              alertIonic("Erro no número do documento");
               break;
             case 2006:
-              alert("Cartão de crédito inválido");
+              alertIonic("Cartão de crédito inválido");
               break;
             case 2007:
-              alert("Erro na conexão da api de tokenização do cartão");
+              alertIonic("Erro na conexão da api de tokenização do cartão");
               break;
             case 2009:
-              alert("A empresa emissora do cartão não deve estar nula");
+              alertIonic("A empresa emissora do cartão não deve estar nula");
               break;
             case 2060:
-              alert("Você não pode comprar um produto de si mesmo!");
+              alertIonic("Você não pode comprar um produto de si mesmo!");
               break;
             case 3000:
-              alert("Digite o nome do dono do cartão de crédito");
+              alertIonic("Digite o nome do dono do cartão de crédito");
               break;
             case 3020:
               alert("Digite o nome do dono do cartão de crédito");
               break;
             case 3021:
-              alert("Digite o número do documento do comprador");
+              alertIonic("Digite o número do documento do comprador");
               break;
             case 3022:
-              alert("Selecione o tipo do documento;");
+              alertIonic("Selecione o tipo do documento;");
               break;
             case 3029:
-              alert("Mês de vencimento do cartão está incorreto;");
+              alertIonic("Mês de vencimento do cartão está incorreto;");
               break;
             case 3030:
-              alert("Ano de vencimento do cartão está incorreto;");
+              alertIonic("Ano de vencimento do cartão está incorreto;");
               break;
             case 4003:
-              alert("Valor do pedido deve ser numérico");
+              alertIonic("Valor do pedido deve ser numérico");
               break;
             case 1:
-              alert("Erro nos parâmetros;");
+              alertIonic("Erro nos parâmetros;");
               break;
             default:
-              alert("Desculpe, um erro inesperado aconteceu. O código de debug é: " +jqxhr);
+              alertIonic("Desculpe, um erro inesperado aconteceu. O código de debug é: " +jqxhr);
           }
       });
   }
@@ -227,7 +239,7 @@ function realizarPagamento(cardToken) {
 
     $.post("http://localhost:53825/lib/libConfirmarPagamento.aspx", { cdServico: localStorage.getItem("cdServico") }, function (retorno) {
         if (!retorno) {
-              alert("Ocorreu um erro na hora de registrar o pagamento de seu pedido, contate a cuida em casa!");
+              alertIonic("Ocorreu um erro na hora de registrar o pagamento de seu pedido, contate a cuida em casa!");
               window.location.href = "cliente/agendamento.html"
         }
     });

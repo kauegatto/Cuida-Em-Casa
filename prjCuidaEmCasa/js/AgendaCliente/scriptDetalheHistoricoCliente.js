@@ -14,7 +14,9 @@
 			dados = retorno.split(';');
 			console.log(dados);
 
-			if( $('.invi').html(dados[0])  == imgPadrao)
+			$('.invi').html(dados[0])
+
+			if( dados[0]  == imgPadrao)
 			{
 				$(".areaInformacoesCuidador").each(function (i, obj) {
 					var url = "data:image/svg+xml;base64," + $(this).children('.invi').html();

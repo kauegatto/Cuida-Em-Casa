@@ -21,7 +21,7 @@ $(document).ready(function () {
             $('#txtEspecializacoesCuidador').html($('#txtEspecializacoesCuidador').html() + ", " + $('#especializacoesCuidador option:selected').html());
             //$('#especializacaoCuidador').prop('disabled', true);          
             cdEspecializacoes += ";" + $('#especializacoesCuidador').val() ;
-            console.log(cdEspecializacoes);
+            //console.log(cdEspecializacoes);
             var id = $('#especializacoesCuidador').children(":selected").attr("id");
             $("#"+id).prop('disabled',true);
         }
@@ -31,7 +31,7 @@ $(document).ready(function () {
             $('#txtEspecializacoesCuidador').html($('#especializacoesCuidador option:selected').html());
             //$('#especializacaoCuidador').prop('disabled', true);
             cdEspecializacoes += $('#especializacoesCuidador').val();
-            console.log(cdEspecializacoes);
+            //console.log(cdEspecializacoes);
             var id = $('#especializacoesCuidador').children(":selected").attr("id");
             $("#"+id).prop('disabled',true);
         }

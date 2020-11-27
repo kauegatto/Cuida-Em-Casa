@@ -1,9 +1,23 @@
 export default function scriptServicoAgendadoSelecionado(cdServico) {
     var dados;
+
+    function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
     $.post("../../lib/libServicoAgendadoSelecionado.aspx", { codigoServico: cdServico }, function (retorno) {
 
         if (retorno == "erro") {
-            console.log("deu erro");
+            //console.log("deu erro");
+            alertIonic("Houve um erro");
         }
         else 
         {

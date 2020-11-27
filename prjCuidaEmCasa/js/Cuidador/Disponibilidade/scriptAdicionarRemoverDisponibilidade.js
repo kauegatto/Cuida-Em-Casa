@@ -132,6 +132,7 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
                     $("#headerNav").css("display","block");   
                     $("#wrapper-informacoesDisponibilidade").css("display","block");
                     $("#listaServicosAgendados").css("display","block");
+
                 colocarDisponibilidadeDoDia();
             }
         }
@@ -165,5 +166,14 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
             
         });
     }
+
+
+    $('.iconeVoltar').click(function(){
+
+        $('#wrapper-escolherDataServico').css('display', 'none');
+
+        scriptCarregarCalendario();
+        
+    });
 
     //scriptCarregarCalendario();

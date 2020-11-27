@@ -10,6 +10,19 @@ var mes
 
 $(document).ready(function () {
 
+    function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
+
     var start_date_dialog;
     start_date_dialog = osmanli_calendar;
           
@@ -17,7 +30,7 @@ $(document).ready(function () {
     $('.next-month').click(function () {start_date_dialog.next_month();$("#listaServicosAgendados").html("")});
 
     if(!localStorage.getItem("tipoUsuario") == 3){
-        alert("Você não tem acesso a essa página, realize o login novamente");
+        alertIonic("Você não tem acesso a essa página, realize o login novamente");
         localStorage.clear();
         window.location.href = "../../pages/index.html";
     };
@@ -96,8 +109,9 @@ $(document).ready(function () {
  	$(".iconeVoltar").click(function () {
 
     	$(".visivel").each(function (i, obj) {
-	       $(this).removeClass("visivel");
-	    });
+	    $(this).removeClass("visivel");
+
+    });
 
         /* Mostrar divs novas */
                     $("#headerComum").css("display","block");$("#headerComum").removeClass("visivel");
@@ -108,10 +122,10 @@ $(document).ready(function () {
         
                     $("#listaServicosAgendados").css("display","none");
                     $("#wrapper-informacoesDisponibilidade").css("display","none");
-                    $("#headerNav").css("display","none");$("#headerNav").removeClass("visivel");
+                    $("#headerNav").css("display","none"); $("#headerNav").removeClass("visivel");
                     $("#wrapper-InfoServicoAgendado").css("display","none");
+                    
 
-        
         if($("#areaAgendados").hasClass("areaBranca")){
             scriptCarregarCalendarioAgenda();
         }
@@ -119,6 +133,7 @@ $(document).ready(function () {
             scriptCarregarCalendario();
         }
     });
+    
     var classes;
 
     $(document).on("click", ".areaAgendaConteudo", function(){
@@ -138,7 +153,9 @@ $(document).ready(function () {
 
 
         $("#wrapper-InfoServicoAgendado").addClass("visivel");
-        $('#headerNav').addClass("visivel");
+       // $('#headerNav').addClass("visivel");
+        $("#headerNav .areaTituloGeral").css('display','block');
+        $("#headerNav .areaLogo").css('display','block');
         $('#tituloGeral-Nav').html("Informações do serviço");
     });
 
@@ -167,10 +184,10 @@ $(document).ready(function () {
                 /* Esconder divs antigas */
                     $("#wrapper-calendarioDisponibilidade").css("display","none");
                     $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
-                    $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
+                    $("#headerComum").css("display","block");// $("#headerComum").removeClass("visivel");
                     $(".opcoes").css("display","none");
                 /* Mostrar divs novas */
-                    $("#headerNav").css("display","block");   
+                    //$("#headerNav").css("display","block"); 
                     $("#listaServicosAgendados").css("display","block");
                     $("#wrapper-informacoesServico").css("display","visivel");
                     $("#wrapper-informacoesServico").addClass("visivel");    

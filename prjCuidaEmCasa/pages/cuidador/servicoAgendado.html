@@ -26,6 +26,8 @@
     
     <script src="../../js/Cuidador/Disponibilidade/scriptCarregarDisponibilidade.js" type="module"></script>
     <script src="../../js/Cuidador/Disponibilidade/scriptAdicionarRemoverDisponibilidade.js" type="module"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  	<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
 
     <style>
     	.btnMes, .btn-success {font-family: Rubik;font-style: normal;font-weight: bold;font-size: 18px;}
@@ -89,13 +91,13 @@
             </div>                      
 	        <div id="wrapper-escolherDataServico" class="wrapper">
 	            <h3 id="diaDisponibilidade">Dia</h3>
-	            <h3 class="tituloServico" style="margin-top: 35%;">Selecione uma hora de início para disponibilidade</h3>
+	            <h3 class="tituloServico">Selecione uma hora de início para disponibilidade</h3>
 	            <div class="areaInfo">
 	              <img src="../../img/icones/agendamento/iconeTempo.png" class="imgIcone">
 	              <input type="time" name="DATA" class="dataServico" id="horaInicio" required>
 	            </div>
 
-	            <h3 class="tituloServico" style="margin-top: 35%;">Selecione uma hora de fim para disponibilidade</h3>
+	            <h3 class="tituloServico">Selecione uma hora de fim para disponibilidade</h3>
 	            <div class="areaInfo">
 	              <img src="../../img/icones/agendamento/iconeTempo.png" class="imgIcone">
 	              <input type="time" name="DATA" class="dataServico" id="horaFim" required>
@@ -104,7 +106,7 @@
 	            <button class="btnProximo navBtn" id="btnSalvar">Salvar</button>      
 	        </div>
 
-			<div class="wrapper" id="wrapper-InfoServicoAgendado" style="margin-top: 105px;">
+			<div class="wrapper" id="wrapper-InfoServicoAgendado" style="margin-top: 123px;">
 
 				<h3 class="tituloConteudo">Informações do Paciente</h3>
 				<div class="areaInfoPaciente">
@@ -160,7 +162,7 @@
 					</div>
 				</div>
 
-				<button class="btnCancelarServico">Cancelar Servico</button>
+				<button class="btnCancelarServico" style="margin-bottom: 30%;">Cancelar Servico</button>
 	        </div>
 
             

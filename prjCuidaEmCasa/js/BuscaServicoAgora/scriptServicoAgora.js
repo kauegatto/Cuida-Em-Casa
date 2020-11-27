@@ -1,10 +1,23 @@
 ﻿export default function scriptServicoAgora(){
     var map = document.getElementById('map');
     var img = document.createElement('img'); 
+
+    function alertErro(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
    
     $.post("../../lib/libServicoAtual.aspx", { cdServico: localStorage.getItem("cdServico") }, function (retorno) {
         if (!retorno) {
-            console.log("deu errado");
+            //console.log("deu errado");
+            alertErro('Houve um erro');
             return;
         }
 

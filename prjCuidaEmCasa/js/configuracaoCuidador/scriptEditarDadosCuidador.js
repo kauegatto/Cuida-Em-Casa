@@ -1,5 +1,17 @@
 export default function scriptEditarDadosCuidador(){
 
+	function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
 	function readFileAsync(file){
 
 		return new Promise((resolve, reject) => {
@@ -51,8 +63,9 @@ export default function scriptEditarDadosCuidador(){
 				}
 				else
 				{
-					console.log('deu certo alterou os dados');
-					alert('dados alterado com sucesso !');
+					//console.log('deu certo alterou os dados');
+					//alert('dados alterado com sucesso !');
+					alertIonic('Dados alterado com sucesso!');
 					$('#iconeVoltarNav').click();
 				}
 
