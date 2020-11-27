@@ -10,13 +10,25 @@
 
 .dadosFiltro { margin-bottom: 8px; }
 
+.preco { position: relative; }
+
+.preco input {padding-left: 50px; }
+
+.avaliacao { position: relative; }
+
+.avaliacao input { padding-left: 70px; margin-left: 3px; }
+
+.unitPreco { position: absolute; display: block; left: 24px; top: 35px; z-index: 9; font: 400 13.3333px Arial; }
+
+.unitAvaliacao { position: absolute; display: block; left: 8px; top: 35px; z-index: 9; font: 400 13.3333px Arial; }
+
 .opcaoFiltro { height: 40px; margin-left: 18px; border: 1px solid #E6E6F0; box-sizing: border-box; border-radius: 8px;}
 
-.cbxEspecializacao {width: 311px;border-radius:5px;height: 29px;}
+.cbxEspecializacao {width: 311px; border-radius:5px;height: 29px;}
 
-.cbxPreco {width: 165px;}
+.cbxPreco {width: 145px;}
 
-.cbxAvaliacao {width: 130px;}
+.cbxAvaliacao {width: 145px;}
 
 .cbxGenero {width: 311px;}
 

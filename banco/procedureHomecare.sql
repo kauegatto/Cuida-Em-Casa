@@ -2752,4 +2752,19 @@ BEGIN
 
 END$$
 
+DROP PROCEDURE IF EXISTS deletarAuthRecover$$
+
+CREATE PROCEDURE deletarAuthRecover(vCodigoAuthRecover INT, vEmailUsuario VARCHAR(200))
+
+BEGIN
+
+	delete from 
+		auth_recover 
+	where 
+		cd_auth_recover = vCodigoAuthRecover 
+	AND 
+		nm_email_usuario = vEmailUsuario;
+
+END$$
+
 DELIMITER ;

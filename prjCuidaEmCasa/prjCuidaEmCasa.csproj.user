@@ -4,7 +4,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
+<<<<<<< HEAD
           <StartPageUrl>pages/administrador/ocorrencias.html</StartPageUrl>
+=======
+          <StartPageUrl>pages/index.html</StartPageUrl>
+>>>>>>> 06058828fc43ea6eb5828bb589f9bd753cc31736
           <StartAction>SpecificPage</StartAction>
           <AspNetDebugging>True</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>

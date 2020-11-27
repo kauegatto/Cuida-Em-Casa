@@ -2,6 +2,7 @@
 import scriptBuscarDadosPaciente from "./scriptBuscarDadosPaciente.js";
 import scriptEditarDadosPaciente from "./scriptEditarDadosPaciente.js";
 import scriptAdicionarPaciente from "./scriptAdicionarPaciente.js";
+import scriptExcluirPaciente from "./scriptExcluirPaciente.js";
 
 var indexPage = 0; var jump = 0;
 
@@ -31,6 +32,20 @@ $(document).ready(function () {
         $('#tituloGeral-Nav').css("margin-right","56px");
         $('#tituloGeral-Nav').css("margin-left","0");
         $('#tituloGeral-Nav').css("width","204");
+        $.post('../../lib/libListarNecessidades.aspx', {}, function(retorno){
+
+            if (retorno == 'erro') 
+            {
+                console.log('deu erro na lib de listar as necessidades');
+            }
+            else
+            {
+                $('#selectAlterarNecessidade').html(retorno);
+                console.log('necessidades cadastradas');
+            }
+
+    });
+
     });
 
  	$(".iconeVoltar").click(function () {
@@ -44,6 +59,64 @@ $(document).ready(function () {
     $(document).on("click", "#areaAlterarImagemPaciente", function(){
 
         $('#uploadImgUsuario').trigger('click');
+
+    });
+
+    var c = 0;
+    var cdNecessidade = "";
+
+    $('#addNecessidade').click(function(){
+
+        if (c > 0) {
+            $('#necessidadeEscolhida').html($('#necessidadeEscolhida').html() + ", " + $('#txtAlterarNecessidadePaciente option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);          
+            cdNecessidade += ";" + $('#txtAlterarNecessidadePaciente').val() ;
+            console.log(cdNecessidade);
+            var id = $('#txtAlterarNecessidadePaciente').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+        else
+        {
+            c++;
+            $('#necessidadeEscolhida').html($('#txtAlterarNecessidadePaciente option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);
+            cdNecessidade += $('#txtAlterarNecessidadePaciente').val();
+            console.log(cdNecessidade);
+            var id = $('#txtAlterarNecessidadePaciente').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+
+        $('#areaTxtNecessidade').css('display','block');
+        localStorage.setItem('necessidadeEscolhida', cdNecessidade);
+
+    });
+
+    var c2 = 0;
+    var cdNecessidade2 = "";
+
+    $('#addNecessidadeAddPaciente').click(function(){
+
+        if (c2 > 0) {
+            $('#necessidadeEscolhida2').html($('#necessidadeEscolhida2').html() + ", " + $('#selectAlterarNecessidade option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);          
+            cdNecessidade2 += ";" + $('#selectAlterarNecessidade').val() ;
+            console.log(cdNecessidade2);
+            var id = $('#selectAlterarNecessidade').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+        else
+        {
+            c2++;
+            $('#necessidadeEscolhida2').html($('#selectAlterarNecessidade option:selected').html());
+            //$('#especializacaoCuidador').prop('disabled', true);
+            cdNecessidade2 += $('#selectAlterarNecessidade').val();
+            console.log(cdNecessidade2);
+            var id = $('#selectAlterarNecessidade').children(":selected").attr("id");
+            $("#"+id).prop('disabled',true);
+        }
+
+        $('#areaTxtNecessidade2').css('display','block');
+        localStorage.setItem('necessidadeEscolhida', cdNecessidade2);
 
     });
 
@@ -67,19 +140,33 @@ $(document).ready(function () {
     });
 
     $(document).on("click", ".btnSalvar", function(){
+
+        $("#listaPacientes").html("");  
         scriptEditarDadosPaciente();
+
+        
         $(".iconeVoltar").click();
-        $("#listaPacientes").html("");        
-        scriptPacientes();
        
     });
 
     $(document).on("click", "#btnSalvarPaciente", function(){
+       $("#listaPacientes").html(""); 
+
         scriptAdicionarPaciente();
+
         $(".iconeVoltar").click();
-        $("#listaPacientes").html(""); 
-        scriptPacientes();
+      
+        //scriptPacientes();
        
     });
+
+    $('.btnExcluir').click(function(){
+
+        scriptExcluirPaciente();
+        $(".iconeVoltar").click();
+        $("#listaPacientes").html(""); 
+
+    });
+
 
 });

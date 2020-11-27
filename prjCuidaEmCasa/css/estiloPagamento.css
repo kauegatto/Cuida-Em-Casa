@@ -13,17 +13,7 @@ form
     display:block;
     margin: 0 auto;
 }
-form input , form select
-{
-    background: rgba(40, 85, 147, 0.35);
-    border: 0px line rgba(40, 85, 147, 0.35);
-    border-radius: 8px;
-    width: 70%;
-    height: 25px;
-    color: #000;
-    margin: 0 auto;
-    display: block;
-}
+
 form label
 {
     margin: 0 auto;
@@ -32,18 +22,8 @@ form label
 label, h3{
     text-align: center;
 }
-h3{
-    color:#285593;
-}
-button{
-
-    margin: 0 auto;
-    display: block;
-    width: 70%;
-    height: 35px;
-    border-radius: 10px;
-    background-color: #285593;
-    color:#F8F8F8;
-    font-style: Rubik;
-    font-weight: 800;
-}
+h3{color:#285593;}
+button{margin: 0 auto;display: block;width: 70%;height: 35px;border-radius: 10px;background-color: #285593;color:#F8F8F8;font-style: Rubik;font-weight: 800;}
+label { padding: 5px; width: 80%; font-family: Rubik; font-style: normal; font-weight: normal; font-size: 16px; line-height: 19px; margin:0 auto; color: #000; display:block;}
+input,select { background: rgba(40, 85, 147, 0.3); border-radius: 6px; border-style: none; width: 70%; height: 38px; display: block;margin: 0 auto;padding-left:10px; }    
+button { display:block;background: #285593; border-radius: 10px; border-style: none; width: 70%; height: 40px; font-family: Rubik;font-weight:bold; font-size: 20px; color: #F1F1F1;margin:0 auto;margin-top: 25px;}

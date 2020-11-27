@@ -423,5 +423,33 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion
 
+        #region deltetar auth recover 
+
+        public bool deletarAuthRecover(string cdAuthRecover, string emailUsuario)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+            valores[1, 0] = "vCodigoAuthRecover";
+            valores[1, 1] = cdAuthRecover;
+
+            if (!Procedure("deletarAuthRecover", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+
+
+        }
+
+
+        #endregion 
+
     }
 }

@@ -1,0 +1,9 @@
+﻿.container { margin: 150px auto; }
+
+.botoes { margin: 0 auto;display: block;width: 90%; }
+
+.btnAdicionar,.horarioDisponibilidade{margin: 0 auto;display: block;width: 85%;margin-bottom: 10px;}
+
+.selected_date {background-color: #89e1fbc7 !important;}
+
+#wrapper-calendarioDisponibilidade { display: none; }

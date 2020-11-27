@@ -15,8 +15,10 @@
                 $('#wrapper-historicoServico').html(retorno);
 
                 $(".dadosHistorico").each(function (i, obj) {
-                    var url = "data:image/svg+xml;base64," + $(this).children(".invi").html();
-                    $(this).children(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+
+                   var url = "data:image/png;base64," + $(this).children(".invi").html();
+                   $(this).children(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                  
                 });
             
                 $(".areaHistorico").click(function (e) {
