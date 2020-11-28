@@ -2205,7 +2205,7 @@ BEGIN
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
 		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
-		u.vl_hora_trabalho, u.cd_link_curriculo
+		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario
 	FROM
 		usuario u
 	JOIN
@@ -2394,7 +2394,7 @@ BEGIN
 		s.nm_email_usuario_cuidador;
 END$$
 
-<<<<<<< HEAD
+
 /* Procedure criada para suspender o cuidador por um tempo indeterminado */
 
 DROP PROCEDURE IF EXISTS suspenderCuidador$$
@@ -3812,8 +3812,7 @@ BEGIN
 	END IF;
 END$$
 
-=======
->>>>>>> 0b33290000e9ad2f8abce5a984099e922f887d24
+
 /* Procedure criada para buscar os dados do paciente */
 
 DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
