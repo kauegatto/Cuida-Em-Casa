@@ -22,18 +22,23 @@ $(document).ready(function () {
         return alert.present();
     }
 
+    /* iniciando calndario */
+        var start_date_dialog;
+        start_date_dialog = osmanli_calendar
+        start_date_dialog.init();    
+        start_date_dialog.ON_SELECT_FUNC = function(){
+            $('.output').html(osmanli_calendar.SELECT_DATE);
+        }
+        $('.prev-month').click(function () {start_date_dialog.pre_month();$("#listaServicosAgendados").html("")});
+        $('.next-month').click(function () {start_date_dialog.next_month();$("#listaServicosAgendados").html("")});
 
-    var start_date_dialog;
-    start_date_dialog = osmanli_calendar;
-          
-    $('.prev-month').click(function () {start_date_dialog.pre_month();$("#listaServicosAgendados").html("")});
-    $('.next-month').click(function () {start_date_dialog.next_month();$("#listaServicosAgendados").html("")});
+        if(!localStorage.getItem("tipoUsuario") == 3){
+            alertIonic("Você não tem acesso a essa página, realize o login novamente");
+            localStorage.clear();
+            window.location.href = "../../pages/index.html";
+        };
 
-    if(!localStorage.getItem("tipoUsuario") == 3){
-        alertIonic("Você não tem acesso a essa página, realize o login novamente");
-        localStorage.clear();
-        window.location.href = "../../pages/index.html";
-    };
+
 
     //scriptServicoAgendado();
     scriptCarregarCalendarioAgenda();
@@ -179,18 +184,21 @@ $(document).ready(function () {
     $(document).on("click", "td", function(){
 
         if($("#areaAgendados").hasClass("areaBranca")){
+
             console.log("tem");
             if($(this).html() != ""){
                 /* Esconder divs antigas */
                     $("#wrapper-calendarioDisponibilidade").css("display","none");
                     $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
-                    $("#headerComum").css("display","block");// $("#headerComum").removeClass("visivel");
-                    $(".opcoes").css("display","none");
+                    $("#headerComum").css("display","none");// $("#headerComum").removeClass("visivel");
+                    $(".opcoes").css("display","none");$("#headerComum").removeClass("visivel");
                 /* Mostrar divs novas */
                     //$("#headerNav").css("display","block"); 
                     $("#listaServicosAgendados").css("display","block");
-                    $("#wrapper-informacoesServico").css("display","visivel");
-                    $("#wrapper-informacoesServico").addClass("visivel");    
+                    $("#wrapper-informacoesServico").css("display","block");
+                    $("#wrapper-informacoesServico").addClass("visivel");
+                    $("#headerNav").css("display","block");// $("#headerComum").removeClass("visivel");
+                        
                 /* Guardar na procedure a data selecionada e coloca-la no título*/
                 
                     var dia = $(this).html();
@@ -216,11 +224,19 @@ $(document).ready(function () {
                     
                     ano = ano[1];
 
-                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);             
+                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia); 
+
                 colocarAgendadosDia();   
             }
         }
     });
+
+   $('.iconeVoltar').click(function(){
+        if($("#areaAgendados").hasClass("areaBranca")){
+            scriptCarregarCalendarioAgenda();
+            $("#listaServicosAgendados").html("");        }
+    });
+ 
 });
 
 

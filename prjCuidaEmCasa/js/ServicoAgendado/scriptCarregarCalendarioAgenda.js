@@ -1,7 +1,7 @@
 import scriptBuscarServicos from './scriptBuscarServicos.js';
 //adicionar no vs
 export default function scriptCarregarCalendarioAgenda(){
-  var mes;
+    var mes;
   	function pegarMes(stringMes){
         mes = stringMes.split(" ");
         mes = mes[0];
@@ -44,30 +44,23 @@ export default function scriptCarregarCalendarioAgenda(){
                   break;
         }
     };
-	var start_date_dialog;
-	start_date_dialog = osmanli_calendar
-      
-    start_date_dialog.init();
-      
-    console.log('iniciou o calendario');
-      
-    start_date_dialog.ON_SELECT_FUNC = function(){
-       $('.output').html(osmanli_calendar.SELECT_DATE);
-  	};
-
-  	function carregarServicos(){
+  	
+    function carregarServicos(){
 	    mes = $(".mesServico").text();
 	    pegarMes(mes);
 	    scriptBuscarServicos(mes);
 	    $(".btnAdicionar").css("display","none");
-		$(".horarioDia").css("display","none");
+		  $(".horarioDia").css("display","none");
   	}
+
   	$(document).on("click", ".btnMes", function(){
-	    if ($("#areaAgendados").hasClass("areaBranca")) {
+    
+      if ($("#areaAgendados").hasClass("areaBranca")) {
 	    	carregarServicos();
-      		$(".btnAdicionar").css("display","none");
-      		
+      	$(".btnAdicionar").css("display","none");      		
     	}
-  	});   
-	carregarServicos();
+
+  	});  
+	  
+    carregarServicos();
 }
