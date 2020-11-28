@@ -135,13 +135,22 @@ $("#btnAlterarEndereco").click(function () {
 
 //pg 3: pg data hora -> vai para cuidador
 $("#btnDataHora").click(function () {
-    scriptVerificarPacienteServico();
-    passarPagina($(this),1);
-    scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
-    scriptCuidador(); 
-    $(".areaFiltro").addClass("visivel");
-    $('#dinheiro').mask('000,00', { reverse: true });
-    $('#avaliacao').mask('0.0', { reverse: true });
+
+    if ($('#horaInicio').val() != "" && $("#horaFim").val() != "" && $('#data').val() != "") 
+    {
+        scriptVerificarPacienteServico();
+        passarPagina($(this),1);
+        scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
+        scriptCuidador(); 
+        $(".areaFiltro").addClass("visivel");
+        $('#dinheiro').mask('000,00', { reverse: true });
+        $('#avaliacao').mask('0.0', { reverse: true });
+    }
+    else
+    {
+        alertIonic('Selecione uma data ou hora para inicio/fim de serviço!');
+        return;
+    }
 });
 
 //pg 5: pag cuidador -> vai para info cuidador  
