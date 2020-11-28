@@ -2195,6 +2195,24 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+/* Function criada para contar a quantidade de serviços que um cuidador tem */
+
+DROP FUNCTION IF EXISTS countServico$$
+
+CREATE FUNCTION countServico(vEmailCuidador VARCHAR(200)) RETURNS INT
+BEGIN
+	DECLARE qtdServico INT;
+
+	SELECT
+		COUNT(cd_servico) INTO qtdServico
+	FROM
+		servico
+	WHERE
+		nm_email_usuario_cuidador = vEmailCuidador;
+	
+	RETURN qtdServico;
+END$$ 
+
 /* Procedure criada para buscar informações completas do cuidador para contrato selecionado pelo adm */
 
 DROP PROCEDURE IF EXISTS infoCuidadorContrato$$
@@ -2205,7 +2223,8 @@ BEGIN
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
 		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
-		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario
+		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario,
+		countServico(u.nm_email_usuario)
 	FROM
 		usuario u
 	JOIN
@@ -2220,6 +2239,10 @@ BEGIN
 		tipo_especializacao te
 	ON
 		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+	JOIN
+		servico s 
+	ON
+		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE
 		u.nm_email_usuario = vEmailCuidador
 	GROUP BY

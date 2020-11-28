@@ -44,13 +44,18 @@
                 $('#desbanir_cuidador').css("display", "inline");
             }
 
-            if (retorno[0] == imgPadrao) 
-            {
+            if (retorno[13]) {
+                $('.btnServicos').prop("disabled", true);
+            }
+            else {
+                $('.btnServicos').prop("disabled", false);
+            }
+
+            if (retorno[0] == imgPadrao) {
                 var url = "data:image/svg+xml;base64," + retorno[0];
                 $("#img_cuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             }
-            else
-            {
+            else {
                 var url = "data:image/png;base64," + retorno[0];
                 $("#img_cuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             }
