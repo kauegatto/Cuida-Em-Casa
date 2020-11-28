@@ -7,6 +7,7 @@ import scriptInfoCuidador from "./scriptInfoCuidador.js";
 import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 import scriptFiltro from "./scriptFiltro.js";
+import scriptVerificarPacienteServico from "./scriptVerificarPacienteServico.js";
 
 function alertIonic(text) {
     const alert = document.createElement('ion-alert');
@@ -134,20 +135,13 @@ $("#btnAlterarEndereco").click(function () {
 
 //pg 3: pg data hora -> vai para cuidador
 $("#btnDataHora").click(function () {
-    if ($("#horaInicio").val() != "" && $("#horaFim").val() != "") 
-    {
-        passarPagina($(this),1);
-        scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
-        scriptCuidador(); 
-        $(".areaFiltro").addClass("visivel");
-        $('#dinheiro').mask('000,00', { reverse: true });
-        $('#avaliacao').mask('0.0', { reverse: true });
-    }
-    else
-    {
-        alertIonic('Selecione uma hora para inicio/fim do serviço');
-    }
-    
+    scriptVerificarPacienteServico();
+    passarPagina($(this),1);
+    scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
+    scriptCuidador(); 
+    $(".areaFiltro").addClass("visivel");
+    $('#dinheiro').mask('000,00', { reverse: true });
+    $('#avaliacao').mask('0.0', { reverse: true });
 });
 
 //pg 5: pag cuidador -> vai para info cuidador  

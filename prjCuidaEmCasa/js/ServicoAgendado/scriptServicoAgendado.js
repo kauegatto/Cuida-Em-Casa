@@ -18,21 +18,24 @@
             //console.log("deu erro");
             alertIonic('Houve um erro');
         }
+        
         else 
         {
             console.log(retorno);
             if(retorno == ""){
                 $("#listaServicosAgendados").html("Sem serviços no dia!");
             }
-            else{
-            $("#listaServicosAgendados").html(retorno);
-            
-            $(".areaAgendaConteudo").each(function (i, obj) {
-                var url = "data:image/png;base64," + $(this).children('.invi').html();
-                $(this).children(".areaImagemPacienteAgendamento").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-            });
 
+            else{
+
+                $("#listaServicosAgendados").html(retorno);
+                
+                $(".areaAgendaConteudo").each(function (i, obj) {
+                    var url = "data:image/png;base64," + $(this).children('.invi').html();
+                    $(this).children(".areaImagemPacienteAgendamento").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                });
             }
         }
+
     });
 };

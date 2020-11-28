@@ -15,7 +15,7 @@ call inserirAuthRecover('brunastellaflaviadepaula@gmail.com',1233);
 call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
-call buscarCuidadores('2020-12-14', '12:00:00', '14:00:00');
+call buscarCuidadores('2020-12-14', '16:00:00', '17:00:00');
 call buscarCuidadoresVirarDia('2020-07-12', '22:00:00', '02:00:00');
 call filtrarCuidadores('2020-12-14','12:00:00','14:00:00', 1, 0, 0, 0, 1, null, null, null);
 call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', 0, 0, 0, 0, null, null, null, null);
@@ -50,6 +50,7 @@ call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
 call buscarDadosCliente('mauriciorodolfo@gamil.com');
 call atualizarDadosCliente('mauriciorodolfo@gamil.com', 'Douglas Reis', '526.013.418-40', '(13) 33631503');
+call verificarPacienteServico(8, '2020-07-16', '08:00:00', '10:00:00');
 
 /* PROCEDURE DO CUIDADOR */
 
@@ -70,7 +71,7 @@ call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call listarAvaliacoes('matheusraimundofarias@gmail.com');
 call verificarDisponibilidade('flaviabeneditamilenamelo@gmail.com');
-select * from disponibilidade;
+
 /* Calendario / Agenda  */
 
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);

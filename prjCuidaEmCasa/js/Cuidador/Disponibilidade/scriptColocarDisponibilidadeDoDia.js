@@ -19,8 +19,8 @@ export default function colocarDisponibilidadeDoDia(){
                     var horaFim = arrayAtual[2];
 
                     if(dia == value){
-                        $(".horarioDia").append("<div class='alert alert-dark horarioDisponibilidade'>Hora Inicial: <span class='horaInicio'>"+horaInicio+"</span> Hora final: <span class='horaFim'>"+ horaFim +"</span></div>");
-                        $(".horarioDia").children(".alert").last().append("<div class='' id='btnRemover'> remover  </div>");
+                        $(".horarioDia").append("<div class='alert alert-dark horarioDisponibilidade'>Hora Inicial: <span class='horaInicio'>"+horaInicio+"</span><br> Hora final: <span class='horaFim'>"+ horaFim +"</span></div>");
+                        $(".horarioDia").children(".alert").last().append("<div class='' id='btnRemover'> Remover  </div>");
                     }
                 }
 

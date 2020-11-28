@@ -8,6 +8,19 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
     var usuarioLogado = localStorage.getItem("usuarioLogado");
     var dtDisponibilidade = localStorage.getItem("diaSelecionado");
 
+    function alertBonito(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
+
     function pegarMes(stringMes){
         mes = stringMes.split(" ");
         mes = mes[0];
@@ -71,22 +84,52 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
         });
 
      
-        $(document).on("click", "#btnSalvar", function(){
+        $(document).on("click", "#btnSalvar", function( event ){
+                
 
                 hrInicioDisponibilidade = $("#horaInicio").val();
                 hrFimDisponibilidade = $("#horaFim").val();
-                dtDisponibilidade = localStorage.getItem("dtDisponibilidade");
+
+                const arrayhrInicioDisponibilidade =  hrInicioDisponibilidade.split(":");
+                const arrayhrFimDisponibilidade = hrFimDisponibilidade.split(":");
+
+                if(arrayhrInicioDisponibilidade[0]>arrayhrFimDisponibilidade[0]){
+                    alertBonito("A hora de fim deve ser depois da hora de início!");
+                    return;
+                }
                 
-                $("#wrapper-escolherDataServico").css("display","none");
-                $("#wrapper-informacoesDisponibilidade").css("display","block");
+                else if(arrayhrInicioDisponibilidade[0] == arrayhrFimDisponibilidade[0]){
+                    if(arrayhrInicioDisponibilidade[1]>arrayhrFimDisponibilidade[1]){
+                        alertBonito("A hora de fim deve ser depois da hora de início!");
+                        return;
+                    }
+                    else{
+                        dtDisponibilidade = localStorage.getItem("dtDisponibilidade");
                 
-                var diaSelecionado = $(".selected_date").html();
+                        $("#wrapper-escolherDataServico").css("display","none");
+                        $("#wrapper-informacoesDisponibilidade").css("display","block");
+                        
+                        var diaSelecionado = $(".selected_date").html();
+                        
+                        adicionarDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
+                        
+                        scriptCarregarCalendario();
                 
-                adicionarDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
+                    }
+                }
                 
-                scriptCarregarCalendario();
+                else{
+                    dtDisponibilidade = localStorage.getItem("dtDisponibilidade");
                 
-                //scriptCarregarCalendario();
+                    $("#wrapper-escolherDataServico").css("display","none");
+                    $("#wrapper-informacoesDisponibilidade").css("display","block");
+                    
+                    var diaSelecionado = $(".selected_date").html();
+                    
+                    adicionarDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
+                    
+                    scriptCarregarCalendario();
+                }
             
         });
 
