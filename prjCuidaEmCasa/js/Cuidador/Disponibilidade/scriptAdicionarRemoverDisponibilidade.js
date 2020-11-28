@@ -141,7 +141,7 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
     function adicionarDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
-        $.post("../../..//lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+        $.post("../../../lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
             
             if (retorno == "false") {
                 console.log("deu erro");
@@ -174,7 +174,10 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
     $('.iconeVoltar').click(function(){
 
+        console.log('entrou no voltar');
         $('#wrapper-escolherDataServico').css('display', 'none');
+        $('#wrapper-calendarioDisponibilidade').css('display', 'block');
+        $('.wrapper-calendario').css('display', 'block');
 
         scriptCarregarCalendario();
         
