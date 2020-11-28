@@ -12,46 +12,11 @@
           return alert.present();
         }
 
-        var txt_data;
-        var txt_horaInicio;
-        var txt_qtdHoras;
+        var txt_data = $("#data").val();
+        var txt_horaInicio = $("#horaInicio").val();
+        var txt_qtdHoras = $("#horaFim").val();
 
-        console.log($('#data').val());
-        if ($("#data").val() != "") 
-        {
-            txt_data = $("#data").val();
-        }
-        else
-        {
-            alertIonic('Digite uma data!');
-            $('.iconeVoltar').click();
-            $('.areaFiltro').css('display', 'none');
-            return;
-        }
-
-        if ($("#horaInicio").val() != "") 
-        {
-            txt_horaInicio = $("#horaInicio").val();
-        }
-        else
-        {
-            alertIonic('Digite uma hora de início do serviço!');
-            $('.iconeVoltar').click();
-            $('.areaFiltro').css('display', 'none');
-            return;
-        }
-
-        if ($("#horaFim").val() != "") 
-        {
-            txt_qtdHoras = $("#horaFim").val();
-        }
-        else
-        {
-            alertIonic('Digite uma hora de fim serviço!');
-            $('.iconeVoltar').click();
-            $('.areaFiltro').css('display', 'none');
-            return;
-        }
+        //console.log($('#data').val());
 
         var horaIni = horaInicio.split(':');
         var horaSom = horaSomada.split(':');
