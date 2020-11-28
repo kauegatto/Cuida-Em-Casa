@@ -16,14 +16,15 @@
         else if (retorno[0] == "false") {
             $('#wrapper-cuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%'>Desculpe, mas não encontramos cuidadores nesse horário</h2>");
         }
-        else {
+        else
+        {
             $('#wrapper-cuidador').html(retorno[0] + botao);
 
             $(".areaCuidador").each(function (i, obj) {
                 var tinhaImg = $(this).children("div.invi").html().split("#");
                 if (tinhaImg[1] == "true" ){var url = "data:image/png;base64," + tinhaImg[0];}
                 else{ var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
-            
+                
                 $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             });
 
