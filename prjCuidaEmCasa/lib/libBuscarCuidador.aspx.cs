@@ -152,81 +152,84 @@ namespace prjCuidaEmCasa.lib
 
                 clsServico classeServico = new clsServico();
 
-                if (!classeServico.listarAvaliacao(classeCuidador.nm_email_cuidador[i]))
+                if (classeCuidador.qtd_servicos[i] == "0")
                 {
-                    Response.Write("erro");
-                    return;
-                }
-
-                double contadorAvaliacao = 0;
-
-                for (int j = 0; j < classeServico.cd_avaliacaoNota.Count; j++)
-                {
-                    contadorAvaliacao += double.Parse(classeServico.cd_avaliacaoNota[j]);
-                }
-
-                double qtEstrelas = 0;
-
-                qtEstrelas = contadorAvaliacao / classeServico.cd_avaliacaoNota.Count;
-
-                double notaAvaliacao = qtEstrelas;
-
-                listaCuidadores += "<div class='areaCuidador " + classeCuidador.nm_email_cuidador[i] + "'>";
-                listaCuidadores += "<div class='areaImagemCuidador'></div>";
-                listaCuidadores += "<div class='areaInfoCuidador'>";
-                listaCuidadores += "<h3>" + classeCuidador.nm_cuidador[i] + "</h3>";
-
-                #region colocarestrela
-                listaCuidadores += "<div class='avaliacao'>";
-
-                for (int h = 0; h <= qtEstrelas - 1; qtEstrelas--)
-                {
-                    listaCuidadores += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
-                }
-
-                if (qtEstrelas != 0 && qtEstrelas > 0)
-                {
-                    if (qtEstrelas >= 0.5 && qtEstrelas < 1)
+                    if (!classeServico.listarAvaliacao(classeCuidador.nm_email_cuidador[i]))
                     {
-                        listaCuidadores += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
+                        Response.Write("erro");
+                        return;
                     }
-                }
 
-                //double qtEstrelas = 00.00;
-                //if (double.TryParse(classeCuidador.cd_avaliacao[i], out qtEstrelas))
-                //{
+                    double contadorAvaliacao = 0;
 
-                //    for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
-                //    {
-                //        listaCuidadores += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
-                //    }
+                    for (int j = 0; j < classeServico.cd_avaliacaoNota.Count; j++)
+                    {
+                        contadorAvaliacao += double.Parse(classeServico.cd_avaliacaoNota[j]);
+                    }
 
-                //    if (qtEstrelas != 0 && qtEstrelas > 0)
-                //    {
-                //        if (qtEstrelas == 0.5)
-                //        {
-                //            listaCuidadores += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
-                //        }
-                //    }
-                //}
+                    double qtEstrelas = 0;
 
-                listaCuidadores += "</div>";
-                #endregion
+                    qtEstrelas = contadorAvaliacao / classeServico.cd_avaliacaoNota.Count;
 
-                listaCuidadores += "<div class='hora'>";
-                listaCuidadores += "<img src='../../img/icones/cuidador/iconeCifrao.png' class='iconeCifrao' style='margin-left:0px !important'>";
-                listaCuidadores += "<span style='margin-left: 9px;'>" + classeCuidador.vl_cuidador[i] + " / Hora</span>";
-                listaCuidadores += "</div>";
-                listaCuidadores += "<div class='especializacao'>";
-                listaCuidadores += "<img src='../../img/icones/cuidador/iconeMaleta.png' class='iconeMaleta'>";
-                listaCuidadores += "<span>" + classeCuidador.nm_especializacao[i] + "</span>";
-                listaCuidadores += "</div>";
+                    double notaAvaliacao = qtEstrelas;
+
+                    listaCuidadores += "<div class='areaCuidador " + classeCuidador.nm_email_cuidador[i] + "'>";
+                    listaCuidadores += "<div class='areaImagemCuidador'></div>";
+                    listaCuidadores += "<div class='areaInfoCuidador'>";
+                    listaCuidadores += "<h3>" + classeCuidador.nm_cuidador[i] + "</h3>";
+
+                    #region colocarestrela
+                    listaCuidadores += "<div class='avaliacao'>";
+
+                    for (int h = 0; h <= qtEstrelas - 1; qtEstrelas--)
+                    {
+                        listaCuidadores += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
+                    }
+
+                    if (qtEstrelas != 0 && qtEstrelas > 0)
+                    {
+                        if (qtEstrelas >= 0.5 && qtEstrelas < 1)
+                        {
+                            listaCuidadores += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
+                        }
+                    }
+
+                    //double qtEstrelas = 00.00;
+                    //if (double.TryParse(classeCuidador.cd_avaliacao[i], out qtEstrelas))
+                    //{
+
+                    //    for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
+                    //    {
+                    //        listaCuidadores += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
+                    //    }
+
+                    //    if (qtEstrelas != 0 && qtEstrelas > 0)
+                    //    {
+                    //        if (qtEstrelas == 0.5)
+                    //        {
+                    //            listaCuidadores += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
+                    //        }
+                    //    }
+                    //}
+
+                    listaCuidadores += "</div>";
+                    #endregion
+
+                    listaCuidadores += "<div class='hora'>";
+                    listaCuidadores += "<img src='../../img/icones/cuidador/iconeCifrao.png' class='iconeCifrao' style='margin-left:0px !important'>";
+                    listaCuidadores += "<span style='margin-left: 9px;'>" + classeCuidador.vl_cuidador[i] + " / Hora</span>";
+                    listaCuidadores += "</div>";
+                    listaCuidadores += "<div class='especializacao'>";
+                    listaCuidadores += "<img src='../../img/icones/cuidador/iconeMaleta.png' class='iconeMaleta'>";
+                    listaCuidadores += "<span>" + classeCuidador.nm_especializacao[i] + "</span>";
+                    listaCuidadores += "</div>";
 
 
-                listaCuidadores += "</div>";
-                if (classeCuidador.base64String[i] == imgPadrao) {  tinhaImg = "false"; } else {  tinhaImg = "true"; }
-                listaCuidadores += "<div class='invi' style='display: none'>" + classeCuidador.base64String[i] + "#" + tinhaImg + "</div>";
-                listaCuidadores += "</div>";
+                    listaCuidadores += "</div>";
+                    if (classeCuidador.base64String[i] == imgPadrao) { tinhaImg = "false"; } else { tinhaImg = "true"; }
+                    listaCuidadores += "<div class='invi' style='display: none'>" + classeCuidador.base64String[i] + "#" + tinhaImg + "</div>";
+                    listaCuidadores += "</div>";
+                } 
             }
 
             if (listaCuidadores == "")
