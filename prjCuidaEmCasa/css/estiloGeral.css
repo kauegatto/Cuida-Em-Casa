@@ -58,3 +58,4 @@ main  { background-color: #f3f3f3;}
 #areaAlterarImagemPaciente::before { background-repeat: no-repeat; background-position: center; background-image: url('../img/photo-camera.png'); border-radius: 10px; width: 100%; height: 100%; content: ""; position: absolute; top: 0; left: 0; background-color: rgba(0,0,0,0.3); }
 
 .alertBonito { font-family: Rubik; }
+.temCoisa { background-color: #56cc9d94; color: #000; }

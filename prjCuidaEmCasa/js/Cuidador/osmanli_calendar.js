@@ -14,7 +14,7 @@ weekDayName : 'DOM SEG TER QUA QUI SEX'.split(' '),
 daysOfMonth : [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
 
 init: function() {
-    console.log("#init")
+    //console.log("#init")
     this.clearCalendar()
     this.myCalendar()
     this.disable_days()	

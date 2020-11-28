@@ -59,128 +59,157 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
         pegarMes(mes);
         scriptBuscarDisponibilidadeMes(mes);
     }
-    $(document).on("click", "#btnSalvar", function(){
-            
-            hrInicioDisponibilidade = $("#horaInicio").val();
-            hrFimDisponibilidade = $("#horaFim").val();
-            dtDisponibilidade = localStorage.getItem("diaSelecionado");
-            console.log('hr Inicio : ' + hrInicioDisponibilidade);
-            console.log('hr Fim : ' + hrFimDisponibilidade);
-            console.log('dataDisponibilidade : ' + dtDisponibilidade);
-            
-            adicionarDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
-            scriptCarregarCalendario();
-   
-    });
+    
+    $(document).ready(function(){
 
-    $(document).on("click", "#btnRemover", function(){
-        var divHorarioDisponibilidade = $(this).parent(".horarioDisponibilidade");
-        console.log(divHorarioDisponibilidade);
-        hrInicioDisponibilidade = $(divHorarioDisponibilidade).children('.horaInicio').html();
-        hrFimDisponibilidade = $(divHorarioDisponibilidade).children('.horaFim').html();
-        dtDisponibilidade = localStorage.getItem("diaSelecionado");
-        //console.log('hora inicio: ' + hrInicioDisponibilidade);
-        //console.log('hora fim : ' + hrFimDisponibilidade);
-        //console.log('hora fim : ' + dtDisponibilidade);
+        $(document).on("click", ".btnAdicionar", function(){
+            $("#wrapper-calendarioDisponibilidade").css("display","none");  
+            $("#wrapper-informacoesDisponibilidade").css("display","none");
+            $("#wrapper-escolherDataServico").css("display","block");
+            $(".opcoes").css("display","none");
+      
+        });
 
-        removerDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
-        scriptCarregarCalendario();
-    });
+     
+        $(document).on("click", "#btnSalvar", function(){
 
-    $(document).on("click", "td", function(){
-
-        if($("#areaDisponibilidade").hasClass("areaBranca")){
-            if($(this).html() != ""){
+                hrInicioDisponibilidade = $("#horaInicio").val();
+                hrFimDisponibilidade = $("#horaFim").val();
+                dtDisponibilidade = localStorage.getItem("dtDisponibilidade");
                 
-                /* Guardar na storage a data selecionada e mostrar no titulo*/
-                    var dia = $(this).html();
-                    if(dia.length == 1){
-                        //console.log("entrou");
-                        dia = "0"+dia;
-                    }
-                    //console.log("dia : " +dia);
-                    mes = $(".mesServico").text();
-                    pegarMes(mes);
-                    if(mes.length == 1){
-                        //console.log("entrou");
-                        mes = "0"+mes;
-                    }
-                    $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
-                    //console.log("mes : " +mes);
+                $("#wrapper-escolherDataServico").css("display","none");
+                $("#wrapper-informacoesDisponibilidade").css("display","block");
+                
+                var diaSelecionado = $(".selected_date").html();
+                
+                adicionarDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
+                
+                scriptCarregarCalendario();
+                
+                //scriptCarregarCalendario();
+            
+        });
 
-                    var ano = $('.mesServico').html();
+        $(document).on("click", "#btnRemover", function(){
+            
+            var divHorarioDisponibilidade = $(this).parent(".horarioDisponibilidade");
+            
+            hrInicioDisponibilidade = $(divHorarioDisponibilidade).children('.horaInicio').html();
+            hrFimDisponibilidade = $(divHorarioDisponibilidade).children('.horaFim').html();
+            dtDisponibilidade = localStorage.getItem("dtDisponibilidade");
+           
+            removerDisponibilidade(usuarioLogado,dtDisponibilidade,hrInicioDisponibilidade,hrFimDisponibilidade);
+            scriptCarregarCalendario();
+        });
+
+        $(document).on("click", "td", function(){
+
+            if($("#areaDisponibilidade").hasClass("areaBranca")){
+                if($(this).html() != ""){
                     
-                    ano = ano.split(" ");
-                    
-                    ano = ano[1];
-                    
-                    //console.log("ano : " +ano);
+                    /* Guardar na storage a data selecionada e mostrar no titulo*/
+                        var dia = $(this).html();
+                        localStorage.setItem("diaSelecionado",dia);
+                        if(dia.length == 1){
+                            //console.log("entrou");
+                            dia = "0"+dia;
+                        }
+                        //console.log("dia : " +dia);
+                        mes = $(".mesServico").text();
+                        pegarMes(mes);
+                        if(mes.length == 1){
+                            //console.log("entrou");
+                            mes = "0"+mes;
+                        }
+                        $(".output").html("Data Selecionada: "+$(this).html()+"/"+mes);
+                        //console.log("mes : " +mes);
 
-                    localStorage.setItem("diaSelecionado",ano+'-'+mes+'-'+dia);
-                /* Esconder divs antigas */
-                    $("#wrapper-informacoesServico").css("display","none");
-                    $("#wrapper-informacoesServico").removeClass("visivel");
+                        var ano = $('.mesServico').html();
+                        
+                        ano = ano.split(" ");
+                        
+                        ano = ano[1];
+                        
+                        //console.log("ano : " +ano);
 
-                    $("#wrapper-calendarioDisponibilidade").css("display","none");
-                    $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
-                    $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
-                    $(".opcoes").css("display","none");
-                    $("#listaServicosAgendados").css("display","none");
-                    $("#wrapper-calendarioDisponibilidade").css("display","none");
-                    $(".opcoes").css("display","none");
-                /* Mostrar divs novas */
-                    $("#headerNav").css("display","block");   
-                    $("#wrapper-informacoesDisponibilidade").css("display","block");
-                    $("#listaServicosAgendados").css("display","block");
+                        localStorage.setItem("dtDisponibilidade",ano+'-'+mes+'-'+dia);
+                    /* Esconder divs antigas */
+                        $("#wrapper-informacoesServico").css("display","none");
+                        $("#wrapper-informacoesServico").removeClass("visivel");
 
-                colocarDisponibilidadeDoDia();
+                        $("#wrapper-calendarioDisponibilidade").css("display","none");
+                        $("#wrapper-calendarioDisponibilidade").removeClass("visivel");
+                        $("#headerComum").css("display","none"); $("#headerComum").removeClass("visivel");
+                        $(".opcoes").css("display","none");
+                        $("#listaServicosAgendados").css("display","none");
+                        $("#wrapper-calendarioDisponibilidade").css("display","none");
+                        $(".opcoes").css("display","none");
+                    /* Mostrar divs novas */
+                        $("#headerNav").css("display","block");   
+                        $("#wrapper-informacoesDisponibilidade").css("display","block");
+                        $("#listaServicosAgendados").css("display","block");
+                        colocarDisponibilidadeDoDia($(this).html());
+                }
             }
+
+        });
+
+        $(document).on("click", ".btnMes", function(){
+            if ($("#areaDisponibilidade").hasClass("areaBranca")) {
+                carregarDisponibilidades();
+                $(".btnAdicionar").css("display","block");
+            }
+        });   
+
+        function adicionarDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
+
+            $.post("../../../lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+                
+                if (retorno == "false") {
+                    console.log("deu erro");
+                    return;
+                }
+                if (retorno == "tem") {
+                    console.log("já tinha nesse horário");
+                    return;
+                }
+                if (retorno == "true"){
+                }
+                
+            });
         }
 
-    });
+        function removerDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
-    function adicionarDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
+            $.post("../../../lib/libRemoverDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+                
+                if (retorno == "false") {
+                    console.log("deu erro");
+                    return;
+                }
+                if (retorno == "true"){ 
+                }
+                
+            });
+        }
 
-        $.post("../../../lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
-            
-            if (retorno == "false") {
-                console.log("deu erro");
-                return;
-            }
-            if (retorno == "tem") {
-                console.log("já tinha nesse horário");
-                return;
-            }
-            if (retorno == "true"){
-            }
-            
-        });
-    }
 
-    function removerDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
+        $('.iconeVoltar').click(function(){
 
-        $.post("../../../lib/libRemoverDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
-            
-            if (retorno == "false") {
-                console.log("deu erro");
-                return;
-            }
-            if (retorno == "true"){ 
+            console.log('entrou no voltar');
+            $('#wrapper-escolherDataServico').css('display', 'none');
+            $('#wrapper-calendarioDisponibilidade').css('display', 'block');
+            $('.wrapper-calendario').css('display', 'block');
+            if($("#areaDisponibilidade").hasClass("areaBranca")){
+                scriptCarregarCalendario();
             }
             
         });
-    }
+    
 
-
-    $('.iconeVoltar').click(function(){
-
-        console.log('entrou no voltar');
-        $('#wrapper-escolherDataServico').css('display', 'none');
-        $('#wrapper-calendarioDisponibilidade').css('display', 'block');
-        $('.wrapper-calendario').css('display', 'block');
-
-        scriptCarregarCalendario();
-        
     });
+    
 
-    //scriptCarregarCalendario();
+
+
+ 
