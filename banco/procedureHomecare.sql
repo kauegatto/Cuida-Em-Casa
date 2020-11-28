@@ -1292,7 +1292,7 @@ BEGIN
 		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_status_servico, cd_paciente)
 	VALUES
 		(vCodigo, vDataServico, vHoraInicioServico, vDataServico, vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
-		vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
+		vEmailCliente, vEmailCuidador, 5, vCodigoPaciente);
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado que mude o dia de término */
@@ -1306,7 +1306,7 @@ BEGIN
 		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_status_servico, cd_paciente)
 	VALUES
 		(vCodigo, vDataServico, vHoraInicioServico, DATE_ADD(vDataServico, INTERVAL 1 DAY), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, 
-		vComp, vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
+		vComp, vEmailCliente, vEmailCuidador, 5, vCodigoPaciente);
 END$$
 
 /* Porocedure criada para buscar um servico para agora */
