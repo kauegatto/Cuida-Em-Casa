@@ -111,4 +111,13 @@ $(document).ready(function () {
         window.location.href = "../../pages/cuidador/historicoServico.html";
 
     });
+
+    $(document).on("click", "#copiarEndereco", function(){
+        const endereco = $("#informacoesEndereco").html();
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+    });
 });

@@ -34,6 +34,25 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
 
+            if (!classeDetalheAgendados.listarAvaliacao(classeDetalheAgendados.emailCuidador[0]))
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            double contadorAvaliacao = 0;
+
+            for (int i = 0; i < classeDetalheAgendados.cd_avaliacaoNota.Count; i++)
+            {
+                contadorAvaliacao += double.Parse(classeDetalheAgendados.cd_avaliacaoNota[i]);                
+            }
+
+            double qtEstrelas = 0;
+
+            qtEstrelas = contadorAvaliacao / classeDetalheAgendados.cd_avaliacaoNota.Count;
+
+            double notaAvaliacao = qtEstrelas;
+
             string listaAgenda = "";
             string duracao = classeDetalheAgendados.duracaoServico[0];
             string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
@@ -48,24 +67,22 @@ namespace prjCuidaEmCasa.lib
             listaAgenda += "<div class='areaDadosCuidador'>";
             listaAgenda += "<h3>" + classeDetalheAgendados.nm_cuidador[0] + "</h3>";
             listaAgenda += "<div class='areaEstrela'>";
-            double qtEstrelas = 00.00;
-            if (double.TryParse(classeDetalheAgendados.cd_avaliacao[0], out qtEstrelas))
+
+            for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
             {
+                listaAgenda += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
+            }
 
-                for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
+            if (qtEstrelas != 0 && qtEstrelas > 0)
+            {
+                if (qtEstrelas >= 0.5 && qtEstrelas < 1)
                 {
-                    listaAgenda += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
-                }
-
-                if (qtEstrelas != 0 && qtEstrelas > 0)
-                {
-                    if (qtEstrelas == 0.5)
-                    {
-                        listaAgenda += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
-                    }
+                    listaAgenda += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
                 }
             }
-            listaAgenda += "<span>" + classeDetalheAgendados.cd_avaliacao[0] + "</span>";
+            
+
+            listaAgenda += "<span>" + notaAvaliacao + "</span>";
             listaAgenda += "</div>";
             listaAgenda += "<div>";
             listaAgenda += "<img src='../../img/icones/agenda/iconeMaleta.png'>";

@@ -2,6 +2,18 @@
 var idServico = "1230927205";
 let apiKey = 'Bearer TEST-5442897075228208-110414-2b1d83c67516b8ae0b214f4fa3e57298-141153426';
 
+function alertIonic(text) {
+    const alert = document.createElement('ion-alert');
+    alert.cssClass = 'alertBonito';
+    alert.header = 'Atenção';
+    alert.subHeader = '';
+    alert.message = text;
+    alert.buttons = ['OK'];
+
+    document.body.appendChild(alert);
+    return alert.present();
+}
+
 $("#btnMostrarInfo").click(function () {
 
     $.ajax({
@@ -14,12 +26,12 @@ $("#btnMostrarInfo").click(function () {
 
     }).done(function(response){
         console.log(JSON.stringify(response));
-        alert("Usuario = "+response.results[0].payer.email+"\nO pagamento foi: " + response.results[0].status);
+        alertIonic("Usuario = "+response.results[0].payer.email+"\nO pagamento foi: " + response.results[0].status);
         doSubmit = true; form.submit();
 
     }).fail(function(jqxhr, textStatus, error){
-        alert("Erro na busca de informações - Verifique a requisição ajax");
-        alert(jqxhr); 
+        alertIonic("Erro na busca de informações");
+        //alert(jqxhr); 
         //doSubmit = true; form.submit();
     })
 

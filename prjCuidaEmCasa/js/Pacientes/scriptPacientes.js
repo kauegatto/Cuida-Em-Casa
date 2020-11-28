@@ -1,9 +1,23 @@
 ﻿export default function scriptPacientes() {
 	var retorno;
-    $.post("http://3.96.217.5/lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
+
+	function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
+    $.post("../../lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
        
         if (!retorno) {
-        	$('#wrapper-paciente').html("ERRO NO RETORNO");
+        	//$('#wrapper-paciente').html("ERRO NO RETORNO");
+        	alertIonic("Houve um erro!");
         }
 
 		else if (retorno == "") {

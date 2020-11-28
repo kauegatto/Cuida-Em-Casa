@@ -132,6 +132,7 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
                     $("#headerNav").css("display","block");   
                     $("#wrapper-informacoesDisponibilidade").css("display","block");
                     $("#listaServicosAgendados").css("display","block");
+
                 colocarDisponibilidadeDoDia();
             }
         }
@@ -154,7 +155,7 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
     function removerDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
-        $.post("http://3.96.217.5/lib/libRemoverDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+        $.post("../../../lib/libRemoverDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
             
             if (retorno == "false") {
                 console.log("deu erro");
@@ -165,5 +166,14 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
             
         });
     }
+
+
+    $('.iconeVoltar').click(function(){
+
+        $('#wrapper-escolherDataServico').css('display', 'none');
+
+        scriptCarregarCalendario();
+        
+    });
 
     //scriptCarregarCalendario();

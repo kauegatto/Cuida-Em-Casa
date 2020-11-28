@@ -106,7 +106,7 @@ BEGIN
 	INSERT INTO
 		ocorrencia 
 	VALUES 
-		(vCodigo, vDsOcorrencia, date_format(current_date(), '%d/%m/%Y'), vEmailUsuario, vCodigoServico, vCodigoTipoOcorrencia);
+		(vCodigo, vDsOcorrencia, current_date(), vEmailUsuario, vCodigoServico, vCodigoTipoOcorrencia);
 END$$
 
 /* CRIAÇÃO DE FUNCTIONS */
@@ -1205,7 +1205,7 @@ CREATE PROCEDURE cuidadorEscolhido(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		u.img_usuario, u.vl_hora_trabalho, u.nm_usuario, 
-		te.nm_tipo_especializacao, g.nm_genero, u.ds_experiencia_usuario, 
+		buscarEspecializacao(u.nm_email_usuario), g.nm_genero, u.ds_experiencia_usuario, 
 		u.ds_usuario, u.cd_CPF, u.cd_telefone, u.cd_link_curriculo
 	FROM 
 		usuario u 
@@ -1222,8 +1222,9 @@ BEGIN
 	ON
 		(eu.cd_tipo_especializacao - te.cd_tipo_especializacao) 
 	WHERE 
-		u.nm_email_usuario = vEmailCuidador;
-
+		u.nm_email_usuario = vEmailCuidador
+	GROUP BY 
+		u.nm_email_usuario;
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado */
@@ -1415,7 +1416,7 @@ BEGIN
 		u.img_usuario, u.nm_usuario, u.cd_avaliacao, group_concat(te.nm_tipo_especializacao), tg.nm_genero, u.ds_usuario, 
 		s.nm_rua_servico, s.cd_num_servico ,s.cd_CEP_servico, s.nm_complemento_servico, 
 		s.nm_cidade_servico, s.nm_uf_servico, time_format(s.hr_inicio_servico, '%H:%i'), time_format(s.hr_fim_servico, '%H:%i'), 
-		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, tss.nm_status_servico
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, tss.nm_status_servico, s.nm_email_usuario_cuidador
 	FROM 
 		usuario u
 	JOIN
@@ -2204,7 +2205,7 @@ BEGIN
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
 		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
-		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario
+		u.vl_hora_trabalho, u.cd_link_curriculo
 	FROM
 		usuario u
 	JOIN
@@ -2393,6 +2394,7 @@ BEGIN
 		s.nm_email_usuario_cuidador;
 END$$
 
+<<<<<<< HEAD
 /* Procedure criada para suspender o cuidador por um tempo indeterminado */
 
 DROP PROCEDURE IF EXISTS suspenderCuidador$$
@@ -3810,6 +3812,8 @@ BEGIN
 	END IF;
 END$$
 
+=======
+>>>>>>> 0b33290000e9ad2f8abce5a984099e922f887d24
 /* Procedure criada para buscar os dados do paciente */
 
 DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
@@ -4183,5 +4187,20 @@ BEGIN
 		nm_email_usuario = vEmailUsuario;
 
 END$$
+
+DROP PROCEDURE IF EXISTS listarAvaliacoes$$
+
+CREATE PROCEDURE listarAvaliacoes(vEmailUsuario VARCHAR(200))
+BEGIN
+
+	select 
+		cd_avaliacao 
+	from 
+		servico 
+	where 
+		nm_email_usuario_cuidador = vEmailUsuario;
+
+END$$
+
 
 DELIMITER ;

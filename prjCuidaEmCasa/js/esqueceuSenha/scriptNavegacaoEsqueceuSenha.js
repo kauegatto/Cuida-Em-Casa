@@ -4,6 +4,19 @@ import scriptAlterarSenha from './scriptAlterarSenha.js';
 
 $(document).ready(function(){
 
+	function alertIonic(text) {
+
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
 	$('#btnEnviarEmail').click(function(){
 
 		$('#wrapper-EsqueceuSenhaInicio').css('display', 'none');
@@ -17,7 +30,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite um email');
+			alertIonic('Digite um e-mail!');
 		}
 		
 	});
@@ -30,7 +43,7 @@ $(document).ready(function(){
 		}
 		else
 		{
-			alert('digite um codigo');
+			alertIonic('Digite um código!');
 		}
 
 	});

@@ -1,10 +1,24 @@
 ﻿export default function scriptPacientesEmServico () {
+
+    function alertIonic(text) {
+        
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
     
     var retorno;
-    $.post("http://3.96.217.5/lib/libPacientesEmServico.aspx", { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
+    $.post("../../lib/libPacientesEmServico.aspx", { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
 
         if (retorno == "erro") {
-            $('#wrapper-pacienteServico').html("ERRO NO RETORNO");
+           // $('#wrapper-pacienteServico').html("ERRO NO RETORNO");
+           alertIonic("Houve um erro!");
         }
 
         else if (retorno == "") {

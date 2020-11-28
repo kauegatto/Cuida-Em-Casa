@@ -8,6 +8,19 @@ import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 import scriptFiltro from "./scriptFiltro.js";
 
+function alertIonic() {
+    const alert = document.createElement('ion-alert');
+    alert.cssClass = 'alertBonito';
+    alert.header = 'Atenção';
+    alert.subHeader = '';
+    alert.message = 'Houve um erro no Cadastro !<br> <br> Por Favor preencha novamente seus dados.';
+    alert.buttons = ['OK'];
+
+    document.body.appendChild(alert);
+    return alert.present();
+}
+
+
 var indexPage = 0; var jump = 0; var DomElement = $("#btnPaciente");
 
 function passarPagina(SentDomElement,Jump) {
@@ -51,14 +64,14 @@ $(".iconeVoltar").click(function(){
 $(document).ready(function () {
 
 if(!localStorage.getItem("tipoUsuario") == 2){
-    alert("Você não tem acesso a essa página, realize o login novamente");
+    alertIonic("Você não tem acesso a essa página, realize o login novamente");
     localStorage.clear();
     window.location.href = "../../pages/index.html";
 }
 
 scriptPaciente();
 
-$.post("http://3.96.217.5/lib/libEspecializacaoCuidador.aspx", function(retorno){
+$.post("../../lib/libEspecializacaoCuidador.aspx", function(retorno){
 
     if (retorno == "erro") 
     {
@@ -84,12 +97,12 @@ $(document).on("click", "#btnPaciente", function(){
             scriptConfirmarEndereco();
         }
         catch {
-            alert("Por favor, escolha um paciente!");
+            alertIonic("Por favor, escolha um paciente!");
             return;
         }
     }   
     else{
-        alert("Por favor, escolha um paciente!!");
+        alertIonic("Por favor, escolha um paciente!!");
     }
 });
 //btnEnderecoDiferente
@@ -113,7 +126,7 @@ $("#btnAlterarEndereco").click(function () {
         scriptAlterarEndereco(); // guarda os dados do endereço que foi digitado
     }
     else{
-        alert("Os únicos campos que podem estar vazios são CEP e Complemento!");
+        alertIonic("Os únicos campos que podem estar vazios são CEP e Complemento!");
         return;
     }
    

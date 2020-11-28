@@ -44,6 +44,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> vl_maximo { get; set; }
         public List<string> codigoAgora { get; set; }
         public List<string> emailCuidadorAgora { get; set; }
+        public List<string> cd_avaliacaoNota { get; set; } 
         public string diaDaSemana { get; set; }
         public string cd_geolocalizao { get; set; }
         public string hr_checkin { get; set; }
@@ -60,6 +61,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             hr_inicio_servico = new List<string>();
             hr_fim_servico = new List<string>();
             duracaoServico = new List<string>();
+            cd_avaliacaoNota = new List<string>();
             nm_necessidade = "";
             ds_paciente = "";
             cd_CEP_servico = "";
@@ -783,6 +785,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             string[,] valores = new string[1, 2];
             valores[0, 0] = "vCodigoServico";
             valores[0, 1] = codigoServico;
+            //base64standard = "PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJ1c2VyLW51cnNlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtdXNlci1udXJzZSBmYS13LTE0IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTMxOS40MSwzMjAsMjI0LDQxNS4zOSwxMjguNTksMzIwQzU3LjEsMzIzLjEsMCwzODEuNiwwLDQ1My43OUE1OC4yMSw1OC4yMSwwLDAsMCw1OC4yMSw1MTJIMzg5Ljc5QTU4LjIxLDU4LjIxLDAsMCwwLDQ0OCw0NTMuNzlDNDQ4LDM4MS42LDM5MC45LDMyMy4xLDMxOS40MSwzMjBaTTIyNCwzMDRBMTI4LDEyOCwwLDAsMCwzNTIsMTc2VjY1LjgyYTMyLDMyLDAsMCwwLTIwLjc2LTMwTDI0Ni40Nyw0LjA3YTY0LDY0LDAsMCwwLTQ0Ljk0LDBMMTE2Ljc2LDM1Ljg2QTMyLDMyLDAsMCwwLDk2LDY1LjgyVjE3NkExMjgsMTI4LDAsMCwwLDIyNCwzMDRaTTE4NCw3MS42N2E1LDUsMCwwLDEsNS01aDIxLjY3VjQ1YTUsNSwwLDAsMSw1LTVoMTYuNjZhNSw1LDAsMCwxLDUsNVY2Ni42N0gyNTlhNSw1LDAsMCwxLDUsNVY4OC4zM2E1LDUsMCwwLDEtNSw1SDIzNy4zM1YxMTVhNSw1LDAsMCwxLTUsNUgyMTUuNjdhNSw1LDAsMCwxLTUtNVY5My4zM0gxODlhNSw1LDAsMCwxLTUtNVpNMTQ0LDE2MEgzMDR2MTZhODAsODAsMCwwLDEtMTYwLDBaIj48L3BhdGg+PC9zdmc+";
             base64standard = "PHN2ZyBhcmlhLWhpZGRlbj0idHJ1ZSIgZm9jdXNhYmxlPSJmYWxzZSIgZGF0YS1wcmVmaXg9ImZhcyIgZGF0YS1pY29uPSJ1c2VyLW51cnNlIiBjbGFzcz0ic3ZnLWlubGluZS0tZmEgZmEtdXNlci1udXJzZSBmYS13LTE0IiByb2xlPSJpbWciIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDQ0OCA1MTIiPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIgZD0iTTMxOS40MSwzMjAsMjI0LDQxNS4zOSwxMjguNTksMzIwQzU3LjEsMzIzLjEsMCwzODEuNiwwLDQ1My43OUE1OC4yMSw1OC4yMSwwLDAsMCw1OC4yMSw1MTJIMzg5Ljc5QTU4LjIxLDU4LjIxLDAsMCwwLDQ0OCw0NTMuNzlDNDQ4LDM4MS42LDM5MC45LDMyMy4xLDMxOS40MSwzMjBaTTIyNCwzMDRBMTI4LDEyOCwwLDAsMCwzNTIsMTc2VjY1LjgyYTMyLDMyLDAsMCwwLTIwLjc2LTMwTDI0Ni40Nyw0LjA3YTY0LDY0LDAsMCwwLTQ0Ljk0LDBMMTE2Ljc2LDM1Ljg2QTMyLDMyLDAsMCwwLDk2LDY1LjgyVjE3NkExMjgsMTI4LDAsMCwwLDIyNCwzMDRaTTE4NCw3MS42N2E1LDUsMCwwLDEsNS01aDIxLjY3VjQ1YTUsNSwwLDAsMSw1LTVoMTYuNjZhNSw1LDAsMCwxLDUsNVY2Ni42N0gyNTlhNSw1LDAsMCwxLDUsNVY4OC4zM2E1LDUsMCwwLDEtNSw1SDIzNy4zM1YxMTVhNSw1LDAsMCwxLTUsNUgyMTUuNjdhNSw1LDAsMCwxLTUtNVY5My4zM0gxODlhNSw1LDAsMCwxLTUtNVpNMTQ0LDE2MEgzMDR2MTZhODAsODAsMCwwLDEtMTYwLDBaIj48L3BhdGg+PC9zdmc+";
 
             if (!Procedure("listarAgendaClienteNaoFoiSelecionado", true, valores, ref dados))
@@ -818,6 +821,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     duracaoServico.Add(dados[14].ToString());
                     vl_cuidador.Add(dados[15].ToString());
                     situacaoServico.Add(dados[16].ToString());
+                    emailCuidador.Add(dados[17].ToString());
                 }
             }
 
@@ -879,7 +883,11 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion 
         
+<<<<<<< HEAD
         #region Buscar disponibilidade do serviço
+=======
+        #region buscarDisponibilidadesServico
+>>>>>>> 0b33290000e9ad2f8abce5a984099e922f887d24
         public bool buscarDisponibilidadesServico(string usuarioLogado, string intMes) {
             MySqlDataReader dados = null;
             string[,] valores = new string[2, 2];
@@ -907,6 +915,46 @@ namespace prjCuidaEmCasa.classes.Agendamento
             if (!dados.IsClosed) { dados.Close(); }
             Desconectar();
             return true;
+<<<<<<< HEAD
+=======
+
+        }
+        #endregion
+
+        #region Listar avaliacao
+
+        public bool listarAvaliacao(string emailUsuario) 
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1, 2];
+            valores[0, 0] = "vEmailUsuario";
+            valores[0, 1] = emailUsuario;
+
+            if (!Procedure("listarAvaliacoes", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    if (dados[0].ToString() != "")
+                    {
+                        cd_avaliacaoNota.Add(dados[0].ToString());
+                    }
+
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+
+        #endregion
+>>>>>>> 0b33290000e9ad2f8abce5a984099e922f887d24
 
         }
         #endregion
