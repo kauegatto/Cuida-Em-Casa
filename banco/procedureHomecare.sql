@@ -3913,9 +3913,9 @@ END$$
 
 /* Procedure criada para verificar se a disponibilidade que ele quer adicionar não entra em conflito com outra */
 
-DROP PROCEDURE IF EXISTS verificarDisponibilidade$$
+DROP PROCEDURE IF EXISTS verificarHorarioDisponibilidade$$
 
-CREATE PROCEDURE verificarDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
+CREATE PROCEDURE verificarHorarioDisponibilidade(vDataDisponibilidade DATE, vHoraInicioDisponibilidade TIME, vHoraFimDisponibilidade TIME, vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT
 		*
@@ -3924,9 +3924,9 @@ BEGIN
 	WHERE
 		dt_disponibilidade = vDataDisponibilidade 
 	AND 
-		hr_inicio_disponibilidade <= vHoraInicioDisponibilidade
-	AND
-		hr_fim_disponibilidade >= vHoraFimDisponibilidade
+		(hr_inicio_disponibilidade <= vHoraInicioDisponibilidade
+	OR
+		hr_fim_disponibilidade >= vHoraFimDisponibilidade)
 	AND
 		nm_email_usuario = vEmailCuidador;
 END$$
