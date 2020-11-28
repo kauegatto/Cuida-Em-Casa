@@ -65,7 +65,7 @@ namespace prjCuidaEmCasa.lib
 
             MailMessage mandarEmail = new MailMessage();
             mandarEmail.To.Add(emailDestinatario);
-            mandarEmail.From = new MailAddress(remetente, "Contato Via Cuida Em Casa", System.Text.Encoding.UTF8);
+            mandarEmail.From = new MailAddress(remetente, "Contato Cuida Em Casa", System.Text.Encoding.UTF8);
             mandarEmail.Subject = "Recuperação de Senha";
             mandarEmail.SubjectEncoding = System.Text.Encoding.UTF8;
 

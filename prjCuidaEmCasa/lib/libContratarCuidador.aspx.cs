@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using prjCuidaEmCasa.classes;
+using System.Net;
+using System.Net.Mail;
 
 namespace prjCuidaEmCasa.lib
 {
@@ -41,7 +43,27 @@ namespace prjCuidaEmCasa.lib
             string control = Request["control"].ToString();
             string emailCuidador = Request["emailCuidador"];
 
+            #region CONTA REMETENTE
+            string remetente = "3n2k20@gmail.com"; //tirar antes de dar commit
+            string senha = "vencedordopovo123";    //tirar antes de dar commit
+            #endregion
+
+            #region Configuração do Remetente
+            SmtpClient client = new SmtpClient();
+
+            client.Credentials = new NetworkCredential(remetente, senha);
+            #endregion
+
+            #region Configuração do Servidor SMTP do GMAIL
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            client.EnableSsl = true;
+            #endregion
+
+            #region Configuração do Email 
+
             clsAdministrador adm = new clsAdministrador();
+            MailMessage mandarEmail = new MailMessage();
 
             if (control == "0")
             {
@@ -50,6 +72,32 @@ namespace prjCuidaEmCasa.lib
                     Response.Write("false");
                     return;
                 }
+
+                mandarEmail.To.Add(emailCuidador);
+                mandarEmail.From = new MailAddress(remetente, "Contato Cuida Em Casa", System.Text.Encoding.UTF8);
+                mandarEmail.Subject = "Contratação";
+                mandarEmail.SubjectEncoding = System.Text.Encoding.UTF8;
+
+                string conteudo = "<html><body>Parabéns, você está apto para exercer a sua cuidadoria em nosso aplicativo";
+                conteudo += "</body></html>";
+
+                mandarEmail.Body = conteudo;
+                mandarEmail.BodyEncoding = System.Text.Encoding.UTF8;
+                mandarEmail.IsBodyHtml = true;
+                mandarEmail.Priority = MailPriority.High;
+
+            #endregion
+
+                try
+                {
+                    client.Send(mandarEmail);
+                }
+                catch (Exception)
+                {
+                    Response.Write("erro");
+                    return;
+                }
+
 
                 Response.Write("true");
             }
