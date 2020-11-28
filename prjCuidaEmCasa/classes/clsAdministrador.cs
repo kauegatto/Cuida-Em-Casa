@@ -45,6 +45,8 @@ namespace prjCuidaEmCasa.classes
         public List<string> nmTipoAdvertencia { get; set; }
         public List<string> dtAdvertencia { get; set; }
         
+        public List<string> qtdServico { get; set; }
+
         public clsAdministrador(): base()
         {
             base64String = new List<string>();
@@ -83,6 +85,7 @@ namespace prjCuidaEmCasa.classes
             qtdOcorrenciaCuidadores = new List<string>();
             nmTipoAdvertencia = new List<string>();
             dtAdvertencia = new List<string>();
+            qtdServico = new List<string>();
         }
 
         #region Listar cuidadores para cadastro
@@ -158,6 +161,7 @@ namespace prjCuidaEmCasa.classes
                     vlHora.Add(dados[8].ToString());
                     linkCurriculo.Add(dados[9].ToString());
                     situacaoUsuario.Add(dados[10].ToString());
+                    qtdServico.Add(dados[11].ToString());
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

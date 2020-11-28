@@ -1,6 +1,4 @@
 import scriptBuscarDisponibilidadeMes from './scriptBuscarDisponibilidadeMes.js';
-
-
 export default function scriptCarregarCalendario() {
   var mes;
 
@@ -47,15 +45,6 @@ export default function scriptCarregarCalendario() {
     }
   };
 
-  var start_date_dialog;
-  start_date_dialog = osmanli_calendar
-   
-          start_date_dialog.init();
-         
-          start_date_dialog.ON_SELECT_FUNC = function(){
-           $('.output').html(osmanli_calendar.SELECT_DATE);
-  }
-
   function carregarDisponibilidades(){
       mes = $(".mesServico").text();
       pegarMes(mes);
@@ -65,27 +54,6 @@ export default function scriptCarregarCalendario() {
   }
 
   carregarDisponibilidades();
-
-  $(document).on("click", ".btnMes", function(){
-    if ($("#areaDisponibilidade").hasClass("areaBranca")) {
-      carregarDisponibilidades();
-      $(".btnAdicionar").css("display","block");
-    }
-  });   
-
-
-  $(document).on("click", ".btnAdicionar", function(){
-    $(".wrapper-calendario").css("display","none");
-    $("#wrapper-escolherDataServico").css("display","block");
-  });
-
-  $(document).on("click", "#btnSalvar", function(){
-    $(".wrapper-calendario").css("display","block");
-    $("#wrapper-escolherDataServico").css("display","none");
-    carregarDisponibilidades();
-  });
-
-  
 }
 
     

@@ -22,6 +22,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> telefoneCuidador { get; set; }
         public List<string> linkCurriculo { get; set; }
         public List<string> cd_avaliacaoNota { get; set; }
+        public List<string> qtd_servicos { get; set; }
 
         public string nm_email_cuidador_selecionado { get; set; }
 
@@ -73,6 +74,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             telefoneCuidador = new List<string>();
             linkCurriculo = new List<string>();
             cd_avaliacaoNota = new List<string>();
+            qtd_servicos = new List<string>();
 
             /* Propriedade para o histórico do cuidador */
 
@@ -146,6 +148,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                         vl_cuidador.Add(dados[3].ToString());
                         cd_avaliacao.Add(dados[4].ToString());
                         nm_especializacao.Add(dados[5].ToString());
+                        qtd_servicos.Add(dados[6].ToString());
                     }
 
                     if (!dados.IsClosed) { dados.Close(); }
@@ -178,6 +181,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                         vl_cuidador.Add(dados[3].ToString());
                         cd_avaliacao.Add(dados[4].ToString());
                         nm_especializacao.Add(dados[5].ToString());
+                        qtd_servicos.Add(dados[6].ToString());
                     }
 
                     if (!dados.IsClosed) { dados.Close(); }
@@ -305,6 +309,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                         vl_cuidador.Add(dados[3].ToString());
                         cd_avaliacao.Add(dados[4].ToString());
                         nm_especializacao.Add(dados[5].ToString());
+                        qtd_servicos.Add(dados[6].ToString());
                     }
 
                     if (!dados.IsClosed) { dados.Close(); }
@@ -337,6 +342,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                         vl_cuidador.Add(dados[3].ToString());
                         cd_avaliacao.Add(dados[4].ToString());
                         nm_especializacao.Add(dados[5].ToString());
+                        qtd_servicos.Add(dados[6].ToString());
                     }
 
                     if (!dados.IsClosed) { dados.Close(); }

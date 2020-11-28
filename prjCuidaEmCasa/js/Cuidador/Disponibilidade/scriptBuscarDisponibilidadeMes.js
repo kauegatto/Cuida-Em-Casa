@@ -13,6 +13,7 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
 
     function buscarDisponibilidadeMensal(){
 
+        $("td").removeClass("temCoisa");
         $.post("../../../lib/libBuscarDisponibilidadeDoCuidadorPorMes.aspx", { intMes: intMes, usuarioLogado:usuarioLogado}, function (retorno) {
             
             if (retorno == "erro") {
@@ -26,7 +27,6 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
             //console.log(window.disponibilidades);
             
             for (var i = 0; i < retorno.length; i++) {
-
                 
                 //if(retorno[i]!=""){console.log(retorno[i]);}
                 var arrayAtual = retorno[i];
@@ -49,17 +49,16 @@ export default function scriptBuscarDisponibilidadeMes (intMes) {
                         
                         window.value = $(this).html();
                         if(window.value == dia && window.value!=""){
-                            $(this).css("background-color","#56cc9d94");//56cc9d94 //2980b975
-                            $(this).css("color","black");
+                            $(this).addClass("temCoisa");
                         }
                     })
 
                 })      
                
             }
-
-            colocarDisponibilidadeDoDia()
+            colocarDisponibilidadeDoDia();
         });
+        
     }
     
     buscarDisponibilidadeMensal();    

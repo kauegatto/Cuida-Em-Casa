@@ -8,15 +8,20 @@
             console.log("deu erro na lib");
         }
         else {
-            $('.listaCuidadores').html(retorno);
+            if (retorno == "") {
+                $('.listaCuidadores').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, não temos nenhum candidato</h2>");
+            }
+            else {
+                $('.listaCuidadores').html(retorno);
 
-            $(".areaCuidador").each(function (i, obj) {
-                var tinhaImg = $(this).children("div.invi").html().split("#");
-                if (tinhaImg[1] == "true" ){var url = "data:image/png;base64," + tinhaImg[0];}
-                else{ var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
-        
-                $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-            });
+                $(".areaCuidador").each(function (i, obj) {
+                    var tinhaImg = $(this).children("div.invi").html().split("#");
+                    if (tinhaImg[1] == "true") { var url = "data:image/png;base64," + tinhaImg[0]; }
+                    else { var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
+
+                    $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                });
+            }
         }
     });
 
