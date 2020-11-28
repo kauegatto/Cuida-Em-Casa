@@ -161,6 +161,30 @@ BEGIN
 		cd_paciente = vCodigoPaciente;
 END$$
 
+/* Function crriada para buscar a quantidade de serviços que um cuidador tem em dia específico para a busca dele no agendamento */
+
+DROP FUNCTION IF EXISTS qtdServicoHorario$$
+
+CREATE FUNCTION qtdServicoHorario(vEmailCuidador VARCHAR(200), vDataServico DATE, vHoraInicio TIME, vHoraFim TIME) RETURNS INT
+BEGIN
+	DECLARE qtdServico INT;
+
+	SELECT
+		COUNT(cd_servico) INTO qtdServico
+	FROM
+		servico
+	WHERE
+		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico >= vHoraInicio AND hr_fim_servico <= vHoraFim)
+	OR
+		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico >= vHoraInicio AND hr_fim_servico >= vHoraFim)
+	OR
+		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico <= vHoraInicio AND hr_fim_servico <= vHoraFim)
+	OR
+		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico <= vHoraInicio AND hr_fim_servico >= vHoraFim);
+
+	RETURN qtdServico;
+END$$
+
 /* Procedure buscarCuidadres será usada para buscar os cuidadores aptos para aqueles dias e horas de serviço escolhido pelo cliente */
 
 DROP PROCEDURE IF EXISTS buscarCuidadores$$
@@ -170,7 +194,8 @@ BEGIN
 	SELECT 
 		u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 		u.vl_hora_trabalho, u.cd_avaliacao, 
-		GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+		buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+		qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 	FROM 
 		usuario u 
 	JOIN 
@@ -204,7 +229,8 @@ BEGIN
 	SELECT 
 		u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 		u.vl_hora_trabalho, u.cd_avaliacao, 
-		GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações
+		GROUP_CONCAT(te.nm_tipo_especializacao) AS Especializações,
+		qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 	FROM 
 		usuario u 
 	JOIN 
@@ -301,7 +327,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -322,7 +349,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -344,7 +372,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -364,7 +393,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -387,7 +417,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -407,7 +438,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -428,7 +460,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -447,7 +480,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -471,7 +505,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -491,7 +526,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -512,7 +548,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -531,7 +568,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -553,7 +591,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -572,7 +611,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -592,7 +632,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -610,7 +651,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -643,7 +685,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -678,7 +721,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -714,7 +758,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -750,7 +795,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -786,7 +832,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -820,7 +867,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -855,7 +903,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -888,7 +937,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -926,7 +976,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -960,7 +1011,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -995,7 +1047,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1028,7 +1081,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1064,7 +1118,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1097,7 +1152,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1131,7 +1187,8 @@ BEGIN
 				IF (vG = TRUE) THEN
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -1163,7 +1220,8 @@ BEGIN
 				ELSE
 					SELECT  u.nm_email_usuario, u.img_usuario, u.nm_usuario, 
 							u.vl_hora_trabalho, u.cd_avaliacao, 
-							buscarEspecializacao(u.nm_email_usuario) AS Especializações
+							buscarEspecializacao(u.nm_email_usuario) AS Especializações,
+							qtdServicoHorario(u.nm_email_usuario, vDataServico, vHoraInicio, vHoraFim)
 					FROM usuario u 
 					JOIN disponibilidade d 
 					ON (u.nm_email_usuario = d.nm_email_usuario )
@@ -2195,6 +2253,24 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+/* Function criada para contar a quantidade de serviços que um cuidador tem */
+
+DROP FUNCTION IF EXISTS countServico$$
+
+CREATE FUNCTION countServico(vEmailCuidador VARCHAR(200)) RETURNS INT
+BEGIN
+	DECLARE qtdServico INT;
+
+	SELECT
+		COUNT(cd_servico) INTO qtdServico
+	FROM
+		servico
+	WHERE
+		nm_email_usuario_cuidador = vEmailCuidador;
+	
+	RETURN qtdServico;
+END$$ 
+
 /* Procedure criada para buscar informações completas do cuidador para contrato selecionado pelo adm */
 
 DROP PROCEDURE IF EXISTS infoCuidadorContrato$$
@@ -2205,7 +2281,8 @@ BEGIN
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
 		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
-		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario
+		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario,
+		countServico(u.nm_email_usuario)
 	FROM
 		usuario u
 	JOIN
@@ -2220,6 +2297,10 @@ BEGIN
 		tipo_especializacao te
 	ON
 		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+	JOIN
+		servico s 
+	ON
+		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE
 		u.nm_email_usuario = vEmailCuidador
 	GROUP BY
