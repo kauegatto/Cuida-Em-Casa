@@ -49,7 +49,7 @@ namespace prjCuidaEmCasa.lib
 
             double qtEstrelas = 0;
 
-            qtEstrelas = contadorAvaliacao / classeDetalheAgendados.cd_avaliacao.Count;
+            qtEstrelas = contadorAvaliacao / classeDetalheAgendados.cd_avaliacaoNota.Count;
 
             double notaAvaliacao = qtEstrelas;
 

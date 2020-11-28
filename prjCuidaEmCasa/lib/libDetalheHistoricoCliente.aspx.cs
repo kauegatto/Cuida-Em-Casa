@@ -37,7 +37,40 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
 
+            if (!classeDetalheHistorico.listarAvaliacao(classeDetalheHistorico.emailCuidador[0]))
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            double contadorAvaliacao = 0;
+
+            for (int i = 0; i < classeDetalheHistorico.cd_avaliacaoNota.Count; i++)
+            {
+                contadorAvaliacao += double.Parse(classeDetalheHistorico.cd_avaliacaoNota[i]);
+            }
+
+            double qtEstrelas = 0;
+
+            qtEstrelas = contadorAvaliacao / classeDetalheHistorico.cd_avaliacaoNota.Count;
+
+            double notaAvaliacao = qtEstrelas;
+
             string imagemEstrela = "";
+
+            for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
+            {
+                imagemEstrela += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
+            }
+
+            if (qtEstrelas != 0 && qtEstrelas > 0)
+            {
+                if (qtEstrelas >= 0.5 && qtEstrelas < 1)
+                {
+                    imagemEstrela += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
+                }
+            }
+            
 
             string duracao = classeDetalheHistorico.duracaoServico[0];
             string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
@@ -45,29 +78,31 @@ namespace prjCuidaEmCasa.lib
             double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
             double valorTotal = horaFinal * double.Parse(classeDetalheHistorico.vl_cuidador[0]);
 
-            double qtEstrelas = 00.00;
-            if (double.TryParse(classeDetalheHistorico.cd_avaliacao[0], out qtEstrelas))
-            {
 
-                for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
-                {
-                    imagemEstrela += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
-                }
 
-                if (qtEstrelas != 0 && qtEstrelas > 0)
-                {
-                    if (qtEstrelas == 0.5)
-                    {
-                        imagemEstrela += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
-                    }
-                }
-            }
+            //double qtEstrelas = 00.00;
+            //if (double.TryParse(classeDetalheHistorico.cd_avaliacao[0], out qtEstrelas))
+            //{
+
+            //    for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
+            //    {
+            //        imagemEstrela += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
+            //    }
+
+            //    if (qtEstrelas != 0 && qtEstrelas > 0)
+            //    {
+            //        if (qtEstrelas == 0.5)
+            //        {
+            //            imagemEstrela += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
+            //        }
+            //    }
+            //}
 
             Response.Write(
                 classeDetalheHistorico.base64String[0] + ";" + 
                 classeDetalheHistorico.nm_cuidador[0]  + ";" + 
-                imagemEstrela  + ";" + 
-                classeDetalheHistorico.cd_avaliacao[0]  + ";" + 
+                imagemEstrela  + ";" +
+                notaAvaliacao + ";" + 
                 classeDetalheHistorico.nm_especializacao[0]  + ";" + 
                 classeDetalheHistorico.nm_genero[0]  + ";" + 
                 classeDetalheHistorico.ds_cuidador[0]  + ";" + 

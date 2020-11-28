@@ -1205,7 +1205,7 @@ CREATE PROCEDURE cuidadorEscolhido(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		u.img_usuario, u.vl_hora_trabalho, u.nm_usuario, 
-		te.nm_tipo_especializacao, g.nm_genero, u.ds_experiencia_usuario, 
+		buscarEspecializacao(u.nm_email_usuario), g.nm_genero, u.ds_experiencia_usuario, 
 		u.ds_usuario, u.cd_CPF, u.cd_telefone, u.cd_link_curriculo
 	FROM 
 		usuario u 
@@ -1222,8 +1222,9 @@ BEGIN
 	ON
 		(eu.cd_tipo_especializacao - te.cd_tipo_especializacao) 
 	WHERE 
-		u.nm_email_usuario = vEmailCuidador;
-
+		u.nm_email_usuario = vEmailCuidador
+	GROUP BY 
+		u.nm_email_usuario;
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado */

@@ -21,6 +21,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> cpfCuidador { get; set; }
         public List<string> telefoneCuidador { get; set; }
         public List<string> linkCurriculo { get; set; }
+        public List<string> cd_avaliacaoNota { get; set; }
 
         public string nm_email_cuidador_selecionado { get; set; }
 
@@ -71,6 +72,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             cpfCuidador = new List<string>();
             telefoneCuidador = new List<string>();
             linkCurriculo = new List<string>();
+            cd_avaliacaoNota = new List<string>();
 
             /* Propriedade para o histórico do cuidador */
 
