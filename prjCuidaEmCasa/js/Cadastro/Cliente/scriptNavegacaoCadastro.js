@@ -2,14 +2,26 @@
 
 $(document).ready(function(){
 
-	$('#txtTelefoneCliente').mask('(00) 0000-0000');
+	$('#txtTelefoneCliente').mask('(00) 00000-0000');
 	$('#txtCPF').mask('000.000.000-00');
+
+    function alertaFofo(textoAlerta) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'teste';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = textoAlerta;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
 
 	$(document).on("click", "#btnProximo", function(){
 
 		if ($('#txtNomeCliente').val() == "") 
 		{
-			alert('digite o seu nome');
+			alertaFofo('digite o seu nome');
 			return;
 		}
 		else
@@ -19,7 +31,7 @@ $(document).ready(function(){
 
 		if ($('#txtEmailCliente').val() == "")
 		{
-			alert('digite o seu email');
+			alertaFofo('digite o seu email');
 			return;
 		}
 		else
@@ -29,7 +41,7 @@ $(document).ready(function(){
 		
 		if ($("#txtTelefoneCliente").val() == "") 
 		{
-			alert('digite o seu telefone');
+			alertaFofo('digite o seu telefone');
 			return;
 		}
 		else
@@ -48,7 +60,7 @@ $(document).ready(function(){
 
 		if ($("#txtCPF").val() == "") 
 		{
-			alert('Digite o seu cpf');
+			alertaFofo('Digite o seu cpf');
 			return;
 		}
 		else
@@ -58,14 +70,14 @@ $(document).ready(function(){
 
 		if ($("#txtSenha").val() == "") 
 		{
-			alert('Digite a sua senha');
+			alertaFofo('Digite a sua senha');
 			return;
 		}
 		else
 		{
 			if ($('#txtConfirmarSenha').val() == "") 
 			{
-				alert('digite o algo no confirmar senha');
+				alertaFofo('digite o algo no confirmar senha');
 				return;
 			}
 			else
@@ -76,7 +88,7 @@ $(document).ready(function(){
 				}
 				else
 				{
-					alert('as senhas estao diferentes');
+					alertaFofo('as senhas estao diferentes');
 					return;
 				}
 			}
