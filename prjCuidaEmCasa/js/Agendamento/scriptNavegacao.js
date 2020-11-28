@@ -7,6 +7,7 @@ import scriptInfoCuidador from "./scriptInfoCuidador.js";
 import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 import scriptFiltro from "./scriptFiltro.js";
+import scriptVerificarPacienteServico from "./scriptVerificarPacienteServico.js";
 
 function alertIonic() {
     const alert = document.createElement('ion-alert');
@@ -134,6 +135,7 @@ $("#btnAlterarEndereco").click(function () {
 
 //pg 3: pg data hora -> vai para cuidador
 $("#btnDataHora").click(function () {
+    scriptVerificarPacienteServico();
     passarPagina($(this),1);
     scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
     scriptCuidador(); 

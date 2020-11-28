@@ -191,6 +191,7 @@
     <Content Include="js\Agendamento\scriptFiltro.js" />
     <Content Include="js\Agendamento\scriptFinalizarServico.js" />
     <Content Include="js\Agendamento\scriptNavegacao.js" />
+    <Content Include="js\Agendamento\scriptVerificarPacienteServico.js" />
     <Content Include="js\BuscaServicoAgora\scriptAceitarServico.js" />
     <Content Include="js\BuscaServicoAgora\scriptCheckinCheckout.js" />
     <Content Include="js\BuscaServicoAgora\scriptDetalhesServicoAgora.js" />
@@ -309,6 +310,7 @@
     <Content Include="lib\libServicoAtual.aspx" />
     <Content Include="lib\libServicosCuidadorAdm.aspx" />
     <Content Include="lib\libSuspenderBanir.aspx" />
+    <Content Include="lib\libVerificarPacienteServico.aspx" />
     <Content Include="lib\libVerificarSeTemServico.aspx" />
     <Content Include="pages\administrador\advertenciaCuidador.html" />
     <Content Include="pages\administrador\contratarCuidador.html" />
@@ -774,6 +776,13 @@
     </Compile>
     <Compile Include="lib\libSuspenderBanir.aspx.designer.cs">
       <DependentUpon>libSuspenderBanir.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="lib\libVerificarPacienteServico.aspx.cs">
+      <DependentUpon>libVerificarPacienteServico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="lib\libVerificarPacienteServico.aspx.designer.cs">
+      <DependentUpon>libVerificarPacienteServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libVerificarSeTemServico.aspx.cs">
       <DependentUpon>libVerificarSeTemServico.aspx</DependentUpon>

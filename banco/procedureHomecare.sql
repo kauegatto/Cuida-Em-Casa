@@ -174,13 +174,9 @@ BEGIN
 	FROM
 		servico
 	WHERE
-		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico >= vHoraInicio AND hr_fim_servico <= vHoraFim)
-	OR
-		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico >= vHoraInicio AND hr_fim_servico >= vHoraFim)
-	OR
-		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico <= vHoraInicio AND hr_fim_servico <= vHoraFim)
-	OR
-		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND hr_inicio_servico <= vHoraInicio AND hr_fim_servico >= vHoraFim);
+		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND vHoraInicio BETWEEN hr_inicio_servico AND  hr_fim_servico) 
+	OR  
+		(nm_email_usuario_cuidador = vEmailCuidador AND dt_inicio_servico = vDataServico AND vHoraFim BETWEEN hr_inicio_servico AND  hr_fim_servico);
 
 	RETURN qtdServico;
 END$$
@@ -1296,7 +1292,7 @@ BEGIN
 		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_status_servico, cd_paciente)
 	VALUES
 		(vCodigo, vDataServico, vHoraInicioServico, vDataServico, vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, vComp,
-		vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
+		vEmailCliente, vEmailCuidador, 5, vCodigoPaciente);
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado que mude o dia de término */
@@ -1310,7 +1306,7 @@ BEGIN
 		nm_rua_servico, cd_num_servico, nm_uf_servico, nm_complemento_servico, nm_email_usuario, nm_email_usuario_cuidador, cd_status_servico, cd_paciente)
 	VALUES
 		(vCodigo, vDataServico, vHoraInicioServico, DATE_ADD(vDataServico, INTERVAL 1 DAY), vHoraFimServico, vCEP, vCidade, vBairro ,vRua, vNum, vUF, 
-		vComp, vEmailCliente, vEmailCuidador, 2, vCodigoPaciente);
+		vComp, vEmailCliente, vEmailCuidador, 5, vCodigoPaciente);
 END$$
 
 /* Porocedure criada para buscar um servico para agora */
@@ -2488,6 +2484,25 @@ BEGIN
 		cd_situacao_usuario = 3
 	WHERE
 		nm_email_usuario = vEmailCuidador;
+END$$
+
+DROP PROCEDURE IF EXISTS dadosSuspensaoCuidador$$
+
+CREATE PROCEDURE dadosSuspensaoCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+
+
+	select 
+		ta.nm_tipo_advertencia, a.ds_advertencia, date_format(a.dt_advertencia, '%d/%m/%Y')
+	from 
+		advertencia a
+	join
+		tipo_advertencia ta
+	on
+		(a.cd_tipo_advertencia = ta.cd_tipo_advertencia)
+	where
+		a.nm_email_usuario = vEmailCuidador;
+	
 END$$
 
 /* Procedure criada para tirar suspender do cuidador */
@@ -4208,6 +4223,26 @@ BEGIN
 	where
 		nm_email_usuario = vEmailUsuario;
 
+END$$
+
+/* Procedure criada para verificar se o paciente já tem algum serviço no horário escolhido pelo cliente */
+
+DROP PROCEDURE IF EXISTS verificarPacienteServico$$
+
+CREATE PROCEDURE verificarPacienteServico(vCodigoPaciente INT, vDataServico DATE, vHoraInicio TIME, vHoraFim TIME)
+BEGIN
+	SELECT
+		s.cd_servico
+	FROM
+		servico s
+	JOIN
+		paciente p
+	ON
+		(s.cd_paciente = p.cd_paciente)
+	WHERE
+		(p.cd_paciente = vCodigoPaciente AND dt_inicio_servico = vDataServico AND vHoraInicio BETWEEN s.hr_inicio_servico AND s.hr_fim_servico)
+	OR
+		(p.cd_paciente = vCodigoPaciente AND dt_inicio_servico = vDataServico AND vHoraFim BETWEEN s.hr_inicio_servico AND s.hr_fim_servico);
 END$$
 
 DROP PROCEDURE IF EXISTS codigoRecuperarSenha$$

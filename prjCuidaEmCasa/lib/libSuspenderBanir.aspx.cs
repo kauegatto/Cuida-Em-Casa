@@ -71,6 +71,41 @@ namespace prjCuidaEmCasa.lib
                     return;
                 }
 
+                if (!adm.dadosSuspensaoCuidador(emailCuidador))
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                mandarEmail.To.Add(emailCuidador);
+                mandarEmail.From = new MailAddress(remetente, "Contato Cuida Em Casa", System.Text.Encoding.UTF8);
+                mandarEmail.Subject = "Suspensão";
+                mandarEmail.SubjectEncoding = System.Text.Encoding.UTF8;
+
+                string conteudo = "<html><body><strong>Você foi suspenso por tais motivos: </strong><br>";
+
+                for (int i = 0; i < adm.nmTipoAdvertencia.Count; i++)
+                {
+                    conteudo += "<br> Motivo: " + adm.nmTipoAdvertencia[i] + " - " + adm.dsAdvertencia[i] + " - " + adm.dtAdvertencia[i];
+                }
+
+                conteudo += "</body></html>";
+
+                mandarEmail.Body = conteudo;
+                mandarEmail.BodyEncoding = System.Text.Encoding.UTF8;
+                mandarEmail.IsBodyHtml = true;
+                mandarEmail.Priority = MailPriority.High;
+
+                try
+                {
+                    client.Send(mandarEmail);
+                }
+                catch (Exception)
+                {
+                    Response.Write("erro");
+                    return;
+                }
+
                 Response.Write("true");
             }
             else

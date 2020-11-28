@@ -36,6 +36,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string vl_trabalho { get; set; }
         public string duracao { get; set; }
         public string ultimoCodigoPaciente { get; set; }
+        public string cdServico { get; set; }
 
         public clsPaciente(): base()
         {
@@ -63,6 +64,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             cd_geolocalizacao = "";
             vl_trabalho = "";
             duracao = "";
+            cdServico = "";
         }
 
         #region Buscar Pacientes
@@ -486,6 +488,41 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
 
 
+        #endregion
+
+        #region Verificar se o paciente tá em serviço 
+        public bool verificarPacienteServico(string cdPaciente, string dataServico, string horaInicio, string fimServico)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[4, 2];
+            valores[0, 0] = "vCodigoPaciente";
+            valores[0, 1] = cdPaciente;
+            valores[1, 0] = "vDataServico";
+            valores[1, 1] = dataServico;
+            valores[2, 0] = "vHoraInicio";
+            valores[2, 1] = horaInicio;
+            valores[3, 0] = "vHoraFim";
+            valores[3, 1] = fimServico;
+            
+            if (!Procedure("verificarPacienteServico", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    cdServico = dados[0].ToString();
+                }
+
+                if (!dados.IsClosed) { dados.Close(); }
+                Desconectar();
+            }
+
+            return true;
+        }
         #endregion
 
     }
