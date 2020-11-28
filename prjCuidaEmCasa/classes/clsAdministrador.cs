@@ -42,7 +42,9 @@ namespace prjCuidaEmCasa.classes
         public List<string> emailAdm { get; set; }
         public List<string> dsAdvertencia { get; set; }
         public List<string> qtdOcorrenciaCuidadores { get; set; }
-
+        public List<string> nmTipoAdvertencia { get; set; }
+        public List<string> dtAdvertencia { get; set; }
+        
         public clsAdministrador(): base()
         {
             base64String = new List<string>();
@@ -79,6 +81,8 @@ namespace prjCuidaEmCasa.classes
             emailAdm = new List<string>();
             dsAdvertencia = new List<string>();
             qtdOcorrenciaCuidadores = new List<string>();
+            nmTipoAdvertencia = new List<string>();
+            dtAdvertencia = new List<string>();
         }
 
         #region Listar cuidadores para cadastro
@@ -539,6 +543,39 @@ namespace prjCuidaEmCasa.classes
 
             return true; 
         }
+        #endregion
+
+        #region Dados suspensão cuidador 
+
+        public bool dadosSuspensaoCuidador(string emailCliente)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[1,2];
+            valores[0, 0] = "vEmailCuidador";
+            valores[0, 1] = emailCliente;
+
+            if (!Procedure("dadosSuspensaoCuidador", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while(dados.Read())
+                {
+                    nmTipoAdvertencia.Add(dados[0].ToString());
+                    dsAdvertencia.Add(dados[1].ToString());
+                    dtAdvertencia.Add(dados[2].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+
+            return true;
+        }
+
         #endregion
 
         #region Tirar suspensão do cuidador

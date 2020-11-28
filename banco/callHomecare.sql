@@ -107,3 +107,4 @@ call removerSuspensao('flaviabeneditamilenamelo@gmail.com');
 call banirCuidador('flaviabeneditamilenamelo@gmail.com');
 call desbanirCuidador('flaviabeneditamilenamelo@gmail.com');
 call filtroAdmCuidadores(0, 0, 0, 0, 1, 1, null, null, null, 1.0, 'oli%', 'Masculino');
+call dadosSuspensaoCuidador('brunastellaflaviadepaula@gmail.com');

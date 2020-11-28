@@ -82,7 +82,7 @@ export default function scriptCarregarCalendario() {
   $(document).on("click", "#btnSalvar", function(){
     $(".wrapper-calendario").css("display","block");
     $("#wrapper-escolherDataServico").css("display","none");
-    //carregarDisponibilidades();
+    carregarDisponibilidades();
   });
 
   

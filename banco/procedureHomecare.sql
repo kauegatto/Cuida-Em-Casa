@@ -2409,6 +2409,25 @@ BEGIN
 		nm_email_usuario = vEmailCuidador;
 END$$
 
+DROP PROCEDURE IF EXISTS dadosSuspensaoCuidador$$
+
+CREATE PROCEDURE dadosSuspensaoCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+
+
+	select 
+		ta.nm_tipo_advertencia, a.ds_advertencia, date_format(a.dt_advertencia, '%d/%m/%Y')
+	from 
+		advertencia a
+	join
+		tipo_advertencia ta
+	on
+		(a.cd_tipo_advertencia = ta.cd_tipo_advertencia)
+	where
+		a.nm_email_usuario = vEmailCuidador;
+	
+END$$
+
 /* Procedure criada para tirar suspender do cuidador */
 
 DROP PROCEDURE IF EXISTS removerSuspensao$$

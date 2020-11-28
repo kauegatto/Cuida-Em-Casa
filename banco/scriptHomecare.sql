@@ -198,7 +198,7 @@ CREATE TABLE advertencia (
 
 insert into advertencia values (1, 'Houve várias reclamações de agressão','2020-08-11',0,'oliverbrunoluccanunes@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',4);
 insert into advertencia values (2, 'Houve reclamações de roubo','2020-08-11',0,'brunastellaflaviadepaula@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',5);
-insert into advertencia values (3, 'Houve várias reclamções de atrasos recorrentes','2020-08-20',0,'brunastellaflaviadepaula@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',1);
+insert into advertencia values (3, 'Houve várias reclamações de atrasos recorrentes','2020-08-20',0,'brunastellaflaviadepaula@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',1);
 
 CREATE TABLE tipo_necessidade_paciente (
     cd_tipo_necessidade_paciente INT,
