@@ -42,7 +42,7 @@
           let paymentMethod = response[0];
           
           document.getElementById('paymentMethodId').value = paymentMethod.id;
-          document.getElementById('cardNumber').style.backgroundImage = 'url(' + paymentMethod.thumbnail + ')';
+          document.getElementById('bandeira').style.backgroundImage = 'url(' + paymentMethod.thumbnail + ')';
           
           if(paymentMethod.additional_info_needed.includes("issuer_id")){
               getIssuers(paymentMethod.id);
@@ -190,8 +190,7 @@
                 break;
           }
           
-            doSubmit=true;
-            form.submit();
+            
 
 
         }).fail(function (jqxhr, textStatus, error) {    
@@ -253,7 +252,9 @@
           else {
               localStorage.setItem("cdServico",retorno[1]);
               alertIonic("pagamento aprovado");
-              window.location.href = "cliente/agendamento.html"
+              doSubmit=true;
+              window.location.href = "../pagamento/cliente/agendaCliente.html";
+              form.submit();
           }
       });
     }
