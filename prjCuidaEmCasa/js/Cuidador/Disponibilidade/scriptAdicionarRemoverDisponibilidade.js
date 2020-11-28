@@ -141,10 +141,14 @@ import colocarDisponibilidadeDoDia from "./scriptColocarDisponibilidadeDoDia.js"
 
     function adicionarDisponibilidade(emailCuidador, dataDisponibilidade, hrInicio, hrFim){
 
-        $.post("http://3.96.217.5/lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
+        $.post("../../..//lib/libAdicionarDisponibilidade.aspx", { usuarioLogado: emailCuidador, dtInicioDisponibilidade:dataDisponibilidade,hrInicioDisponibilidade:hrInicio,hrFimDisponibilidade:hrFim}, function (retorno) {
             
             if (retorno == "false") {
                 console.log("deu erro");
+                return;
+            }
+            if (retorno == "tem") {
+                console.log("já tinha nesse horário");
                 return;
             }
             if (retorno == "true"){

@@ -68,16 +68,18 @@ call marcarCheckin(5);
 call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
-call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
 call listarAvaliacoes('matheusraimundofarias@gmail.com');
+call verificarDisponibilidade('flaviabeneditamilenamelo@gmail.com');
+select * from disponibilidade;
 /* Calendario / Agenda  */
 
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call buscarServicoAgendadoCuidadorMes('flaviabeneditamilenamelo@gmail.com', 11);
 call listarEspecializacao();
 call deletarDisponibilidade('2020-11-22', '16:00:00', '19:00:00', 'flaviabeneditamilenamelo@gmail.com');
-call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
+call disponibilidadePorMes('@gmail.com', 11);
 call editarDadosCuidador();
+call verificarHorarioDisponibilidade('2020-07-13', '15:00:00', '21:00:00', 'flaviabeneditamilenamelo@gmail.com');
 
 /* PROCEDURE DO ADMINISTRADOR */
 

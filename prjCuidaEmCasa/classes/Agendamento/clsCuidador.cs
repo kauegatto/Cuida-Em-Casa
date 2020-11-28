@@ -766,7 +766,43 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         #endregion
 
-        #region Editar Dados Cuidador 
+        #region Verificar horário disponibilidade
+        public bool verificarHorarioDisponibilidade(string dataDisponibilidade, string hrInicioDisponibilidade, string hrFimDisponibilidade, string emailCuidador)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[4, 2];
+            valores[0, 0] = "vDataDisponibilidade";
+            valores[0, 1] = dataDisponibilidade;
+            valores[1, 0] = "vHoraInicioDisponibilidade";
+            valores[1, 1] = hrInicioDisponibilidade;
+            valores[2, 0] = "vHoraFimDisponibilidade";
+            valores[2, 1] = hrFimDisponibilidade;
+            valores[3, 0] = "vEmailCuidador";
+            valores[3, 1] = emailCuidador;
+
+            if (!Procedure("verificarHorarioDisponibilidade", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    dt_disponibilidade.Add(dados[0].ToString());
+                    hr_inicio_disponibilidade.Add(dados[1].ToString());
+                    hr_fim_disponibilidade.Add(dados[2].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+        #endregion
+
+        #region Editar Dados Cuidador
 
         public bool editarDadosCuidador(string emailCuidador, string nomeCuidador, string cpfCuidador, string telefoneCuidador, string imgCuidador, string valorHora, string link, string dsExperiencia, string dsCuidador, string cdGenero)
         {

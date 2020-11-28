@@ -51,15 +51,25 @@ namespace prjCuidaEmCasa.lib
             #endregion 
 
             clsCuidador classeCuidador = new clsCuidador();
-            if (classeCuidador.adicionarDisponibilidade(usuarioLogado, dtInicioDisponibilidade, hrInicioDisponibilidade, hrFimDisponibilidade))
+
+            if (classeCuidador.verificarHorarioDisponibilidade(dtInicioDisponibilidade, hrInicioDisponibilidade, hrFimDisponibilidade, usuarioLogado))
             {
-                Response.Write("true");
+                Response.Write("tem");
                 return;
             }
+            else
+            {
+                if (classeCuidador.adicionarDisponibilidade(usuarioLogado, dtInicioDisponibilidade, hrInicioDisponibilidade, hrFimDisponibilidade))
+                {
+                    Response.Write("true");
+                    return;
+                }
 
-            else {
-                Response.Write("false");
-                return;
+                else
+                {
+                    Response.Write("false");
+                    return;
+                }
             }
         }
     }
