@@ -36,6 +36,43 @@ namespace prjCuidaEmCasa.lib
                 return;
             }
 
+            clsServico classeServico = new clsServico();
+
+            if (!classeServico.listarAvaliacao(emailCuidadorSelecionado))
+            {
+                Response.Write("erro");
+                return;
+            }
+
+            double contadorAvaliacao = 0;
+
+            for (int i = 0; i < classeServico.cd_avaliacaoNota.Count; i++)
+            {
+                contadorAvaliacao += double.Parse(classeServico.cd_avaliacaoNota[i]);
+            }
+
+            double qtEstrelas = 0;
+
+            qtEstrelas = contadorAvaliacao / classeServico.cd_avaliacaoNota.Count;
+
+            double notaAvaliacao = qtEstrelas;
+
+            string imagemEstrela = "";
+
+            for (int j = 0; j <= qtEstrelas - 1; qtEstrelas--)
+            {
+                imagemEstrela += "<img src='../../img/icones/cuidador/estrela.png' class='iconeEstrela'>";
+            }
+
+            if (qtEstrelas != 0 && qtEstrelas > 0)
+            {
+                if (qtEstrelas >= 0.5 && qtEstrelas < 1)
+                {
+                    imagemEstrela += "<img src='../../img/icones/cuidador/meiaestrela.png' class='iconeEstrela'>";
+                }
+            }
+            
+
             string dadosCuidador = "";
 
             dadosCuidador += classeCuidador.vl_cuidador[0] + "|";
@@ -48,6 +85,8 @@ namespace prjCuidaEmCasa.lib
             dadosCuidador += classeCuidador.cpfCuidador[0] + "|";
             dadosCuidador += classeCuidador.telefoneCuidador[0] + "|";
             dadosCuidador += classeCuidador.linkCurriculo[0] + "|";
+            dadosCuidador += imagemEstrela + "|";
+            dadosCuidador += notaAvaliacao + "|";
             dadosCuidador = dadosCuidador.Substring(0, dadosCuidador.Length - 1);
             Response.Write(dadosCuidador);
         }

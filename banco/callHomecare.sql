@@ -19,7 +19,7 @@ call buscarCuidadores('2020-11-03', '12:00:00', '16:59:00');
 call buscarCuidadoresVirarDia('2020-07-12', '22:00:00', '02:00:00');
 call filtrarCuidadores('2020-08-20','12:00:00','14:00:00', 1, 0, 0, 0, 1, null, null, null);
 call filtrarCuidadoresVirarDia('2020-07-12','20:00:00','06:00:00', 0, 0, 0, 0, null, null, null, null);
-call cuidadorEscolhido('matheusraimundofarias@gmail.com');
+call cuidadorEscolhido('flaviabeneditamilenamelo@gmail.com');
 call agendarServico(29,'2020-11-20','14:00:00','19:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','flaviapriscilamarianasilveira@gmail.com',4);
 call agendarServicoVirarDia(33,'2020-06-19','07:00:00','12:00:00','11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'oosvaldocarlosdarosa@live.ie','verabarbarajoanaaparicio@gmail.com',4);
 call agendarServicoAgora(24,'16:00:00', '11533-040','Cubatão', 'Jardim Casqueiro', 'R. Estados Unidos', '530', 'SP', null, 'mauriciorodolfo@gamil.com', 8, 60);
@@ -69,7 +69,7 @@ call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');
 call tornarIndisponivel('flaviabeneditamilenamelo@gmail.com');
 call verificarDisponibilidade('brunastellaflaviadepaula@gmail.com');
-
+call listarAvaliacoes('matheusraimundofarias@gmail.com');
 /* Calendario / Agenda  */
 
 call disponibilidadePorMes('flaviabeneditamilenamelo@gmail.com', 11);
@@ -104,3 +104,4 @@ call suspenderCuidador('flaviabeneditamilenamelo@gmail.com');
 call removerSuspensao('flaviabeneditamilenamelo@gmail.com');
 call banirCuidador('flaviabeneditamilenamelo@gmail.com');
 call desbanirCuidador('flaviabeneditamilenamelo@gmail.com');
+call filtroAdmCuidadores(0, 0, 0, 0, 1, 1, null, null, null, 1.0, 'oli%', 'Masculino');

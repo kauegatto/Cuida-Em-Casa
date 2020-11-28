@@ -12,12 +12,198 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            clsAdministrador adm = new clsAdministrador();
-
-            if (!(adm.listarTodosCuidadores()))
+            #region Validação
+            if (Request["control"] == null)
             {
                 Response.Write("false");
                 return;
+            }
+
+            if (Request["control"].ToString() == "")
+            {
+                Response.Write("false");
+                return;
+            }
+            #endregion
+
+            string control = Request["control"].ToString();
+
+            clsAdministrador adm = new clsAdministrador();
+
+            if (control == "0")
+            {
+                if (!(adm.listarTodosCuidadores()))
+                {
+                    Response.Write("false");
+                    return;
+                }
+            }
+            else
+            {
+                #region Validação
+                if (Request["vE"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vE"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vS"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vS"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vP"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vP"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vA"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vA"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vEm"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vEm"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vG"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["vG"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["especializacao"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["especializacao"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["status"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["status"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["preco"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["preco"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["avaliacao"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["avaliacao"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["emailCuidador"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["emailCuidador"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["genero"] == null)
+                {
+                    Response.Write("false");
+                    return;
+                }
+
+                if (Request["genero"].ToString() == "")
+                {
+                    Response.Write("false");
+                    return;
+                }
+                #endregion
+
+                string vE = Request["vE"].ToString();
+                string vS = Request["vS"].ToString();
+                string vP = Request["vP"].ToString();
+                string vA = Request["vA"].ToString();
+                string vEm = Request["vEm"].ToString();
+                string vG = Request["vG"].ToString();
+                string especializacao = Request["especializacao"].ToString();
+                string status = Request["status"].ToString();
+                string preco = Request["preco"].ToString();
+                string avaliacao = Request["avaliacao"].ToString();
+                string emailCuidador = Request["emailCuidador"].ToString();
+                string genero = Request["genero"].ToString();
+
+                if (!(adm.filtroTodosCuidadores(vE, vS, vP, vA, vEm, vG, especializacao, status, preco, avaliacao, emailCuidador, genero)))
+                {
+                    Response.Write("false");
+                    return;
+                }
             }
 
             string listaCuidadores = "";

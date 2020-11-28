@@ -1205,7 +1205,7 @@ CREATE PROCEDURE cuidadorEscolhido(vEmailCuidador VARCHAR(200))
 BEGIN
 	SELECT 
 		u.img_usuario, u.vl_hora_trabalho, u.nm_usuario, 
-		te.nm_tipo_especializacao, g.nm_genero, u.ds_experiencia_usuario, 
+		buscarEspecializacao(u.nm_email_usuario), g.nm_genero, u.ds_experiencia_usuario, 
 		u.ds_usuario, u.cd_CPF, u.cd_telefone, u.cd_link_curriculo
 	FROM 
 		usuario u 
@@ -1222,8 +1222,9 @@ BEGIN
 	ON
 		(eu.cd_tipo_especializacao - te.cd_tipo_especializacao) 
 	WHERE 
-		u.nm_email_usuario = vEmailCuidador;
-
+		u.nm_email_usuario = vEmailCuidador
+	GROUP BY 
+		u.nm_email_usuario;
 END$$
 
 /* Procedure agendarServico será usada para executar um insert e registrar o serviço agendado */
@@ -1415,7 +1416,7 @@ BEGIN
 		u.img_usuario, u.nm_usuario, u.cd_avaliacao, group_concat(te.nm_tipo_especializacao), tg.nm_genero, u.ds_usuario, 
 		s.nm_rua_servico, s.cd_num_servico ,s.cd_CEP_servico, s.nm_complemento_servico, 
 		s.nm_cidade_servico, s.nm_uf_servico, time_format(s.hr_inicio_servico, '%H:%i'), time_format(s.hr_fim_servico, '%H:%i'), 
-		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, tss.nm_status_servico
+		time_format(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'),u.vl_hora_trabalho, tss.nm_status_servico, s.nm_email_usuario_cuidador
 	FROM 
 		usuario u
 	JOIN
@@ -2393,6 +2394,1426 @@ BEGIN
 		s.nm_email_usuario_cuidador;
 END$$
 
+<<<<<<< HEAD
+/* Procedure criada para suspender o cuidador por um tempo indeterminado */
+
+DROP PROCEDURE IF EXISTS suspenderCuidador$$
+
+CREATE PROCEDURE suspenderCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 3
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para tirar suspender do cuidador */
+
+DROP PROCEDURE IF EXISTS removerSuspensao$$
+
+CREATE PROCEDURE removerSuspensao(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 1
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para banir o cuidador */
+
+DROP PROCEDURE IF EXISTS banirCuidador$$
+
+CREATE PROCEDURE banirCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 4
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para desbanir o cuidador caso tenha algum erro */
+
+DROP PROCEDURE IF EXISTS desbanirCuidador$$
+
+CREATE PROCEDURE desbanirCuidador(vEmailCuidador VARCHAR(200))
+BEGIN
+	UPDATE
+		usuario
+	SET
+		cd_situacao_usuario = 1
+	WHERE
+		nm_email_usuario = vEmailCuidador;
+END$$
+
+/* Procedure criada para o adm filtrar os cuidadores */
+
+DROP PROCEDURE IF EXISTS filtroAdmCuidadores$$
+
+CREATE PROCEDURE filtroAdmCuidadores(vE BOOL, vS BOOL, vP BOOL, vA BOOL, vEm BOOL, vG BOOL, vEspecializacao INT, vStatus INT, vPreco DECIMAL(10, 2), vAvaliacao DECIMAL(10, 2), vEmailCuidador VARCHAR(200), vGenero VARCHAR(200))
+BEGIN
+	SET @decimalVPreco := cast(vPreco as decimal(10,2));
+    SET @intAvaliacao := cast(vAvaliacao as unsigned);
+
+	IF (vE = TRUE) THEN
+		IF (vS = TRUE) THEN
+			IF (vP = TRUE) THEN
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			ELSE
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			END IF;
+		ELSE
+			IF (vP = TRUE) THEN
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			ELSE
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.cd_situacao_usuario = vStatus
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND	eu.cd_tipo_especializacao LIKE vEspecializacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			END IF;
+		END IF;
+	ELSE
+		IF (vS = TRUE) THEN
+			IF (vP = TRUE) THEN
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			ELSE
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_situacao_usuario = vStatus
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			END IF;
+		ELSE
+			IF (vP = TRUE) THEN
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.vl_hora_trabalho <= @decimalVPreco
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			ELSE
+				IF (vA = TRUE) THEN
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_avaliacao >= @intAvaliacao
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.cd_avaliacao >= @intAvaliacao
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				ELSE
+					IF (vEm = TRUE) THEN
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND u.nm_email_usuario LIKE vEmailCuidador
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					ELSE
+						IF (vG = TRUE) THEN
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							AND tp.nm_genero = vGenero
+							GROUP BY u.nm_email_usuario;
+						ELSE
+							SELECT
+							u.img_usuario, u.nm_usuario, u.vl_hora_trabalho, 
+							buscarEspecializacao(u.nm_email_usuario) AS especializações,
+							nm_situacao_usuario, u.nm_email_usuario
+							FROM usuario u
+							JOIN tipo_genero tp
+							ON (u.cd_genero = tp.cd_genero)
+							JOIN especializacao_usuario eu
+							ON (u.nm_email_usuario = eu.nm_email_usuario)
+							JOIN tipo_especializacao te
+							ON (eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
+							JOIN tipo_situacao_usuario tsu
+							ON (u.cd_situacao_usuario = tsu.cd_situacao_usuario)
+							WHERE u.cd_tipo_usuario = 3		
+							GROUP BY u.nm_email_usuario;
+						END IF;
+					END IF;
+				END IF;
+			END IF;
+		END IF;
+	END IF;
+END$$
+
+=======
+>>>>>>> 0b33290000e9ad2f8abce5a984099e922f887d24
 /* Procedure criada para buscar os dados do paciente */
 
 DROP PROCEDURE IF EXISTS buscarDadosPaciente$$
@@ -2766,5 +4187,20 @@ BEGIN
 		nm_email_usuario = vEmailUsuario;
 
 END$$
+
+DROP PROCEDURE IF EXISTS listarAvaliacoes$$
+
+CREATE PROCEDURE listarAvaliacoes(vEmailUsuario VARCHAR(200))
+BEGIN
+
+	select 
+		cd_avaliacao 
+	from 
+		servico 
+	where 
+		nm_email_usuario_cuidador = vEmailUsuario;
+
+END$$
+
 
 DELIMITER ;

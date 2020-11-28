@@ -32,3 +32,5 @@ body { background: #E5E5E5; }
 
 .iconeInformacao {height: 25px; width: 25px; position: relative; top: 7px; float: right; padding-right: 5%}
 
+.btnRemoveSuspensao {background: #2980B9; border-radius: 10px; width: 100px; height: 30px; border-style: none; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 16px; line-height: 21px; color: white; cursor: pointer; position: relative; left: 40px; top: 10px; }
+

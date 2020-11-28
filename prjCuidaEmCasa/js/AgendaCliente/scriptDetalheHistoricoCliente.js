@@ -32,7 +32,14 @@
 			}
 
 			$('#nomeCuidador').html(dados[1]);
-			$('#estrela').html(dados[2] + " " + dados[3]);
+			if (dados[2] != "" && dados[3] != "") 
+			{
+				$('#estrela').html(dados[2] + " " + dados[3]);
+			}
+			else
+			{
+				$('#estrela').html();
+			}
 			$('#especializacao').html(dados[4]);
 			$('#generoCuidador').html(dados[5]);
 			$('#descricaoCuidador').html(dados[6]);

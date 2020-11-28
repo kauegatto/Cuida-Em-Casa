@@ -21,6 +21,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public List<string> cpfCuidador { get; set; }
         public List<string> telefoneCuidador { get; set; }
         public List<string> linkCurriculo { get; set; }
+        public List<string> cd_avaliacaoNota { get; set; }
 
         public string nm_email_cuidador_selecionado { get; set; }
 
@@ -71,6 +72,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             cpfCuidador = new List<string>();
             telefoneCuidador = new List<string>();
             linkCurriculo = new List<string>();
+            cd_avaliacaoNota = new List<string>();
 
             /* Propriedade para o histórico do cuidador */
 
@@ -185,6 +187,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true;
         }
+        #endregion
+
+        #region Listar cuidadores com filtro
         public bool listarCuidadoresFiltro(string dataServico, string horaInicio, string horaFim, string vE, string vP, string vA, string vG, string vEspecializacao, string vPreco, string vAvaliacao, string vGenero, bool virarDia)
         {
             #region antigo
@@ -213,6 +218,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             //valores[10, 0] = "vGenero";
             //valores[10, 1] = vGenero;
             #endregion
+
             MySqlDataReader dados = null;
             string[,] valores = new string[11, 2];
             valores[0, 0] = "vDataServico";
