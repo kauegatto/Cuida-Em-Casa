@@ -12,6 +12,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public string tipoUsuario { get; set; }
         public string codigoOcrrencia { get; set; }
         public string telefoneUsuario { get; set; }
+        public string cdSituacaoUsuario{ get; set; }
         public string senhaVerificada { get; set; }
         public List<string> nomeCliente { get; set; }
         public List<string> cpfCliente { get; set; }
@@ -24,6 +25,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             tipoUsuario = "";
             codigoOcrrencia = "";
             senhaVerificada = "";
+            cdSituacaoUsuario = "";
             nomeCliente = new List<string>();
             cpfCliente = new List<string>();
             telefoneCliente = new List<string>();
@@ -52,7 +54,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                 {
                     emailUsuarioBusca = dados[0].ToString();
                     tipoUsuario = dados[1].ToString();
-                    telefoneUsuario = dados[2].ToString();
+                    cdSituacaoUsuario = dados[2].ToString();
                 }
 
                 if (!dados.IsClosed) { dados.Close(); }

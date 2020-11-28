@@ -2,12 +2,12 @@
 
 $(document).on("click", "#btnLogin", function () {
 
-    function presentAlert() {
+    function presentAlert(textoAlerta) {
         const alert = document.createElement('ion-alert');
         alert.cssClass = 'teste';
         alert.header = 'Atenção';
         alert.subHeader = '';
-        alert.message = 'O login e/ou senha inserida é inválido, tente novamente!';
+        alert.message = textoAlerta;
         alert.buttons = ['OK'];
 
         document.body.appendChild(alert);
@@ -31,7 +31,7 @@ $(document).on("click", "#btnLogin", function () {
 
                 localStorage.setItem("tipoUsuario", retornoLogin[1]);
 
-                localStorage.setItem('telefoneUsuario', retornoLogin[2]);
+                localStorage.setItem('SituacaoUsuario', retornoLogin[2]);
 
                 if (retornoLogin[1] == "1") {
                     window.location.href = "../../pages/administrador/contratarCuidador.html";
@@ -41,12 +41,24 @@ $(document).on("click", "#btnLogin", function () {
                 }
 
                 else if (retornoLogin[1] == "3") {
-                    window.location.href = "../../pages/cuidador/servicoAgendado.html";
+                    if(retornoLogin[2] != "1"){
+                        if(retornoLogin[2]=="2"){
+                            presentAlert("Você ainda não foi aceito como um de nossos cuidadores, mas não se preocupe, você receberá um e-mail em breve sobre sua situação. Fique de olho!");
+                        }
+                        else if(retornoLogin[2]=="3");
+                            presentAlert("Você foi suspenso por tempo indeterminado do nosso sistema por condutas inadequadas. Você recebeu um email explicando melhor");
+                        }
+                        else if(retornoLogin[4]=="4"){
+                         presentAlert("Você foi demitido de nosso sistema");
+                        }
+                    else{
+                        window.location.href = "../../pages/cuidador/servicoAgendado.html";
+                    }
                 }
 
             }
             else {
-                presentAlert();
+                presentAlert("O login e/ou senha inserida é inválido, tente novamente!");
             }
         }
     });
