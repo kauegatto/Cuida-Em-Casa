@@ -1,7 +1,57 @@
-﻿export default function scríptDataHora(horaInicio, horaSomada) {
-        var txt_data = $("#data").val();
-        var txt_horaInicio = $("#horaInicio").val();
-        var txt_qtdHoras = $("#horaFim").val();
+﻿export default function scriptDataHora(horaInicio, horaSomada) {
+
+        function alertIonic(texto) {
+          const alert = document.createElement('ion-alert');
+          alert.cssClass = 'alertBonito';
+          alert.header = 'Atenção';
+          alert.subHeader = '';
+          alert.message = texto;
+          alert.buttons = ['OK'];
+
+          document.body.appendChild(alert);
+          return alert.present();
+        }
+
+        var txt_data;
+        var txt_horaInicio;
+        var txt_qtdHoras;
+
+        console.log($('#data').val());
+        if ($("#data").val() != "") 
+        {
+            txt_data = $("#data").val();
+        }
+        else
+        {
+            alertIonic('Digite uma data!');
+            $('.iconeVoltar').click();
+            $('.areaFiltro').css('display', 'none');
+            return;
+        }
+
+        if ($("#horaInicio").val() != "") 
+        {
+            txt_horaInicio = $("#horaInicio").val();
+        }
+        else
+        {
+            alertIonic('Digite uma hora de início do serviço!');
+            $('.iconeVoltar').click();
+            $('.areaFiltro').css('display', 'none');
+            return;
+        }
+
+        if ($("#horaFim").val() != "") 
+        {
+            txt_qtdHoras = $("#horaFim").val();
+        }
+        else
+        {
+            alertIonic('Digite uma hora de fim serviço!');
+            $('.iconeVoltar').click();
+            $('.areaFiltro').css('display', 'none');
+            return;
+        }
 
         var horaIni = horaInicio.split(':');
         var horaSom = horaSomada.split(':');
@@ -29,6 +79,13 @@
         localStorage.setItem("qtdHoras", txt_qtdHoras);
 
         $.post("../../lib/libDadosAgendamento.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
-            localStorage.setItem("dataFim", retorno);
+            if (retorno == "erro") 
+            {
+                alertIonic('Houve um erro!');
+            }
+            else
+            {
+                localStorage.setItem("dataFim", retorno);
+            }
         });
 }

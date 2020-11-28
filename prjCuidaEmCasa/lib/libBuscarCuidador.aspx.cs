@@ -12,52 +12,41 @@ namespace prjCuidaEmCasa.lib
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //#region verificacao
-            //if (Request["d"] == null)
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
+            #region verificacao
+            if (Request["d"] == null)
+            {
+                Response.Write("false");
+                return;
+            }
 
-            //if (Request["d"].ToString() == "")
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
-            //if (Request["hi"] == null)
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
+            if (Request["d"].ToString() == "")
+            {
+                Response.Write("false");
+                return;
+            }
+            if (Request["hi"] == null)
+            {
+                Response.Write("false");
+                return;
+            }
 
-            //if (Request["hi"].ToString() == "")
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
-            //if (Request["hf"] == null)
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
+            if (Request["hi"].ToString() == "")
+            {
+                Response.Write("false");
+                return;
+            }
+            if (Request["hf"] == null)
+            {
+                Response.Write("false");
+                return;
+            }
 
-            //if (Request["hf"].ToString() == "")
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
-            //if (Request["qtd"] == null)
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
-
-            //if (Request["qtd"].ToString() == "")
-            //{
-            //    Response.Write("false");
-            //    return;
-            //}
-            //#endregion
+            if (Request["hf"].ToString() == "")
+            {
+                Response.Write("false");
+                return;
+            }
+            #endregion
 
             #region pegar dataFim serviço
             string dataInicio = Request["d"].ToString();

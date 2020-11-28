@@ -155,11 +155,64 @@ $(document).ready(function () {
     $(document).on("click", ".btnSalvar", function(){
 
         $("#listaPacientes").html("");  
-        scriptEditarDadosPaciente();
 
         
-        $(".iconeVoltar").click();
-       
+        if ($('#txtAlterarComplementoPaciente').val() == "" || $('#txtAlterarNumeroPaciente').val() == "" || $('#txtAlterarNomePaciente').val() == "" || $('#txtAlterarRuaPaciente').val() == "" || $('#txtAlterarBairroPaciente').val() == "" || $('#txtAlterarDescricaoPaciente').val() == "" || $('#txtAlterarCEPPaciente').val() == "" || $('#txtAlterarCidadePaciente').val() == "") 
+        {
+            if ($('#txtAlterarDescricaoPaciente').val() == "") 
+            {
+                alertIonic('Digite uma descrição para o paciente!');
+                return;
+            }
+
+            if ($('#txtAlterarCEPPaciente').val() == "") 
+            {
+                alertIonic('Digite um CEP para o paciente!');
+                return;
+            }
+
+            if ($('#txtAlterarCidadePaciente').val() == "") 
+            {
+                alertIonic('Digite uma cidade para o paciente!');
+                return;
+            }
+
+            if ($('#txtAlterarBairroPaciente').val() == "") 
+            {
+                alertIonic('Digite um bairro para o paciente');
+                return;
+            }
+
+            if ($('#txtAlterarRuaPaciente').val() == "") 
+            {
+                alertIonic('Digite uma rua para o paciente!');
+                return;
+            }
+
+            if ($('#txtAlterarNomePaciente').val() == "") 
+            {
+                alertIonic('Digite um nome para o paciente!');
+                return;
+            }
+
+            if ($('#txtAlterarNumeroPaciente').val() == "")
+            {
+                alertIonic('Digite um número número para o paciente!');
+                return;
+            }
+
+            if ($('#txtAlterarComplementoPaciente').val() == "") 
+            {
+                 alertIonic('Digite um complemento para o paciente!');
+                return;
+            }
+        }
+        else
+        {
+            scriptEditarDadosPaciente();
+            $(".iconeVoltar").click();
+        }
+           
     });
 
     $(document).on("click", "#btnSalvarPaciente", function(){

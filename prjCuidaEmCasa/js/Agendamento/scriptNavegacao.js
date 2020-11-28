@@ -8,12 +8,12 @@ import carregarFinalizarServico  from "./scriptFinalizarServico.js";
 import EnviarFinalizarServico  from "./scriptAgendarServico.js";
 import scriptFiltro from "./scriptFiltro.js";
 
-function alertIonic() {
+function alertIonic(text) {
     const alert = document.createElement('ion-alert');
     alert.cssClass = 'alertBonito';
     alert.header = 'Atenção';
     alert.subHeader = '';
-    alert.message = 'Houve um erro no Cadastro !<br> <br> Por Favor preencha novamente seus dados.';
+    alert.message = text;
     alert.buttons = ['OK'];
 
     document.body.appendChild(alert);
@@ -134,32 +134,52 @@ $("#btnAlterarEndereco").click(function () {
 
 //pg 3: pg data hora -> vai para cuidador
 $("#btnDataHora").click(function () {
-    passarPagina($(this),1);
-    scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
-    scriptCuidador(); 
-    $(".areaFiltro").addClass("visivel");
-    $('#dinheiro').mask('000,00', { reverse: true });
-    $('#avaliacao').mask('0.0', { reverse: true });
+    if ($("#horaInicio").val() != "" && $("#horaFim").val() != "") 
+    {
+        passarPagina($(this),1);
+        scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
+        scriptCuidador(); 
+        $(".areaFiltro").addClass("visivel");
+        $('#dinheiro').mask('000,00', { reverse: true });
+        $('#avaliacao').mask('0.0', { reverse: true });
+    }
+    else
+    {
+        alertIonic('Selecione uma hora para inicio/fim do serviço');
+    }
+    
 });
 
 //pg 5: pag cuidador -> vai para info cuidador  
 $(document).on("click", "#btnCuidador", function(){
-    passarPagina($(this),1);
-    $(".areaFiltro").removeClass("visivel");
-    var classes = $(".selecionado").attr("class").split(/\s+/);
-    localStorage.setItem("emailCuidador", classes[1]);    
-    scriptInfoCuidador();
+
+    if ($('.selecionado').length != 0) 
+    {
+        var classes = $(".selecionado").attr("class").split(/\s+/);
+        localStorage.setItem("emailCuidador", classes[1]); 
+        passarPagina($(this),1);
+        $(".areaFiltro").removeClass("visivel");
+        scriptInfoCuidador();
+    }   
+    else
+    {
+        alertIonic('Por favor, selecione um cuidador');
+        return;
+    }
+
 });
 
 $(document).on("click", "#btnFiltro", function(){
     scriptFiltro();
     $(".infoFiltro").removeClass("visivel");
 });
+
 //pg 6 : info cuidador -> vai para finalizar
 $("#btnInfoCuidador").click(function () {
     passarPagina($(this),1);
     carregarFinalizarServico();
 });
+
 //pg 7: pg finalizar pedido (resumo)
 $("#btnFinalizarServico").click(function () {
     EnviarFinalizarServico();
