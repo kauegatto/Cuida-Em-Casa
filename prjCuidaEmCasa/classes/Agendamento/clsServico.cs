@@ -879,6 +879,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion 
         
+        #region Buscar disponibilidade do serviço
         public bool buscarDisponibilidadesServico(string usuarioLogado, string intMes) {
             MySqlDataReader dados = null;
             string[,] valores = new string[2, 2];
@@ -906,8 +907,8 @@ namespace prjCuidaEmCasa.classes.Agendamento
             if (!dados.IsClosed) { dados.Close(); }
             Desconectar();
             return true;
-        
-        }
 
+        }
+        #endregion
     }
 }

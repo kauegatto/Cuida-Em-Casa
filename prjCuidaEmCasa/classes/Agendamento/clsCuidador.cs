@@ -185,6 +185,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true;
         }
+        #endregion
+
+        #region Listar cuidadores com filtro
         public bool listarCuidadoresFiltro(string dataServico, string horaInicio, string horaFim, string vE, string vP, string vA, string vG, string vEspecializacao, string vPreco, string vAvaliacao, string vGenero, bool virarDia)
         {
             #region antigo
@@ -213,6 +216,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
             //valores[10, 0] = "vGenero";
             //valores[10, 1] = vGenero;
             #endregion
+
             MySqlDataReader dados = null;
             string[,] valores = new string[11, 2];
             valores[0, 0] = "vDataServico";

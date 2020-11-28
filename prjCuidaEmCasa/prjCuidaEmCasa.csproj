@@ -172,6 +172,7 @@
     <Content Include="js\Administrador\Advertencia\scripListarAdvertencias.js" />
     <Content Include="js\Administrador\ContratarCuidador\scriptContratarCuidador.js" />
     <Content Include="js\Administrador\ContratarCuidador\scriptInfoCuidadorContrato.js" />
+    <Content Include="js\Administrador\Filtro\scriptCarregarCombo.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptInfoCuidador.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptListarCuidadores.js" />
     <Content Include="js\Administrador\ListarCuidadores\scriptServico.js" />
