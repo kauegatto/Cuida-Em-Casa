@@ -551,6 +551,34 @@ namespace prjCuidaEmCasa.classes.Agendamento
         }
         #endregion
 
+        #region Verificar se o serviço agora foi aceito pelo cuidador
+        public bool verificarAceitouServicoAgora(string cdServico)
+        {
+            MySqlDataReader dados = null;
+            string[,] valores = new string[2, 2];
+            valores[0, 0] = "vCodigoServico";
+            valores[0, 1] = cdServico;
+
+            if (!Procedure("verificarAceitouServico", true, valores, ref dados))
+            {
+                Desconectar();
+                return false;
+            }
+
+            if (dados.HasRows)
+            {
+                while (dados.Read())
+                {
+                    situacaoServico.Add(dados[0].ToString());
+                }
+            }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
+            return true;
+        }
+        #endregion
+
         #region Marcar check-in
         public bool checkin(string cdServico)
         {
@@ -961,4 +989,4 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         }
         #endregion
-    }
+}

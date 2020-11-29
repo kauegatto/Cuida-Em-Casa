@@ -6,7 +6,6 @@ import scriptServicoAgora from "./scriptServicoAgora.js";
 import scriptCheckinCheckout from "./scriptCheckinCheckout.js";
 import scriptVerificarSeTemServico from "./scriptVerificarSeTemServico.js";
 
-
 $(document).ready(function () {
 
     var interval;

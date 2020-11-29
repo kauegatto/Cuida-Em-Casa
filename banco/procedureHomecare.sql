@@ -4282,6 +4282,20 @@ BEGIN
 		(p.cd_paciente = vCodigoPaciente AND dt_inicio_servico = vDataServico AND vHoraFim BETWEEN s.hr_inicio_servico AND s.hr_fim_servico);
 END$$
 
+/* Procedure criada para verificar se já achou cuidador pro serviço agora do cliente */
+
+DROP PROCEDURE IF EXISTS verificarAceitouServico$$
+
+CREATE PROCEDURE verificarAceitouServico(vCodigoServico INT)
+BEGIN
+	SELECT 
+		cd_status_servico 
+	FROM
+		servico
+	WHERE
+		cd_servico = vCodigoServico;
+END$$
+
 DROP PROCEDURE IF EXISTS codigoRecuperarSenha$$
 
 CREATE PROCEDURE codigoRecuperarSenha(vEmailUsuario VARCHAR(200))
