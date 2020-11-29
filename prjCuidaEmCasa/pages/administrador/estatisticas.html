@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuida em Casa</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="../../css/administrador/estiloCuidadores.css">
+	<link rel="stylesheet" type="text/css" href="../../css/administrador/estiloGeral.css">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+    <style>
+    	.wrapperEscolha{
+    		min-height: 150px;
+    		padding-top: 10px;
+    		padding-bottom: 30px;
+    		min-height: 10px;
+    		width: 80%;
+    		margin: 10px auto;
+    		border-radius: 10px;
+    		background-color: #fafafa;
+    		border: 1px solid #114161;
+
+    	}	
+    	
+    	.divEscolhaGrafico button, .divFaixaTempo button{
+    		padding: 10px; 
+    		background-color: #2980B9;
+    		color: #fafafa;
+    		display: inline-block;
+    		margin: 0 7.6%;
+    		border-radius: 10px;
+    		border: 0;
+    		font-family: 'Rubik';
+    		font-size: 16px;
+    	}
+    	.divEscolhaGrafico h2, .divFaixaTempo h2{
+    		text-align: center;
+    		font-family: 'Rubik';
+    		font-size: 16px;
+    		margin-bottom: 15px;
+    	}
+    	.divFaixaTempo button{
+    		margin: 0 11.5%;
+    		min-width: 90px;
+
+    	}
+     	.selected{
+    		background-color: rgb(81 154 255 / 50%) !important;
+    		color: #000 !important;
+    	}
+    	#areaGrafico{
+    		width: 60%;
+    		margin: 0 auto;
+    		display: block;
+    	}
+    	#iconeSair{
+    		position: relative;
+    		margin-left: 250px;
+    		width: 32px;
+    		top:-8px;
+    	}
+    </style>
+    <script>
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Dia', 'Cuidadores'],
+          ['25/11',  18],
+          ['26/11',  19],
+          ['27/11',  22],
+          ['28/11',  21 ],
+          ['29/11',  24 ],
+          ['30/11',  23 ],
+          ['01/12',  27 ],
+          ['02/12',  27 ]
+        ]);
+
+        var options = {
+          title: 'Quantidade de cuidadores ativos no Cuida Em Casa',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('areaGrafico'));
+
+        chart.draw(data, options);
+      }</script>
+</head>
+<body>
+    <div class="estruturaGeral">
+		<header class="header">
+			<div class="areaLogo">
+				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			</div>		
+			<nav>
+				<div class="menuGeral">
+					<a href="cuidadores.html"><span style="opacity: 65%;">Cuidadores</span></a>
+				</div>
+				<div class="menuGeral">
+					<a href="contratarCuidador.html"><span style="opacity: 65%; ">Contratar</span></a>
+				</div>
+				<div class="menuGeral">
+					<a href="ocorrencias.html"><span style="opacity: 65%; ">Denúncias</span></a>
+				</div>
+				<div class="menuGeral">
+					<a href="estatísticas.html"><span>Estatísticas</span></a>
+				</div>
+				<div class="menuGeral">
+					<div class="areaIcone"><a href="index.html"><img id="iconeSair" src="../../img/icones/iconeSair.png"></a></div>
+				</div>
+			</nav>
+
+		</header>
+		<main class="conteudoGeral">
+			<div class="wrapperEscolha"> 
+				<div class="divEscolhaGrafico">
+					<h2>Escolha um gráfico</h2>
+					<button type="button" class="btnEscolhaGráfico selected">Quantidade de cuidadores</button>
+					<button type="button" class="btnEscolhaGráfico">Quantidade de Serviços </button>
+					<button type="button" class="btnEscolhaGráfico">Quantidade de Denúncias</button>
+				</div>
+			</div>
+			<div class="wrapperEscolha">
+				<div class="divFaixaTempo">
+					<h2>Escolha uma faixa de tempo para o gráfico</h2>
+					<button class="btnFaixaTempo">Último Mês</button>
+					<button class="btnFaixaTempo selected">Última Semana</button>
+					<button class="btnFaixaTempo">Hoje</button>
+				</div>
+			</div>	
+
+			<div id="areaGrafico">
+
+			</div>
+		</main>
+	</div>
+</body>
+</html>
