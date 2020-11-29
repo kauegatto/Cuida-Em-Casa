@@ -268,12 +268,11 @@
           else {
               window.location.href = "/cliente/agendaCliente.html";
               localStorage.setItem("cdServico",retorno[1]);
-              alertIonic("pagamento aprovado");
-              doSubmit=true;
-              form.submit();
+
+              localStorage.setItem("pagamentoAprovado","true");
+              window.location.href = "/pages/cliente/agendaCliente.html";
+
           }
       });
     }
-        
-
 });

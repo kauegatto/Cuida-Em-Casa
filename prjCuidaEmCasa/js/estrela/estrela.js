@@ -14,7 +14,7 @@ $(document).ready(function(){
           spacing: "5px",
           fullStar: true,
           normalFill: "#646464",
-          ratedFill: "#00000"
+          ratedFill: "#FFA903"
         });
 
        $("#rateYo").on("rateyo.init", function () { console.log("rateyo.init"); });

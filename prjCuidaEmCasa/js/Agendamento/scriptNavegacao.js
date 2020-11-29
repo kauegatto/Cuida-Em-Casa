@@ -64,6 +64,23 @@ $(".iconeVoltar").click(function(){
 
 $(document).ready(function () {
 
+
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd
+} 
+
+if(mm<10){
+    mm='0'+mm
+} 
+
+today = yyyy+'-'+mm+'-'+dd;
+$("#data").attr("min", today);
+
+
 if(!localStorage.getItem("tipoUsuario") == 2){
     alertIonic("Você não tem acesso a essa página, realize o login novamente");
     localStorage.clear();
@@ -113,6 +130,8 @@ $(document).on("click", "#btnPaciente", function(){
 
 $("#btnConfirmarEndereco").click(function () {
         passarPagina($(this),2);
+
+
 });
 $("#btnEnderecoDiferente").click(function () {
         passarPagina($(this),1);  //-> só passa pra próxima, não roda nenhum script
@@ -138,13 +157,19 @@ $("#btnDataHora").click(function () {
 
     if ($('#horaInicio').val() != "" && $("#horaFim").val() != "" && $('#data').val() != "") 
     {
-        scriptVerificarPacienteServico();
-        passarPagina($(this),1);
-        scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
-        scriptCuidador(); 
-        $(".areaFiltro").addClass("visivel");
-        $('#dinheiro').mask('000,00', { reverse: true });
-        $('#avaliacao').mask('0.0', { reverse: true });
+        const duracaoServico = $("#horaFim").val().split(":");
+        if(duracaoServico[0] == "00"){
+            alertIonic("Seu serviço precisa durar no mínimo uma hora!");
+        }
+        else{
+            scriptVerificarPacienteServico();
+            passarPagina($(this),1);
+            scriptDataHora($("#horaInicio").val(), $("#horaFim").val());
+            scriptCuidador(); 
+            $(".areaFiltro").addClass("visivel");
+            $('#dinheiro').mask('000,00', { reverse: true });
+            $('#avaliacao').mask('0.0', { reverse: true });
+        }
     }
     else
     {

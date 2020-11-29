@@ -5,7 +5,25 @@ import scriptDenunciarCuidador from './scriptDenunciarCuidador.js';
 import scriptDetalheAgendadosCliente from './scriptDetalheAgendadosCliente.js';
 import scriptCancelarServicoAgendado from './scriptCancelarServicoAgendado.js';
 
+
 $(document).ready(function(){
+
+    function alertIonic(text) {
+      const alert = document.createElement('ion-alert');
+      alert.cssClass = 'alertBonito';
+      alert.header = 'Atenção';
+      alert.subHeader = '';
+      alert.message = text;
+      alert.buttons = ['OK'];
+
+      document.body.appendChild(alert);
+      return alert.present();
+    }
+
+    if(localStorage.getItem("pagamentoAprovado") == "true"){
+        localStorage.removeItem("pagamentoAprovado");
+        alertIonic("Seu serviço foi confirmado");    
+    }
 
 	scriptAgendaClienteAgendado();
 
