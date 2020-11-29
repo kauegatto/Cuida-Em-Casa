@@ -2034,7 +2034,7 @@ BEGIN
                        when 6 then 'Domingo'                 
                        END AS DiaDaSemana,
 		TIME_FORMAT(s.hr_inicio_servico, '%H:%i'), TIME_FORMAT(s.hr_fim_servico, '%H:%i'), s.cd_geolocalizacao_entrada,
-		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), s.hr_checkin_servico
+		u.vl_hora_trabalho, TIME_FORMAT(TIMEDIFF(s.hr_fim_servico, s.hr_inicio_servico), '%H:%i'), s.hr_checkin_servico, s.nm_bairro_cidade, s.nm_cidade_servico, s.nm_uf_servico
 	FROM
 		servico s
 	JOIN

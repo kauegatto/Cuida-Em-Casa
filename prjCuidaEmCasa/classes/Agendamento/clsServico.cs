@@ -463,6 +463,9 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     vl_cuidador.Add(dados[12].ToString());
                     duracaoServico.Add(dados[13].ToString());
                     hr_checkin = dados[14].ToString();
+                    nm_bairro_servico = dados[15].ToString();
+                    nm_cidade_servico = dados[16].ToString();
+                    nm_uf_servico = dados[17].ToString();
                 }
                 if (!dados.IsClosed) { dados.Close(); }
                 Desconectar();
@@ -555,7 +558,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
         public bool verificarAceitouServicoAgora(string cdServico)
         {
             MySqlDataReader dados = null;
-            string[,] valores = new string[2, 2];
+            string[,] valores = new string[1, 2];
             valores[0, 0] = "vCodigoServico";
             valores[0, 1] = cdServico;
 

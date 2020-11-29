@@ -159,4 +159,16 @@ $(".btnCancelarBusca").click(function () {
     clearInterval(intercal);
 });
 
+$(document).on("click", "#copiarEndereco", function(){
+    const enderecoCompleto = $("#enderecoCompleto").html();
+
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = enderecoCompleto;
+    dummy.select();
+    dummy.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+});
+
  });

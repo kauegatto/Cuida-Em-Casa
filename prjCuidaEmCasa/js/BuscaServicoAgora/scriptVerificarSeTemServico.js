@@ -33,6 +33,14 @@
             localStorage.setItem("cdServico", retorno[1])
             var url = "data:image/png;base64," + $('.invi').html();
             $(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            var map = document.getElementById('map');
+            var img = document.createElement('img'); 
+            var enderecoCompleto = $("#enderecoCompleto").html();
+            var apimaps = "";
+
+            img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+ enderecoCompleto +'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:k|'+endereco+'&key='+ apimaps;
+            img.alt = 'mapa que mostra localização do endereço do servico';
+            document.getElementById('map').appendChild(img); 
         }         
     });
 
