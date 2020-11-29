@@ -54,7 +54,7 @@ $(document).ready(function () {
             else
             {
                 $('#selectAlterarNecessidade').html(retorno);
-                alertIonic('As necessidades do paciente foram cadastradas com sucesso !');
+                //alertIonic('As necessidades do paciente foram cadastradas com sucesso !');
             }
 
     });

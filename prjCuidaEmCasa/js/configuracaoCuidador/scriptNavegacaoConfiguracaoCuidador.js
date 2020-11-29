@@ -94,6 +94,8 @@ $(document).ready(function () {
 	       $(this).removeClass("visivel");
 	    });
 
+	    $('.tituloGeral').html('Configuração');
+
 		$("#wrapper-LoginSeguranca").css("display","none");
 
 		$("#wrapper-AtualizarSenha").addClass("visivel");
