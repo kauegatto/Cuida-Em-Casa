@@ -58,7 +58,7 @@ namespace prjCuidaEmCasa.lib
             }
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "</div>";
-			dadosServicoAtual += "<div class='areaMapa'>";
+			dadosServicoAtual += "<div class='areaMapa' id='map'>";
 			dadosServicoAtual += "</div>";
             if (servico.hr_checkin == "")
             {

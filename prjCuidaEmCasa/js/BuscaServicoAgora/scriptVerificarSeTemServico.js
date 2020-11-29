@@ -24,12 +24,15 @@
             $('.areaDisponibilidade').css("display", "block");
         }  
         else {
+            $('#body').css('background', '#FFF');
             retorno = retorno.split("&");
             $('.areaDisponibilidade').css("display", "none");
             $('#wrapper-infoServico').addClass("visivel");
             $('#wrapper-infoServico').css("display", "block");
             $('#wrapper-infoServico').html(retorno[0]);
             localStorage.setItem("cdServico", retorno[1])
+            var url = "data:image/png;base64," + $('.invi').html();
+            $(".areaImagemPaciente").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         }         
     });
 

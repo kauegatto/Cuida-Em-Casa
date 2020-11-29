@@ -8,7 +8,7 @@
 
 .dataServico { text-align: center; width: 200px; height: 41px; border-radius: 6px; background-color: #F0F0F7; margin-left: 15px; }
 
-.valorServico { text-align: center; width: 180px; height: 41px; border-radius: 6px; background-color: #F0F0F7;  position: relative;float: right;margin-right: 15%; }
+.valorServico { text-align: center; width: 200px; height: 41px; border-radius: 6px; background-color: #F0F0F7;  position: relative;float: right;margin-right: 9.5%; }
 
 #dataFinal{text-align: left;width: 67%;margin-top:5px;}
 
