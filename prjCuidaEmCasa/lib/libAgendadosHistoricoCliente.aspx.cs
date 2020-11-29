@@ -57,7 +57,14 @@ namespace prjCuidaEmCasa.lib
                 string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
                 double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
                 double valorTotal = horaFinal * double.Parse(classeHistoricoCliente.vl_cuidador[i]);
-                listaHistorico += "               <span>Total: </span><span>" + valorTotal.ToString() + " Reais</span>";
+                if (classeHistoricoCliente.situacaoServico[i] == "Cancelado")
+                {
+                    listaHistorico += "               <span>Total: </span><span>Nenhum valor recebido</span>";
+                }
+                else
+                {
+                    listaHistorico += "               <span>Total: </span><span>" + valorTotal.ToString() + " Reais</span>";
+                }
                 listaHistorico += "           </div>";
                 listaHistorico += "    </div>";
                 listaHistorico += "    <div class='invi'>" + classeHistoricoCliente.base64String[i].ToString() + "</div>";

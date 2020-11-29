@@ -164,6 +164,7 @@
         var email = localStorage.getItem("usuarioLogado");console.log(email);
         
         var docNumber = parseInt($('input[name ="docNumber"]').val());/**/console.log(docNumber);
+        docNumber = docNumber.replace(".","").replace("-","").replace("/","").trim();
         
         var docType = $('select[name="docType"] option').filter(':selected').val();/**/console.log(docType);
 

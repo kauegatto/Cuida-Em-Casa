@@ -12,7 +12,7 @@
 		{
 			var dados;
 			dados = retorno.split(';');
-			console.log(dados);
+			console.log(dados[17]);
 
 			$('.invi').html(dados[0])
 
@@ -30,7 +30,6 @@
                 	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             	});
 			}
-
 			$('#nomeCuidador').html(dados[1]);
 			if (dados[2] != "" && dados[3] != "") 
 			{
@@ -45,7 +44,12 @@
 			$('#descricaoCuidador').html(dados[6]);
 			$('#enderecoServico').html(dados[7] + " - " + dados[8] + " - " + dados[9]  + " - " +  dados[10]  + " - " + dados[11] + " - " + dados[12]);
 			$('#horarioServico').html(dados[13] + " - " + dados[14]);
-			$('#valorTotal').html(dados[15] + " Reais");
+            if (dados[17] == "4") {
+                $('#valorTotal').html("Nenhum valor recebido");
+            }
+            else {
+                $('#valorTotal').html(dados[15] + " Reais");
+            }
 			localStorage.setItem('emailCuidador', dados[16]);
 		}
 
