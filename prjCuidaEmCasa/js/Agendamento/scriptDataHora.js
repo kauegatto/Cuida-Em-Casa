@@ -1,7 +1,22 @@
-﻿export default function scríptDataHora(horaInicio, horaSomada) {
+﻿export default function scriptDataHora(horaInicio, horaSomada) {
+
+        function alertIonic(texto) {
+          const alert = document.createElement('ion-alert');
+          alert.cssClass = 'alertBonito';
+          alert.header = 'Atenção';
+          alert.subHeader = '';
+          alert.message = texto;
+          alert.buttons = ['OK'];
+
+          document.body.appendChild(alert);
+          return alert.present();
+        }
+
         var txt_data = $("#data").val();
         var txt_horaInicio = $("#horaInicio").val();
         var txt_qtdHoras = $("#horaFim").val();
+
+        //console.log($('#data').val());
 
         var horaIni = horaInicio.split(':');
         var horaSom = horaSomada.split(':');
@@ -29,6 +44,13 @@
         localStorage.setItem("qtdHoras", txt_qtdHoras);
 
         $.post("../../lib/libDadosAgendamento.aspx", { d: localStorage.getItem("data"), hi: localStorage.getItem("horaInicio"), hf: localStorage.getItem("horaFim"), qtd: localStorage.getItem("qtdHoras") }, function (retorno) {
-            localStorage.setItem("dataFim", retorno);
+            if (retorno == "erro") 
+            {
+                alertIonic('Houve um erro!');
+            }
+            else
+            {
+                localStorage.setItem("dataFim", retorno);
+            }
         });
 }

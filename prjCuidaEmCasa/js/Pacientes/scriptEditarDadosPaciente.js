@@ -86,7 +86,9 @@ export default function scriptEditarDadosPaciente() {
 
 		}
 		catch(err) { 
-			console.log(err);
+			//console.log(err);
+			alertIonic('Houve um erro');
+			scriptPacientes();
 		}
 
 	} 
