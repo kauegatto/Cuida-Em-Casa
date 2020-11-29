@@ -253,6 +253,12 @@ namespace prjCuidaEmCasa.lib
                 listaCuidadores += "</div>";
             }
 
+            if (adm.nmEmailCuidador.Count == 0)
+            {
+                Response.Write("");
+                return;
+            }
+
             Response.Write(listaCuidadores);
         }
     }
