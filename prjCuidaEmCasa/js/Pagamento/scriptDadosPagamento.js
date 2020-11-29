@@ -18,6 +18,8 @@
   var payment_method_id;
 
   doSubmit = false;
+  
+  var docNumber;
 
   let form = document.getElementById('paymentForm');
 
@@ -28,6 +30,11 @@
   document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
 
   document.getElementById('paymentForm').addEventListener('submit', getCardToken);
+
+  $("#btnPassar").click(function(){
+    $('#docNumber').unmask();
+    docNumber = $('input[name ="docNumber"]').val();
+  });
 
   function alertIonic(text) {
       const alert = document.createElement('ion-alert');
@@ -106,7 +113,7 @@
   function getInstallments(paymentMethodId, transactionAmount, issuerId){
      window.Mercadopago.getInstallments({
          "payment_method_id": paymentMethodId,
-         "amount": parseFloat("20"),
+         "amount": parseFloat($('input[name ="transactionAmount"]').val()),
          "issuer_id": issuerId ? parseInt(issuerId) : undefined
      }, setInstallments);
      payment_method_id = paymentMethodId;
@@ -126,28 +133,30 @@
      }
    }
 
-
   function getCardToken(event){
      event.preventDefault();
      if(!doSubmit){
-         let $form = document.getElementById('paymentForm');
-         window.Mercadopago.createToken($form, setCardTokenAndPay);
-         return false;
+        let $form = document.getElementById('paymentForm');
+        console.log("criar token");
+        window.Mercadopago.createToken($form, setCardTokenAndPay);
+        return false;
      }
   };
 
 
   function setCardTokenAndPay(status, response) {
+     console.log(response);
      if (status == 200 || status == 201) {
          let card = document.createElement('input');
-         //card.setAttribute('name', 'token');
-         //card.setAttribute('type', 'hidden');
-         //card.setAttribute('value', response.id);
-         //form.appendChild(card);
-         //doSubmit=true;form.submit();
+         card.setAttribute('name', 'token');
+         card.setAttribute('type', 'hidden');
+         card.setAttribute('value', response.id);
+         form.appendChild(card);
+         doSubmit=true
+         //form.submit();
          realizarPagamento(response.id);
      } else {
-         alertIonic("Cartão de crédito inválido");
+         alertIonic("Cartão de crédito inválido -> setCardTokenAndPay");
      }
   };
 
@@ -162,8 +171,6 @@
         var transactionAmount = parseFloat($('input[name ="transactionAmount"]').val());/**/console.log(transactionAmount);
         
         var email = localStorage.getItem("usuarioLogado");console.log(email);
-        
-        var docNumber = parseInt($('input[name ="docNumber"]').val());/**/console.log(docNumber);
         
         var docType = $('select[name="docType"] option').filter(':selected').val();/**/console.log(docType);
 
@@ -180,7 +187,6 @@
           processData: false,
           data: dataJSON,
         }).done(function(result){
-          
             resultado = JSON.stringify(result.status);
             console.log(resultado)
             resultado = resultado.replace(/"/g,"");
@@ -216,7 +222,7 @@
                 alertIonic("Erro no número do documento");
                 break;
               case 2006:
-                alertIonic("Cartão de crédito inválido");
+                alertIonic("Cartão de crédito inválido" + "custom 2006");
                 break;
               case 2007:
                 alertIonic("Erro na conexão da api de tokenização do cartão");

@@ -32,6 +32,21 @@
         		$("#headerNav").addClass("visivel");
 
         	});
+        	$("#iconeVoltarNav").click(function(){
+        		$(".visivel").each(function(){
+        			$(this).removeClass("visivel");
+        		})
+        		if ($('#docType option:selected').val() == "CPF") 
+			    {
+			      $('#docNumber').mask('000.000.000-00');
+			    }
+			    else
+			    {
+			      $('#docNumber').mask('00.000.000/0000-00');
+			    }
+        		$("#wrapper-detalhesComprador").addClass("visivel");
+        		$("#headerComum").addClass("visivel");
+        	});
         });
     </script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
@@ -103,7 +118,7 @@
 			     </div>
 			   <button type="button" class="btnNav" id="btnPassar">Próximo</button>
 			</div>
-			<div class="wrapper" id="wrapper-detalhesCartao" style="display: none;margin-bottom: 50px">
+			<div class="wrapper" id="wrapper-detalhesCartao" style="display: none;margin-bottom: 70px">
 			    <h3>Detalhes do cartão</h3>
 			    <div>
 			        <div>
@@ -154,7 +169,7 @@
 			         <select type="text" id="installments" name="installments"></select>
 			       </div>
 			       <div>
-			         <input type="hidden" name="transactionAmount" id="transactionAmount" value="100"/>
+			         <input type="hidden" name="transactionAmount" id="transactionAmount" value="147"/>
 			         <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
 			         <input type="hidden" name="description" id="description" value="servico de cuidadoria c o marcos no dia 27/10"/>
 			         <br>
@@ -166,6 +181,41 @@
 			</div>
 		</form>
 	</main>
-
+	<footer class="footer">
+			<nav>
+				<div class="menuGeral paginaAtual">
+                  <a href="atendimento.html">
+                        <div class="areaIcone">
+						    <img src="../../img/icones/iconeCalendarioDestaque.png">
+					    </div>
+					    <span style="margin-left: 8px;">Atendimento</span>
+                  </a>
+				</div>
+				<div class="menuGeral">
+                  <a href="agendaCliente.html">
+					<div class="areaIcone">
+						<img src="../../img/icones/editarPaciente/agenda.png">
+					</div>
+                    <span style="margin-left: 22px;">Agenda</span>
+                  </a>
+				</div>
+				<div class="menuGeral">
+                    <a href=pacientes.html>
+					    <div class="areaIcone">
+						    <img src="../../img/icones/iconePaciente.png">
+					    </div>
+					    <span style="margin-left: 20px;">Pacientes</span>
+                    </a>
+				</div>
+				<div class="menuGeral">
+                    <a href="configuracaoCliente.html">
+					    <div class="areaIcone">
+						    <img src="../../img/icones/editarPaciente/configuracao.png">
+					    </div>
+					    <span style="margin-left: 10px; ">Configuração</span>
+                    </a>
+				</div>
+			</nav>
+	</footer>
 </body>
 </html>
