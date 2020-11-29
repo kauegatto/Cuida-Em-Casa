@@ -718,6 +718,7 @@ namespace prjCuidaEmCasa.classes.Agendamento
                     duracaoServico.Add(dados[14].ToString());
                     vl_cuidador.Add(dados[15].ToString());
                     emailCuidador.Add(dados[16].ToString());
+                    situacaoServico.Add(dados[17].ToString());
                 }
             }
 
@@ -883,7 +884,6 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
         #endregion 
         
-
         #region Buscar disponibilidade do serviço
 
         #region buscarDisponibilidadesServico

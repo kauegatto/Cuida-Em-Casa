@@ -115,7 +115,8 @@ namespace prjCuidaEmCasa.lib
                 classeDetalheHistorico.hr_inicio_servico[0]  + ";" + 
                 classeDetalheHistorico.hr_fim_servico[0] + ";" + 
                 valorTotal + ";" + 
-                classeDetalheHistorico.emailCuidador[0]
+                classeDetalheHistorico.emailCuidador[0] + ";" +
+                classeDetalheHistorico.situacaoServico[0]
             );
         }
     }
