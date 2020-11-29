@@ -20,6 +20,32 @@ function alertIonic(text) {
     return alert.present();
 }
 
+function presentAlertConfirm() {
+  const alert = document.createElement('ion-alert');
+  alert.cssClass = 'alertBonito';
+  alert.header = 'Atenção';
+  alert.subHeader = 'Você terá que pagar o cuidador pessoalmente com dinheiro.';
+  alert.message = '<strong>Você deseja continuar?</strong>';
+  alert.buttons = [
+    {
+      text: 'Sim',
+      role: 'cancel',
+      handler: () => {
+        //console.log('CLICOU SIM');
+      }
+    }, {
+      text: 'Não',
+      handler: () => {
+        window.location.href = 'atendimento.html';
+      }
+    }
+  ];
+
+  document.body.appendChild(alert);
+  return  alert.present();
+
+}
+
 function passarPagina(SentDomElement,Jump) {
 
 $(".conteudoGeral").children().eq(indexPage).addClass("visivel");
@@ -60,6 +86,8 @@ $(".iconeVoltar").click(function(){
 
 $(document).ready(function () {
 
+presentAlertConfirm();
+
 if(!localStorage.getItem("tipoUsuario") == 2){
     alertIonic("Você não tem acesso a essa página, realize o login novamente");
     localStorage.clear();
@@ -86,7 +114,7 @@ $(document).on("click", "#btnPaciente", function(){
         }
     }   
     else{
-        alertIonic("Por favor, escolha um paciente!!");
+        alertIonic("Por favor, escolha um paciente!");
     }
 });
 //btnEnderecoDiferente
