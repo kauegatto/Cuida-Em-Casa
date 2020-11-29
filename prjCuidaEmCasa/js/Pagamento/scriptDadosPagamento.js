@@ -251,13 +251,9 @@
           }
           else {
               localStorage.setItem("cdServico",retorno[1]);
-              alertIonic("pagamento aprovado");
-              doSubmit=true;
-              window.location.href = "../pagamento/cliente/agendaCliente.html";
-              form.submit();
+              localStorage.setItem("pagamentoAprovado","true");
+              window.location.href = "/pages/cliente/agendaCliente.html";
           }
       });
     }
-        
-
 });
