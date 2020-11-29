@@ -146,6 +146,8 @@ namespace prjCuidaEmCasa.lib
                     dadosOcorrencia += "<div class='invi' style='display: none'>" + adm.base64String[0] + "#" + tinhaImg +"</div>";
                     dadosOcorrencia += "<div class='areaNomeCuidador'>";
                     dadosOcorrencia += "<h3 class='nomeCuidador' style='width: 400px;'>" + adm.nomeCuidador[0] + "</h3>";
+                    dadosOcorrencia += "<br/>";
+                    dadosOcorrencia += "<p class='nomeCuidador' style='width: 400px; font-size: 20px;'>" + adm.nmEmailCuidador[0] + "</p>";
                     dadosOcorrencia += "</div>";
                     dadosOcorrencia += "</div>";
                     dadosOcorrencia += "<div class='tituloConteudo'><span>Ocorrências</span></div>";
@@ -170,6 +172,12 @@ namespace prjCuidaEmCasa.lib
                     }
 
                     dadosOcorrencia += "</div>";
+
+                    if (adm.dataOcorrencia.Count == 0)
+                    {
+                        Response.Write("");
+                        return;
+                    }
 
                     Response.Write(dadosOcorrencia);
                 }

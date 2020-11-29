@@ -1,5 +1,20 @@
 ﻿$(document).ready(function(){
 
+  $('#docNumber').mask('000.000.000-00');
+
+  $('#docType').change(function(){
+
+    if ($('#docType option:selected').val() == "CPF") 
+    {
+      $('#docNumber').mask('000.000.000-00');
+    }
+    else
+    {
+      $('#docNumber').mask('00.000.000/0000-00');
+    }
+
+  });
+
   var payment_method_id;
 
   doSubmit = false;
@@ -250,9 +265,12 @@
               alertIonic("Erro na hora de cadastrar serviço");
           }
           else {
+              window.location.href = "/cliente/agendaCliente.html";
               localStorage.setItem("cdServico",retorno[1]);
+
               localStorage.setItem("pagamentoAprovado","true");
               window.location.href = "/pages/cliente/agendaCliente.html";
+
           }
       });
     }

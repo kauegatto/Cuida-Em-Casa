@@ -57,6 +57,12 @@ namespace prjCuidaEmCasa.lib
                 cuidadoresOcorrencia += "</div>";
 			}
 
+            if (adm.nomeCuidador.Count == 0)
+            {
+                Response.Write("");
+                return;
+            }
+
             Response.Write(cuidadoresOcorrencia);
         }
     }

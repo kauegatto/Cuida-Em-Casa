@@ -44,7 +44,7 @@
                 $('#desbanir_cuidador').css("display", "inline");
             }
 
-            if (retorno[13]) {
+            if (retorno[13] == "0") {
                 $('.btnServicos').prop("disabled", true);
             }
             else {
