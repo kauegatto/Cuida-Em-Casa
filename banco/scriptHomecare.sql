@@ -93,6 +93,9 @@ insert into usuario values('matheusraimundofarias@gmail.com','Matheus Raimundo F
 insert into usuario values('sarahelainealiciaribeiro@gmail.com','Sarah Elaine Alícia Ribeiro','426.701.408-66','(13)98279-0959',md5('123'),null,50.0,'https://CurriculoDaSarah.com.br',false,'5 anos no Hospital Guilherme Alvaro','Olá me chamo Sarah e carrego uma bagagem muito vasta como cuidadora de idosos e posso dizer que eu amo trabalhar nesta área',1.5,3,2,1);
 insert into usuario values('isisalessandrajaquelinefarias@gmail.com', 'Isis Alessandra Jaqueline Farias', '700.154.588-06', '(13)98609-3116', md5('123'), null, 20.0, 'https://CurriculoDaIsis.com.br', false, '3 anos no Hospital Albert Einstein', 'Cuidar das pessoas é minha paixão, faço isso com muito amor, carinho e segurança', 3.0, 3, 2, 3);
 insert into usuario values('andreiamarianedossantos@gmail.com', 'Andreia Mariane dos Santos', '965.564.888-52', '(13)99678-6230', md5('123'), null, 15.0, 'https://CurriculoDaAndreia.com.br', false, '4 anos de trabalho na Home Angels', 'Cada ano que passa melhoro como cuidadora para cuidar do seu paciente', 4.0, 3, 2, 4);
+/* Cuidadores buscando aprovação */
+insert into usuario values('mariahisabellabarbararezende@gmail.com', 'Mariah Isabella Bárbara Rezende', '552.351.538-80', '(13)99546-2519', md5('123'), null, 30.0, 'https://CurriculoDaMariah.com.br', false, '3 anos de trabalho autônomo como cuidadora', 'Amo cuidar das pessoas que precisam da minha ajuda', null, 3, 2, 2);
+insert into usuario values('juaneduardosebastiaodasilva@gmail.com', 'Juan Eduardo Sebastião da Silva', '237.773.038-87', '(13)98993-5872', md5('123'), null, 20.0, 'https://CurriculoDoJuan.com.br', false, '2 anos na empresa CuidadoJa', 'Cuidar dos outros é minha especialidade, são como minha segunda família', null, 3, 1, 2);
 
 CREATE TABLE especializacao_usuario (
     cd_tipo_especializacao INT,
@@ -105,20 +108,34 @@ CREATE TABLE especializacao_usuario (
 );
 
 insert into especializacao_usuario values (1, 'oliverbrunoluccanunes@gmail.com');
-insert into especializacao_usuario values (1, 'brunastellaflaviadepaula@gmail.com');
-insert into especializacao_usuario values (1, 'verabarbarajoanaaparicio@gmail.com');
-insert into especializacao_usuario values (1, 'rayssaelainevanessacosta-84@gmail.com');
-insert into especializacao_usuario values (1, 'flaviabeneditamilenamelo@gmail.com');
-insert into especializacao_usuario values (1, 'matheusraimundofarias@gmail.com');
-insert into especializacao_usuario values (1, 'sarahelainealiciaribeiro@gmail.com');
-insert into especializacao_usuario values (1, 'isisalessandrajaquelinefarias@gmail.com');
-insert into especializacao_usuario values (1, 'andreiamarianedossantos@gmail.com');
 insert into especializacao_usuario values (2, 'oliverbrunoluccanunes@gmail.com');
-insert into especializacao_usuario values (2, 'isisalessandrajaquelinefarias@gmail.com');
+
+insert into especializacao_usuario values (1, 'brunastellaflaviadepaula@gmail.com');
 insert into especializacao_usuario values (3, 'brunastellaflaviadepaula@gmail.com');
-insert into especializacao_usuario values (3, 'flaviabeneditamilenamelo@gmail.com');
+
+insert into especializacao_usuario values (1, 'verabarbarajoanaaparicio@gmail.com');
 insert into especializacao_usuario values (4, 'verabarbarajoanaaparicio@gmail.com');
+
+insert into especializacao_usuario values (3, 'flaviabeneditamilenamelo@gmail.com');
+insert into especializacao_usuario values (1, 'flaviabeneditamilenamelo@gmail.com');
+
+insert into especializacao_usuario values (1, 'juaneduardosebastiaodasilva@gmail.com');
+insert into especializacao_usuario values (3, 'juaneduardosebastiaodasilva@gmail.com');
+
+insert into especializacao_usuario values (1, 'rayssaelainevanessacosta-84@gmail.com');
+
+insert into especializacao_usuario values (1, 'matheusraimundofarias@gmail.com');
+
+insert into especializacao_usuario values (1, 'sarahelainealiciaribeiro@gmail.com');
+
+insert into especializacao_usuario values (1, 'andreiamarianedossantos@gmail.com');
 insert into especializacao_usuario values (4, 'andreiamarianedossantos@gmail.com');
+
+insert into especializacao_usuario values (2, 'isisalessandrajaquelinefarias@gmail.com');
+insert into especializacao_usuario values (1, 'isisalessandrajaquelinefarias@gmail.com');
+
+insert into especializacao_usuario values (1, 'mariahisabellabarbararezende@gmail.com');
+insert into especializacao_usuario values (2, 'mariahisabellabarbararezende@gmail.com');
 
 CREATE TABLE auth_recover
 (
@@ -245,7 +262,7 @@ insert into paciente values(6,'André Nathan Souza', 'André gosta de assistir f
 insert into paciente values(7,'Marcia Maria Dolores', 'Marcia não gosta de tomar banho', '11050-260', 'Santos', 'Encruzilhada', 'R. Dr. Leôncio Rezende Filho', '789', 'SP', 'Apartamento 24', 'raquelAurelia@gmail.com', null);
 insert into paciente values(8,'Jenivalda Radelia', 'Jenivalda gosta de conversar', '11370-530', 'São Vicente', 'Jardim Guassu', 'R. Francisco Silva Santos', '164', 'SP', 'Apartamento 12', 'mauriciorodolfo@gmail.com', null);
 insert into paciente values(9,'Astolfo Rodrigues da Silva', 'Astolfo gosta de assistir Silvio Santos', '11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '548', 'SP', null, 'flaviapriscilamarianasilveira@gmail.com', null);
-insert into paciente values(10,'Giovanni Breno Eduardo Rodrigues', 'Giovani adora conversar sobre a situação econômica do país', '14805-396', 'Araraquara', 'Condomínio Buona Vita', 'Av. Oswaldo Gonçalves de Jesus', '732', 'SP', null, 'mauriciorodolfo@gmail.com', null);
+insert into paciente values(10,'Giovanni Breno Eduardo Rodrigues', 'Giovani adora conversar sobre a situação econômica do país', '11330-060', 'São Vicente', 'Parque Bitarú', 'Rua Osvaldo Eduardo', '49', 'SP', null, 'mauriciorodolfo@gmail.com', null);
 
 CREATE TABLE necessidade_paciente (
     cd_paciente INT,
@@ -294,7 +311,6 @@ insert into avaliacao values(2,'Ruim');
 insert into avaliacao values(3,'Regular');
 insert into avaliacao values(4,'Bom');
 insert into avaliacao values(5,'Excelente');
-
 CREATE TABLE servico (
     cd_servico INT,
     dt_inicio_servico DATE,
@@ -345,8 +361,8 @@ insert into servico values(19,'2020-01-20','12:00:00','2020-08-20','20:00:00','1
 insert into servico values(20,'2020-02-20','09:00:00','2020-08-20','16:00:00','11525-050','Cubatão','Vila Nova','Praça Francisco da Silva Cardoso','50','SP',null,'09:00:00','2020-08-20',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','brunastellaflaviadepaula@gmail.com',null,3,6,null,null);
 insert into servico values(21,'2020-06-11','15:20:00','2020-06-11','18:00:00','11533-040','Cubatão','Jardim Casqueiro','R. Estados Unidos','530','SP',null,'15:22:00','2020-06-11',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','flaviabeneditamilenamelo@gmail.com',null,3,6,null,null);
 insert into servico values(22,'2020-07-15','10:00:00','2020-07-15','14:30:00','11330-060','São Vicente','Parque Bitaru','R. Osvaldo Eduardo','49','SP',null,'10:01:00','2020-07-15',null,null,'-23.893013;-46.429228','emilyantoniadaianearagao@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,5,null,null);
-insert into servico values(23,'2020-12-02','10:00:00','2020-12-02','14:30:00','14805-396', 'Araraquara', 'Condomínio Buona Vita', 'Av. Oswaldo Gonçalves de Jesus', '732', 'SP', null,'10:01:00','2020-11-30','14:30:00','2020-11-30','-21.750694;-48.176153','mauriciorodolfo@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,10,null,null);
-
+insert into servico values(23,'2020-11-30','10:00:00','2020-11-30','14:30:00','14805-396', 'São Vicente', 'Parque Bitaru', 'Rua Osvaldo Eduardo', '732', 'SP', null,'10:01:00','2020-11-30','14:30:00','2020-11-30','-21.750694;-48.176153','mauriciorodolfo@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,10,null,null);
+select * from servico where cd_servico = 23;
 /*Serviços Em Andamento*/
 insert into servico values(5,'2020-08-20','08:00:00','2020-08-20','17:00:00','05024-000','São Paulo','Pompeia','R. Barão do Bananal','1328','SP',null,'08:30:00','2020-08-20',null,null,'-23.535457;-46.690143','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',null,1,2,null,null);
 insert into servico values(6,'2020-08-20','07:00:00','2020-08-20','19:00:00','01137-040','São Paulo','Barra Funda','R. Padre Luís Alves de Siqueira','21','SP',null,'07:00:00','2020-08-20',null,null,'-23.521763;-46.656568','flaviapriscilamarianasilveira@gmail.com','verabarbarajoanaaparicio@gmail.com',null,1,3,null,null);
