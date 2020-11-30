@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="../css/estiloPagamento.css">
+    <link rel="stylesheet" type="text/css" href="../css/estiloGeral.css">
+
+    <script type="text/javascript">
+        function setarInputs() {
+            $("#email").val(localStorage.getItem("usuarioLogado"));
+            $("#email").html(localStorage.getItem("precoServico"));
+            $("#transactionAmount").val(localStorage.getItem("precoServico"));
+            $("#transactionAmount").html(localStorage.getItem("precoServico"));
+        }
+        window.onload = setarInputs;
+        $(document).ready(function(){
+        	setarInputs();
+
+        	$("#btnPassar").click(function(){
+
+        		$(".visivel").each(function(){
+        			$(this).removeClass("visivel");
+        		})
+        		$("#wrapper-detalhesCartao").addClass("visivel");
+        		$("#headerNav").addClass("visivel");
+
+        	});
+        	$("#iconeVoltarNav").click(function(){
+        		$(".visivel").each(function(){
+        			$(this).removeClass("visivel");
+        		})
+        		if ($('#docType option:selected').val() == "CPF") 
+			    {
+			      $('#docNumber').mask('000.000.000-00');
+			    }
+			    else
+			    {
+			      $('#docNumber').mask('00.000.000/0000-00');
+			    }
+        		$("#wrapper-detalhesComprador").addClass("visivel");
+        		$("#headerComum").addClass("visivel");
+        	});
+        });
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+    <style>
+    	.wrapper{
+    		margin-top:105px;
+    	}
+    	.footer{
+    		font-size: 18px;
+    	}
+    	label{
+    		text-align: center;
+    	}
+    	input, label{
+    		font-size: 16px;
+    	}
+    </style>
+    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    <script src="../js/Pagamento/scriptBuscarPagamento.js"></script>
+    <script src="../js/Pagamento/scriptDadosPagamento.js"></script>
+</head>
+
+<body>
+    <header class="header">	
+    	<div id="headerComum" class="visivel" style="display: none;">
+				<a href="cliente/atendimento.html">
+					<div class="areaLogo">
+						<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+					</div>
+				</a>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" style="margin-left: 13px; margin-top: 34px;">Realizar pagamento</h1>
+				</div>
+		</div>
+		
+		<div id="headerNav" style="display: none;">
+				<div class="areaLogo">
+					<img src="../../img/icones/iconeVoltar.png" alt ="seta para trás, indicando voltar" class="iconeVoltar" id="iconeVoltarNav">
+				</div>
+				<div class="areaTituloGeral">
+					<h1 class="tituloGeral" id="tituloGeral-Nav" style="text-align: center; margin-left: 13px;">Realizar pagamento</h1>
+				</div>
+		</div>
+	</header>
+	<main class="conteudoGeral" style="margin-bottom: 0px">
+	    <form action="" method="post" id="paymentForm">
+		    <br/>
+		    <div class="wrapper visivel" id="wrapper-detalhesComprador" style="display: none;">
+			   <h3>Detalhes do comprador</h3>
+			     <div>
+			      <div>
+			      	<br>
+			         <label for="email">E-mail</label><br />
+			         <input id="email" name="email" type="text" value="" disabled></select>
+			      </div>
+			      <br>
+			       <div>
+			         <label for="docType">Tipo de documento</label><br />
+			         <select id="docType" name="docType" data-checkout="docType" type="text"></select><br />
+			       </div>
+			       <br>
+			       <div>
+			         <label for="docNumber">Número do documento</label><br />
+			         <input id="docNumber" name="docNumber" data-checkout="docNumber" type="text"/>
+			       </div>
+			       <br>
+			     </div>
+			   <button type="button" class="btnNav" id="btnPassar">Próximo</button>
+			</div>
+			<div class="wrapper" id="wrapper-detalhesCartao" style="display: none;margin-bottom: 70px">
+			    <h3>Detalhes do cartão</h3>
+			    <div>
+			        <div>
+			         <label for="cardholderName">Titular do cartão</label><br />
+			         <input id="cardholderName" data-checkout="cardholderName" type="text">
+			        </div>
+			       <div>
+			         <label for="">Data de vencimento</label><br />
+			       
+			         <div style="width: 73%;margin: 0 auto; display: block">
+			           <input type="text" placeholder="MM" id="cardExpirationMonth" data-checkout="cardExpirationMonth"
+			             onselectstart="return false" onpaste="return false"
+			             oncopy="return false" oncut="return false"
+			             ondrag="return false" ondrop="return false" autocomplete=off style="width: 39.5%; display: inline-block">
+			           <span class="date-separator" style="width: 8%; display: inline-block;text-align: center">/</span>
+			           <input type="text" placeholder="YY" id="cardExpirationYear" data-checkout="cardExpirationYear"
+			             onselectstart="return false" onpaste="return false"
+			             oncopy="return false" oncut="return false"
+			             ondrag="return false" ondrop="return false" autocomplete=off style="width: 40%; display: inline-block"> 
+			         </div>
+			       </div>
+			       <div>
+			         <label for="cardNumber">Número do cartão</label><br />
+			       
+			        <input type="text" id="cardNumber" data-checkout="cardNumber"
+			           onselectstart="return false" 
+			           oncopy="return false" oncut="return false"
+			           ondrag="return false" ondrop="return false" autocomplete=off style="width: 50%;float: left;margin-left:14%;">
+			       	<div id="bandeira" style="width: 14%;height: 34px;float:right;background-color: rgba(0,0,0,0.2);margin-right: 16%"></div>
+			       	<div class="clear" style="clear: both;"></div>
+			       </div>
+			       <div>
+			         <label for="securityCode">Código de segurança</label><br />
+			       
+			         <input id="securityCode" data-checkout="securityCode" type="text"
+			           onselectstart="return false" onpaste="return false"
+			           oncopy="return false" oncut="return false"
+			           ondrag="return false" ondrop="return false" autocomplete=off>
+			       </div>
+			       <div id="issuerInput">
+			         <label for="issuer">Emissor do cartão</label><br />
+			       
+			         <select id="issuer" name="issuer" data-checkout="issuer"></select>
+			       </div>
+			       <div>
+			         <label for="installments">Parcelas</label><br />
+			       
+			         <select type="text" id="installments" name="installments"></select>
+			       </div>
+			       <div>
+			         <input type="hidden" name="transactionAmount" id="transactionAmount" value="147"/>
+			         <input type="hidden" name="paymentMethodId" id="paymentMethodId" />
+			         <input type="hidden" name="description" id="description" value="servico de cuidadoria c o marcos no dia 27/10"/>
+			         <br>
+			    	 <button type="submit" class="btnNav" id="btnFinalizar">Realizar Pagamento</button>
+			         <br>
+			       </div>
+			       <!--<button id="btnMostrarInfo" type="button">VER O SERVIÇO</button>-->
+			    </div>
+			</div>
+		</form>
+	</main>
+	<footer class="footer">
+			<nav>
+				<div class="menuGeral paginaAtual">
+                  <a href="atendimento.html">
+                        <div class="areaIcone">
+						    <img src="../../img/icones/iconeCalendarioDestaque.png">
+					    </div>
+					    <span style="margin-left: 8px;">Atendimento</span>
+                  </a>
+				</div>
+				<div class="menuGeral">
+                  <a href="agendaCliente.html">
+					<div class="areaIcone">
+						<img src="../../img/icones/editarPaciente/agenda.png">
+					</div>
+                    <span style="margin-left: 22px;">Agenda</span>
+                  </a>
+				</div>
+				<div class="menuGeral">
+                    <a href=pacientes.html>
+					    <div class="areaIcone">
+						    <img src="../../img/icones/iconePaciente.png">
+					    </div>
+					    <span style="margin-left: 20px;">Pacientes</span>
+                    </a>
+				</div>
+				<div class="menuGeral">
+                    <a href="configuracaoCliente.html">
+					    <div class="areaIcone">
+						    <img src="../../img/icones/editarPaciente/configuracao.png">
+					    </div>
+					    <span style="margin-left: 10px; ">Configuração</span>
+                    </a>
+				</div>
+			</nav>
+	</footer>
+</body>
+</html>

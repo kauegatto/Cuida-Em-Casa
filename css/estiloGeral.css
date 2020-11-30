@@ -1,0 +1,61 @@
+﻿
+* { margin: 0; padding: 0; }
+
+body {background: #f3f3f3;}
+
+a { text-decoration: none; color: White;}
+
+.estruturaGeral {     position: relative; display: grid; grid-template-columns: repeat(4, 25%); grid-template-areas: "header header header header" "conteudo conteudo conteudo conteudo" "footer footer footer footer"; }
+
+.header { position: fixed; width: 100%; z-index: 1; grid-area: header; min-height: 107px; background: #2980B9; backdrop-filter: blur(4px);}
+
+.areaLogo { width: 25%; float: left; } 
+
+.iconeVoltar { margin-left: 28px; margin-top: 43px; }
+
+.areaTituloGeral { width: 75%; float: right; }
+
+.logo { margin-left: 35px; margin-top: 11px; }
+
+.tituloGeral {color: white; font-size: 20px; font-family: 'Rubik', sans-serif; line-height: 24px; margin-top: 43px;text-align: center; width: 158px;
+height: 47px;}
+
+.conteudoGeral { grid-area: conteudo; margin-bottom: 150px;}
+
+.tituloConteudo { margin-top: 5px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; width: 100%;text-align:center;}
+
+.btnProximo {display: block;width: 166px; height: 34px; background: #27AE60; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; border-style: none; color: white; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 20px; line-height: 25px; position: fixed; left: 27.5%; bottom: 100px;z-index: 999;}
+
+.btnConfirmar { width: 142px; height: 34px; background: #27AE60; border: 0.3px solid #646464; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA; border-style: none; margin-left: 25px;}
+
+.footer { color: rgba(240,240,247,0.65) !important; grid-area: footer; height: 70px; background: #2980B9;  width: 100%; position: fixed; bottom: 0%; transform: translateZ(0);} 
+
+.paginaAtual { font-weight: bold;  }
+
+
+/*.paginaAtual img{ background:#fafafa; }*/
+
+.menuGeral { width: 25%; float: left; }
+
+.areaIcone { height: 80%; margin-top: 14px; margin-left: 30px;}
+
+.menuGeral span { height: 20%; position: relative; font-family: 'Archivo', sans-serif;font-style: normal; font-size: 12px; line-height: 13px;}
+
+.iconeCasa { margin-top: 10px; margin-left: 159px; }
+
+.selecionado {background-color: rgb(81 154 255 / 50%) !important; color:#000; transition:0.3s; }
+
+.invi { display: none; }
+
+.visivel { display: block !important;}
+
+.clear {clear: both;}
+
+main  { background-color: #f3f3f3;}
+
+#uploadImgUsuario { display: none; position: absolute; top: -100px; }
+
+#areaAlterarImagemPaciente::before { background-repeat: no-repeat; background-position: center; background-image: url('../img/photo-camera.png'); border-radius: 10px; width: 100%; height: 100%; content: ""; position: absolute; top: 0; left: 0; background-color: rgba(0,0,0,0.3); }
+
+.alertBonito { font-family: Rubik; }
+.temCoisa { background-color: #56cc9d94; color: #000; }

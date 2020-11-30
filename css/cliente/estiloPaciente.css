@@ -1,0 +1,59 @@
+﻿
+
+#btnSalvarPaciente {background: #27AE60; border-radius: 10px; width: 143px; min-height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:relative; margin-bottom:30px;left: 29%;}
+
+#wrapper-AreaDadosPaciente, #wrapper-areaAdicionarPaciente { display: none; }
+
+.areaPaciente { width: 85%; height: 83px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; margin-top: 25px; margin-left: 24.5px; }
+
+.areaImagemPaciente { width: 23%; height: 77px; float: left; position: relative; background-size: cover; border-radius: 50%; background-position: center;}
+
+/* .imgPaciente { max-width: 72px; height: 69px; border-radius: 50%; margin-left: 11.5px; margin-top: 7px; } */
+
+#headerNav{ display: none; }
+
+.nomePaciente { width: 200px; font-family: Roboto; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; float: left; margin-top: 14px; margin-left: 27px; }
+
+.enderecoPaciente { font-family: Roboto; font-style: normal; font-weight: normal; font-size: 13px; line-height: 15px; float: left;  margin-left: 28px; margin-top: 7px;}
+
+.imgEditar { float: right; margin-right: 9px; margin-top: -5px; }
+
+.btnAdicionar {background: #27AE60; border-radius: 10px; width: 143px; height: 34px; border-style: none;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FAFAFA;position:fixed;    bottom: 90px;  left: 31%;}
+
+.areaInfoDadosPaciente { width: 92%; min-height: 458px; border-radius: 10px; margin-left: 14px; margin-top: 33%; background: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}
+
+.areaNomePaciente { width: 68%; height: 77px; float: right; }
+
+.tituloInfo, p { font-family: Roboto; font-style: normal; font-weight: bold; font-size: 16px; line-height: 19px; width:100%; text-align:left}
+
+.inputInfo { background: rgba(240, 240, 247, 0.65); border: 1px solid #646464; box-sizing: border-box; border-radius: 6px; }
+
+.areaNecessidadePaciente { float: left; width: 100%; height: auto}
+
+.areaDescricaoPaciente { width: 100%; height: 120px; float: left; }
+
+.areaEnderecoPaciente { width: 100%; height: 143px; float: left; }
+
+.enderecos { margin-top: 10px; }
+
+.btnSalvar { float:left;margin-left: 15px;font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF;  width: 142px; height: 34px; border-style: none; background: #27AE60; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; }
+
+.btnExcluir { float:right; margin-right: 15px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #FFFFFF;  width: 142px; height: 34px; border-style: none; background: #9D2F42; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; }
+
+#areaBotoes {width: 100%; min-height: 50px; margin-top: 20px;}
+
+#listaPacientes { margin-top: 35%; }
+
+.areaAdicionarNecessidades { width: 50%; float: right; }
+
+.areaAdicionarNecessidades img { margin-top: 6px; }
+
+#necessidadeEscolhida { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; }
+
+#areaTxtNecessidade { margin-bottom: 10px; margin-top: 10px; display: none; font-family: 'Roboto';}
+
+#areaTxtNecessidade2 { margin-bottom: 10px; margin-top: 10px; display: none; font-family: 'Roboto';font-family: 'Roboto';}
+
+#necessidadeEscolhida2 { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; font-family: 'Roboto';font-family: 'Roboto';font-family: 'Roboto';}
+
+#txtEspecializacoesCuidador { margin-left: 13px; margin-top: 10px; margin-bottom: 10px; font-family: 'Roboto';}

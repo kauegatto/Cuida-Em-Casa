@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Cuida em Casa</title>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="../../css/administrador/estiloCuidador.css">
+	<link rel="stylesheet" type="text/css" href="../../css/administrador/estiloGeral.css">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="../../js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <script src="../../js/Administrador/ListarCuidadores/scriptInfoCuidador.js" type="text/javascript"></script>
+    <script src="../../js/Administrador/ListarCuidadores/scriptSuspenderBanir.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="estruturaGeral">
+		<header class="header">
+			<div class="areaLogo">
+				<a href="#"><img src="../../img/logoSimples.png" class="logo"></a>
+			</div>		
+			<nav>
+				<div class="menuGeral">
+					<div class="areaIcone">
+					<a href="cuidadores.html"><span>Cuidadores</span></a>
+				</div>
+				<div class="menuGeral">
+					<a href="contratarCuidador.html"><span style="opacity: 65%; ">Contratar</span></a>
+				</div>
+				<div class="menuGeral">
+					<a href="ocorrencias.html"><span style="opacity: 65%; ">Denúncias</span></a>
+				</div>
+				<div class="menuGeral">
+					<div class="areaIcone">
+					<a href="estatisticas.html"><span style="opacity: 65%; ">Estatísticas</span></a>
+				</div>
+				<div class="menuGeral">
+					<div class="areaIcone"><a href="index.html"><img id="iconeSair" src="../../img/icones/iconeSair.png"></a></div>
+				</div>
+			</nav>
+
+		</header>
+		<main class="conteudoGeral">
+
+			<div class="conteudoCuidador">
+	          	<div class="areaCuidador" >
+				  	<div class="areaImagemCuidador" style="margin-top: 10px; margin-left: 16px;" id="img_cuidador"></div>
+							<div class="areaNomeCuidador">
+								<h3 class="nomeCuidador" id="nm_cuidador" style="width:500px;">Marcelo Castro</h3>					
+								<div class="areaBotao">
+									<a href="servicos.html"><button class="btnServicos" type="button">Serviços</button></a>
+					 			</div>	
+					 		</div>	
+						</div>
+							<div class="tituloConteudo"><span>Informações Básicas</span></div>
+								<div class="areaInfoCuidador">
+									<div class="areaInfoBasicas">
+										<span>Gênero:</span>
+										<span class="generoCuidador" style="color: gray" id="genero_cuidador">Masculino</span>
+										<span style="margin-left: 20px">Telefone:</span>
+										<span class="telefoneCuidador" style="color: gray" id="tel_cuidador">(13)99123-4323</span>
+										<span style="margin-left: 20px">CPF:</span>
+										<span class="cpfCuidador" style="color: gray" id="cpf_cuidador">365.643.128-89</span> 
+										<span>Email:</span><span class="emailCuidador" style="color: gray" id="email_cuidador">Marcastro@gmail.com</span> 
+										<br/>
+										<span>Descrição:</span>
+										<span class="descricaoCuidador" style="color: gray" id="ds_cuidador">Eu sou juliano gosto de ajudar aqueles que necessitam não curto eutanásia, amo os idosos. </span>
+									</div>
+					 			</div>	
+					 		<div class="tituloConteudo"><span>Informações de Trabalho</span></div>
+								<div class="areaInfoCuidador">
+									<div class="areaInfoTrabalho">
+										<span>Especialização:</span>
+										<span class="especializacaoCuidador" style="color: gray" id="especializacao_cuidador">Fisioterapeuta</span>
+										<br/>
+										<span>Valor Hora:</span>
+										<span class="valorHoraCuidador" style="color: gray" id="vl_hora">R$ 120,00</span>
+										<br/>
+										<span>Link Currículo:</span>
+										<span class="curriculoCuidador" style="color: gray" id="curriculo_cuidador">https://MarceloCastro/Arquivo/Contrato.Dafafaj/daod</span> 
+									</div>
+								</div>
+								<div class="tituloConteudo"><span>Denúncias e Advertências</span></div>
+								<div class="areaInfoOcorrencias">
+									<div class="areaDadosOcorrencias">
+										<a href="advertenciaCuidador.html"><button class="btnAdvertencias" type="button">Ver Advertências</button></a>
+										<a href="ocorrenciaCuidador.html"><button class="btnOcorrencias" type="button">Ver Denúncias</button></a>
+										<span>Denúncias:</span>
+										<span class="qtdeOcorrencias" style="color: gray" id="ocorrencia_cuidador">2</span><span class="qtdeOcorrencias" style="color: gray">registrada(s)</span>
+										<br/>
+										<span>Advertências:</span>
+										<span class="qteAdvertenciasAtivas" style="color: #C61E1E" id="advertencia_cuidador">1</span><span style="color: gray">registrada(s)</span>
+										<br/>
+										
+									</div>
+								</div>
+					 			<div class="areaBotaoStatus" style="width: 100%; height: 60px; text-align: center;">
+                                        <button class="btnRemoveSuspensao" type="button" style="display: none;" id="aplicar_suspensao">Aplicar Suspensão</button>
+										<button class="btnRemoveSuspensao" type="button" style="display: none;" id="remover_suspensao">Remover Suspensão</button>
+										<button class="btnBanir" type="button" style="display: none;" id="banir_cuidador">Banir Permanentemente</button>
+                                        <button class="btnBanir" type="button" style="display: none;" id="desbanir_cuidador">Desbanir</button>
+					 			</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</main>
+	</div>
+</body>
+</html>

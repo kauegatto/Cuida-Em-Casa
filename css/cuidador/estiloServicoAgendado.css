@@ -1,0 +1,45 @@
+#wrapper-InfoServicoAgendado{ display: none; }
+
+.areaAgendaConteudo { width: 88%; height: 200px; border-radius: 10px; background-color: #F1F1F1; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); margin-left: 22px; margin-top: 17px;}
+
+.areaDataAgendamento { width: 100%; height:30px;margin-bottom: 5px; }
+
+.dataAgendamento {  position: relative; top: 19%; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; }
+
+.iconeRelogio { width: 10%; float: left; margin-top: 5px; margin-left: 15px; }
+
+.linha { width: 85%; padding: 5px; border-top: 1px solid black; margin-left: 18px;}
+
+.areaImagemPacienteAgendamento { width: 22%; height: 66px; float: left; position: relative; background-size: cover; border-radius: 50%; background-position: center; margin-left: 15px;  margin-top: 25px; }
+
+.areaDadosServico { width: 85%; }
+
+.nomePaciente { width: 76%;  font-family: Roboto; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; margin-left: 111px;}
+
+.necessidadePaciente { font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 15px; margin-left: 25.5px;}
+
+.infoPaciente { float: right; margin-right: -32px; margin-top: 5px; width: 191px;;font-family: Roboto; font-style: normal; font-weight: normal; font-size: 14px; line-height: 15px; }
+
+.areaStatus { width: 85%; height: 20px; float: left; margin-left: 109px; margin-top: 3px;  }
+
+.status {  font-family: Roboto; font-style: normal; font-weight: bold; font-size: 14px; line-height: 16px; }
+
+.statusServico {  font-family: Roboto; font-style: normal; font-weight: bold; font-size: 14px; line-height: 16px; color: #27AE60; }
+
+.btnCancelarServico { margin-left: 112px; margin-top: 13px; color: #F0F0F7; font-family: Archivo; font-style: normal; font-weight: bold; font-size: 16px; line-height: 17px; text-align: center; width: 145px; height: 30px; border-style: none; background: #9D2F42; box-sizing: border-box; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; }
+
+.areaBranca { background: #F0F0F7; box-shadow: 0px -4px 0px rgba(0, 0, 0, 0.25); }
+
+.areaCinza { background: rgba(220, 220, 240); box-shadow: 1px 4px 0px rgba(0, 0, 0, 0.25); }
+
+#areaAgendados { width: 50%; height: 50px; float: left;  border-radius: 6px; }
+
+#areaDisponibilidade {width: 50%; height: 50px; float: right; border-radius: 6px; }
+
+#areaAgendados h3 { text-align: center; margin-top: 17px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
+
+#areaDisponibilidade h3 { text-align: center; margin-top: 17px; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 18px; line-height: 21px; color: #646464; }
+
+.mesServico{color: black;font-size: 20px;font-family: 'Rubik', sans-serif;font-weight: bold;text-align: center;}
+
+.opcoes { width: 100%; height: 50px; margin-bottom: 13px; margin-top: 30%;}

@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Cuida em Casa</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="css/estiloIndex.css">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Rubik:wght@400;600;800&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet">
+	
+
+	<script
+  	 src="https://code.jquery.com/jquery-3.5.1.js"
+ 	 integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+ 	 crossorigin="anonymous"></script>
+
+ 	 <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+  	<script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+
+	<script src="js/Login/scriptLogin.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="areaLogo">
+			<img src="img/logoIndex.png"/>
+		</div>
+	</header>
+	<main>
+		<div class="areaForm">
+				<label>Email:</label>
+				<input type="email" name="txtEmail" id="txtEmail" required>
+	            <br />
+				<label>Senha:</label>
+				<input type="password" name="txtSenha" id="txtSenha" required>
+				<button type="button" id="btnLogin">Entrar</button>
+	            <p>Não tem uma conta? <a href="pages/escolhaCadastro.html"><span id="crieAgora">Crie Agora!</span></a></p>
+	            <a href="pages/esqueceuSenha.html"> <p id="crieAgora">Esqueceu a sua senha?</p></a>
+	        
+		</div>
+	</main>
+</body>
+
+</html>

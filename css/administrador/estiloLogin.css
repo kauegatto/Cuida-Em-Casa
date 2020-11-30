@@ -1,0 +1,17 @@
+* { margin: 0; padding: 0; }
+
+body { background: #2980B9; }
+
+.areaLogo { width: 100%; }
+
+.areaLogo img { width: 21%; margin-left: 270px; margin-top: 100px; float: left}
+
+.areaForm { width: 30%; height: 350px; background: #F4F4F4; border-radius: 14px; margin-top: 180px; margin-left: 5px; margin-right: 150px ;float: right}
+
+.areaForm h1 { font-family: "Rubik One"; font-style: normal; font-weight: normal; font-size: 24px; line-height: 30px; text-align: center; color: #285593; padding: 30px; }
+
+.areaForm p { margin-left: 40px; padding: 5px; font-family: "Rubik"; font-style: normal; font-weight: normal; font-size: 16px; line-height: 19px; color: #285593; }
+
+.areaForm input { background: rgba(40, 85, 147, 0.3); border-radius: 6px; border-style: none; width: 80%; height: 41px; margin-left: 40px; }
+
+.areaForm button { background: #285593; border-radius: 10px; border-style: none; width: 81%; height: 48px; font-family: "Rubik"; font-size: 20px; color: #F1F1F1; margin-left: 40px; margin-top: 25px;}
