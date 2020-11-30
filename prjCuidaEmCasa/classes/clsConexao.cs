@@ -7,7 +7,7 @@ namespace prjCuidaEmCasa.classes
 {
     static class clsConexao
     {
-        private static string linhaConexao = "SERVER=localhost;UID=root;PASSWORD=root;DATABASE=prjcuidaemcasa";
+        private static string linhaConexao = "conexao banco :)";
 
         public static string getConexao()
         {

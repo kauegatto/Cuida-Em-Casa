@@ -1,9 +1,0 @@
-.areaInfoDados { width: 325px; background-color: #F1F1F1; border-radius: 10px; margin: 0px auto; margin-top: 14px; transition: 0.35s }
-
-.areaInfoDetalhes { width: 281px;border: 0.5px solid #646464;box-sizing: border-box;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);border-radius: 0px 0px 10px 10px; border-radius: 10px; margin-left: 21px; margin-top: 14px;box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); }
-
-.tituloInformacao{  min-height:25.5px;height: 30%; width: 80%; text-align: center; font-family: 'Rubik', sans-serif;font-weight: bold; float: left;border-bottom: 1.3px solid #000;}
-
-.btnExpandir{min-height:25.5px; height: 30%; width: 20%; float: right;border-bottom: 1.3px solid #000; font-family: 'Rubik', sans-serif;font-weight: bold;}
-
-.detalheInformacao{ height: 70%; width: 95%; position:relative;margin:0 auto; margin-top:27.5px;margin-bottom:30px;background-color: #f2f2f2; border-radius: 10px; font-family: 'Rubik'}
