@@ -24,7 +24,7 @@
             $('.areaDisponibilidade').css("display", "block");
         }  
         else {
-            $('#body').css('background', '#FFF');
+            $('#body').css('background', '#F3F3F3');
             retorno = retorno.split("&");
             $('.areaDisponibilidade').css("display", "none");
             $('#wrapper-infoServico').addClass("visivel");
