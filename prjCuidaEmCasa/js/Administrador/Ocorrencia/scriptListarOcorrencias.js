@@ -8,12 +8,12 @@
         }
         else {
             if (retorno == "") {
-                $('.listaCuidadores').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
+                $('.conteudoCuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
             }
             else {
-                $('.listaCuidadores').html(retorno);
+                $('.conteudoCuidador').html(retorno);
 
-                $(".areaCuidador").each(function (i, obj) {
+                $(".conteudoCuidador").each(function (i, obj) {
                     var tinhaImg = $(this).children("div.invi").html().split("#");
                     if (tinhaImg[1] == "true") { var url = "data:image/png;base64," + tinhaImg[0]; }
                     else { var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
@@ -42,7 +42,7 @@
                     }
                     else {
                         if (retorno == "") {
-                            $('.listaCuidadores').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
+                            $('.conteudoCuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
                         }
                         else {
                             retorno = retorno.split("|@")
@@ -78,7 +78,7 @@
                     }
                     else {
                         if (retorno == "") {
-                            $('.listaCuidadores').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
+                            $('.conteudoCuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
                         }
                         else {
                             retorno = retorno.split("|@")

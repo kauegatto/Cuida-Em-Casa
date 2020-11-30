@@ -18,7 +18,7 @@
            alertErro();
         }
 
-        if (retorno == "") {
+        if (retorno == "" || retorno == "false") {
             $(".areaServicoEncontrado").html("");
             $(".areaServicoEncontrado").css("display", "none");
         }  

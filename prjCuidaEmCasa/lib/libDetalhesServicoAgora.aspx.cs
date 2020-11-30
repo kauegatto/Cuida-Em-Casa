@@ -53,7 +53,24 @@ namespace prjCuidaEmCasa.lib
             detalhesServico += "<span class='dadosDetalhe'>Horário: </span><span class='dadosServicoDetalhe'>" + servico.hr_inicio_servico[0] + " - " + servico.hr_fim_servico[0] + "</span>";
             detalhesServico += "</div>";
             detalhesServico += "<div class='areaDetalhe'>";
-            detalhesServico += "<span class='dadosDetalhe'>Duração: </span><span class='dadosServicoDetalhe'>" + servico.duracaoServico[0] + " hr(s)</span>";
+            string duracao = servico.duracaoServico[0];
+            string[] duracaoSplit = duracao.Split(':');
+            if (int.Parse(duracaoSplit[0]) < 0)
+            {
+                int duracaoSomaHora = int.Parse(duracaoSplit[0]) + 24;
+                if (duracaoSomaHora.ToString().Length == 1)
+                {
+                    detalhesServico += "<span class='dadosDetalhe'>Duração: </span><span class='dadosServicoDetalhe'>0" + duracaoSomaHora + ":" + duracaoSplit[1] + " hr(s)</span>";
+                }
+                else
+                {
+                    detalhesServico += "<span class='dadosDetalhe'>Duração: </span><span class='dadosServicoDetalhe'>" + duracaoSomaHora + ":" + duracaoSplit[1] + " hr(s)</span>";
+                }
+            }
+            else
+            {
+                detalhesServico += "<span class='dadosDetalhe'>Duração: </span><span class='dadosServicoDetalhe'>" + servico.duracaoServico[0] + " hr(s)</span>";
+            }
             detalhesServico += "</div>";
             detalhesServico += "</div>";
             detalhesServico += "</div>";

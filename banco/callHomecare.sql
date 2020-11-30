@@ -54,7 +54,7 @@ call verificarPacienteServico(8, '2020-07-16', '08:00:00', '10:00:00');
 call verificarAceitouServico(27);
 
 /* PROCEDURE DO CUIDADOR */
-
+select * from servico;
 call cadastrarCuidador('renanstopa@gmail.com', 'Renan Lopes Stopa', '625.615.345-93', '(13)99654-1367', '123', 15.00, 
 'https://CurriculoDoRenan.com.br', '5 anos de trabalho de cuidadoria na Santa Casa de Santos', 
 'Me chamo Renan, estou nessa trabalho de cuidadoria a bastante tempo e faço isso com muita paixão', 2);
@@ -65,7 +65,7 @@ call listarServicosFinalizadosRecentes('flaviabeneditamilenamelo@gmail.com');
 call listarServicosFinalizadosDataAntigos('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call listarServicosFinalizadosDataRecentes('flaviabeneditamilenamelo@gmail.com', '2020-06-11');
 call servicoSelecionado(24);
-call servicoSelecionadoAgora(24); 
+call servicoSelecionadoAgora(27); 
 call marcarCheckin(5);
 call marcarCheckout(27);
 call tornarDisponivel('flaviabeneditamilenamelo@gmail.com');

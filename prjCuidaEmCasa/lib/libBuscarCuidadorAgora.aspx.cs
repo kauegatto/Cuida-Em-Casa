@@ -61,7 +61,24 @@ namespace prjCuidaEmCasa.lib
                         {
                             dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado'>Serviço Encontrado</h3>";
                             dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[i] + "</h3>";
-                            dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[i] + "  de serviço</h3>";
+                            string duracao = servico.duracaoServico[0];
+                            string[] duracaoSplit = duracao.Split(':');
+                            if (int.Parse(duracaoSplit[0]) < 0)
+                            {
+                                int duracaoSomaHora = int.Parse(duracaoSplit[0]) + 24;
+                                if (duracaoSomaHora.ToString().Length == 1)
+                                {
+                                    dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>0" + duracaoSomaHora + ":" + duracaoSplit[1] + "  de serviço</h3>";
+                                }
+                                else
+                                {
+                                    dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + duracaoSomaHora + ":" + duracaoSplit[1] + "  de serviço</h3>";
+                                }
+                            }
+                            else
+                            {
+                                dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
+                            }
                             dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado " + cdServico + "' type='button'>Ver Mais</button>";
                             i = servico.codigoAgora.Count;
                             break;
@@ -81,7 +98,24 @@ namespace prjCuidaEmCasa.lib
                             {
                                 dadosCuidadorAgora += "<h3 class='tituloServicoEncontrado' >Serviço Encontrado</h3>";
                                 dadosCuidadorAgora += "<h3 class='nomePacienteServicoEncontrado'>" + servico.nm_paciente[i] + "</h3>";
-                                dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[i] + "  de serviço</h3>";
+                                string duracao = servico.duracaoServico[0];
+                                string[] duracaoSplit = duracao.Split(':');
+                                if (int.Parse(duracaoSplit[0]) < 0)
+                                {
+                                    int duracaoSomaHora = int.Parse(duracaoSplit[0]) + 24;
+                                    if (duracaoSomaHora.ToString().Length == 1)
+                                    {
+                                        dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>0" + duracaoSomaHora + ":" + duracaoSplit[1] + "  de serviço</h3>";
+                                    }
+                                    else
+                                    {
+                                        dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + duracaoSomaHora + ":" + duracaoSplit[1] + "  de serviço</h3>";
+                                    }
+                                }
+                                else
+                                {
+                                    dadosCuidadorAgora += "<h3 class='areaInfoServicoEncontrado'>" + servico.duracaoServico[0] + "  de serviço</h3>";
+                                }
                                 dadosCuidadorAgora += "<button class='btnVerMaisServicoEncontrado " + cdServico + "' type='button'>Ver Mais</button>";
                                 i = servico.codigoAgora.Count;
                                 Session["codigosQueJaForam"] = cdServico;
