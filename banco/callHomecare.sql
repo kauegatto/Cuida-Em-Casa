@@ -12,7 +12,7 @@ call inserirAuthRecover('brunastellaflaviadepaula@gmail.com',1233);
 
 /* PROCEDURES DO CLIENTE */
 
-call buscarPacientes('flaviapriscilamarianasilveira@gmail.com');
+call buscarPacientes('mauricioRodolfo@gmail.com');
 call buscarEnderecoPaciente(3);
 call alterarEnderecoPaciente('11330-560', 'São Vicente', 'Vila Margarida', 'R. José Vicente de Barros', '549', 'SP', null, 3);
 call buscarCuidadores('2020-12-15', '16:00:00', '17:00:00');

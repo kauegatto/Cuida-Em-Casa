@@ -271,7 +271,7 @@
     <Content Include="lib\libBuscarDadosPaciente.aspx" />
     <Content Include="lib\libBuscarDisponibilidadeDoCuidadorPorMes.aspx" />
     <Content Include="lib\libBuscarPaciente.aspx" />
-    <Content Include="lib\libBuscarPacientesQueNaoEstaoEmServico.aspx" />
+    <Content Include="lib\libBuscarPacientesQueEstaoEmServico.aspx" />
     <Content Include="lib\libBuscarServicoAgora.aspx" />
     <Content Include="lib\libCancelarServicoAgendado.aspx" />
     <Content Include="lib\libCancelarServicoAgora.aspx" />
@@ -500,12 +500,12 @@
     <Compile Include="lib\libBuscarPaciente.aspx.designer.cs">
       <DependentUpon>libBuscarPaciente.aspx</DependentUpon>
     </Compile>
-    <Compile Include="lib\libBuscarPacientesQueNaoEstaoEmServico.aspx.cs">
-      <DependentUpon>libBuscarPacientesQueNaoEstaoEmServico.aspx</DependentUpon>
+    <Compile Include="lib\libBuscarPacientesQueEstaoEmServico.aspx.cs">
+      <DependentUpon>libBuscarPacientesQueEstaoEmServico.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="lib\libBuscarPacientesQueNaoEstaoEmServico.aspx.designer.cs">
-      <DependentUpon>libBuscarPacientesQueNaoEstaoEmServico.aspx</DependentUpon>
+    <Compile Include="lib\libBuscarPacientesQueEstaoEmServico.aspx.designer.cs">
+      <DependentUpon>libBuscarPacientesQueEstaoEmServico.aspx</DependentUpon>
     </Compile>
     <Compile Include="lib\libBuscarServicoAgora.aspx.cs">
       <DependentUpon>libBuscarServicoAgora.aspx</DependentUpon>

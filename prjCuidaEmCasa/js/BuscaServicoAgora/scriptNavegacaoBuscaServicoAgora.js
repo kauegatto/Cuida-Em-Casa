@@ -74,7 +74,7 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
         $('#body').css("background", "rgba(41, 128, 185, 0.8)");
-        interval = setInterval(scriptBuscarCuidadorAgora, 120000);
+        interval = setInterval(scriptBuscarCuidadorAgora, 60000);
 
     });
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
 
-        interval = setInterval(scriptBuscarCuidadorAgora, 120000);
+        interval = setInterval(scriptBuscarCuidadorAgora, 60000);
     	
     }); 
 

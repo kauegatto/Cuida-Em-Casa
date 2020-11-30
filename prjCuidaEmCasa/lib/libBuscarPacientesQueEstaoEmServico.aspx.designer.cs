@@ -10,6 +10,6 @@
 namespace prjCuidaEmCasa.lib {
     
     
-    public partial class libBuscarPacientesQueNaoEstaoEmServico {
+    public partial class libBuscarPacientesQueEstaoEmServico {
     }
 }

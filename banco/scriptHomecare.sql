@@ -72,7 +72,6 @@ CREATE TABLE usuario (
     CONSTRAINT fk_usuario_tipo_situacao_usuario FOREIGN KEY (cd_situacao_usuario)
 	REFERENCES tipo_situacao_usuario (cd_situacao_usuario)
 );
-select * from servico;
 /*Adiministradores*/
 insert into usuario values('thiagofranciscojosefigueiredo-75@adiministrador.com','Thiago Francisco José Figueiredo','264.346.238-60','(13)98292-8428',md5('123'),null,null,null,null,null,null,null,1,null,null);
 insert into usuario values('giovannaisabelleisabelamoura-86@adiministrador.com','Giovanna Isabelle Isabela Moura','307.335.868-48','(13)99576-6640',md5('123'),null,null,null,null,null,null,null,1,null,null);
