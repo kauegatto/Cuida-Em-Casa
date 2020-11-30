@@ -26,17 +26,17 @@ namespace prjCuidaEmCasa.lib
 
             string emailCuidador = Request["emailCuidador"].ToString();
 
-            if (Request["imagemCuidador"] == null)
-            {
-                Response.Write("erro");
-                return;
-            }
+            //if (Request["imagemCuidador"] == null)
+            //{
+            //    Response.Write("erro");
+            //    return;
+            //}
 
-            if (Request["imagemCuidador"].ToString() == "")
-            {
-                Response.Write("erro");
-                return;
-            }
+            //if (Request["imagemCuidador"].ToString() == "")
+            //{
+            //    Response.Write("erro");
+            //    return;
+            //}
 
             string imgCuidador = Request["imagemCuidador"].ToString();
 
