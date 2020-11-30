@@ -48,10 +48,11 @@ call atualizarNecessidadesPaciente(2,1);
 call deletarNecessidadesPaciente(2);
 call listarUltimoCodigoPaciente();
 call excluirPaciente(10);
-call buscarDadosCliente('mauriciorodolfo@gamil.com');
-call atualizarDadosCliente('mauriciorodolfo@gamil.com', 'Douglas Reis', '526.013.418-40', '(13) 33631503');
+call buscarDadosCliente('mauriciorodolfo@gmail.com');
+call atualizarDadosCliente('mauriciorodolfo@gmail.com', 'Douglas Reis', '526.013.418-40', '(13) 33631503');
 call verificarPacienteServico(8, '2020-07-16', '08:00:00', '10:00:00');
 call verificarAceitouServico(27);
+call buscarPacientesQueEstaoEmServico('mauriciorodolfo@gmail.com');
 
 /* PROCEDURE DO CUIDADOR */
 select * from servico;

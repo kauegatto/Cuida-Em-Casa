@@ -4370,18 +4370,26 @@ END$$
 
 /* Procedure buscarPacientesQueNaoEstaoEmServico. Busca pacientes que nao estao em serviço porra pq tu ta lendo isso eh autoexplicativo */
 
-DROP PROCEDURE IF EXISTS buscarPacientesQueNaoEstaoEmServico$$
+DROP PROCEDURE IF EXISTS buscarPacientesQueEstaoEmServico$$
 
-CREATE PROCEDURE buscarPacientesQueNaoEstaoEmServico(vEmailUsuario VARCHAR(100))
+CREATE PROCEDURE buscarPacientesQueEstaoEmServico(vEmailUsuario VARCHAR(100))
 BEGIN 
 	SELECT 
-		cd_paciente, nm_paciente,  
-		nm_cidade_paciente, nm_uf_paciente,
-		img_paciente
-	FROM 
-		paciente 
-	WHERE 
-		nm_email_usuario = vEmailUsuario;	
+	p.cd_paciente
+FROM
+	paciente p
+JOIN
+	servico s
+ON
+	(p.cd_paciente = s.cd_paciente)
+WHERE
+	(p.nm_email_usuario = vEmailUsuario AND s.dt_inicio_servico = CURRENT_DATE() AND CURRENT_TIME() BETWEEN s.hr_inicio_servico AND s.hr_fim_servico)
+OR
+	(p.nm_email_usuario = vEmailUsuario AND s.dt_inicio_servico = CURRENT_DATE() AND CURRENT_TIME() > s.hr_inicio_servico)
+OR
+	(p.nm_email_usuario = vEmailUsuario AND s.dt_fim_servico = CURRENT_DATE() AND CURRENT_TIME() < s.hr_fim_servico)
+GROUP BY
+	p.cd_paciente;
 END$$
 
 DELIMITER ;
