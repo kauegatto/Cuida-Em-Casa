@@ -7,7 +7,9 @@
             console.log("deu erro na lib");
         }
         else {
+
             retorno = retorno.split("|");
+            console.log(retorno);
             $('#nm_cuidador').html(retorno[1]);
             $('#genero_cuidador').html(retorno[2]);
             $('#tel_cuidador').html(retorno[3]);
@@ -59,6 +61,7 @@
                 var url = "data:image/png;base64," + retorno[0];
                 $("#img_cuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             }
+
         }
     });
 

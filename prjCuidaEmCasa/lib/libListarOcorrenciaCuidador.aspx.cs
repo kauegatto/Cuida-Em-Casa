@@ -142,7 +142,6 @@ namespace prjCuidaEmCasa.lib
                     if (adm.base64String[0] == imgPadrao) { tinhaImg = "false"; } else { tinhaImg = "true"; }
                     dadosOcorrencia += "<div class='areaCuidador'>";
                     dadosOcorrencia += "<div class='areaImagemCuidador' style='margin-top: 10px; margin-left: 16px;'></div>";
-               
                     dadosOcorrencia += "<div class='invi' style='display: none'>" + adm.base64String[0] + "#" + tinhaImg +"</div>";
                     dadosOcorrencia += "<div class='areaNomeCuidador'>";
                     dadosOcorrencia += "<h3 class='nomeCuidador' style='width: 400px;'>" + adm.nomeCuidador[0] + "</h3>";
@@ -150,7 +149,7 @@ namespace prjCuidaEmCasa.lib
                     dadosOcorrencia += "<p class='nomeCuidador' style='width: 400px; font-size: 20px;'>" + adm.nmEmailCuidador[0] + "</p>";
                     dadosOcorrencia += "</div>";
                     dadosOcorrencia += "</div>";
-                    dadosOcorrencia += "<div class='tituloConteudo'><span>Ocorrências</span></div>";
+                    dadosOcorrencia += "<div class='tituloConteudo'><span>Denúncias</span></div>";
 
                     for (int i = 0; i < adm.dataOcorrencia.Count; i++)
                     {

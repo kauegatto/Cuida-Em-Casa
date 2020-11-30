@@ -2312,7 +2312,7 @@ BEGIN
 	SELECT
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
-		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
+		buscarEspecializacao(u.nm_email_usuario) AS especializacao, 
 		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario,
 		countServico(u.nm_email_usuario)
 	FROM
@@ -2329,10 +2329,6 @@ BEGIN
 		tipo_especializacao te
 	ON
 		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-	JOIN
-		servico s 
-	ON
-		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE
 		u.nm_email_usuario = vEmailCuidador
 	GROUP BY
@@ -2437,7 +2433,7 @@ BEGIN
 	INSERT INTO
 		advertencia
 	VALUES
-		(vCodigoOcorrencia, vDsOcorrencia, CURRENT_DATE, vEmailCuidador, vEmailAdm, vCodigoTipoOcorrencia);
+		(vCodigoOcorrencia, vDsOcorrencia, CURRENT_DATE, 0, vEmailCuidador, vEmailAdm, vCodigoTipoOcorrencia);
 END$$
 
 /* Procedure criada para remover ocorrência */

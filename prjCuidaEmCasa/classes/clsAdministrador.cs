@@ -164,9 +164,10 @@ namespace prjCuidaEmCasa.classes
                     qtdServico.Add(dados[11].ToString());
                 }
 
-                if (!dados.IsClosed) { dados.Close(); }
-                Desconectar();
             }
+
+            if (!dados.IsClosed) { dados.Close(); }
+            Desconectar();
 
             return true;
         }
