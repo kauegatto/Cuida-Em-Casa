@@ -59,7 +59,7 @@ namespace prjCuidaEmCasa.lib
                 double valorTotal = horaFinal * double.Parse(classeHistoricoCliente.vl_cuidador[i]);
                 if (classeHistoricoCliente.situacaoServico[i] == "Cancelado")
                 {
-                    listaHistorico += "               <span>Total: </span><span>Nenhum valor recebido</span>";
+                    listaHistorico += "               <span>Total: </span><span>Nenhum valor pago</span>";
                 }
                 else
                 {

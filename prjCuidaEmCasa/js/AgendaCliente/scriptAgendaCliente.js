@@ -18,21 +18,20 @@
 			else{
 				$("#listaAgenda").html("<h3 style='font-family:rubik;text-align:center;'>Você não tem serviços para o futuro!</h3>");
 			}
-			if ($('.invi').html() == imgPadrao) 
-			{
-				$(".areaDadosAgendados").each(function (i, obj) {
+			
+			$(".areaDadosAgendados").each(function (i, obj) {
+				if ($(this).children('.invi').html() == imgPadrao) 
+				{	
 					var url = "data:image/svg+xml;base64," + $(this).children('.invi').html();
                 	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-            	});
+            	}
+            	else{
+            		
+						var url = "data:image/jpeg+jpg;base64," + $(this).children('.invi').html();
+	                	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            	}
+            });
 
-			}
-			else
-			{
-				$(".areaDadosAgendados").each(function (i, obj) {
-					var url = "data:image/jpeg+jpg;base64," + $(this).children('.invi').html();
-                	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-            	});
-			}
 		}
 
 	});

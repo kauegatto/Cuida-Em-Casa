@@ -61,12 +61,12 @@
         if (localStorage.getItem('imagemCuidador') == imgPadrao) 
         {
             var url = "data:image/svg+xml;base64," + localStorage.getItem("imagemCuidador");
-            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            $(".areaImagemCuidadorInfo").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         }
         else
         {
             var url = "data:image/jpeg;base64," + localStorage.getItem("imagemCuidador");
-            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            $(".areaImagemCuidadorInfo").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
         }
 
        
