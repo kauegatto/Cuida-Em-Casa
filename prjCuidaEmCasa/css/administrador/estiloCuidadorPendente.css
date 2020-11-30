@@ -24,7 +24,8 @@ body { background: #E5E5E5; }
 
 .areaInfoBasicas{margin-top: 10px; height: 140px; width: 95%; float: left; margin-left: 25px;}
 
-.areaInfoCuidador span {position: relative; font-family: Rubik; font-style: normal; font-weight: bold; font-size: 15px; line-height: 30px;}
+.areaCuidador span { font-family: Rubik; font-style: normal; font-weight: bold; font-size: 14px;color:black !important;}
+
 
 .areaInfoTrabalho {margin-top: 10px; height: 140px; width: 80%; float: left; margin-left: 25px;}
 

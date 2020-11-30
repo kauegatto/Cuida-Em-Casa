@@ -34,7 +34,7 @@ $(document).on("click", "#btnLogin", function () {
                 localStorage.setItem('SituacaoUsuario', retornoLogin[2]);
 
                 if (retornoLogin[1] == "1") {
-                    window.location.href = "../../pages/administrador/contratarCuidador.html";
+                    window.location.href = "../../pages/administrador/cuidadores.html";
                 }
                 else if (retornoLogin[1] == "2") {
                     window.location.href = "../../pages/cliente/atendimento.html";
