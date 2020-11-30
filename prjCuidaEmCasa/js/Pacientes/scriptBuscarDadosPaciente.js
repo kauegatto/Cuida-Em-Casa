@@ -17,7 +17,7 @@
        
         if (!retorno) {
         	//$('#wrapper-paciente').html("ERRO NO RETORNO");
-        	alertIonic('Houve um erro!');
+        	console.log('Houve um erro!');
         }
 
 		else if (retorno == "") {

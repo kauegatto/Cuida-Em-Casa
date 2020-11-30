@@ -74,7 +74,7 @@ CREATE TABLE usuario (
 );
 /*Adiministradores*/
 insert into usuario values('thiagofranciscojosefigueiredo-75@adiministrador.com','Thiago Francisco José Figueiredo','264.346.238-60','(13)98292-8428',md5('123'),null,null,null,null,null,null,null,1,null,null);
-insert into usuario values('giovannaisabelleisabelamoura-86@adiministrador.com','Giovanna Isabelle Isabela Moura','307.335.868-48','(13)99576-6640',md5('123'),null,null,null,null,null,null,null,1,null,null);
+insert into usuario values('giovannaisabelleisabelamoura-86@administrador.com','Giovanna Isabelle Isabela Moura','307.335.868-48','(13)99576-6640',md5('123'),null,null,null,null,null,null,null,1,null,null);
 /*Clientes*/
 insert into usuario values('jenniferevelyngomes@gmail.com','Jennifer Evelyn Gomes','546.433.708-31','(13)98377-3877',md5('123'),null,null,null,null,null,null,null,2,null,null);
 insert into usuario values('flaviapriscilamarianasilveira@gmail.com','Flávia Priscila Mariana Silveira','585.753.038-56','(13)99525-1833',md5('123'),null,null,null,null,null,null,null,2,null,null);
@@ -204,8 +204,8 @@ CREATE TABLE advertencia (
 
 insert into advertencia values (1, 'O cuidador tentou agredir o pessoal da casa','2020-10-11',0,'oliverbrunoluccanunes@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',4);
 insert into advertencia values (2, 'A cuidadora roubou 100 reais da minha gaveta','2020-11-11',0,'brunastellaflaviadepaula@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com',5);
-insert into advertencia values (3, 'A cuidadora atrasou 40 minutos para o serviço','2020-11-20',0,'brunastellaflaviadepaula@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com',1);
-insert into advertencia values (4, 'O meu avô se recusava a tomar o remédio e a cuidadora tentou agredi-lo', '2020-11-30', 0, 'flaviabeneditamilenamelo@gmail.com', 'giovannaisabelleisabelamoura-86@adiministrador.com', 4);
+insert into advertencia values (3, 'A cuidadora atrasou 40 minutos para o serviço','2020-11-20',0,'brunastellaflaviadepaula@gmail.com', 'giovannaisabelleisabelamoura-86@administrador.com',1);
+insert into advertencia values (4, 'O meu avô se recusava a tomar o remédio e a cuidadora tentou agredi-lo', '2020-11-30', 0, 'flaviabeneditamilenamelo@gmail.com', 'giovannaisabelleisabelamoura-86@administrador.com', 4);
 insert into advertencia values (5, 'A cuidadora Atrasou 30 minutos para o serviço', '2020-12-05', 0, 'flaviabeneditamilenamelo@gmail.com', 'thiagofranciscojosefigueiredo-75@adiministrador.com', 1);
 
 CREATE TABLE tipo_necessidade_paciente (
@@ -345,7 +345,7 @@ insert into servico values(19,'2020-01-20','12:00:00','2020-08-20','20:00:00','1
 insert into servico values(20,'2020-02-20','09:00:00','2020-08-20','16:00:00','11525-050','Cubatão','Vila Nova','Praça Francisco da Silva Cardoso','50','SP',null,'09:00:00','2020-08-20',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','brunastellaflaviadepaula@gmail.com',null,3,6,null,null);
 insert into servico values(21,'2020-06-11','15:20:00','2020-06-11','18:00:00','11533-040','Cubatão','Jardim Casqueiro','R. Estados Unidos','530','SP',null,'15:22:00','2020-06-11',null,null,'-23.893013;-46.429228','hadassabetinaviana-80@scuderiagwr.com.br','flaviabeneditamilenamelo@gmail.com',null,3,6,null,null);
 insert into servico values(22,'2020-07-15','10:00:00','2020-07-15','14:30:00','11330-060','São Vicente','Parque Bitaru','R. Osvaldo Eduardo','49','SP',null,'10:01:00','2020-07-15',null,null,'-23.893013;-46.429228','emilyantoniadaianearagao@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,5,null,null);
-insert into servico values(23,'2020-12-02','10:00:00','2020-12-02','14:30:00','14805-396', 'Araraquara', 'Condomínio Buona Vita', 'Av. Oswaldo Gonçalves de Jesus', '732', 'SP', null,'10:01:00','2020-12-02','14:30:00','2020-12-02','-21.750694;-48.176153','mauriciorodolfo@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,10,null,null);
+insert into servico values(23,'2020-12-02','10:00:00','2020-12-02','14:30:00','14805-396', 'Araraquara', 'Condomínio Buona Vita', 'Av. Oswaldo Gonçalves de Jesus', '732', 'SP', null,'10:01:00','2020-11-30','14:30:00','2020-11-30','-21.750694;-48.176153','mauriciorodolfo@gmail.com','flaviabeneditamilenamelo@gmail.com',null,3,10,null,null);
 
 /*Serviços Em Andamento*/
 insert into servico values(5,'2020-08-20','08:00:00','2020-08-20','17:00:00','05024-000','São Paulo','Pompeia','R. Barão do Bananal','1328','SP',null,'08:30:00','2020-08-20',null,null,'-23.535457;-46.690143','jenniferevelyngomes@gmail.com','oliverbrunoluccanunes@gmail.com',null,1,2,null,null);

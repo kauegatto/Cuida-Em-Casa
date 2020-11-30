@@ -14,22 +14,18 @@
 
 			$("#listaHistorico").html(retorno);
 
-			if ($('.invi').html() == imgPadrao) 
-			{
-				$(".areaDadosAgendadosHistorico").each(function (i, obj) {
+			$(".areaDadosAgendadosHistorico").each(function (i, obj) {
+				if ($(this).children('.invi').html() == imgPadrao) 
+				{	
 					var url = "data:image/svg+xml;base64," + $(this).children('.invi').html();
                 	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-            	});
-
-			}
-			else
-			{
-				$(".areaDadosAgendadosHistorico").each(function (i, obj) {
-					var url = "data:image/jpeg;base64," + $(this).children('.invi').html();
-                	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-            	});
-
-			}
+            	}
+            	else{
+            		
+						var url = "data:image/jpeg+jpg;base64," + $(this).children('.invi').html();
+	                	$(this).children(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+            	}
+            });
 		}
 
 	});
