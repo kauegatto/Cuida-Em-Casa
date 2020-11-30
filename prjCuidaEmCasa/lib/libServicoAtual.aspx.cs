@@ -74,7 +74,7 @@ namespace prjCuidaEmCasa.lib
 			dadosServicoAtual += "</div>";
             dadosServicoAtual += "<button type='button' id='copiarEndereco'>Copiar endereço</button>";
             dadosServicoAtual += "<div id='map' style='width: 300px;height: 300px;margin: 0 auto;margin-top: 30px;'>";
-            dadosServicoAtual += "<span id='informacoesEndereco' style='display:none;'>"+ servico.nm_rua_servico[0] + ' ' + servico.nm_num_servico + ' '+ servico.nm_bairro_servico +' ' + servico.nm_cidade_servico + ' ' +servico.nm_uf_servico+ "</span>";
+            dadosServicoAtual += "<div id='informacoesEndereco' style='display:none;'>"+ servico.nm_rua_servico[0] + ' ' + servico.nm_num_servico + ' '+ servico.nm_bairro_servico +' ' + servico.nm_cidade_servico + ' ' +servico.nm_uf_servico+ "</div>";
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "<button class='btnCheckin 0'>Fazer Check-In</button>";
             dadosServicoAtual += "<button class='btnCheckout 1' style='display:none'>Fazer Checkout</button>";
