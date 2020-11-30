@@ -1,5 +1,17 @@
 ﻿$(document).ready(function () {
 
+    function alertIonic(text) {
+        const alert = document.createElement('ion-alert');
+        alert.cssClass = 'alertBonito';
+        alert.header = 'Atenção';
+        alert.subHeader = '';
+        alert.message = text;
+        alert.buttons = ['OK'];
+
+        document.body.appendChild(alert);
+        return alert.present();
+    }
+
     var botao = 3;
 
     $.post("../../../lib/libListarOcorrenciaCuidador.aspx", { control: botao, emailCuidador: localStorage.getItem("emailCuidador"), cdOcorrencia: "0", dsOcorrencia: "0", emailAdm: "0", cdTipoOcorrencia: "0" }, function (retorno) {
@@ -45,6 +57,7 @@
                         }
                         else {
                             //retorno = retorno.split("|@")
+                            alertIonic('Denúncia recebida com sucesso!');
                             $('.conteudoCuidador').html(retorno);
                             //var url = "data:image/jpeg+jpg;base64," + retorno[0];
                             //$(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
@@ -84,10 +97,12 @@
                     }
                     else {
                         if (retorno == "") {
+                            alertIonic('Advertência enviada com sucesso!');
                             $('.conteudoCuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
                         }
                         else {
                             //retorno = retorno.split("|@")
+                            alertIonic('Advertência enviada com sucesso!');
                             $('.conteudoCuidador').html(retorno);
                             //var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
                             //$(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
