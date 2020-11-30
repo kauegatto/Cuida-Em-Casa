@@ -38,7 +38,7 @@
             var enderecoCompleto = $("#enderecoCompleto").html();
             var apimaps = "";
 
-            img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+ enderecoCompleto +'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:k|'+endereco+'&key='+ apimaps;
+            img.src =  'https://maps.googleapis.com/maps/api/staticmap?center='+ enderecoCompleto +'&zoom=13&size=300x300&maptype=roadmap&markers=color:blue|label:k|'+enderecoCompleto+'&key='+ apimaps;
             img.alt = 'mapa que mostra localização do endereço do servico';
             document.getElementById('map').appendChild(img); 
         }         

@@ -57,7 +57,7 @@ namespace prjCuidaEmCasa.lib
             {
                 dadosServicoAtual += "<h3 class='enderecoPaciente'>" + servico.nm_rua_servico[0] + " " + servico.nm_num_servico + " - " + servico.dt_inicio_servico[0] + " - " + servico.diaDaSemana + " | " + servico.hr_inicio_servico[0] + " - " + servico.hr_fim_servico[0] + " | " + valorTotal.ToString("C") + "</h3>";
             }
-            dadosServicoAtual += "<span id='enderecoCompleto' style='display:none;'>" + "rua"+ servico.nm_rua_servico[0] + ", " + servico.nm_num_servico +" "+servico.nm_bairro_servico +" "+servico.nm_cidade_servico + " - "+servico.nm_uf_servico + "</span>";
+            dadosServicoAtual += "<div id='informacoesEndereco' style='display:none;'>" + "Rua "+ servico.nm_rua_servico[0] + ", " + servico.nm_num_servico +" "+servico.nm_bairro_servico +" "+servico.nm_cidade_servico + " - "+servico.nm_uf_servico + "</div>";
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "</div>";
 			dadosServicoAtual += "<button type='button' id='copiarEndereco'>Copiar Endereço</button>";

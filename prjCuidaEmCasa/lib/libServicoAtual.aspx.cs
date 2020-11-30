@@ -43,9 +43,23 @@ namespace prjCuidaEmCasa.lib
 			dadosServicoAtual += "<div class='areaDadosPaciente'>";
 			dadosServicoAtual += "<h3 class='nomePaciente'>" + servico.nm_paciente[0] + "</h3>";
 			dadosServicoAtual += "<h3 class='necessidadePaciente'>" + servico.nm_necessidade + "</h3>";
+
             string duracao = servico.duracaoServico[0];
-            string duracaoMinutos = duracao[3].ToString() + duracao[4].ToString();
-            string duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
+            int intDuracaoHoras;
+            string duracaoHoras;
+            string[] arrayDuracao = duracao.Split(':');
+
+            if (duracao.Length == 6) {
+                intDuracaoHoras = int.Parse(arrayDuracao[0]);
+                intDuracaoHoras += 24;
+                duracaoHoras = intDuracaoHoras.ToString();
+            }
+            else 
+            {
+                duracaoHoras = duracao[0].ToString() + duracao[1].ToString();
+            }
+
+            string duracaoMinutos = arrayDuracao[1];
             double horaFinal = double.Parse(duracaoHoras) + (double.Parse(duracaoMinutos) / 60);
             double valorTotal = horaFinal * double.Parse(servico.vl_cuidador[0]);
             if (servico.nm_comp_servico == "")

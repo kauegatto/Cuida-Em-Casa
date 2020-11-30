@@ -14,7 +14,7 @@
     }
 
 	var retorno;
-    $.post("../../lib/libBuscarPaciente.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
+    $.post("../../lib/libBuscarPacientesQueNaoEstaoEmServico.aspx",  { usuarioLogado: localStorage.getItem("usuarioLogado") }, function (retorno) {
         if (!retorno) {
         	//$('#wrapper-paciente').html("ERRO NO RETORNO");
         	alertIonic('Houve um erro');

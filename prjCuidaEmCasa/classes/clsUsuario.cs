@@ -419,8 +419,6 @@ namespace prjCuidaEmCasa.classes.Agendamento
 
             return true;
 
-
-            return true;
         }
 
         #endregion
