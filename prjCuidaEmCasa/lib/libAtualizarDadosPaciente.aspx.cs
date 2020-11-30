@@ -157,17 +157,17 @@ namespace prjCuidaEmCasa.lib
 
             string uf_paciente = Request["uf"].ToString();
 
-            if (Request["imagem"] == null)
-            {
-                Response.Write("false");
-                return;
-            }
+            //if (Request["imagem"] == null)
+            //{
+            //    Response.Write("false");
+            //    return;
+            //}
 
-            if (Request["imagem"].ToString() == "")
-            {
-                Response.Write("false");
-                return;
-            }
+            //if (Request["imagem"].ToString() == "")
+            //{
+            //    Response.Write("false");
+            //    return;
+            //}
 
 
             string imgPaciente = Request["imagem"].ToString();

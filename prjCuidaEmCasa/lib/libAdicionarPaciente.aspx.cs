@@ -41,6 +41,7 @@ namespace prjCuidaEmCasa.lib
             //}
             //catch { complemento_paciente = ""; }
 
+
             if (!clsPaciente.adicionarPaciente( email_logado,nm_paciente, ds_paciente, cep_paciente, cidade_paciente, bairro_paciente, rua_paciente, num_paciente, uf_paciente, complemento_paciente, imgPaciente))
             {
                 Response.Write("false");
