@@ -2329,10 +2329,6 @@ BEGIN
 		tipo_especializacao te
 	ON
 		(eu.cd_tipo_especializacao = te.cd_tipo_especializacao)
-	JOIN
-		servico s 
-	ON
-		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE
 		u.nm_email_usuario = vEmailCuidador
 	GROUP BY
