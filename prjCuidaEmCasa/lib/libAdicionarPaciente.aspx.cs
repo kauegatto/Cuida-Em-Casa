@@ -24,14 +24,16 @@ namespace prjCuidaEmCasa.lib
                 rua_paciente = Request["rua"].ToString();
                 num_paciente = Request["numero"].ToString();    
                 uf_paciente = Request["uf"].ToString();
-                imgPaciente = Request["imagemPaciente"].ToString();
                 cdNecessidade = Request["cdNecessidade"].ToString();
-                complemento_paciente = Request["complemento"].ToString() ;
+                complemento_paciente = Request["complemento"].ToString();
+                imgPaciente = Request["imagemPaciente"].ToString();
             }
             catch {
                 Response.Write("false");
                 return;
             }
+
+
 
             //try
             //{

@@ -34,15 +34,25 @@ export default function scriptEditarDadosPaciente() {
 
 	async function processFile() {
 
+		let resultado;
+
 		try{
 
 			let file = document.getElementById('uploadImgUsuario').files[0];
 
-			let resultado = await readFileAsync(file);
+			resultado = await readFileAsync(file);
 
-			console.log(resultado);
+			//console.log(resultado);
 
-			var descricao = $('#txtAlterarDescricaoPaciente').val();
+		}
+		catch(err) { 
+			console.log('tinha que colocar a imagem mas td bem');
+			//console.log(err);
+			//alertIonic('Houve um erro');
+			//scriptPacientes();
+		}
+
+		var descricao = $('#txtAlterarDescricaoPaciente').val();
 			var CEP =  $('#txtAlterarCEPPaciente').val();
 			var cidade =  $('#txtAlterarCidadePaciente').val();
 			var bairro = $('#txtAlterarBairroPaciente').val();
@@ -83,13 +93,6 @@ export default function scriptEditarDadosPaciente() {
 					scriptPacientes();      				
 				}
 			});
-
-		}
-		catch(err) { 
-			//console.log(err);
-			alertIonic('Houve um erro');
-			scriptPacientes();
-		}
 
 	} 
 
