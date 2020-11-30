@@ -2437,7 +2437,7 @@ BEGIN
 	INSERT INTO
 		advertencia
 	VALUES
-		(vCodigoOcorrencia, vDsOcorrencia, CURRENT_DATE, vEmailCuidador, vEmailAdm, vCodigoTipoOcorrencia);
+		(vCodigoOcorrencia, vDsOcorrencia, CURRENT_DATE, 0, vEmailCuidador, vEmailAdm, vCodigoTipoOcorrencia);
 END$$
 
 /* Procedure criada para remover ocorrência */

@@ -44,10 +44,17 @@
                             $('.conteudoCuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
                         }
                         else {
-                            retorno = retorno.split("|@")
-                            $('.conteudoCuidador').html(retorno[1]);
-                            var url = "data:image/jpeg+jpg;base64," + retorno[0];
-                            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                            //retorno = retorno.split("|@")
+                            $('.conteudoCuidador').html(retorno);
+                            //var url = "data:image/jpeg+jpg;base64," + retorno[0];
+                            //$(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                            $(".areaCuidador").each(function (i, obj) {
+                                var tinhaImg = $(this).children("div.invi").html().split("#");
+                                if (tinhaImg[1] == "true") { var url = "data:image/png;base64," + tinhaImg[0]; }
+                                else { var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
+
+                                $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                            });
                         }
                     }
                 });
@@ -80,10 +87,17 @@
                             $('.conteudoCuidador').html("<h2 style='font-family: Rubik;text-align:center;margin:60px auto;width:80%;color:white;'>Desculpe, esse cuidador não tem ocorrências registradas</h2>");
                         }
                         else {
-                            retorno = retorno.split("|@")
-                            $('.conteudoCuidador').html(retorno[1]);
-                            var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
-                            $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                            //retorno = retorno.split("|@")
+                            $('.conteudoCuidador').html(retorno);
+                            //var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
+                            //$(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                            $(".areaCuidador").each(function (i, obj) {
+                                var tinhaImg = $(this).children("div.invi").html().split("#");
+                                if (tinhaImg[1] == "true") { var url = "data:image/png;base64," + tinhaImg[0]; }
+                                else { var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
+
+                                $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
+                            });
                         }
                     }
                 });
