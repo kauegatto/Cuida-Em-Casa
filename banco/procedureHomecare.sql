@@ -2312,7 +2312,7 @@ BEGIN
 	SELECT
 		u.img_usuario, u.nm_usuario, tg.nm_genero, u.cd_CPF,
 		u.cd_telefone, u.nm_email_usuario, u.ds_usuario,
-		GROUP_CONCAT(te.nm_tipo_especializacao) AS especializacao, 
+		buscarEspecializacao(u.nm_email_usuario) AS especializacao, 
 		u.vl_hora_trabalho, u.cd_link_curriculo, u.cd_situacao_usuario,
 		countServico(u.nm_email_usuario)
 	FROM
