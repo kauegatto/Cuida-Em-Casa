@@ -13,13 +13,12 @@
             else {
                 $('.conteudoCuidador').html(retorno);
 
-                $(".conteudoCuidador").each(function (i, obj) {
-                    var tinhaImg = $(this).children("div.invi").html().split("#");
-                    if (tinhaImg[1] == "true") { var url = "data:image/png;base64," + tinhaImg[0]; }
-                    else { var url = "data:image/svg+xml;base64," + tinhaImg[0]; }
+               
+                var tinhaImg = $(".invi").html().split("#");
+                if (tinhaImg[1] == "true") { var url = "data:image/png;base64," + tinhaImg[0]; }
+                else { var url = "data:image/svg+xml+png;base64," + tinhaImg[0]; }
 
-                    $(this).children(":first").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
-                });
+                $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
             }
         }
     });
@@ -47,7 +46,7 @@
                         else {
                             retorno = retorno.split("|@")
                             $('.conteudoCuidador').html(retorno[1]);
-                            var url = "data:image/svg+xml+jpeg+jpg;base64," + retorno[0];
+                            var url = "data:image/jpeg+jpg;base64," + retorno[0];
                             $(".areaImagemCuidador").css("background-image", "url('" + url.replace(/(\r\n|\n|\r)/gm, "") + "')");
                         }
                     }

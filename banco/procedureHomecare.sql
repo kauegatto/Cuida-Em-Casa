@@ -106,7 +106,7 @@ BEGIN
 	INSERT INTO
 		ocorrencia 
 	VALUES 
-		(vCodigo, vDsOcorrencia, current_date(), vEmailUsuario, vCodigoServico, vCodigoTipoOcorrencia);
+		(vCodigo, vDsOcorrencia, current_date(), 0,vEmailUsuario, vCodigoServico, vCodigoTipoOcorrencia);
 END$$
 
 /* CRIAÇÃO DE FUNCTIONS */
@@ -1705,13 +1705,12 @@ BEGIN
 	ON
 		(u.nm_email_usuario = s.nm_email_usuario_cuidador)
 	WHERE 
-		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 2
+		s.nm_email_usuario_cuidador = vEmailCuidador AND s.cd_status_servico = 5
 	GROUP BY
 		s.cd_servico
 	ORDER BY 
 		s.dt_inicio_servico, s.hr_inicio_servico; 
 END$$
-
 /* Procedure criada para cancelar o servico agendado */
 
 DROP PROCEDURE IF EXISTS cancelarServicoAgendado$$
@@ -4169,7 +4168,7 @@ BEGIN
 	AND
 		MONTH(dt_inicio_servico) = vMes
 	AND
-		cd_status_servico = 2
+		cd_status_servico = 5
 	ORDER BY
 		hr_inicio_servico;
 END$$
@@ -4225,7 +4224,7 @@ BEGIN
     WHERE 
         s.nm_email_usuario_cuidador = vEmailCuidador 
     AND 
-        s.cd_status_servico = 2
+        s.cd_status_servico = 5
     AND
         s.dt_inicio_servico = vDataServico
     GROUP BY
