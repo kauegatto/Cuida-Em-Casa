@@ -74,7 +74,7 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
         $('#body').css("background", "rgba(41, 128, 185, 0.8)");
-        interval = setInterval(scriptBuscarCuidadorAgora, 10000);
+        interval = setInterval(scriptBuscarCuidadorAgora, 120000);
 
     });
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
 
         scriptBuscarCuidadorAgora();
 
-        interval = setInterval(scriptBuscarCuidadorAgora, 10000);
+        interval = setInterval(scriptBuscarCuidadorAgora, 120000);
     	
     }); 
 
@@ -113,10 +113,14 @@ $(document).ready(function () {
 
     $(document).on("click", "#copiarEndereco", function(){
         const endereco = $("#informacoesEndereco").html();
-        var copyText = document.getElementById("myInput");
-        copyText.select();
-        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-        /* Copy the text inside the text field */
+
+        var dummy = document.createElement("textarea");
+        document.body.appendChild(dummy);
+        dummy.value = endereco;
+        dummy.select();
+        dummy.setSelectionRange(0, 99999);
         document.execCommand("copy");
+        document.body.removeChild(dummy);
+    
     });
 });

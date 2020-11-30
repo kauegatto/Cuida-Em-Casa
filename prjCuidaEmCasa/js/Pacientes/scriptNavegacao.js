@@ -11,6 +11,8 @@ $(".iconeVoltar").click(function(){
 
 $(document).ready(function () {
 
+    $('#txtAdicionarCEPPaciente').mask('00000-000');
+
     function alertIonic(text) {
         const alert = document.createElement('ion-alert');
         alert.cssClass = 'alertBonito';
@@ -54,7 +56,7 @@ $(document).ready(function () {
             else
             {
                 $('#selectAlterarNecessidade').html(retorno);
-                alertIonic('As necessidades do paciente foram cadastradas com sucesso !');
+                //alertIonic('As necessidades do paciente foram cadastradas com sucesso !');
             }
 
     });
